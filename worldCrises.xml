@@ -1,43 +1,26 @@
 <WorldCrises>
 	<Crises>
 		<CrisisID> CRI_HURIKE </CrisisID>
-		<Team> Gummy Pandas </TEAM>
-	</Crises>
-	<Crises>
+
 		<CrisisID> CRI_BAGAIR </CrisisID>
-		<Team> Gummy Pandas </TEAM>
-	</Crises>
-	<Crises>
+
 		<CrisisID> CRI_IRAQWR </CrisisID>
-		<Team> Gummy Pandas </TEAM>
-	</Crises>
-	<Crises>
+
 		<CrisisID> CRI_WSAFRC </CrisisID>
-		<Team> Gummy Pandas </TEAM>
-	</Crises>
-	<Crises>
+
 		<CrisisID> CRI_SWNFLU </CrisisID>
-		<Team> Gummy Pandas </TEAM>
-	</Crises>
-	<Crises>
+
 		<CrisisID> CRI_EXXONV </CrisisID>
-		<Team> Gummy Pandas </TEAM>
-	</Crises>
-	<Crises>
+
 		<CrisisID> CRI_HAITIE </CrisisID>
-		<Team> Gummy Pandas </TEAM>
-	</Crises>
-	<Crises>
+
 		<CrisisID> CRI_AIDSHI </CrisisID>
-		<Team> Gummy Pandas </TEAM>
-	</Crises>
-	<Crises>
+
 		<CrisisID> CRI_POLITI </CrisisID>
-		<Team> Gummy Pandas </TEAM>
-	</Crises>
-	<Crises>
+
 		<CrisisID> CRI_SEP911 </CrisisID>
-		<Team> Gummy Pandas </TEAM>
+
+		<Team> Gummy Pandas </Team>
 	</Crises>
 
 	<Crisis> 
@@ -51,6 +34,73 @@
 		<Year> </Year>
 		<ID> </ID>
 		<Name> </Name>
+	</Crisis>
+
+	<Crisis>
+		<ID>CRI_HURIKE</ID>
+		<Name>Hurricane Ike</Name>
+		<People>
+			<PersonID/> PER_RENPRE </People>
+		<Organizations>
+			<OrgID>ORG_FEDEMA</OrgID>
+		</Organizations>
+		<PlaceID>PLC_HAITII</PlaceID>
+		<Year>2008</Year>
+	</Crisis>
+	<Crisis>
+		<ID>CRI_BAGAIR</ID>
+		<Name>Baghdad Airstrike</Name>
+		<People>
+			<PersonID>PER_BRAMAN</PersonID>
+			<PersonID>PER_JULASS</PersonID>
+		</People>
+		<Organizations>
+			<OrgID>ORG_WIKLKS</OrgID>
+			<OrgID>ORG_BUSHAD</OrgID>
+		</Organizations>
+		<PlaceID>PLC_BAGDAD</PlaceID>
+		<Year>2007</Year>
+	</Crisis>
+	<Crisis>
+		<ID>CRI_IRAQWR</ID>
+		<Name>Iraq War</Name>
+		<People>
+			<PersonID>PER_SADHUS</PersonID>
+		</People>
+		<Organizations>
+			<OrgID>ORG_AQAEDA</OrgID>
+			<OrgID>ORG_IWVORG</OrgID>
+		</Organizations>
+		<PlaceID>PLC_IRACKX</PlaceID>
+		<Year>2003</Year>
+	</Crisis>
+	<Crisis>
+		<ID>CRI_WSAFRC</ID>
+		<Name>Water Scarcity in Africa</Name>
+		<People>
+			<PersonID>PER_MICCAM</PersonID>
+		</People>
+		<Organizations>
+			<OrgID>ORG_CARERA</OrgID>
+			<OrgID>ORG_UNICEF</OrgID>
+		</Organizations>
+		<PlaceID>PLC_AFRICA</PlaceID>
+		<Year>2013</Year>
+	</Crisis>
+	<Crisis>
+		<ID>CRI_SWNFLU</ID>
+		<Name>Influenza A virus subtype H1N1</Name>
+		<People>
+			<PersonID>PER_BROBMA</PersonID>
+			<PersonID>PER_GHARTL</PersonID>
+		</People>
+		<Organizations>
+			<OrgID>ORG_WHLORG</OrgID>
+			<OrgID>ORG_CFDCAP</OrgID>
+			<OrgID>ORG_REDCRS</OrgID>
+		</Organizations>
+		<PlaceID>PLC_WORLDW</PlaceID>
+		<Year>2009</Year>
 	</Crisis>
 
 	<Person>
@@ -112,6 +162,7 @@
 		<Born> March 10, 1957 </Born>
 		<Office> Founder of al-Qaeda </Office>
 	</Person>
+
 	<Place>
 	    <ID> PLC_AFRICA </ID>
 	    <Name> Africa </Name>
@@ -191,5 +242,9 @@
 	<Organization>
 		<Name> Oil Spill Recovery Institute </Name>
 		<ID> ORG_OILREC </ID>
+	</Organization>
+	<Organization>
+		<Name> Egyptian Organization for Human Rights </Organization>
+		<ID> ORG_EGYHUM </ID>
 	</Organization>
 </WorldCrises>

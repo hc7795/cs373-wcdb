@@ -84,7 +84,7 @@
 	</Person>
 	<Person>
 		<Name> Barack Obama </Name>
-		<ID> PER_BOBAMA </ID>
+		<ID> PER_BROBMA </ID>
 		<Born> August 4, 1961 </Born>
 		<Office> President of the United States </Office>
 	</Person>
@@ -114,43 +114,39 @@
 	</Person>
 	<Place>
 	    <ID> PLC_AFRICA </ID>
-	    <Name> Water Scarcity in Africa </Name>
+	    <Name> Africa </Name>
 	</Place>
 	<Place>
-	    <ID> PLC_TXCUBA </ID>
-	    <Name> Hurricane Ike </Name>
+	    <ID> PLC_TEXSUS </ID>
+	    <Name> Texas </Name>
 	</Place>
 	<Place>
-	    <ID> PLC_BAGAIR </ID>
-	    <Name> Baghdad Airstrike </Name>
+	    <ID> PLC_BAGDAD </ID>
+	    <Name> Baghdad </Name>
 	</Place>
 	<Place>    
-	    <ID> PLC_ALLIRQ </ID>
-	    <Name> Iraq War </Name>
+	    <ID> PLC_IRACKX </ID>
+	    <Name> Iraq </Name>
 	</Place>
 	<Place>
 	    <ID> PLC_WORLDW </ID>
-	    <Name> Influenza A virus subtype H1N1 </Name>
+	    <Name> World Wide </Name>
 	</Place>
 	<Place>
 	    <ID> PLC_ALASKA</ID>
-	    <Name> Exxon Valdez Oil Spill </Name>
+	    <Name> Alaska </Name>
 	</Place>
 	<Place>
-	    <ID> PLC_HHAITI</ID>
-	    <Name> Haiti Earthquake </Name>
-	</Place>
-	<Place>
-	    <ID> PLC_WORLDW</ID>
-	    <Name> AIDS/HIV </Name>
+	    <ID> PLC_HAITII</ID>
+	    <Name> Haiti  </Name>
 	</Place>
 	<Place>
 	    <ID> PLC_EEGYPT</ID>
-	    <Name> Political unrest in Egypt </Name>
+	    <Name> Egypt </Name>
 	</Place>
 	<Place>
 	    <ID> PLC_NEWYOR </ID>
-	    <Name> September 11 attacks </Name>
+	    <Name> New York </Name>
 	</Place>
 	<Organization>
 		<Name> Care </Name>
@@ -190,6 +186,10 @@
 	</Organization>
 	<Organization>
 		<Name> Red Cross </Name>
-		<ID> ORG_RDCRSS </ID>
+		<ID> ORG_REDCRS </ID>
+	</Organization>
+	<Organization>
+		<Name> Oil Spill Recovery Institute </Name>
+		<ID> ORG_OILREC </ID>
 	</Organization>
 </WorldCrises>

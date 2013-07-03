@@ -1,5 +1,5 @@
 <WorldCrises>
-  <Crises>
+	<Crises>
 		<Crisis> </Crisis>
 		<Crisis> </Crisis>
 		<Crisis> </Crisis>
@@ -8,33 +8,62 @@
 	</Crises>
 	<Person>
 		<Name> Bradley Manning </Name>
-		<ID> </ID>
+		<ID> PER_BRAMAN </ID>
 		<Born> December 17, 1987 </Born>
 		<Office> Private First Class </Office>
 	</Person>
 	<Person>
 		<Name> Julian Assange </Name>
-		<ID> </ID>
+		<ID> PER_JULASS </ID>
 		<Born> July 3, 1971 </Born>
 		<Office> Editor-in-chief and spokesman for WikiLeak </Office>
 	</Person>
 	<Person>
 		<Name> Michel Camdessus </Name>
-		<ID> </ID>
+		<ID> PER_MICCAM </ID>
 		<Born> May 1, 1933 </Born>
 		<Office> Managing Director of the IMF </Office>
 	</Person>
 	<Person>
-		<Name> Bradley Manning </Name>
-		<ID> </ID>
-		<Born> </Born>
-		<Office> </Office>
+		<Name> Saddam Hussein </Name>
+		<ID> PER_SADHUS </ID>
+		<Born> April 28, 1937 </Born>
+		<Office> President of Iraq </Office>
 	</Person>
 	<Person>
-		<Name> Bradley Manning </Name>
-		<ID> </ID>
-		<Born> </Born>
-		<Office> </Office>
+		<Name> Gregory Hartl </Name>
+		<ID> PER_GHARTL </ID>
+		<Office> Head of Public Relations/Social Media for World Health Organization </Office>
+	</Person>
+		<Person>
+		<Name> Barack Obama </Name>
+		<ID> PER_BOBAMA </ID>
+		<Born> August 4, 1961 </Born>
+		<Office> President of the United States </Office>
+	</Person>
+	<Person>
+		<Name> René Préval </Name>
+		<ID> PER_RENPRE </ID>
+		<Born> January 17 1943 </Born>
+		<Office> President of Haiti </Office>
+	</Person>
+	<Person>
+		<Name> Magic Johnson </Name>
+		<ID> PER_MAGICJ </ID>
+		<Born> August 14, 1959 </Born>
+		<Office> Basketball Player </Office>
+	</Person>
+	<Person>
+		<Name> Mohamed Morsi </Name>
+		<ID> PER_MOHMOR </ID>
+		<Born> August 8, 1951 </Born>
+		<Office> President of Egypt </Office>
+	</Person>
+	<Person>
+		<Name> Osama Bin Laden </Name>
+		<ID> PER_OSAMAB </ID>
+		<Born> March 10, 1957 </Born>
+		<Office> Founder of al-Qaeda </Office>
 	</Person>
 
 	<Place>

@@ -1,11 +1,58 @@
 <WorldCrises>
 	<Crises>
-		<Crisis> </Crisis>
-		<Crisis> </Crisis>
-		<Crisis> </Crisis>
-		<Crisis> </Crisis>
-		<Crisis> </Crisis>
+		<CrisisID> CRI_HURIKE </CrisisID>
+		<Team> Gummy Pandas </TEAM>
 	</Crises>
+	<Crises>
+		<CrisisID> CRI_BAGAIR </CrisisID>
+		<Team> Gummy Pandas </TEAM>
+	</Crises>
+	<Crises>
+		<CrisisID> CRI_IRAQWR </CrisisID>
+		<Team> Gummy Pandas </TEAM>
+	</Crises>
+	<Crises>
+		<CrisisID> CRI_WSAFRC </CrisisID>
+		<Team> Gummy Pandas </TEAM>
+	</Crises>
+	<Crises>
+		<CrisisID> CRI_SWNFLU </CrisisID>
+		<Team> Gummy Pandas </TEAM>
+	</Crises>
+	<Crises>
+		<CrisisID> CRI_EXXONV </CrisisID>
+		<Team> Gummy Pandas </TEAM>
+	</Crises>
+	<Crises>
+		<CrisisID> CRI_HAITIE </CrisisID>
+		<Team> Gummy Pandas </TEAM>
+	</Crises>
+	<Crises>
+		<CrisisID> CRI_AIDSHI </CrisisID>
+		<Team> Gummy Pandas </TEAM>
+	</Crises>
+	<Crises>
+		<CrisisID> CRI_POLITI </CrisisID>
+		<Team> Gummy Pandas </TEAM>
+	</Crises>
+	<Crises>
+		<CrisisID> CRI_SEP911 </CrisisID>
+		<Team> Gummy Pandas </TEAM>
+	</Crises>
+
+	<Crisis> 
+		<People>
+			<PersonID> </PersonID>
+		</People>
+		<Organizations>
+			<OrgID> </OrgID>
+		</Organizations>
+		<PlaceID> </PlaceID>
+		<Year> </Year>
+		<ID> </ID>
+		<Name> </Name>
+	</Crisis>
+
 	<Person>
 		<Name> Bradley Manning </Name>
 		<ID> PER_BRAMAN </ID>
@@ -35,7 +82,7 @@
 		<ID> PER_GHARTL </ID>
 		<Office> Head of Public Relations/Social Media for World Health Organization </Office>
 	</Person>
-		<Person>
+	<Person>
 		<Name> Barack Obama </Name>
 		<ID> PER_BOBAMA </ID>
 		<Born> August 4, 1961 </Born>
@@ -65,9 +112,84 @@
 		<Born> March 10, 1957 </Born>
 		<Office> Founder of al-Qaeda </Office>
 	</Person>
-
 	<Place>
+	    <ID> PLC_AFRICA </ID>
+	    <Name> Water Scarcity in Africa </Name>
+	</Place>
+	<Place>
+	    <ID> PLC_TXCUBA </ID>
+	    <Name> Hurricane Ike </Name>
+	</Place>
+	<Place>
+	    <ID> PLC_BAGAIR </ID>
+	    <Name> Baghdad Airstrike </Name>
+	</Place>
+	<Place>    
+	    <ID> PLC_ALLIRQ </ID>
+	    <Name> Iraq War </Name>
+	</Place>
+	<Place>
+	    <ID> PLC_WORLDW </ID>
+	    <Name> Influenza A virus subtype H1N1 </Name>
+	</Place>
+	<Place>
+	    <ID> PLC_ALASKA</ID>
+	    <Name> Exxon Valdez Oil Spill </Name>
+	</Place>
+	<Place>
+	    <ID> PLC_HHAITI</ID>
+	    <Name> Haiti Earthquake </Name>
+	</Place>
+	<Place>
+	    <ID> PLC_WORLDW</ID>
+	    <Name> AIDS/HIV </Name>
+	</Place>
+	<Place>
+	    <ID> PLC_EEGYPT</ID>
+	    <Name> Political unrest in Egypt </Name>
+	</Place>
+	<Place>
+	    <ID> PLC_NEWYOR </ID>
+	    <Name> September 11 attacks </Name>
 	</Place>
 	<Organization>
+		<Name> Care </Name>
+		<ID> ORG_CARERA </ID>
+	</Organization>
+	<Organization>
+		<Name> UNICEF </Name>
+		<ID> ORG_UNICEF </ID>
+	</Organization>
+	<Organization>
+		<Name> Wikileaks </Name>
+		<ID> ORG_WIKLKS </ID>
+	</Organization>
+	<Organization>
+		<Name> Iraq War Veterans Organization </Name>
+		<ID> ORG_IWVORG</ID>
+	</Organization>
+	<Organization>
+		<Name> al-Qaeda </Name>
+		<ID> ORG_AQ</ID>
+	</Organization>
+	<Organization>
+		<Name> Bush Administration </Name>
+		<ID> ORG_BUSHAD </ID>
+	</Organization>
+	<Organization>
+		<Name> World Health Organization </Name>
+		<ID> ORG_WHLORG </ID>
+	</Organization>
+	<Organization>
+		<Name> Centers for Disease Control and Prevention </Name>
+		<ID> ORG_CFDCAP </ID>
+	</Organization>
+	<Organization>
+		<Name> Federal Emergency Management Agency </Name>
+		<ID> ORG_FEDEMA </ID>
+	</Organization>
+	<Organization>
+		<Name> Red Cross </Name>
+		<ID> ORG_RDCRSS </ID>
 	</Organization>
 </WorldCrises>

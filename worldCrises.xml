@@ -1,1 +1,44 @@
-s
+<WorldCrises>
+  <Crises>
+		<Crisis> </Crisis>
+		<Crisis> </Crisis>
+		<Crisis> </Crisis>
+		<Crisis> </Crisis>
+		<Crisis> </Crisis>
+	</Crises>
+	<Person>
+		<Name> Bradley Manning </Name>
+		<ID> </ID>
+		<Born> December 17, 1987 </Born>
+		<Office> Private First Class </Office>
+	</Person>
+	<Person>
+		<Name> Julian Assange </Name>
+		<ID> </ID>
+		<Born> July 3, 1971 </Born>
+		<Office> Editor-in-chief and spokesman for WikiLeak </Office>
+	</Person>
+	<Person>
+		<Name> Michel Camdessus </Name>
+		<ID> </ID>
+		<Born> May 1, 1933 </Born>
+		<Office> Managing Director of the IMF </Office>
+	</Person>
+	<Person>
+		<Name> Bradley Manning </Name>
+		<ID> </ID>
+		<Born> </Born>
+		<Office> </Office>
+	</Person>
+	<Person>
+		<Name> Bradley Manning </Name>
+		<ID> </ID>
+		<Born> </Born>
+		<Office> </Office>
+	</Person>
+
+	<Place>
+	</Place>
+	<Organization>
+	</Organization>
+</WorldCrises>

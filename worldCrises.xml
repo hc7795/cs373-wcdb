@@ -1,55 +1,38 @@
 <WorldCrises>
-	<Crises>
-		<CrisisID> CRI_HURIKE </CrisisID>
+	<Crises Team="Gummy Pandas">
+		<CrisisID>CRI_HURIKE</CrisisID>
 
-		<CrisisID> CRI_BAGAIR </CrisisID>
+		<CrisisID>CRI_BAGAIR</CrisisID>
 
-		<CrisisID> CRI_IRAQWR </CrisisID>
+		<CrisisID>CRI_IRAQWR</CrisisID>
 
-		<CrisisID> CRI_WSAFRC </CrisisID>
+		<CrisisID>CRI_WSAFRC</CrisisID>
 
-		<CrisisID> CRI_SWNFLU </CrisisID>
+		<CrisisID>CRI_SWNFLU</CrisisID>
 
-		<CrisisID> CRI_EXXONV </CrisisID>
+		<CrisisID>CRI_EXXONV</CrisisID>
 
-		<CrisisID> CRI_HAITIE </CrisisID>
+		<CrisisID>CRI_HAITIE</CrisisID>
 
-		<CrisisID> CRI_AIDSHI </CrisisID>
+		<CrisisID>CRI_AIDSHI</CrisisID>
 
-		<CrisisID> CRI_POLITI </CrisisID>
+		<CrisisID>CRI_POLITI</CrisisID>
 
-		<CrisisID> CRI_SEP911 </CrisisID>
-
-		<Team> Gummy Pandas </Team>
+		<CrisisID>CRI_SEP911</CrisisID>
 	</Crises>
 
-	<Crisis> 
+	<Crisis ID="CRI_HURIKE" Name="Hurricane Ike">
 		<People>
-			<PersonID> </PersonID>
+			<PersonID>PER_RENPRE</PersonID>
 		</People>
-		<Organizations>
-			<OrgID> </OrgID>
-		</Organizations>
-		<PlaceID> </PlaceID>
-		<Year> </Year>
-		<ID> </ID>
-		<Name> </Name>
-	</Crisis>
-
-	<Crisis>
-		<ID>CRI_HURIKE</ID>
-		<Name>Hurricane Ike</Name>
-		<People>
-			<PersonID/> PER_RENPRE </People>
 		<Organizations>
 			<OrgID>ORG_FEDEMA</OrgID>
 		</Organizations>
 		<PlaceID>PLC_HAITII</PlaceID>
 		<Year>2008</Year>
 	</Crisis>
-	<Crisis>
-		<ID>CRI_BAGAIR</ID>
-		<Name>Baghdad Airstrike</Name>
+
+	<Crisis ID="CRI_BAGAIR" Name="Baghdad Airstrike">
 		<People>
 			<PersonID>PER_BRAMAN</PersonID>
 			<PersonID>PER_JULASS</PersonID>
@@ -61,9 +44,8 @@
 		<PlaceID>PLC_BAGDAD</PlaceID>
 		<Year>2007</Year>
 	</Crisis>
-	<Crisis>
-		<ID>CRI_IRAQWR</ID>
-		<Name>Iraq War</Name>
+
+	<Crisis ID="CRI_IRAQWR" Name="Iraq War">
 		<People>
 			<PersonID>PER_SADHUS</PersonID>
 		</People>
@@ -74,9 +56,8 @@
 		<PlaceID>PLC_IRACKX</PlaceID>
 		<Year>2003</Year>
 	</Crisis>
-	<Crisis>
-		<ID>CRI_WSAFRC</ID>
-		<Name>Water Scarcity in Africa</Name>
+
+	<Crisis ID="CRI_WSAFRC" Name="Water Scarcity in Africa">
 		<People>
 			<PersonID>PER_MICCAM</PersonID>
 		</People>
@@ -87,9 +68,8 @@
 		<PlaceID>PLC_AFRICA</PlaceID>
 		<Year>2013</Year>
 	</Crisis>
-	<Crisis>
-		<ID>CRI_SWNFLU</ID>
-		<Name>Influenza A virus subtype H1N1</Name>
+
+	<Crisis ID="CRI_SWNFLU" Name="Influenza A virus subtype H1N1">
 		<People>
 			<PersonID>PER_BROBMA</PersonID>
 			<PersonID>PER_GHARTL</PersonID>
@@ -103,148 +83,153 @@
 		<Year>2009</Year>
 	</Crisis>
 
-	<Person>
-		<Name> Bradley Manning </Name>
-		<ID> PER_BRAMAN </ID>
-		<Born> December 17, 1987 </Born>
-		<Office> Private First Class </Office>
-	</Person>
-	<Person>
-		<Name> Julian Assange </Name>
-		<ID> PER_JULASS </ID>
-		<Born> July 3, 1971 </Born>
-		<Office> Editor-in-chief and spokesman for WikiLeak </Office>
-	</Person>
-	<Person>
-		<Name> Michel Camdessus </Name>
-		<ID> PER_MICCAM </ID>
-		<Born> May 1, 1933 </Born>
-		<Office> Managing Director of the IMF </Office>
-	</Person>
-	<Person>
-		<Name> Saddam Hussein </Name>
-		<ID> PER_SADHUS </ID>
-		<Born> April 28, 1937 </Born>
-		<Office> President of Iraq </Office>
-	</Person>
-	<Person>
-		<Name> Gregory Hartl </Name>
-		<ID> PER_GHARTL </ID>
-		<Office> Head of Public Relations/Social Media for World Health Organization </Office>
-	</Person>
-	<Person>
-		<Name> Barack Obama </Name>
-		<ID> PER_BROBMA </ID>
-		<Born> August 4, 1961 </Born>
-		<Office> President of the United States </Office>
-	</Person>
-	<Person>
-		<Name> René Préval </Name>
-		<ID> PER_RENPRE </ID>
-		<Born> January 17 1943 </Born>
-		<Office> President of Haiti </Office>
-	</Person>
-	<Person>
-		<Name> Magic Johnson </Name>
-		<ID> PER_MAGICJ </ID>
-		<Born> August 14, 1959 </Born>
-		<Office> Basketball Player </Office>
-	</Person>
-	<Person>
-		<Name> Mohamed Morsi </Name>
-		<ID> PER_MOHMOR </ID>
-		<Born> August 8, 1951 </Born>
-		<Office> President of Egypt </Office>
-	</Person>
-	<Person>
-		<Name> Osama Bin Laden </Name>
-		<ID> PER_OSAMAB </ID>
-		<Born> March 10, 1957 </Born>
-		<Office> Founder of al-Qaeda </Office>
+	<Crisis ID="CRI_EXXONV" Name="Exxon Valdez Oil Spill">
+		<People>
+			<PersonID>PER_GEORGE</PersonID>
+		</People>
+		<Organizations>
+			<OrgID>ORG_OILREC</OrgID>
+		</Organizations>
+		<PlaceID>PLC_ALASKA</PlaceID>
+		<Year>1989</Year>
+	</Crisis>
+
+	<Crisis ID="CRI_HAITIE" Name="Haiti Earthquake">
+		<People>
+			<PersonID>PER_RENPRE</PersonID>
+		</People>
+		<Organizations>
+			<OrgID>ORG_UNICEF</OrgID>
+		</Organizations>
+		<PlaceID>PLC_HAITII</PlaceID>
+		<Year>2010</Year>
+	</Crisis>
+
+	<Crisis ID="CRI_AIDSHI" Name="AIDS/HIV">
+		<People>
+			<PersonID>PER_BROBMA</PersonID>
+			<PersonID>PER_MAGICJ</PersonID>
+		</People>
+		<Organizations>
+			<OrgID>ORG_WHLORG</OrgID>
+		</Organizations>
+		<PlaceID>PLC_WORLDW</PlaceID>
+		<Year>1981</Year>
+	</Crisis>
+
+	<Crisis ID="CRI_POLITI" Name="Political unrest in Egypt">
+		<People>
+			<PersonID>PER_MOHMOR</PersonID>
+		</People>
+		<Organizations>
+			<OrgID>ORG_EGYHUM</OrgID>
+		</Organizations>
+		<PlaceID>PLC_EEGYPT</PlaceID>
+		<Year>2011</Year>
+	</Crisis>
+
+	<Crisis ID="CRI_SEP911" Name="September 11 Attacks">
+		<People>
+			<PersonID>PER_OSAMAB</PersonID>
+		</People>
+		<Organizations>
+			<OrgID>ORG_AQAEDA</OrgID>
+			<OrgID>ORG_BUSHAD<OrgID>
+		</Organizations>
+		<PlaceID>PLC_NEWYOR</PlaceID>
+		<Year>2001</Year>
+	</Crisis>
+
+	<Person ID="PER_BRAMAN" Name="Bradley Manning">
+		<Born>December 17, 1987</Born>
+		<Office>Private First Class</Office>
 	</Person>
 
-	<Place>
-	    <ID> PLC_AFRICA </ID>
-	    <Name> Africa </Name>
-	</Place>
-	<Place>
-	    <ID> PLC_TEXSUS </ID>
-	    <Name> Texas </Name>
-	</Place>
-	<Place>
-	    <ID> PLC_BAGDAD </ID>
-	    <Name> Baghdad </Name>
-	</Place>
-	<Place>    
-	    <ID> PLC_IRACKX </ID>
-	    <Name> Iraq </Name>
-	</Place>
-	<Place>
-	    <ID> PLC_WORLDW </ID>
-	    <Name> World Wide </Name>
-	</Place>
-	<Place>
-	    <ID> PLC_ALASKA</ID>
-	    <Name> Alaska </Name>
-	</Place>
-	<Place>
-	    <ID> PLC_HAITII</ID>
-	    <Name> Haiti  </Name>
-	</Place>
-	<Place>
-	    <ID> PLC_EEGYPT</ID>
-	    <Name> Egypt </Name>
-	</Place>
-	<Place>
-	    <ID> PLC_NEWYOR </ID>
-	    <Name> New York </Name>
-	</Place>
-	<Organization>
-		<Name> Care </Name>
-		<ID> ORG_CARERA </ID>
-	</Organization>
-	<Organization>
-		<Name> UNICEF </Name>
-		<ID> ORG_UNICEF </ID>
-	</Organization>
-	<Organization>
-		<Name> Wikileaks </Name>
-		<ID> ORG_WIKLKS </ID>
-	</Organization>
-	<Organization>
-		<Name> Iraq War Veterans Organization </Name>
-		<ID> ORG_IWVORG</ID>
-	</Organization>
-	<Organization>
-		<Name> al-Qaeda </Name>
-		<ID> ORG_AQAEDA</ID>
-	</Organization>
-	<Organization>
-		<Name> Bush Administration </Name>
-		<ID> ORG_BUSHAD </ID>
-	</Organization>
-	<Organization>
-		<Name> World Health Organization </Name>
-		<ID> ORG_WHLORG </ID>
-	</Organization>
-	<Organization>
-		<Name> Centers for Disease Control and Prevention </Name>
-		<ID> ORG_CFDCAP </ID>
-	</Organization>
-	<Organization>
-		<Name> Federal Emergency Management Agency </Name>
-		<ID> ORG_FEDEMA </ID>
-	</Organization>
-	<Organization>
-		<Name> Red Cross </Name>
-		<ID> ORG_REDCRS </ID>
-	</Organization>
-	<Organization>
-		<Name> Oil Spill Recovery Institute </Name>
-		<ID> ORG_OILREC </ID>
-	</Organization>
-	<Organization>
-		<Name> Egyptian Organization for Human Rights </Organization>
-		<ID> ORG_EGYHUM </ID>
-	</Organization>
+	<Person ID="PER_JULASS" Name="Julian Assange">
+		<Born>July 3, 1971</Born>
+		<Office>Editor-in-chief and spokesman for WikiLeak</Office>
+	</Person>
+
+	<Person ID="PER_MICCAM" Name="Michel Camdessus">
+		<Born>May 1, 1933</Born>
+		<Office>Managing Director of the IMF</Office>
+	</Person>
+
+	<Person ID="PER_SADHUS" Name="Saddam Hussein">
+		<Born>April 28, 1937</Born>
+		<Office>President of Iraq</Office>
+	</Person>
+
+	<Person ID="PER_GHARTL" Name="Gregory Hartl">
+		<Office>Head of Public Relations/Social Media for World Health Organization</Office>
+	</Person>
+
+	<Person ID="PER_BROBMA" Name="Barack Obama">
+		<Born>August 4, 1961</Born>
+		<Office>President of the United States</Office>
+	</Person>
+
+	<Person ID="PER_RENPRE" Name="René Préval">
+		<Born>January 17 1943</Born>
+		<Office>President of Haiti</Office>
+	</Person>
+
+	<Person ID="PER_MAGICJ" Name="Magic Johnson">
+		<Born>August 14, 1959</Born>
+		<Office>Basketball Player</Office>
+	</Person>
+
+	<Person ID="PER_MOHMOR" Name="Mohamed Morsi">
+		<Born>August 8, 1951</Born>
+		<Office>President of Egypt</Office>
+	</Person>
+
+	<Person ID="PER_OSAMAB" Name="Osama Bin Laden ">
+		<Born>March 10, 1957</Born>
+		<Office>Founder of al-Qaeda</Office>
+	</Person>
+
+	<Place ID="PLC_AFRICA" Name="Africa" />
+
+	<Place ID="PLC_TEXSUS" Name="Texas" />
+
+	<Place ID="PLC_BAGDAD" Name="Baghdad" />
+
+	<Place ID="PLC_IRACKX" Name="Iraq" />    
+
+	<Place ID="PLC_WORLDW" Name="World Wide" />
+
+	<Place ID="PLC_ALASKA" Name="Alaska" />
+
+	<Place ID="PLC_HAITII" Name="Haiti" />
+
+	<Place ID="PLC_EEGYPT" Name="Egypt" />
+
+	<Place ID="PLC_NEWYOR" Name="New York" />
+
+
+	<Organization ID="ORG_CARERA" Name="Care" />
+
+	<Organization ID="ORG_UNICEF" Name="UNICEF" />
+
+	<Organization ID="ORG_WIKLKS" Name="Wikileaks" />
+
+	<Organization ID="ORG_IWVORG" Name="Iraq War Veterans Organization" />
+
+	<Organization ID="ORG_AQAEDA" Name="al-Qaeda" />
+
+	<Organization ID="ORG_BUSHAD" Name="Bush Administration" />
+
+	<Organization ID="ORG_WHLORG" Name="World Health Organization" />
+
+	<Organization ID="ORG_CFDCAP" Name="Centers for Disease Control and Prevention" />
+
+	<Organization ID="ORG_FEDEMA" Name="Federal Emergency Management Agency" />
+
+	<Organization ID="ORG_REDCRS" Name="Red Cross" />
+
+	<Organization ID="ORG_OILREC" Name="Oil Spill Recovery Institute" />
+
+	<Organization ID="ORG_EGYHUM" Name="Egyptian Organization for Human Rights" />
+
 </WorldCrises>

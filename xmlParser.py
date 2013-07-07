@@ -31,8 +31,12 @@ def main():
 Parses a XML file into Django models and saves them to the database. 
 """
 def xmlToModel():
-	xmlFilename = raw_input("Filename of the XML file: ")
-	schemaFilename = raw_input("Filename of the schema file: ")
+
+	# Uncomment the following lines when hardcoded XML/Schema files are no longer necessary.
+	# xmlFilename = raw_input("Filename of the XML file: ")
+	# schemaFilename = raw_input("Filename of the schema file: ")
+	xmlFilename = "test/example.xml"
+	schemaFilename = "test/schema.xml"
 
 	try:
 
@@ -52,40 +56,63 @@ def xmlToModel():
 	except pyxsval.XsvalError as errstr:
 	    print errstr
 	    print "Validation aborted!"
+	    return
 	   
 	except GenXmlIfError as errstr:
 	    print errstr
 	    print "Parsing aborted!"
-
+	    return
 
 	treeIter = xmlTree.iter()
 	nextElement = treeIter.next() # Retrieves root element
+	print nextElement
 	nextElement = treeIter.next() # Retrieves next Crisis element
+	print nextElement
 
 	# Parse crises.	
 	while (nextElement.tag == "Crisis"):
+		
+
+		nextElement = treeIter.next() # People element
 		print nextElement
-		peopleElement = treeIter.next()
-
-		nextElement = treeIter.next()
-
+		nextElement = treeIter.next() # First Person in sequence
 		while (nextElement.tag == "Person"):
 			print nextElement
 			nextElement = treeIter.next()
 
-		nextElement = treeIter.next()
 
-	# Parse people.
-	# if (nextElement.tag != "Person"): raise IOError("Expected 'Person' tag; found '" + nextElement.tag + "'!")
+		print nextElement
+		nextElement = treeIter.next() # First Org in sequence
+		while (nextElement.tag == "Org"):
+			print nextElement
+			nextElement = treeIter.next()
+
+		print nextElement
+		nextElement = treeIter.next() # Kind element
 		
+		print nextElement
+		nextElement = treeIter.next() # Date element
+		
+		print nextElement
+		nextElement = treeIter.next() # Time element
+		
+
+		print nextElement
+		nextElement = treeIter.next() # Location element
+		nextElement = treeIter.next() # First li in sequence
+		while (nextElement.tag == "li"):
+			print nextElement
+			nextElement = treeIter.next()
+
+
+
+	# Parse people.	
 	while (nextElement.tag == "Person"):
 		print nextElement
 		nextElement = treeIter.next()
 
 
 	# Parse organizations.
-	# if (nextElement.tag != "Organization"): raise IOError("Expected 'Organization' tag; found '" + nextElement.tag + "'!")
-		
 	while (nextElement.tag == "Organization"):
 		print nextElement
 		nextElement = treeIter.next()

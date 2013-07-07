@@ -8,3 +8,7 @@ Link to Unique Crises, People, Places Google Doc: https://docs.google.com/spread
 Link to shared schema for WorldCrisis.xml on Piazza: https://github.com/aaronj1335/cs373-wcdb1-schema
 
 Link to .xml https://docs.google.com/document/d/1kBrdjG4wTqb4msC9a6_fvnBs_p3F9Q9ZlLE-g-73HRY/edit?usp=sharing
+
+Link to public WCDB database: http://wcdb.quiri.co
+username: gummy_pandas
+password: saucysalamander

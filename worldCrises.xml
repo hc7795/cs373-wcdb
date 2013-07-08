@@ -267,100 +267,100 @@
 
 	<Person ID="PER_BRAMAN" Name="Bradley Manning">
 		<Crises>
-			<Crisis ID=""/>
+			<Crisis ID="CRI_BAGAIR"/>
 		</Crises>
 		<Organizations>
-            <Org ID="" />
+            <Org ID="ORG_IWVORG" />
         </Organizations>
 		<Kind>Private First Class</Kind>
 	</Person>
 
 	<Person ID="PER_JULASS" Name="Julian Assange">
 		<Crises>
-			<Crisis ID=""/>
+			<Crisis ID="PER_JULASS"/>
 		</Crises>
 		<Organizations>
-            <Org ID="" />
+            <Org ID="ORG_WIKLKS" />
         </Organizations>
 		<Kind>Editor-in-chief and spokesman for WikiLeak</Kind>
 	</Person>
 
 	<Person ID="PER_MICCAM" Name="Michel Camdessus">
 		<Crises>
-			<Crisis ID=""/>
+			<Crisis ID="CRI_WSAFRC"/>
 		</Crises>
 		<Organizations>
-            <Org ID="" />
+            <Org ID="???????????????????????????????????????????????????" />
         </Organizations>
 		<Kind>Managing Director of the IMF</Kind>
 	</Person>
 
 	<Person ID="PER_SADHUS" Name="Saddam Hussein">
 		<Crises>
-			<Crisis ID=""/>
+			<Crisis ID="CRI_IRAQWR"/>
 		</Crises>
 		<Organizations>
-            <Org ID="" />
+            <Org ID="???????????????????????????????????????????????" />
         </Organizations>
 		<Kind>President of Iraq</Kind>
 	</Person>
 
 	<Person ID="PER_GHARTL" Name="Gregory Hartl">
 		<Crises>
-			<Crisis ID=""/>
+			<Crisis ID="CRI_SWNFLU"/>
 		</Crises>
 		<Organizations>
-            <Org ID="" />
+            <Org ID="ORG_WHLORG" />
         </Organizations>
 		<Kind>Head of Public Relations/Social Media for World Health Organization</Kind>
 	</Person>
 
 	<Person ID="PER_BROBMA" Name="Barack Obama">
 		<Crises>
-			<Crisis ID=""/>
+			<Crisis ID="CRI_AIDSHI", "CRI_SWNFLU"/>
 		</Crises>
 		<Organizations>
-            <Org ID="" />
+            <Org ID="??????????????????????????????????????????" />
         </Organizations>
 		<Kind>President of the United States</Kind>
 	</Person>
 
 	<Person ID="PER_RENPRE" Name="René Préval">
 		<Crises>
-			<Crisis ID=""/>
+			<Crisis ID="CRI_HURIKE", "CRI_HAITIE" />
 		</Crises>
 		<Organizations>
-            <Org ID="" />
+            <Org ID="?????????????????????????????????????????" />
         </Organizations>
 		<Kind>President of Haiti</Kind>
 	</Person>
 
 	<Person ID="PER_MAGICJ" Name="Magic Johnson">
 		<Crises>
-			<Crisis ID=""/>
+			<Crisis ID="CRI_AIDSHI"/>
 		</Crises>
 		<Organizations>
-            <Org ID="" />
+            <Org ID="???????????????????????????????????????????????????" />
         </Organizations>
 		<Kind>Basketball Player</Kind>
 	</Person>
 
 	<Person ID="PER_MOHMOR" Name="Mohamed Morsi">
 		<Crises>
-			<Crisis ID=""/>
+			<Crisis ID="CRI_UEGYPT"/>
 		</Crises>
 		<Organizations>
-            <Org ID="" />
+            <Org ID="???????????????????????????????????????????????" />
         </Organizations>
 		<Kind>President of Egypt</Kind>
 	</Person>
 
 	<Person ID="PER_OSAMAB" Name="Osama Bin Laden ">
 		<Crises>
-			<Crisis ID=""/>
+			<Crisis ID="CRI_SEP911"/>
 		</Crises>
 		<Organizations>
-            <Org ID="" />
+            <Org ID="ORG_AQAEDA" />
         </Organizations>
 		<Kind>Founder of al-Qaeda</Kind>
 	</Person>

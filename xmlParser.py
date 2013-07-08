@@ -75,14 +75,14 @@ def xmlToModel():
 
 		nextElement = treeIter.next() # People element
 		print nextElement
-		nextElement = treeIter.next() # First Person in sequence
+		nextElement = treeIter.next() # First Person in People sequence
 		while (nextElement.tag == "Person"):
 			print nextElement
 			nextElement = treeIter.next()
 
 
 		print nextElement
-		nextElement = treeIter.next() # First Org in sequence
+		nextElement = treeIter.next() # First Org in Organizations sequence
 		while (nextElement.tag == "Org"):
 			print nextElement
 			nextElement = treeIter.next()
@@ -98,20 +98,94 @@ def xmlToModel():
 		
 
 		print nextElement
-		nextElement = treeIter.next() # Location element
-		nextElement = treeIter.next() # First li in sequence
+		nextElement = treeIter.next() # Locations element
+		print nextElement
+		nextElement = treeIter.next() # First li in Locations sequence
 		while (nextElement.tag == "li"):
 			print nextElement
 			nextElement = treeIter.next()
 
+		print nextElement
+		nextElement = treeIter.next() # First li in Human Impact sequence
+		while (nextElement.tag == "li"): 
+			print nextElement
+			nextElement = treeIter.next()
 
+		print nextElement
+		nextElement = treeIter.next() # First li in Economic Impact sequence
+		while (nextElement.tag == "li"): 
+			print nextElement
+			nextElement = treeIter.next()
 
-	# Parse people.	
-	while (nextElement.tag == "Person"):
+		print nextElement
+		nextElement = treeIter.next() # First li in ResourcesNeeded sequence
+		while (nextElement.tag == "li"): 
+			print nextElement
+			nextElement = treeIter.next()
+
+		print nextElement
+		nextElement = treeIter.next() # First li in WaysToHelp sequence
+		while (nextElement.tag == "li"): 
+			print nextElement
+			nextElement = treeIter.next()
+
+		print nextElement
+		nextElement = treeIter.next() # Citations Element
+		
+		print nextElement
+		nextElement = treeIter.next() # First li in Citations sequence
+		while (nextElement.tag == "li"): 
+			print nextElement
+			nextElement = treeIter.next()
+
+		print nextElement
+		nextElement = treeIter.next() # First li in External Links li
+		while (nextElement.tag == "li"): # Going through External Links li
+			print nextElement
+			nextElement = treeIter.next()
+
+		print nextElement
+		nextElement = treeIter.next() # First li in Images li
+		while (nextElement.tag == "li"): # Going through Images li
+			print nextElement
+			nextElement = treeIter.next()
+
+		print nextElement
+		nextElement = treeIter.next() # First li in Videos li
+		while (nextElement.tag == "li"): # Going through Videos li
+			print nextElement
+			nextElement = treeIter.next()
+
+		print nextElement
+		nextElement = treeIter.next() # First li in Maps li
+		while (nextElement.tag == "li"): # Going through Maps li
+			print nextElement
+			nextElement = treeIter.next()
+
+		print nextElement
+		nextElement = treeIter.next() # First li in Feeds li
+		while (nextElement.tag == "li"): # Going through Feeds li
+			print nextElement
+			nextElement = treeIter.next()
+
 		print nextElement
 		nextElement = treeIter.next()
+		print nextElement
 
-
+    
+	# Parse people.	
+	while (nextElement.tag == "Person"):
+		nextElement = treeIter.next() #Crises
+		print nextElement
+		nextElement = treeIter.next()
+		while(nextElement.tag == "Crisis") :
+			print nextElement
+			nextElement = treeIter.next()
+		print nextElement
+		while(nextElement.tag == "Org") :
+		    print nextElement
+		    nextElement = treeIter.next()
+		    
 	# Parse organizations.
 	while (nextElement.tag == "Organization"):
 		print nextElement

@@ -266,52 +266,103 @@
 	</Crisis>
 
 	<Person ID="PER_BRAMAN" Name="Bradley Manning">
-		<Born>December 17, 1987</Born>
-		<Office>Private First Class</Office>
+		<Crises>
+			<Crisis ID=""/>
+		</Crises>
+		<Organizations>
+            <Org ID="" />
+        </Organizations>
+		<Kind>Private First Class</Kind>
 	</Person>
 
 	<Person ID="PER_JULASS" Name="Julian Assange">
-		<Born>July 3, 1971</Born>
-		<Office>Editor-in-chief and spokesman for WikiLeak</Office>
+		<Crises>
+			<Crisis ID=""/>
+		</Crises>
+		<Organizations>
+            <Org ID="" />
+        </Organizations>
+		<Kind>Editor-in-chief and spokesman for WikiLeak</Kind>
 	</Person>
 
 	<Person ID="PER_MICCAM" Name="Michel Camdessus">
-		<Born>May 1, 1933</Born>
-		<Office>Managing Director of the IMF</Office>
+		<Crises>
+			<Crisis ID=""/>
+		</Crises>
+		<Organizations>
+            <Org ID="" />
+        </Organizations>
+		<Kind>Managing Director of the IMF</Kind>
 	</Person>
 
 	<Person ID="PER_SADHUS" Name="Saddam Hussein">
-		<Born>April 28, 1937</Born>
-		<Office>President of Iraq</Office>
+		<Crises>
+			<Crisis ID=""/>
+		</Crises>
+		<Organizations>
+            <Org ID="" />
+        </Organizations>
+		<Kind>President of Iraq</Kind>
 	</Person>
 
 	<Person ID="PER_GHARTL" Name="Gregory Hartl">
-		<Office>Head of Public Relations/Social Media for World Health Organization</Office>
+		<Crises>
+			<Crisis ID=""/>
+		</Crises>
+		<Organizations>
+            <Org ID="" />
+        </Organizations>
+		<Kind>Head of Public Relations/Social Media for World Health Organization</Kind>
 	</Person>
 
 	<Person ID="PER_BROBMA" Name="Barack Obama">
-		<Born>August 4, 1961</Born>
-		<Office>President of the United States</Office>
+		<Crises>
+			<Crisis ID=""/>
+		</Crises>
+		<Organizations>
+            <Org ID="" />
+        </Organizations>
+		<Kind>President of the United States</Kind>
 	</Person>
 
 	<Person ID="PER_RENPRE" Name="René Préval">
-		<Born>January 17 1943</Born>
-		<Office>President of Haiti</Office>
+		<Crises>
+			<Crisis ID=""/>
+		</Crises>
+		<Organizations>
+            <Org ID="" />
+        </Organizations>
+		<Kind>President of Haiti</Kind>
 	</Person>
 
 	<Person ID="PER_MAGICJ" Name="Magic Johnson">
-		<Born>August 14, 1959</Born>
-		<Office>Basketball Player</Office>
+		<Crises>
+			<Crisis ID=""/>
+		</Crises>
+		<Organizations>
+            <Org ID="" />
+        </Organizations>
+		<Kind>Basketball Player</Kind>
 	</Person>
 
 	<Person ID="PER_MOHMOR" Name="Mohamed Morsi">
-		<Born>August 8, 1951</Born>
-		<Office>President of Egypt</Office>
+		<Crises>
+			<Crisis ID=""/>
+		</Crises>
+		<Organizations>
+            <Org ID="" />
+        </Organizations>
+		<Kind>President of Egypt</Kind>
 	</Person>
 
 	<Person ID="PER_OSAMAB" Name="Osama Bin Laden ">
-		<Born>March 10, 1957</Born>
-		<Office>Founder of al-Qaeda</Office>
+		<Crises>
+			<Crisis ID=""/>
+		</Crises>
+		<Organizations>
+            <Org ID="" />
+        </Organizations>
+		<Kind>Founder of al-Qaeda</Kind>
 	</Person>
 
 	<Organization ID="ORG_CARERA" Name="Care" />

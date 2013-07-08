@@ -1,35 +1,28 @@
 <WorldCrises>
-	<Crises Team="Gummy Pandas">
-		<CrisisID>CRI_HURIKE</CrisisID>
-
-		<CrisisID>CRI_BAGAIR</CrisisID>
-
-		<CrisisID>CRI_IRAQWR</CrisisID>
-
-		<CrisisID>CRI_WSAFRC</CrisisID>
-
-		<CrisisID>CRI_SWNFLU</CrisisID>
-
-		<CrisisID>CRI_EXXONV</CrisisID>
-
-		<CrisisID>CRI_HAITIE</CrisisID>
-
-		<CrisisID>CRI_AIDSHI</CrisisID>
-
-		<CrisisID>CRI_POLITI</CrisisID>
-
-		<CrisisID>CRI_SEP911</CrisisID>
-	</Crises>
-
 	<Crisis ID="CRI_HURIKE" Name="Hurricane Ike">
 		<People>
-			<PersonID>PER_RENPRE</PersonID>
+			<Person ID="PER_RENPRE" />
 		</People>
 		<Organizations>
-			<OrgID>ORG_FEDEMA</OrgID>
+			<Org ID="ORG_FEDEMA" />
 		</Organizations>
-		<PlaceID>PLC_HAITII</PlaceID>
-		<Year>2008</Year>
+		<Kind>Natural Disaster</Kind>
+		<Date>September 1, 2008 -  	September 14, 2008</Date>
+		<Locations>Turks and Caicos, Bahamas, Haiti, Dominican Republic, Cuba, Florida Keys, Mississippi, Louisiana, Texas, Mississippi Valley, Ohio Valley, Great Lakes region, Eastern Canada</Locations>
+		<HumanImpact>
+			<li>Fatalities: 103 direct, 92 indirect</li>
+		</HumanImpact>
+		<EconomicImpact>
+			<li>37.5 billion (2008 USD)</li>
+		</EconomicImpact>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/Hurricane_Ike">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/c/c1/Hurricane_Ike_off_the_Lesser_Antilles.jpg" />
+			</Images>
+		</Common>
 	</Crisis>
 
 	<Crisis ID="CRI_BAGAIR" Name="Baghdad Airstrike">
@@ -41,8 +34,20 @@
 			<OrgID>ORG_WIKLKS</OrgID>
 			<OrgID>ORG_BUSHAD</OrgID>
 		</Organizations>
-		<PlaceID>PLC_BAGDAD</PlaceID>
-		<Year>2007</Year>
+		<Kind>War</Kind>
+		<Date>July 12, 2007</Date>
+		<Locations>New Baghdad, Baghdad, Iraq</Locations>
+		<HumanImpact>
+			<li>12 civilians died, 2 children wounded</li>
+		</HumanImpact>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/July_12,_2007_Baghdad_airstrike">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/7/7c/July_12%2C_2007_Baghdad_airstrike_targets_%281%29.png" />
+			</Images>
+		</Common>
 	</Crisis>
 
 	<Crisis ID="CRI_IRAQWR" Name="Iraq War">
@@ -53,8 +58,23 @@
 			<OrgID>ORG_AQAEDA</OrgID>
 			<OrgID>ORG_IWVORG</OrgID>
 		</Organizations>
-		<PlaceID>PLC_IRACKX</PlaceID>
-		<Year>2003</Year>
+		<Kind>War</Kind>
+		<Date>March 20, 2003 – December 15, 2011</Date>
+		<Locations>Iraq</Locations>
+		<HumanImpact>
+			<li>Estimated violent deaths: 601,027</li>
+		</HumanImpact>
+		<EconomicImpact>
+			<li>Estimated to be 1.7 trillion USD</li>
+		</EconomicImpact>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/Iraq_war">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/2/2e/Iraq_War_montage.png" />
+			</Images>
+		</Common>
 	</Crisis>
 
 	<Crisis ID="CRI_WSAFRC" Name="Water Scarcity in Africa">
@@ -65,8 +85,25 @@
 			<OrgID>ORG_CARERA</OrgID>
 			<OrgID>ORG_UNICEF</OrgID>
 		</Organizations>
-		<PlaceID>PLC_AFRICA</PlaceID>
-		<Year>2013</Year>
+		<Kind>Natural Disaster ????????????????????????????????????????</Kind>
+		<Date>2013</Date>
+		<Locations>Africa</Locations>
+		<HumanImpact>
+			<li>300 million live in a water stressed environment</li>
+			<li>forces those living in water deprived regions to turn to unsafe water resources that contributes to the spread of waterborne diseases</li>
+		</HumanImpact>
+		<EconomicImpact>
+			<li>loses 40 billion potential work hours per year collecting water</li>
+			<lie>burden on healthcare due to the cost of medicine to treat waterborne diseases</li>
+		</EconomicImpact>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/Water_scarcity_in_Africa">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/a/a7/Map_showing_Global_Physical_and_Economic_Water_Scarcity_2006.gif" />
+			</Images>
+		</Common>
 	</Crisis>
 
 	<Crisis ID="CRI_SWNFLU" Name="Influenza A virus subtype H1N1">
@@ -79,8 +116,21 @@
 			<OrgID>ORG_CFDCAP</OrgID>
 			<OrgID>ORG_REDCRS</OrgID>
 		</Organizations>
-		<PlaceID>PLC_WORLDW</PlaceID>
-		<Year>2009</Year>
+		<Kind>Pandemic</Kind>
+		<Date>November 2009 - August 2010</Date>
+		<Locations>World Wide</Locations>
+		<HumanImpact>
+			<li>caused severe illness in 3–5 million people</li>
+			<li>250,000–500,000 deaths worldwide</li>
+		</HumanImpact>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/2009_flu_pandemic">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/f/f0/H1N1_influenza_virus.jpg" />
+			</Images>
+		</Common>
 	</Crisis>
 
 	<Crisis ID="CRI_EXXONV" Name="Exxon Valdez Oil Spill">
@@ -90,8 +140,23 @@
 		<Organizations>
 			<OrgID>ORG_OILREC</OrgID>
 		</Organizations>
-		<PlaceID>PLC_ALASKA</PlaceID>
-		<Year>1989</Year>
+		<Kind>Oil Spill</Kind>
+		<Date>March 24, 1989</Date>
+		<Locations></Locations>
+		<HumanImpact>
+			<li>devastated fishing industry</li>
+		</HumanImpact>
+		<EconomicImpact>
+			<li>$3.8 billion in clean cup costs, fines, compensation</li>
+		</EconomicImpact>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/Exxon_Valdez_oil_spill">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/6/66/Exval.jpeg" />
+			</Images>
+		</Common>
 	</Crisis>
 
 	<Crisis ID="CRI_HAITIE" Name="Haiti Earthquake">
@@ -101,8 +166,24 @@
 		<Organizations>
 			<OrgID>ORG_UNICEF</OrgID>
 		</Organizations>
-		<PlaceID>PLC_HAITII</PlaceID>
-		<Year>2010</Year>
+		<Kind>Natural Disaster</Kind>
+		<Date>January 12, 2010</Date>
+		<Locations>Haiti, Dominican Republic</Locations>
+		<HumanImpact>
+			<li>316,000 deaths</li>
+		</HumanImpact>
+		<EconomicImpact>
+			<li>half the nation's 15,000 primary schools and 1,500 secondary schools were severely damaged or destroyed</li>
+			<li>affected infrastructure included hospitals in the northwest; air, sea, and land transport facilities; and communication systems</li>
+		</EconomicImpact>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/2010_Haiti_earthquake">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/2/2f/Haiti_Earthquake_building_damage.jpg" />
+			</Images>
+		</Common>
 	</Crisis>
 
 	<Crisis ID="CRI_AIDSHI" Name="AIDS/HIV">
@@ -113,19 +194,47 @@
 		<Organizations>
 			<OrgID>ORG_WHLORG</OrgID>
 		</Organizations>
-		<PlaceID>PLC_WORLDW</PlaceID>
-		<Year>1981</Year>
+		<Kind>Pandemic</Kind>
+		<Date>1981 - 2013</Date>
+		<Locations>World Wide</Locations>
+		<HumanImpact>
+			<li>30 million deaths (as of 2009)</li>
+		</HumanImpact>
+		<EconomicImpact>
+			<li>reduces availability of human capital which will reduce GDP</li>
+			<li>causes both loss of income and increased spending on healthcare</li>
+		</EconomicImpact>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/AIDS/HIV">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/6/63/HIV_Virion-en.png" />
+			</Images>
+		</Common>
 	</Crisis>
 
-	<Crisis ID="CRI_POLITI" Name="Political unrest in Egypt">
+	<Crisis ID="CRI_UEGYPT" Name="Political unrest in Egypt">
 		<People>
 			<PersonID>PER_MOHMOR</PersonID>
 		</People>
 		<Organizations>
 			<OrgID>ORG_EGYHUM</OrgID>
 		</Organizations>
-		<PlaceID>PLC_EEGYPT</PlaceID>
-		<Year>2011</Year>
+		<Kind>Political Protest</Kind>
+		<Date>November 22, 2012 – July 3, 2013</Date>
+		<Locations>Egypt</Locations>
+		<HumanImpact>
+			<li>90 killed, 3,000 injured</li>
+		</HumanImpact>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/2012%E2%80%9313_Egyptian_protests">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/d/d2/Tahrir_Square_on_Novemeber_27_2012_%28Morning%29.jpg" />
+			</Images>
+		</Common>
 	</Crisis>
 
 	<Crisis ID="CRI_SEP911" Name="September 11 Attacks">
@@ -136,8 +245,24 @@
 			<OrgID>ORG_AQAEDA</OrgID>
 			<OrgID>ORG_BUSHAD<OrgID>
 		</Organizations>
-		<PlaceID>PLC_NEWYOR</PlaceID>
-		<Year>2001</Year>
+		<Kind>Terrorism </Kind>
+		<Date>September 11, 2001</Date>
+		<Locations>New York City; Arlington County, Virginia; and near Shanksville, Pennsylvania.</Locations>
+		<HumanImpact>
+			<li>Deaths: 2,996; Injured: more than 6,000</li>
+		</HumanImpact>
+		<EconomicImpact>
+			<li>indirectly to the U.S. wars in Afghanistan and Iraq, as well as additional homeland security spending, totaling at least $5 trillion</li>
+			<li>NYC's GDP was estimated to have declined by $27.3 billion for the last three months of 2001 and all of 2002. </li>
+		</EconomicImpact>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/September_11_Attacks">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/6/65/September_11_Photo_Montage.jpg" />
+			</Images>
+		</Common>
 	</Crisis>
 
 	<Person ID="PER_BRAMAN" Name="Bradley Manning">
@@ -188,25 +313,6 @@
 		<Born>March 10, 1957</Born>
 		<Office>Founder of al-Qaeda</Office>
 	</Person>
-
-	<Place ID="PLC_AFRICA" Name="Africa" />
-
-	<Place ID="PLC_TEXSUS" Name="Texas" />
-
-	<Place ID="PLC_BAGDAD" Name="Baghdad" />
-
-	<Place ID="PLC_IRACKX" Name="Iraq" />    
-
-	<Place ID="PLC_WORLDW" Name="World Wide" />
-
-	<Place ID="PLC_ALASKA" Name="Alaska" />
-
-	<Place ID="PLC_HAITII" Name="Haiti" />
-
-	<Place ID="PLC_EEGYPT" Name="Egypt" />
-
-	<Place ID="PLC_NEWYOR" Name="New York" />
-
 
 	<Organization ID="ORG_CARERA" Name="Care" />
 

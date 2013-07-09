@@ -97,164 +97,172 @@ def elementTreeToModels(elementTree):
 		# Parse crises.	
 		while (nextElement.tag == "Crisis"):
 
+			crisisAttributes = nextElement.items()
+			crisisID = [pair[1] for pair in crisisAttributes if pair[0] == "ID"][0]
+			crisisName = [pair[1] for pair in crisisAttributes if pair[0] == "Name"][0]
+
+			# print crisisAttributes
+			print crisisID
+			print crisisName
+
 
 			nextElement = treeIter.next() # People element
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() # First Person in People sequence
 			while (nextElement.tag == "Person"):
-				print nextElement
+				#print nextElement; print nextElement.attrib; print nextElement.text
 				nextElement = treeIter.next()
 
 
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() # First Org in Organizations sequence
 			while (nextElement.tag == "Org"):
-				print nextElement
+				#print nextElement; print nextElement.attrib; print nextElement.text
 				nextElement = treeIter.next()
 
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() # Kind element
 
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() # Date element
 
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() # Time element
 
 
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() # Locations element
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() # First li in Locations sequence
 			while (nextElement.tag == "li"):
-				print nextElement
+				#print nextElement; print nextElement.attrib; print nextElement.text
 				nextElement = treeIter.next()
 
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() # First li in Human Impact sequence
 			while (nextElement.tag == "li"): 
-				print nextElement
+				#print nextElement; print nextElement.attrib; print nextElement.text
 				nextElement = treeIter.next()
 
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() # First li in Economic Impact sequence
 			while (nextElement.tag == "li"): 
-				print nextElement
+				#print nextElement; print nextElement.attrib; print nextElement.text
 				nextElement = treeIter.next()
 
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() # First li in ResourcesNeeded sequence
 			while (nextElement.tag == "li"): 
-				print nextElement
+				#print nextElement; print nextElement.attrib; print nextElement.text
 				nextElement = treeIter.next()
 
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() # First li in WaysToHelp sequence
 			while (nextElement.tag == "li"): 
-				print nextElement
+				#print nextElement; print nextElement.attrib; print nextElement.text
 				nextElement = treeIter.next()
 
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() # Citations Element
 
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() # First li in Citations sequence
 			while (nextElement.tag == "li"): 
-				print nextElement
+				#print nextElement; print nextElement.attrib; print nextElement.text
 				nextElement = treeIter.next()
 
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() # First li in External Links li
 			while (nextElement.tag == "li"): # Going through External Links li
-				print nextElement
+				#print nextElement; print nextElement.attrib; print nextElement.text
 				nextElement = treeIter.next()
 
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() # First li in Images li
 			while (nextElement.tag == "li"): # Going through Images li
-				print nextElement
+				#print nextElement; print nextElement.attrib; print nextElement.text
 				nextElement = treeIter.next()
 
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() # First li in Videos li
 			while (nextElement.tag == "li"): # Going through Videos li
-				print nextElement
+				#print nextElement; print nextElement.attrib; print nextElement.text
 				nextElement = treeIter.next()
 
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() # First li in Maps li
 			while (nextElement.tag == "li"): # Going through Maps li
-				print nextElement
+				#print nextElement; print nextElement.attrib; print nextElement.text
 				nextElement = treeIter.next()
 
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() # First li in Feeds li
 			while (nextElement.tag == "li"): # Going through Feeds li
-				print nextElement
+				#print nextElement; print nextElement.attrib; print nextElement.text
 				nextElement = treeIter.next()
 
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next()
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 
 	    
 		# Parse people.	
 		while (nextElement.tag == "Person"):
 		
 			nextElement = treeIter.next() #Crises Element
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next() #First Crisis in Crises Sequence
 			while(nextElement.tag == "Crisis") :
-				print nextElement
+				#print nextElement; print nextElement.attrib; print nextElement.text
 				nextElement = treeIter.next()
 				
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next()
 			while(nextElement.tag == "Org") :
-			    print nextElement
+			    #print nextElement; print nextElement.attrib; print nextElement.text
 			    nextElement = treeIter.next()
 			
-			print nextElement #Kind Element
+			#print nextElement; print nextElement.attrib; print nextElement.text #Kind Element
 			nextElement = treeIter.next() 
 			
-			print nextElement # Location Element
+			#print nextElement; print nextElement.attrib; print nextElement.text # Location Element
 			nextElement = treeIter.next()
 
 
 		# Parse organizations.
 		while (nextElement.tag == "Organization"):
 			
-			print nextElement
+			#print nextElement; print nextElement.attrib; print nextElement.text
 			nextElement = treeIter.next()
 			
-			print nextElement  #Crises
+			#print nextElement; print nextElement.attrib; print nextElement.text  #Crises
 			nextElement = treeIter.next() #First Crisis in Crises Sequence
 			while(nextElement.tag == "Crisis") :
-				print nextElement
+				#print nextElement; print nextElement.attrib; print nextElement.text
 				nextElement = treeIter.next()
 			
-			print nextElement #People
+			#print nextElement; print nextElement.attrib; print nextElement.text #People
 			nextElement = treeIter.next()
 			while(nextElement.tag == "Person") :
-				print nextElement
+				#print nextElement; print nextElement.attrib; print nextElement.text
 				nextElement = treeIter.next()
 				
-			print nextElement #Kind Element
+			#print nextElement; print nextElement.attrib; print nextElement.text #Kind Element
 			nextElement = treeIter.next()
 			
-			print nextElement #Location Element
+			#print nextElement; print nextElement.attrib; print nextElement.text #Location Element
 			nextElement = treeIter.next()
 			
-			print nextElement #History Element
+			#print nextElement; print nextElement.attrib; print nextElement.text #History Element
 			nextElement = treeIter.next() #First li in History Sequence
 			while(nextElement.tag == "li") :
-				print nextElement
+				#print nextElement; print nextElement.attrib; print nextElement.text
 				nextElement = treeIter.next()
 			
-			print nextElement #ContactInfo
+			#print nextElement; print nextElement.attrib; print nextElement.text #ContactInfo
 			nextElement = treeIter.next() #First li in ContactInfo Sequence
 			while(nextElement.tag == "li") :
-				print nextElement
+				#print nextElement; print nextElement.attrib; print nextElement.text
 				nextElement = treeIter.next()
 
 	except StopIteration as e:

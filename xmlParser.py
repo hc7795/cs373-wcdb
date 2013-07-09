@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 xmlParser.py
 
@@ -12,8 +10,6 @@ except ImportError:
     import xml.etree.ElementTree as ET
 
 from minixsv import pyxsval
-
-
 
 def main():
 	try:
@@ -57,7 +53,7 @@ def xmlToModel():
 	    print errstr
 	    print "Validation aborted!"
 	    return
-	   
+
 	except GenXmlIfError as errstr:
 	    print errstr
 	    print "Parsing aborted!"
@@ -71,7 +67,7 @@ def xmlToModel():
 
 	# Parse crises.	
 	while (nextElement.tag == "Crisis"):
-		
+
 
 		nextElement = treeIter.next() # People element
 		print nextElement
@@ -89,13 +85,13 @@ def xmlToModel():
 
 		print nextElement
 		nextElement = treeIter.next() # Kind element
-		
+
 		print nextElement
 		nextElement = treeIter.next() # Date element
-		
+
 		print nextElement
 		nextElement = treeIter.next() # Time element
-		
+
 
 		print nextElement
 		nextElement = treeIter.next() # Locations element
@@ -131,7 +127,7 @@ def xmlToModel():
 
 		print nextElement
 		nextElement = treeIter.next() # Citations Element
-		
+
 		print nextElement
 		nextElement = treeIter.next() # First li in Citations sequence
 		while (nextElement.tag == "li"): 
@@ -175,23 +171,66 @@ def xmlToModel():
     
 	# Parse people.	
 	while (nextElement.tag == "Person"):
-		nextElement = treeIter.next() #Crises
+	
+		nextElement = treeIter.next() #Crises Element
 		print nextElement
-		nextElement = treeIter.next()
+		nextElement = treeIter.next() #First Crisis in Crises Sequence
 		while(nextElement.tag == "Crisis") :
 			print nextElement
 			nextElement = treeIter.next()
+			
 		print nextElement
+		nextElement = treeIter.next()
 		while(nextElement.tag == "Org") :
 		    print nextElement
 		    nextElement = treeIter.next()
-		    
-	# Parse organizations.
-	while (nextElement.tag == "Organization"):
-		print nextElement
+		
+		print nextElement #Kind Element
+		nextElement = treeIter.next() 
+		
+		print nextElement # Location Element
 		nextElement = treeIter.next()
 
-
+	# Parse organizations.
+	while (nextElement.tag == "Organization"):
+		
+		print nextElement
+		nextElement = treeIter.next()
+		
+		print nextElement  #Crises
+		nextElement = treeIter.next() #First Crisis in Crises Sequence
+		while(nextElement.tag == "Crisis") :
+			print nextElement
+			nextElement = treeIter.next()
+		
+		print nextElement #People
+		nextElement = treeIter.next()
+		while(nextElement.tag == "Person") :
+			print nextElement
+			nextElement = treeIter.next()
+			
+		print nextElement #Kind Element
+		nextElement = treeIter.next()
+		
+		print nextElement #Location Element
+		nextElement = treeIter.next()
+		
+		print nextElement #History Element
+		nextElement = treeIter.next() #First li in History Sequence
+		while(nextElement.tag == "li") :
+			print nextElement
+			nextElement = treeIter.next()
+		
+		print nextElement #ContactInfo
+		nextElement = treeIter.next() #First li in ContactInfo Sequence
+		while(nextElement.tag == "li") :
+			print nextElement
+			nextElement = treeIter.next()
+		
+			
+		
+		
+		
 """
 Parses Django models into a new XML file. 
 """

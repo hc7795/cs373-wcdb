@@ -1,10 +1,10 @@
-Group Members:
+###Group Members:
 
 Young Seo, Hoang Pham, Honghui Choi, Zhen Yang, Russell Jahn, Arturo Lemus
 
  
 
-Unique Crisis:
+##Unique Crisis:
 Water Scarcity in Africa 
 place: Africa
 
@@ -22,7 +22,7 @@ place: United States
 
  
 
-Non-unique Crisis:
+##Non-unique Crisis:
 
 Exxon Valdez Oil Spill
 place: Alaska, United States
@@ -40,7 +40,7 @@ September 11 attacks
 place: New York, United States
  
 
-Unique Organizations:
+##Unique Organizations:
 Care
 place:worldwide
 year: 1945
@@ -93,7 +93,7 @@ place: United States
 year: 1881
 crisis: AIDS/HIV, Influenza A virus subtype H1N1
 
-Unique People:
+##Unique People:
 
 
 Bradley Manning
@@ -146,7 +146,7 @@ Crisis: H1N1
 Organization: World Health Organization
 
 
-Non-unique People:
+##Non-unique People:
 
 
 Barack Obama
@@ -176,9 +176,9 @@ Office: Basketball Player
 Crisis: AIDS/HIV
 
 
-Mohamed Morsi
+Hosni Mubarak
 
-Born: August 8, 1951
+Born: May 4, 1928
 
 Office: President of Egypt
 

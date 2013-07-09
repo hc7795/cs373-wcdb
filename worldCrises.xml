@@ -65,7 +65,7 @@
 			<li>Estimated violent deaths: 601,027</li>
 		</HumanImpact>
 		<EconomicImpact>
-			<li>Estimated to be 1.7 trillion USD</li>
+			<li>Estimated to cost 1.7 trillion USD</li>
 		</EconomicImpact>
 		<Common>
 			<ExternalLinks>
@@ -216,7 +216,7 @@
 
 	<Crisis ID="CRI_UEGYPT" Name="Political unrest in Egypt">
 		<People>
-			<PersonID>PER_MOHMOR</PersonID>
+			<PersonID>PER_MUBRAK</PersonID>
 		</People>
 		<Organizations>
 			<OrgID>ORG_EGYHUM</OrgID>
@@ -245,7 +245,7 @@
 			<OrgID>ORG_AQAEDA</OrgID>
 			<OrgID>ORG_BUSHAD<OrgID>
 		</Organizations>
-		<Kind>Terrorism </Kind>
+		<Kind>Terrorism</Kind>
 		<Date>September 11, 2001</Date>
 		<Locations>New York City; Arlington County, Virginia; and near Shanksville, Pennsylvania.</Locations>
 		<HumanImpact>
@@ -273,6 +273,14 @@
             <Org ID="ORG_IWVORG" />
         </Organizations>
 		<Kind>Private First Class</Kind>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/Bradley_Manning">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Bradley_Manning_US_Army.jpg/614px-Bradley_Manning_US_Army.jpg" />
+			</Images>
+		</Common>
 	</Person>
 
 	<Person ID="PER_JULASS" Name="Julian Assange">
@@ -283,26 +291,14 @@
             <Org ID="ORG_WIKLKS" />
         </Organizations>
 		<Kind>Editor-in-chief and spokesman for WikiLeak</Kind>
-	</Person>
-
-	<Person ID="PER_MICCAM" Name="Michel Camdessus">
-		<Crises>
-			<Crisis ID="CRI_WSAFRC"/>
-		</Crises>
-		<Organizations>
-            <Org ID="???????????????????????????????????????????????????" />
-        </Organizations>
-		<Kind>Managing Director of the IMF</Kind>
-	</Person>
-
-	<Person ID="PER_SADHUS" Name="Saddam Hussein">
-		<Crises>
-			<Crisis ID="CRI_IRAQWR"/>
-		</Crises>
-		<Organizations>
-            <Org ID="???????????????????????????????????????????????" />
-        </Organizations>
-		<Kind>President of Iraq</Kind>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/Julian_Assange">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/7/75/Julian_Assange_cropped_%28Norway%2C_March_2010%29.jpg" />
+			</Images>
+		</Common>
 	</Person>
 
 	<Person ID="PER_GHARTL" Name="Gregory Hartl">
@@ -313,6 +309,14 @@
             <Org ID="ORG_WHLORG" />
         </Organizations>
 		<Kind>Head of Public Relations/Social Media for World Health Organization</Kind>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://twitter.com/HaertlG">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="http://news.bbcimg.co.uk/media/images/67578000/jpg/_67578538_67578537.jpg" />
+			</Images>
+		</Common>
 	</Person>
 
 	<Person ID="PER_BROBMA" Name="Barack Obama">
@@ -323,6 +327,14 @@
             <Org ID="??????????????????????????????????????????" />
         </Organizations>
 		<Kind>President of the United States</Kind>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/Obama">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/615px-President_Barack_Obama.jpg" />
+			</Images>
+		</Common>
 	</Person>
 
 	<Person ID="PER_RENPRE" Name="René Préval">
@@ -333,6 +345,14 @@
             <Org ID="?????????????????????????????????????????" />
         </Organizations>
 		<Kind>President of Haiti</Kind>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/Ren%C3%A9_Pr%C3%A9val">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Ren%C3%A9_Pr%C3%A9val_on_March_31%2C_2010.jpg/640px-Ren%C3%A9_Pr%C3%A9val_on_March_31%2C_2010.jpg" />
+			</Images>
+		</Common>
 	</Person>
 
 	<Person ID="PER_MAGICJ" Name="Magic Johnson">
@@ -343,9 +363,17 @@
             <Org ID="???????????????????????????????????????????????????" />
         </Organizations>
 		<Kind>Basketball Player</Kind>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/Magic_Johnson">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/7/7d/Magic_Lipofsky.jpg" />
+			</Images>
+		</Common>
 	</Person>
 
-	<Person ID="PER_MOHMOR" Name="Mohamed Morsi">
+	<Person ID="PER_MUBRAK" Name="Hosni Mubarak">
 		<Crises>
 			<Crisis ID="CRI_UEGYPT"/>
 		</Crises>
@@ -353,6 +381,50 @@
             <Org ID="???????????????????????????????????????????????" />
         </Organizations>
 		<Kind>President of Egypt</Kind>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/Hosni_Mubarak">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/b/b6/Hosni_Mubarak_ritratto.jpg" />
+			</Images>
+		</Common>
+	</Person>
+
+	<Person ID="PER_MICCAM" Name="Michel Camdessus">
+		<Crises>
+			<Crisis ID="CRI_WSAFRC"/>
+		</Crises>
+		<Organizations>
+            <Org ID="???????????????????????????????????????????????????" />
+        </Organizations>
+		<Kind>Managing Director of the IMF</Kind>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/Michel_Camdessus">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Michel_Camdessus-IMG_3655.jpg/768px-Michel_Camdessus-IMG_3655.jpg" />
+			</Images>
+		</Common>
+	</Person>
+
+	<Person ID="PER_SADHUS" Name="Saddam Hussein">
+		<Crises>
+			<Crisis ID="CRI_IRAQWR"/>
+		</Crises>
+		<Organizations>
+            <Org ID="???????????????????????????????????????????????" />
+        </Organizations>
+		<Kind>President of Iraq</Kind>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/Saddam_Hussein">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/f/f1/Iraq%2C_Saddam_Hussein_%28222%29.jpg" />
+			</Images>
+		</Common>
 	</Person>
 
 	<Person ID="PER_OSAMAB" Name="Osama Bin Laden ">
@@ -363,6 +435,14 @@
             <Org ID="ORG_AQAEDA" />
         </Organizations>
 		<Kind>Founder of al-Qaeda</Kind>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/Osama_Bin_Laden">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/c/ca/Osama_bin_Laden_portrait.jpg" />
+			</Images>
+		</Common>
 	</Person>
 
 	<Organization ID="ORG_CARERA" Name="Care" />

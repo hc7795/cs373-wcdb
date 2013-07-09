@@ -62,13 +62,13 @@ def xmlToDjango():
 
 	except pyxsval.XsvalError as errstr:
 	    print errstr
-	    print "Validation aborted!"
-	    raise pyxsval.XsvalError
+	    print "Bad file; Validation aborted!"
+	    return
 
 	except GenXmlIfError as errstr:
 	    print errstr
-	    print "Parsing aborted!"
-	    raise GenXmlIfError
+	    print "Error; Parsing aborted!"
+	    return
 
 	# Get a list of model objects from xmlTree.
 	modelsList = elementTreeToModels(xmlTree)
@@ -208,25 +208,44 @@ def elementTreeToModels(elementTree):
 	    
 		# Parse people.	
 		while (nextElement.tag == "Person"):
-		
-			nextElement = treeIter.next() #Crises Element
-			#print nextElement; print nextElement.attrib; print nextElement.text
-			nextElement = treeIter.next() #First Crisis in Crises Sequence
-			while(nextElement.tag == "Crisis") :
-				#print nextElement; print nextElement.attrib; print nextElement.text
-				nextElement = treeIter.next()
-				
-			#print nextElement; print nextElement.attrib; print nextElement.text
-			nextElement = treeIter.next()
-			while(nextElement.tag == "Org") :
-			    #print nextElement; print nextElement.attrib; print nextElement.text
-			    nextElement = treeIter.next()
-			
-			#print nextElement; print nextElement.attrib; print nextElement.text #Kind Element
+
+			personAttributes = nextElement.items()
+			personID = [pair[1] for pair in personAttributes if pair[0] == "ID"][0]
+			personName = [pair[1] for pair in personAttributes if pair[0] == "Name"][0]
+
+			personCrisisIDs = []
+			personOrgIDs = []
+			personKind = ""
+			personLocation = ""
+
 			nextElement = treeIter.next() 
+
+			if (nextElement.tag == "Crises"):
+				nextElement = treeIter.next() # First Crisis in Crises sequence
+				while (nextElement.tag == "Crisis"):
+					personCrisisIDs.append(nextElement.attrib['ID'])
+					nextElement = treeIter.next()
+				
+			if (nextElement.tag == "Organizations"):
+				nextElement = treeIter.next() # First Org in Organizations sequence
+				while(nextElement.tag == "Org"):
+					personOrgIDs.append(nextElement.attrib['ID'])
+					nextElement = treeIter.next()
 			
-			#print nextElement; print nextElement.attrib; print nextElement.text # Location Element
-			nextElement = treeIter.next()
+			if (nextElement.tag == "Kind"):
+				personKind = nextElement.text # Kind text
+				nextElement = treeIter.next()
+			
+			if (nextElement.tag == "Location"):
+				personLocation = nextElement.text # Location text
+				nextElement = treeIter.next()
+
+		print "personID:", personID
+		print "personName:", personName
+		print "personCrisisIDs:", personCrisisIDs
+		print "personOrgIDs:", personOrgIDs
+		print "personKind:", personKind
+		print "personLocation:", personLocation
 
 
 		# Parse organizations.

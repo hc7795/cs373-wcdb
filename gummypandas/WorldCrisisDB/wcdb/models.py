@@ -33,3 +33,16 @@ class Crisis(models.Model):
     crisisEconomicImpact = models.CharField(max_length=100)
     crisisResourcesNeeded = models.CharField(max_length=100)
     crisisWaytoHelp = models.CharField(max_length=100)
+
+class Common(models.Model)
+  commonCitations = models.CharField(max_length = None)
+  commonExternalLinks = models.CharField(max_length = None)
+  commonImages = models.CharField(max_length = None)
+  commonVideos = models.CharField(max_length = None)
+  commonMaps = models.CharField(max_length = None)
+  commonFeeds = models.CharField(max_length = None)
+  commonSummary = models.CharField(max_length = None)
+
+
+
+

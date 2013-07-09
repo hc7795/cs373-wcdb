@@ -1,7 +1,8 @@
 """
-xmlParser.py
+	xmlParser.py
+	============
 
-Contains functions to parse crisis XML files into Django models and vice versa.
+	Contains functions to parse crisis XML files into Django models and vice versa.
 """
 
 try:
@@ -10,23 +11,32 @@ except ImportError:
     import xml.etree.ElementTree as ET
 
 from minixsv import pyxsval
+from genxmlif import GenXmlIfError
 
+import logging
+
+
+
+
+
+"""
+	Driver function.
+"""
 def main():
 	try:
-		xmlToModel()
+		xmlToDjango()
 
 	except Exception as e:
-		print "Fatal error, ending program. Error message:"
-		print e
+		logging.exception("Fatal error, ending program. Error message:")
 
 
 
 
 
 """
-Parses a XML file into Django models and saves them to the database. 
+	Parses a XML file into Django models and saves them to the database. 
 """
-def xmlToModel():
+def xmlToDjango():
 
 	# Uncomment the following lines when hardcoded XML/Schema files are no longer necessary.
 	# xmlFilename = raw_input("Filename of the XML file: ")
@@ -34,6 +44,7 @@ def xmlToModel():
 	xmlFilename = "test/example.xml"
 	schemaFilename = "test/schema.xml"
 
+	# Validate the XML file.
 	try:
 
 	    # call validator with non-default values
@@ -59,7 +70,24 @@ def xmlToModel():
 	    print "Parsing aborted!"
 	    raise GenXmlIfError
 
-	treeIter = xmlTree.iter()
+	# Get a list of model objects from xmlTree.
+	modelsList = elementTreeToModels(xmlTree)
+
+	# Put the models in the Django database.
+	modelsToDjango(modelsList)
+
+
+
+
+
+"""
+	Parses an XML file and returns a list of Django models.
+"""
+def elementTreeToModels(elementTree):
+
+	treeIter = elementTree.iter()
+
+
 	nextElement = treeIter.next() # Retrieves root element
 	print nextElement
 	nextElement = treeIter.next() # Retrieves next Crisis element
@@ -192,6 +220,7 @@ def xmlToModel():
 			print nextElement # Location Element
 			nextElement = treeIter.next()
 
+
 		# Parse organizations.
 		while (nextElement.tag == "Organization"):
 			
@@ -230,14 +259,27 @@ def xmlToModel():
 
 	except StopIteration as e:
 		pass
+
+
+
+
+
+
+"""
+	Takes a list of Django models and saves them to a database.
+"""
+def modelsToDjango(models):
+	pass
+
+
 			
 		
 		
 		
 """
-Parses Django models into a new XML file. 
+	Parses Django models into a new XML file. 
 """
-def modelToXml():
+def djangoToXml():
 	pass
 
 

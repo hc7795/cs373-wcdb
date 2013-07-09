@@ -7,7 +7,7 @@
 			<Org ID="ORG_FEDEMA" />
 		</Organizations>
 		<Kind>Natural Disaster</Kind>
-		<Date>September 1, 2008 -  	September 14, 2008</Date>
+		<Date>September 1, 2008 -   September 14, 2008</Date>
 		<Locations>Turks and Caicos, Bahamas, Haiti, Dominican Republic, Cuba, Florida Keys, Mississippi, Louisiana, Texas, Mississippi Valley, Ohio Valley, Great Lakes region, Eastern Canada</Locations>
 		<HumanImpact>
 			<li>Fatalities: 103 direct, 92 indirect</li>
@@ -27,12 +27,11 @@
 
 	<Crisis ID="CRI_BAGAIR" Name="Baghdad Airstrike">
 		<People>
-			<PersonID>PER_BRAMAN</PersonID>
-			<PersonID>PER_JULASS</PersonID>
+			<Person ID="PER_BRAMAN" />
+			<Person ID="PER_JULASS" />
 		</People>
 		<Organizations>
-			<OrgID>ORG_WIKLKS</OrgID>
-			<OrgID>ORG_BUSHAD</OrgID>
+			<Org ID="ORG_WIKLKS" />
 		</Organizations>
 		<Kind>War</Kind>
 		<Date>July 12, 2007</Date>
@@ -52,11 +51,11 @@
 
 	<Crisis ID="CRI_IRAQWR" Name="Iraq War">
 		<People>
-			<PersonID>PER_SADHUS</PersonID>
+			<Person ID="PER_SADHUS" />
 		</People>
 		<Organizations>
-			<OrgID>ORG_AQAEDA</OrgID>
-			<OrgID>ORG_IWVORG</OrgID>
+			<Org ID="ORG_AQAEDA" />
+			<Org ID="ORG_IAVETA" />
 		</Organizations>
 		<Kind>War</Kind>
 		<Date>March 20, 2003 – December 15, 2011</Date>
@@ -79,11 +78,11 @@
 
 	<Crisis ID="CRI_WSAFRC" Name="Water Scarcity in Africa">
 		<People>
-			<PersonID>PER_MICCAM</PersonID>
+			<Person ID="PER_MICCAM" />
 		</People>
 		<Organizations>
-			<OrgID>ORG_CARERA</OrgID>
-			<OrgID>ORG_UNICEF</OrgID>
+			<Org ID="ORG_CARERA" />
+			<Org ID="ORG_UNICEF" />
 		</Organizations>
 		<Kind>Natural Disaster ????????????????????????????????????????</Kind>
 		<Date>2013</Date>
@@ -108,13 +107,13 @@
 
 	<Crisis ID="CRI_SWNFLU" Name="Influenza A virus subtype H1N1">
 		<People>
-			<PersonID>PER_BROBMA</PersonID>
-			<PersonID>PER_GHARTL</PersonID>
+			<Person ID="PER_BROBMA" />
+			<Person ID="PER_GHARTL" />
 		</People>
 		<Organizations>
-			<OrgID>ORG_WHLORG</OrgID>
-			<OrgID>ORG_CFDCAP</OrgID>
-			<OrgID>ORG_REDCRS</OrgID>
+			<Org ID="ORG_WHLORG" />
+			<Org ID="ORG_CFDCAP" />
+			<Org ID="ORG_REDCRS" />
 		</Organizations>
 		<Kind>Pandemic</Kind>
 		<Date>November 2009 - August 2010</Date>
@@ -135,10 +134,10 @@
 
 	<Crisis ID="CRI_EXXONV" Name="Exxon Valdez Oil Spill">
 		<People>
-			<PersonID>PER_GEORGE</PersonID>
+			<Person ID="PER_GEORGE" />
 		</People>
 		<Organizations>
-			<OrgID>ORG_OILREC</OrgID>
+			<Org ID="ORG_OILREC" />
 		</Organizations>
 		<Kind>Oil Spill</Kind>
 		<Date>March 24, 1989</Date>
@@ -161,10 +160,10 @@
 
 	<Crisis ID="CRI_HAITIE" Name="Haiti Earthquake">
 		<People>
-			<PersonID>PER_RENPRE</PersonID>
+			<Person ID="PER_RENPRE" />
 		</People>
 		<Organizations>
-			<OrgID>ORG_UNICEF</OrgID>
+			<Org ID="ORG_UNICEF" />
 		</Organizations>
 		<Kind>Natural Disaster</Kind>
 		<Date>January 12, 2010</Date>
@@ -188,11 +187,11 @@
 
 	<Crisis ID="CRI_AIDSHI" Name="AIDS/HIV">
 		<People>
-			<PersonID>PER_BROBMA</PersonID>
-			<PersonID>PER_MAGICJ</PersonID>
+			<Person ID="PER_BROBMA" />
+			<Person ID="PER_MAGICJ" />
 		</People>
 		<Organizations>
-			<OrgID>ORG_WHLORG</OrgID>
+			<Org ID="ORG_WHLORG" />
 		</Organizations>
 		<Kind>Pandemic</Kind>
 		<Date>1981 - 2013</Date>
@@ -216,10 +215,10 @@
 
 	<Crisis ID="CRI_UEGYPT" Name="Political unrest in Egypt">
 		<People>
-			<PersonID>PER_MUBRAK</PersonID>
+			<Person ID="PER_MUBRAK" />
 		</People>
 		<Organizations>
-			<OrgID>ORG_EGYHUM</OrgID>
+			<Org ID="ORG_EGYHUM" />
 		</Organizations>
 		<Kind>Political Protest</Kind>
 		<Date>November 22, 2012 – July 3, 2013</Date>
@@ -237,13 +236,12 @@
 		</Common>
 	</Crisis>
 
-	<Crisis ID="CRI_SEP911" Name="September 11 Attacks">
+	<Crisis ID="CRI_NINEOO" Name="September 11 Attacks">
 		<People>
-			<PersonID>PER_OSAMAB</PersonID>
+			<Person ID="PER_OSAMAB" />
 		</People>
 		<Organizations>
-			<OrgID>ORG_AQAEDA</OrgID>
-			<OrgID>ORG_BUSHAD<OrgID>
+			<Org ID="ORG_AQAEDA" />
 		</Organizations>
 		<Kind>Terrorism</Kind>
 		<Date>September 11, 2001</Date>
@@ -267,11 +265,11 @@
 
 	<Person ID="PER_BRAMAN" Name="Bradley Manning">
 		<Crises>
-			<Crisis ID="CRI_BAGAIR"/>
+			<Crisis ID="CRI_BAGAIR" />
 		</Crises>
 		<Organizations>
-            <Org ID="ORG_IWVORG" />
-        </Organizations>
+			<Org ID="ORG_IAVETA" />
+		</Organizations>
 		<Kind>Private First Class</Kind>
 		<Common>
 			<ExternalLinks>
@@ -285,11 +283,11 @@
 
 	<Person ID="PER_JULASS" Name="Julian Assange">
 		<Crises>
-			<Crisis ID="PER_JULASS"/>
+			<Crisis ID="PER_JULASS" />
 		</Crises>
 		<Organizations>
-            <Org ID="ORG_WIKLKS" />
-        </Organizations>
+			<Org ID="ORG_WIKLKS" />
+		</Organizations>
 		<Kind>Editor-in-chief and spokesman for WikiLeak</Kind>
 		<Common>
 			<ExternalLinks>
@@ -303,15 +301,15 @@
 
 	<Person ID="PER_GHARTL" Name="Gregory Hartl">
 		<Crises>
-			<Crisis ID="CRI_SWNFLU"/>
+			<Crisis ID="CRI_SWNFLU" />
 		</Crises>
 		<Organizations>
-            <Org ID="ORG_WHLORG" />
-        </Organizations>
+			<Org ID="ORG_WHLORG" />
+		</Organizations>
 		<Kind>Head of Public Relations/Social Media for World Health Organization</Kind>
 		<Common>
 			<ExternalLinks>
-				 <li href="https://twitter.com/HaertlG">Wikipedia</li>
+				 <li href="https://twitter.com/HaertlG">Twitter</li>
 			</ExternalLinks>
 			<Images>
 				<li  embed="http://news.bbcimg.co.uk/media/images/67578000/jpg/_67578538_67578537.jpg" />
@@ -321,11 +319,12 @@
 
 	<Person ID="PER_BROBMA" Name="Barack Obama">
 		<Crises>
-			<Crisis ID="CRI_AIDSHI", "CRI_SWNFLU"/>
+			<Crisis ID="CRI_AIDSHI" />
+			<Crisis ID="CRI_SWNFLU" />
 		</Crises>
 		<Organizations>
-            <Org ID="??????????????????????????????????????????" />
-        </Organizations>
+			<Org ID="??????????????????????????????????????????" />
+		</Organizations>
 		<Kind>President of the United States</Kind>
 		<Common>
 			<ExternalLinks>
@@ -339,11 +338,12 @@
 
 	<Person ID="PER_RENPRE" Name="René Préval">
 		<Crises>
-			<Crisis ID="CRI_HURIKE", "CRI_HAITIE" />
+			<Crisis ID="CRI_HURIKE" />
+			<Crisis ID="CRI_HAITIE" />
 		</Crises>
 		<Organizations>
-            <Org ID="?????????????????????????????????????????" />
-        </Organizations>
+			<Org ID="?????????????????????????????????????????" />
+		</Organizations>
 		<Kind>President of Haiti</Kind>
 		<Common>
 			<ExternalLinks>
@@ -357,11 +357,11 @@
 
 	<Person ID="PER_MAGICJ" Name="Magic Johnson">
 		<Crises>
-			<Crisis ID="CRI_AIDSHI"/>
+			<Crisis ID="CRI_AIDSHI" />
 		</Crises>
 		<Organizations>
-            <Org ID="???????????????????????????????????????????????????" />
-        </Organizations>
+			<Org ID="???????????????????????????????????????????????????" />
+		</Organizations>
 		<Kind>Basketball Player</Kind>
 		<Common>
 			<ExternalLinks>
@@ -375,11 +375,11 @@
 
 	<Person ID="PER_MUBRAK" Name="Hosni Mubarak">
 		<Crises>
-			<Crisis ID="CRI_UEGYPT"/>
+			<Crisis ID="CRI_UEGYPT" />
 		</Crises>
 		<Organizations>
-            <Org ID="???????????????????????????????????????????????" />
-        </Organizations>
+			<Org ID="???????????????????????????????????????????????" />
+		</Organizations>
 		<Kind>President of Egypt</Kind>
 		<Common>
 			<ExternalLinks>
@@ -393,11 +393,11 @@
 
 	<Person ID="PER_MICCAM" Name="Michel Camdessus">
 		<Crises>
-			<Crisis ID="CRI_WSAFRC"/>
+			<Crisis ID="CRI_WSAFRC" />
 		</Crises>
 		<Organizations>
-            <Org ID="???????????????????????????????????????????????????" />
-        </Organizations>
+			<Org ID="???????????????????????????????????????????????????" />
+		</Organizations>
 		<Kind>Managing Director of the IMF</Kind>
 		<Common>
 			<ExternalLinks>
@@ -411,11 +411,11 @@
 
 	<Person ID="PER_SADHUS" Name="Saddam Hussein">
 		<Crises>
-			<Crisis ID="CRI_IRAQWR"/>
+			<Crisis ID="CRI_IRAQWR" />
 		</Crises>
 		<Organizations>
-            <Org ID="???????????????????????????????????????????????" />
-        </Organizations>
+			<Org ID="???????????????????????????????????????????????" />
+		</Organizations>
 		<Kind>President of Iraq</Kind>
 		<Common>
 			<ExternalLinks>
@@ -429,11 +429,11 @@
 
 	<Person ID="PER_OSAMAB" Name="Osama Bin Laden ">
 		<Crises>
-			<Crisis ID="CRI_SEP911"/>
+			<Crisis ID="CRI_NINEOO" />
 		</Crises>
 		<Organizations>
-            <Org ID="ORG_AQAEDA" />
-        </Organizations>
+			<Org ID="ORG_AQAEDA" />
+		</Organizations>
 		<Kind>Founder of al-Qaeda</Kind>
 		<Common>
 			<ExternalLinks>
@@ -445,28 +445,252 @@
 		</Common>
 	</Person>
 
-	<Organization ID="ORG_CARERA" Name="Care" />
+	<Organization ID="ORG_CARERA" Name="Care">
+		<Crises>
+			<Crisis ID="CRI_WSAFRC" />
+		</Crises>
+		<Kind>Humanitarian</Kind>
+		<Location>Atlanta, USA</Location>
+		<History>
+			<li>Founded in 1945</li>
+		</History>
+		<ContactInfo>
+			<li>Phone: 1-800-521-CARE</li>
+		</ContactInfo>
+		<Common>
+			<ExternalLinks>
+				 <li href="http://www.care.org/index.asp">Official Website</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="http://www.care.org/modules/takeovers/carousel5/slides/2013/03/Gender-Based-Violence-Slide-postIWD.jpg" />
+			</Images>
+		</Common>
+	</Organization>
 
-	<Organization ID="ORG_UNICEF" Name="UNICEF" />
+	<Organization ID="ORG_UNICEF" Name="UNICEF">
+		<Crises>
+			<Crisis ID="CRI_WSAFRC" />
+			<Crisis ID="CRI_HAITIE" />
+		</Crises>
+		<Kind>Humanitarian</Kind>
+		<Location>New York, USA</Location>
+		<History>
+			<li>Founded in 1946</li>
+		</History>
+		<ContactInfo>
+			<li>Phone: 1-800-FOR-KIDS</li>
+		</ContactInfo>
+		<Common>
+			<ExternalLinks>
+				 <li href="http://www.unicefusa.org/">Official Website</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/d/d1/Flag_of_UNICEF.svg" />
+			</Images>
+		</Common>
+	</Organization>
 
-	<Organization ID="ORG_WIKLKS" Name="Wikileaks" />
+	<Organization ID="ORG_WIKLKS" Name="Wikileaks">
+		<Crises>
+			<Crisis ID="CRI_BAGAIR" />
+		</Crises>
+		<People>
+			<Person ID="PER_JULASS" />
+		</People>
+		<Kind>Nonprofit document archive and disclosure</Kind>
+		<Location>Online</Location>
+		<History>
+			<li>Launched in 2006</li>
+		</History>
+		<ContactInfo>
+			<li>IRC: http://chat.wikileaks.org/</li>
+		</ContactInfo>
+		<Common>
+			<ExternalLinks>
+				 <li href="http://wikileaks.org/">Official Website</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="http://wikileaks.org/IMG/wlogo.png" />
+			</Images>
+		</Common>
+	</Organization>
 
-	<Organization ID="ORG_IWVORG" Name="Iraq War Veterans Organization" />
+	<Organization ID="ORG_AQAEDA" Name="al-Qaeda">
+		<Crises>
+			<Crisis ID="CRI_IRAQWR" />
+			<Crisis ID="CRI_NINEOO" />
+		</Crises>
+		<People>
+			<Person ID="PER_OSAMAB" />
+		</People>
+		<Kind>Terrorist</Kind>
+		<Location>World Wide</Location>
+		<History>
+			<li>Founded in 1988</li>
+		</History>
+		<Common>
+			<ExternalLinks>
+				 <li href="https://en.wikipedia.org/wiki/Al_Queda">Wikipedia</li>
+			</ExternalLinks>
+		</Common>
+	</Organization>
 
-	<Organization ID="ORG_AQAEDA" Name="al-Qaeda" />
+	<Organization ID="ORG_WHLORG" Name="World Health Organization">
+		<Crises>
+			<Crisis ID="CRI_SWNFLU" />
+			<Crisis ID="CRI_AIDSHI" />
+		</Crises>
+		<People>
+			<Person ID="PER_GHARTL" />
+		</People>
+		<Kind>Public Health</Kind>
+		<Location>Geneva, Switzerland</Location>
+		<History>
+			<li>Founded in 1948</li>
+		</History>
+		<ContactInfo>
+			<li>Phone: +41 22 791 2111</li>
+		</ContactInfo>
+		<Common>
+			<ExternalLinks>
+				 <li href="http://www.who.int/en/">Official Website</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/8/89/Flag_of_WHO.svg" />
+			</Images>
+		</Common>
+	</Organization>
 
-	<Organization ID="ORG_BUSHAD" Name="Bush Administration" />
+	<Organization ID="ORG_CFDCAP" Name="Centers for Disease Control and Prevention">
+		<Crises>
+			<Crisis ID="CRI_SWNFLU" />
+		</Crises>
+		<Kind>Public Health</Kind>
+		<Location>Georgia, USA</Location>
+		<History>
+			<li>Founded in 1946</li>
+		</History>
+		<ContactInfo>
+			<li>Phone: 1-800-CDC-INFO</li>
+		</ContactInfo>
+		<Common>
+			<ExternalLinks>
+				 <li href="http://www.cdc.gov/">Official Website</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="http://www.cdc.gov/homepage/images/img-cdcLogoHeader.png" />
+			</Images>
+		</Common>
+	</Organization>
 
-	<Organization ID="ORG_WHLORG" Name="World Health Organization" />
+	<Organization ID="ORG_FEDEMA" Name="Federal Emergency Management Agency">
+		<Crises>
+			<Crisis ID="CRI_HURIKE" />
+		</Crises>
+		<Kind>Disaster Relief</Kind>
+		<Location>USA</Location>
+		<History>
+			<li>Founded in 1978</li>
+		</History>
+		<ContactInfo>
+			<li>Phone: 1-800-621-FEMA </li>
+		</ContactInfo>
+		<Common>
+			<ExternalLinks>
+				 <li href="http://www.fema.gov/">Official Website</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/FEMA_logo.svg/640px-FEMA_logo.svg.png" />
+			</Images>
+		</Common>
+	</Organization>
 
-	<Organization ID="ORG_CFDCAP" Name="Centers for Disease Control and Prevention" />
+	<Organization ID="ORG_REDCRS" Name="Red Cross">
+		<Crises>
+			<Crisis ID="CRI_SWNFLU" />
+		</Crises>
+		<Kind>Humanitarian</Kind>
+		<Location>Geneva, Switzerland</Location>
+		<History>
+			<li>Founded in 1919</li>
+		</History>
+		<ContactInfo>
+			<li>Phone: 1-800-RED CROSS</li>
+		</ContactInfo>
+		<Common>
+			<ExternalLinks>
+				 <li href="http://www.redcross.org/">Official Website</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="https://upload.wikimedia.org/wikipedia/commons/0/08/Flag_of_Switzerland_%28Pantone%29.svg" />
+			</Images>
+		</Common>
+	</Organization>
 
-	<Organization ID="ORG_FEDEMA" Name="Federal Emergency Management Agency" />
+	<Organization ID="ORG_OILREC" Name="Oil Spill Recovery Institute">
+		<Crises>
+			<Crisis ID="CRI_EXXONV" />
+		</Crises>
+		<Kind>Enviromental</Kind>
+		<Location>Alaska</Location>
+		<History>
+			<li>Founded in 1989</li>
+		</History>
+		<ContactInfo>
+			<li>Phone: 907-424-5800 x222</li>
+		</ContactInfo>
+		<Common>
+			<ExternalLinks>
+				 <li href="http://www.pws-osri.org/">Official Website</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="http://www.pws-osri.org/wp-content/themes/atahualpa/images/logobar3.jpg" />
+			</Images>
+		</Common>
+	</Organization>
 
-	<Organization ID="ORG_REDCRS" Name="Red Cross" />
+	<Organization ID="ORG_EGYHUM" Name="Egyptian Organization for Human Rights">
+		<Crises>
+			<Crisis ID="CRI_UEGYPT" />
+		</Crises>
+		<Kind>Human Rights</Kind>
+		<Location></Location>
+		<History>
+			<li>Founded in 1985</li>
+		</History>
+		<ContactInfo>
+			<li>Phone: (202 ) 3636811 - 3620467</li>
+		</ContactInfo>
+		<Common>
+			<ExternalLinks>
+				 <li href="http://en.eohr.org/">Official Website</li>
+			</ExternalLinks>
+		</Common>
+	</Organization>
 
-	<Organization ID="ORG_OILREC" Name="Oil Spill Recovery Institute" />
-
-	<Organization ID="ORG_EGYHUM" Name="Egyptian Organization for Human Rights" />
+	<Organization ID="ORG_IAVETA" Name="Iraq and Afghanistan Veterans of America">
+		<Crises>
+			<Crisis ID="CRI_IRAQWR" />
+		</Crises>
+		<People>
+			<Person ID="PER_BRAMAN" />
+		</People>
+		<Kind>Advocacy group dedicated to US veterans</Kind>
+		<Location>New York, USA</Location>
+		<History>
+			<li>Founded in 2004</li>
+		</History>
+		<ContactInfo>
+			<li>Phone: 212-982-9699</li>
+		</ContactInfo>
+		<Common>
+			<ExternalLinks>
+				 <li href="http://iava.org/">Official Website</li>
+			</ExternalLinks>
+			<Images>
+				<li  embed="http://patrickstjohn.org/images/iava-logo.jpg" />
+			</Images>
+		</Common>
+	</Organization>
 
 </WorldCrises>

@@ -7,6 +7,7 @@
     <Crisis ID="CRI_NRINFL" Name="2013 Northern India Floods">
         <People>
             <Person ID="PER_MNSNGH" />
+             <Person ID="PER_ABCDEF" />
         </People>
         <Organizations>
             <Org ID="ORG_PMRLFD" />
@@ -90,6 +91,18 @@
         <Location>India</Location>
         <!-- See Crisis element above for examples of everything under <Common> -->
     </Person>
+
+    <Person ID="PER_ABCDEF" Name="fuk you">
+        <Crises>
+            <Crisis ID="CRI_NRINFL" />
+        </Crises>
+        <Organizations>
+            <Org ID="ORG_PMRLFD" />
+        </Organizations>
+        <Kind>Politician</Kind>
+        <Location>India</Location>
+        <!-- See Crisis element above for examples of everything under <Common> -->
+    </Person>
     
     <!-- Example Organization element -->
     <Organization ID="ORG_PMRLFD" Name="Prime Minister's Relief Fund">
@@ -98,6 +111,7 @@
         </Crises>
         <People>
             <Person ID="PER_MNSNGH" />
+            <Person ID="PER_ABCDEF" />
         </People>
         <Kind>Governement Fund</Kind>
         <Location>India</Location>

@@ -1,4 +1,4 @@
-cs373-wcdb
+Honghui plz reupload your xmlParser.py here, I uploaded my file around the same time you did so the current xmlParser.py is fucked up
 ==========
 
 * Link to contact info Google Doc: https://docs.google.com/document/d/17aQGjf3V3MqLfxaajcE33ir3tT16l-LHZWrXc9HL-fU/edit?usp=sharing

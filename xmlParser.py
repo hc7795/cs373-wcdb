@@ -78,6 +78,107 @@ def xmlToDjango():
 
 
 
+"""
+    Takes an elementTree element and returns a dictionary containing attribute_id/attribute_data pairs.
+    Also returns a pair with the key called 'content', which contains text (if any) of the element.
+"""
+def getTextAndAttributes(element):
+    d = {}
+
+    for pair in element.items():
+	d[pair[0]] = pair[1]
+
+    content = element.text
+# check the existence of text
+    if (content != ""):
+	d['content'] = content
+    return d
+
+
+
+"""
+    Takes a 'Common' element and returns a tuple (r1, r2, r3).
+	r1: the current element pointed to by element iterator after iteration.
+	r2: the element iterator after iteration.
+	r3: dictionary containing its nested data.
+"""
+def getCommonData(element, elementIterator):
+	assert(element.tag == "Common")
+
+	returnData = {}
+
+	locations = []
+	humanImpact = []
+	economicImpact = []
+	resourcesNeeded = []
+	waysToHelp = []
+	citations = []
+	externalLinks = []
+	images = []
+	videos = []
+	maps = []
+	feeds = []
+	summary = []
+
+	nextElement = elementIterator.next()
+
+	if(nextElement.tag == "Citations") :
+		nextElement = elementIterator.next()
+		while(nextElement.tag == "li"):
+		    d=getTextAndAttributes(nextElement)
+		    citations.append(d)
+		    nextElement = elementIterator.next()
+		returnData["Citations"] = citations
+
+	if(nextElement.tag == "ExternalLinks") :
+		nextElement = elementIterator.next()
+		while(nextElement.tag == "li"):
+		    d=getTextAndAttributes(nextElement)
+		    externalLinks.append(d)
+		    nextElement = elementIterator.next()
+		returnData["ExternalLinks"] = externalLinks
+
+	if(nextElement.tag == "Images") :
+		nextElement = elementIterator.next()
+		while(nextElement.tag == "li"):
+		    d=getTextAndAttributes(nextElement)
+		    images.append(d)
+		    nextElement = elementIterator.next()
+		returnData["Images"] = images
+
+	if(nextElement.tag == "Videos") :
+		nextElement = elementIterator.next()
+		while(nextElement.tag == "li"):
+		    d=getTextAndAttributes(nextElement)
+		    videos.append(d)
+		    nextElement = elementIterator.next()
+		returnData["Videos"] = videos
+
+	if(nextElement.tag == "Maps") :
+		nextElement = elementIterator.next()
+		while(nextElement.tag == "li"):
+		    d=getTextAndAttributes(nextElement)
+		    maps.append(d)
+		    nextElement = elementIterator.next()
+		returnData["Maps"] = maps
+
+	if(nextElement.tag == "Feeds") :
+		nextElement = elementIterator.next()
+		while(nextElement.tag == "li"):
+		    d=getTextAndAttributes(nextElement)
+		    feeds.append(d)
+		    nextElement = elementIterator.next()
+		returnData["Feeds"] = feeds
+
+	if(nextElement.tag == "Summary") :
+		crisisSummary=nextElement.text
+		returnData["Summary"] = crisisSummary
+		nextElement = elementIterator.next()
+
+	return (nextElement, elementIterator, returnData)
+
+
+
 
 
 """
@@ -96,9 +197,10 @@ def elementTreeToModels(elementTree):
 	try:
    	 # Parse crises.    
    	        while (nextElement.tag == "Crisis"):
-   		        crisisAttributes = nextElement.items()
-   		        crisisID = [pair[1] for pair in crisisAttributes if pair[0] == "ID"][0]
-   		        crisisName = [pair[1] for pair in crisisAttributes if pair[0] == "Name"][0]
+   		        crisisAttributes = getTextAndAttributes(nextElement)
+			crisisID = crisisAttributes['ID']
+			crisisName = crisisAttributes['Name']
+
 
    		        # print crisisAttributes
    			print crisisID
@@ -114,7 +216,7 @@ def elementTreeToModels(elementTree):
 			crisisEconomicImpact = []
    			crisisResourcesNeeded = []
    		 	crisisWaysToHelp = []
-   		 	crisisCommonBoolean = False # check the existence of Common
+ 
 			crisisCitations = []
 			crisisExternalLinks = []
 			crisisImages = []
@@ -151,141 +253,48 @@ def elementTreeToModels(elementTree):
    		        if(nextElement.tag == "Locations") :
    		 	    nextElement = treeIter.next()
 			    while(nextElement.tag == "li") :
-			        crisisLocations.append(nextElement.text)
+				d=getTextAndAttributes(nextElement)
+			        crisisLocations.append(d)
 				nextElement = treeIter.next()
 
 			if(nextElement.tag == "HumanImpact") :
    		 	    nextElement = treeIter.next()
    		 	    while(nextElement.tag == "li") :
-			        crisisHumanImpact.append(nextElement.text)
+				d=getTextAndAttributes(nextElement)
+			        crisisHumanImpact.append(d)
 				nextElement = treeIter.next()
 
 			if(nextElement.tag == "EconomicImpact") :
    		 	    nextElement = treeIter.next()
    		 	    while(nextElement.tag == "li") :
-			        crisisEconomicImpact.append(nextElement.text)
+				d=getTextAndAttributes(nextElement)
+			        crisisEconomicImpact.append(d)
 				nextElement = treeIter.next()
 
 			if(nextElement.tag == "ResourcesNeeded") :
    		 	    nextElement = treeIter.next()
    		 	    while(nextElement.tag == "li") :
-			        crisisResourcesNeeded.append(nextElement.text)
-				nextElement = treeIter.next()
+				    d=getTextAndAttributes(nextElement)
+				    crisisResourcesNeeded.append(d)
+				    nextElement = treeIter.next()
 
 			if(nextElement.tag == "WaysToHelp") :
    		 	    nextElement = treeIter.next()
    		 	    while(nextElement.tag == "li") :
-			        crisisWaysToHelp.append(nextElement.text)
-				nextElement = treeIter.next()
+				    d=getTextAndAttributes(nextElement)
+				    crisisWaysToHelp.append(d)
+				    nextElement = treeIter.next()
 
 			if(nextElement.tag == "Common") :
-			    crisisCommonBoolean=True
-   		 	    nextElement = treeIter.next()
-   		 	    if(nextElement.tag == "Citations") :
-				nextElement = treeIter.next()
-				while(nextElement.tag == "li"):
-				    dict={}
-				    ExternalAttributes = nextElement.items()
-				    ExternalAttHref = [pair[1] for pair in ExternalAttributes if pair[0] == "href"]
-				    ExternalAttEmbed = [pair[1] for pair in ExternalAttributes if pair[0] == "embed"]
-				    ExternalAttText = [pair[1] for pair in ExternalAttributes if pair[0] == "text"]
-				    if(ExternalAttHref != []):
-					dict['href'] =ExternalAttHref[0]
-				    if(ExternalAttEmbed != []):
-					dict['embed'] =ExternalAttEmbed[0]
-				    if(ExternalAttText != []):
-					dict['text'] =ExternalAttText[0]
-				    content = nextElement.text
-				# check the existence of text
-				    if (content != ""):
-					dict['content']=content
-				    crisisCitations.append(dict)
-				    nextElement = treeIter.next()
-
-			    if(nextElement.tag == "ExternalLinks") :
-				nextElement = treeIter.next()
-				while(nextElement.tag == "li"):
-				    dict={}
-				    ExternalAttributes = nextElement.items()
-				    ExternalAttHref = [pair[1] for pair in ExternalAttributes if pair[0] == "href"]
-				    ExternalAttEmbed = [pair[1] for pair in ExternalAttributes if pair[0] == "embed"]
-				    ExternalAttText = [pair[1] for pair in ExternalAttributes if pair[0] == "text"]
-				    if(ExternalAttHref != []):
-					dict['href'] =ExternalAttHref[0]
-				    if(ExternalAttEmbed != []):
-					dict['embed'] =ExternalAttEmbed[0]
-				    if(ExternalAttText != []):
-					dict['text'] =ExternalAttText[0]
-				    crisisExternalLinks.append(dict)
-				    nextElement = treeIter.next()
-
-			    if(nextElement.tag == "Images") :
-				nextElement = treeIter.next()
-				while(nextElement.tag == "li"):
-				    dict={}
-				    ExternalAttributes = nextElement.items()
-				    ExternalAttHref = [pair[1] for pair in ExternalAttributes if pair[0] == "href"]
-				    ExternalAttEmbed = [pair[1] for pair in ExternalAttributes if pair[0] == "embed"]
-				    ExternalAttText = [pair[1] for pair in ExternalAttributes if pair[0] == "text"]
-				    if(ExternalAttHref != []):
-					dict['href'] =ExternalAttHref[0]
-				    if(ExternalAttEmbed != []):
-					dict['embed'] =ExternalAttEmbed[0]
-				    if(ExternalAttText != []):
-					dict['text'] =ExternalAttText[0]
-				    crisisImages.append(dict)
-				    nextElement = treeIter.next()
-			    if(nextElement.tag == "Videos") :
-				nextElement = treeIter.next()
-				while(nextElement.tag == "li"):
-				    dict={}
-				    ExternalAttributes = nextElement.items()
-				    ExternalAttHref = [pair[1] for pair in ExternalAttributes if pair[0] == "href"]
-				    ExternalAttEmbed = [pair[1] for pair in ExternalAttributes if pair[0] == "embed"]
-				    ExternalAttText = [pair[1] for pair in ExternalAttributes if pair[0] == "text"]
-				    if(ExternalAttHref != []):
-					dict['href'] =ExternalAttHref[0]
-				    if(ExternalAttEmbed != []):
-					dict['embed'] =ExternalAttEmbed[0]
-				    if(ExternalAttText != []):
-					dict['text'] =ExternalAttText[0]
-				    crisisVideos.append(dict)
-				    nextElement = treeIter.next()
-			    if(nextElement.tag == "Maps") :
-				nextElement = treeIter.next()
-				while(nextElement.tag == "li"):
-				    dict={}
-				    ExternalAttributes = nextElement.items()
-				    ExternalAttHref = [pair[1] for pair in ExternalAttributes if pair[0] == "href"]
-				    ExternalAttEmbed = [pair[1] for pair in ExternalAttributes if pair[0] == "embed"]
-				    ExternalAttText = [pair[1] for pair in ExternalAttributes if pair[0] == "text"]
-				    if(ExternalAttHref != []):
-					dict['href'] =ExternalAttHref[0]
-				    if(ExternalAttEmbed != []):
-					dict['embed'] =ExternalAttEmbed[0]
-				    if(ExternalAttText != []):
-					dict['text'] =ExternalAttText[0]
-				    crisisMaps.append(dict)
-				    nextElement = treeIter.next()
-			    if(nextElement.tag == "Feeds") :
-				nextElement = treeIter.next()
-				while(nextElement.tag == "li"):
-				    dict={}
-				    ExternalAttributes = nextElement.items()
-				    ExternalAttHref = [pair[1] for pair in ExternalAttributes if pair[0] == "href"]
-				    ExternalAttEmbed = [pair[1] for pair in ExternalAttributes if pair[0] == "embed"]
-				    ExternalAttText = [pair[1] for pair in ExternalAttributes if pair[0] == "text"]
-				    if(ExternalAttHref != []):
-					dict['href'] =ExternalAttHref[0]
-				    if(ExternalAttEmbed != []):
-					dict['embed'] =ExternalAttEmbed[0]
-				    if(ExternalAttText != []):
-					dict['text'] =ExternalAttText[0]
-				    crisisFeeds.append(dict)
-				    nextElement = treeIter.next()
-			    if(nextElement.tag == "Summary") :
-				crisisSummary=nextElement.text
-				nextElement = treeIter.next()
+				nextElement, treeIter, d = getCommonData(nextElement, treeIter)
+				crisisCitations = d.get('Citations')
+				crisisExternalLinks = d.get('Links')
+				crisisImages = d.get('Images')
+				crisisVideos = d.get('Videos')
+				crisisMaps = d.get('Maps')
+				crisisFeeds = d.get('Feeds')
+				crisisSummary = d.get('Summary')
+				
 
 
 		print "crisisID: ", crisisID
@@ -311,7 +320,160 @@ def elementTreeToModels(elementTree):
 
 	    
 		# Parse people.	
+		while (nextElement.tag == "Person"):
+			print 'nextElement.tag == "Person":', nextElement.tag == "Person"
 
+			personAttributes = getTextAndAttributes(nextElement)
+			personID = personAttributes['ID']
+			personName = personAttributes['Name']
+
+			personCrisisIDs = []
+			personOrgIDs = []
+			personKind = ""
+			personLocation = ""
+
+			personCitations = []
+			personExternalLinks = []
+			personImages = []
+			personVideos = []
+			personMaps = []
+			personFeeds = []
+			personSummary = ""	
+
+			nextElement = treeIter.next() 
+
+			if (nextElement.tag == "Crises"):
+				nextElement = treeIter.next() # First Crisis in Crises sequence
+				while (nextElement.tag == "Crisis"):
+					personCrisisIDs.append(nextElement.attrib['ID'])
+					nextElement = treeIter.next()
+				
+			if (nextElement.tag == "Organizations"):
+				nextElement = treeIter.next() # First Org in Organizations sequence
+				while(nextElement.tag == "Org"):
+					personOrgIDs.append(nextElement.attrib['ID'])
+					nextElement = treeIter.next()
+			
+			if (nextElement.tag == "Kind"):
+				personKind = nextElement.text # Kind text
+				nextElement = treeIter.next()
+			
+			if (nextElement.tag == "Location"):
+				personLocation = nextElement.text # Location text
+				nextElement = treeIter.next()
+
+			if(nextElement.tag == "Common") :
+				nextElement, treeIter, d = getCommonData(nextElement, treeIter)
+				personCitations = d.get('Citations')
+				personExternalLinks = d.get('Links')
+				personImages = d.get('Images')
+				personVideos = d.get('Videos')
+				personMaps = d.get('Maps')
+				personFeeds = d.get('Feeds')
+				personSummary = d.get('Summary')
+
+		print "personID:", personID
+		print "personName:", personName
+		print "personCrisisIDs:", personCrisisIDs
+		print "personOrgIDs:", personOrgIDs
+		print "personKind:", personKind
+		print "personLocation:", personLocation
+		print "personCitations = ", personCitations
+		print "personExternalLinks = ", personExternalLinks
+		print "personImages = ", personImages
+		print "personVideos = ", personVideos
+		print "personMaps = ", personMaps
+		print "personFeeds = ", personFeeds
+		print "personSummary = ", personSummary
+
+
+
+		# Parse organizations.
+		while (nextElement.tag == "Organization"):
+			
+			print 'nextElement.tag == "org":', nextElement.tag == "Organization"
+
+			orgAttributes = getTextAndAttributes(nextElement)
+			orgID = orgAttributes['ID']
+			orgName = orgAttributes['Name']
+
+			orgCrisisIDs = []
+			orgOrgIDs = []
+			orgKind = ""
+			orgLocation = ""
+			orgHistory = []
+			orgContactInfo = []
+
+			orgCitations = []
+			orgExternalLinks = []
+			orgImages = []
+			orgVideos = []
+			orgMaps = []
+			orgFeeds = []
+			orgSummary = ""	
+
+			nextElement = treeIter.next() 
+
+			if (nextElement.tag == "Crises"):
+				nextElement = treeIter.next() # First Crisis in Crises sequence
+				while (nextElement.tag == "Crisis"):
+					orgCrisisIDs.append(nextElement.attrib['ID'])
+					nextElement = treeIter.next()
+				
+			if (nextElement.tag == "Organizations"):
+				nextElement = treeIter.next() # First Org in Organizations sequence
+				while(nextElement.tag == "Org"):
+					orgOrgIDs.append(nextElement.attrib['ID'])
+					nextElement = treeIter.next()
+			
+			if (nextElement.tag == "Kind"):
+				orgKind = nextElement.text # Kind text
+				nextElement = treeIter.next()
+			
+			if (nextElement.tag == "Location"):
+				orgLocation = nextElement.text # Location text
+				nextElement = treeIter.next()
+
+			if (nextElement.tag == "History"):
+				nextElement = treeIter.next()
+				while(nextElement.tag == "li") :
+					d=getTextAndAttributes(nextElement)
+					orgHistory.append(d)
+					nextElement = treeIter.next()
+
+			if (nextElement.tag == "ContactInfo"):
+				nextElement = treeIter.next()
+				while(nextElement.tag == "li") :
+					d=getTextAndAttributes(nextElement)
+					orgContactInfo.append(d)
+					nextElement = treeIter.next()
+
+			if(nextElement.tag == "Common") :
+				nextElement, treeIter, d = getCommonData(nextElement, treeIter)
+				orgCitations = d.get('Citations')
+				orgExternalLinks = d.get('Links')
+				orgImages = d.get('Images')
+				orgVideos = d.get('Videos')
+				orgMaps = d.get('Maps')
+				orgFeeds = d.get('Feeds')
+				orgSummary = d.get('Summary')
+
+		print "orgID:", orgID
+		print "orgName:", orgName
+		print "orgCrisisIDs:", orgCrisisIDs
+		print "orgOrgIDs:", orgOrgIDs
+		print "orgKind:", orgKind
+		print "orgLocation:", orgLocation
+		print "orgHistory:", orgHistory
+		print "orgContactInfo:", orgContactInfo
+
+		print "orgCitations = ", orgCitations
+		print "orgExternalLinks = ", orgExternalLinks
+		print "orgImages = ", orgImages
+		print "orgVideos = ", orgVideos
+		print "orgMaps = ", orgMaps
+		print "orgFeeds = ", orgFeeds
+		print "orgSummary = ", orgSummary
 
 	except StopIteration as e:
 		pass

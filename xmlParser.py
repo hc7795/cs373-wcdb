@@ -62,13 +62,13 @@ def xmlToDjango():
 
 	except pyxsval.XsvalError as errstr:
 	    print errstr
-	    print "Bad file; Validation aborted!"
-	    return
+	    print "Validation aborted!"
+	    raise pyxsval.XsvalError
 
 	except GenXmlIfError as errstr:
 	    print errstr
-	    print "Error; Parsing aborted!"
-	    return
+	    print "Parsing aborted!"
+	    raise GenXmlIfError
 
 	# Get a list of model objects from xmlTree.
 	modelsList = elementTreeToModels(xmlTree)
@@ -250,41 +250,65 @@ def elementTreeToModels(elementTree):
 
 		# Parse organizations.
 		while (nextElement.tag == "Organization"):
-			
-			#print nextElement; print nextElement.attrib; print nextElement.text
+
+			orgAttributes = nextElement.items()
+			orgID = [pair[1] for pair in orgAttributes if pair[0] == "ID"][0]
+			orgName = [pair[1] for pair in orgAttributes if pair[0] == "Name"][0]
+
+			orgCrisisIDs = []
+			orgPeopleIDs = []
+			orgContactInfo = []
+
 			nextElement = treeIter.next()
-			
-			#print nextElement; print nextElement.attrib; print nextElement.text  #Crises
-			nextElement = treeIter.next() #First Crisis in Crises Sequence
-			while(nextElement.tag == "Crisis") :
-				#print nextElement; print nextElement.attrib; print nextElement.text
-				nextElement = treeIter.next()
-			
-			#print nextElement; print nextElement.attrib; print nextElement.text #People
-			nextElement = treeIter.next()
-			while(nextElement.tag == "Person") :
-				#print nextElement; print nextElement.attrib; print nextElement.text
-				nextElement = treeIter.next()
-				
-			#print nextElement; print nextElement.attrib; print nextElement.text #Kind Element
-			nextElement = treeIter.next()
-			
-			#print nextElement; print nextElement.attrib; print nextElement.text #Location Element
-			nextElement = treeIter.next()
-			
-			#print nextElement; print nextElement.attrib; print nextElement.text #History Element
-			nextElement = treeIter.next() #First li in History Sequence
-			while(nextElement.tag == "li") :
-				#print nextElement; print nextElement.attrib; print nextElement.text
-				nextElement = treeIter.next()
-			
-			#print nextElement; print nextElement.attrib; print nextElement.text #ContactInfo
-			nextElement = treeIter.next() #First li in ContactInfo Sequence
-			while(nextElement.tag == "li") :
-				#print nextElement; print nextElement.attrib; print nextElement.text
+
+			if (nextElement.tag == "Crises"):
+				nextElement = treeIter.next() # First Crisis in Crises sequence
+				while (nextElement.tag == "Crisis"):
+					orgCrisisIDs.append(nextElement.attrib['ID'])
+					nextElement = treeIter.next()
+
+			if (nextElement.tag == "People"):
+				nextElement = treeIter.next() # First Crisis in Crises sequence
+				while (nextElement.tag == "Person"):
+					orgPeopleIDs.append(nextElement.attrib['ID'])
+					nextElement = treeIter.next()
+
+			if (nextElement.tag == "Kind"):
+				orgKind = nextElement.text
 				nextElement = treeIter.next()
 
+			if (nextElement.tag == "Location"):
+				orgLocation = nextElement.text
+				nextElement = treeIter.next()
+
+			if (nextElement.tag == "History"):
+				nextElement = treeIter.next()
+				orgHistory = nextElement.text
+				nextElement = treeIter.next()
+
+			print "orgID:", orgID
+			print "orgName:", orgName
+			print "orgCrisisIDs:", orgCrisisIDs
+			print "orgPeopleIDs:", orgPeopleIDs
+			print "orgKind:", orgKind
+			print "orgLocation:", orgLocation
+			print "orgHistory:", orgHistory
+
+			if (nextElement.tag == "ContactInfo"):
+				print "pass ContactInfo"
+				nextElement = treeIter.next() 
+				while (nextElement.tag == "li"):
+					orgContactInfo.append(nextElement.text)
+					print "orgContactInfo:", orgContactInfo
+					nextElement = treeIter.next()
+			
+
+
+			#print "orgContactInfo:", orgContactInfo
+
+
 	except StopIteration as e:
+		print "StopIteration"
 		pass
 
 

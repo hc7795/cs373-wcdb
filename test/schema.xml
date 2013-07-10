@@ -159,7 +159,7 @@
     </xsd:complexType>
     
     <!-- ListType is a list of tokens. Each token can have an optional hyperlink (href attribute) and/or link for embedded object (embed attribute).
-This is a generic type that can accomodate all types of lists (images, videos, citations, text, etc.) See example XML for usage -->
+        This is a generic type that can accomodate all types of lists (images, videos, citations, text, etc.) See example XML for usage -->
     <xsd:complexType name="ListType">
         <xsd:sequence>
             <xsd:element name="li" minOccurs="1" maxOccurs="unbounded">

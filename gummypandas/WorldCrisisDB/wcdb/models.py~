@@ -38,16 +38,6 @@ class Crisis(models.Model):
     org = models.ForeignKey('Organizations', related_name='crisis_org')
     com = models.ForeignKey('Common', related_name = 'crisis_com')
 
-<<<<<<< HEAD
-# class Common(models.Model):
-#   commonCitations = models.CharField(max_length = None)
-#   commonExternalLinks = models.CharField(max_length = None)
-#   commonImages = models.CharField(max_length = None)
-#   commonVideos = models.CharField(max_length = None)
-#   commonMaps = models.CharField(max_length = None)
-#   commonFeeds = models.CharField(max_length = None)
-#   commonSummary = models.CharField(max_length = None)
-=======
 class Common(models.Model) :
   commonCitations = models.CharField(max_length = 100)
   commonExternalLinks = models.CharField(max_length = 100)
@@ -56,7 +46,6 @@ class Common(models.Model) :
   commonMaps = models.CharField(max_length = 100)
   commonFeeds = models.CharField(max_length = 100)
   commonSummary = models.CharField(max_length = 100)
->>>>>>> 2ef8e33d7b59f0b7c040bf35da9e31807fad8804
 
 
 

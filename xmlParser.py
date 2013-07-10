@@ -50,13 +50,13 @@ def xmlToDjango():
 
 		# call validator with non-default values
 		elementTreeWrapper = pyxsval.parseAndValidate (xmlFilename, 
-			xsdFile=schemaFilename,
-			xmlIfClass= pyxsval.XMLIF_ELEMENTTREE,
-			warningProc=pyxsval.PRINT_WARNINGS,
-			errorLimit=200, 
-			verbose=1,
-			useCaching=0, 
-			processXInclude=0)
+			xsdFile         = schemaFilename,
+			xmlIfClass      = pyxsval.XMLIF_ELEMENTTREE,
+			warningProc     = pyxsval.PRINT_WARNINGS,
+			errorLimit      = 200, 
+			verbose         = 1,
+			useCaching      = 0, 
+			processXInclude = 0)
 
 		# get elementtree object after validation
 		xmlTree = elementTreeWrapper.getTree()
@@ -91,9 +91,10 @@ def getTextAndAttributes(element):
 
 	content = element.text
 	# check the existence of text
-	if (content != ""):
+	if (content != None):
 		d['content'] = content
-		return d
+	
+	return d
 
 
 
@@ -121,60 +122,66 @@ def getCommonData(element, elementIterator):
 	feeds = []
 	summary = []
 
-	nextElement = elementIterator.next()
-
-	if(nextElement.tag == "Citations") :
+	try:
 		nextElement = elementIterator.next()
-		while(nextElement.tag == "li"):
-			d=getTextAndAttributes(nextElement)
-			citations.append(d)
-			nextElement = elementIterator.next()
-		returnData["Citations"] = citations
 
-	if(nextElement.tag == "ExternalLinks") :
-		nextElement = elementIterator.next()
-		while(nextElement.tag == "li"):
-			d=getTextAndAttributes(nextElement)
-			externalLinks.append(d)
+		if (nextElement.tag == "Citations"):
 			nextElement = elementIterator.next()
-		returnData["ExternalLinks"] = externalLinks
+			while (nextElement.tag == "li"):
+				d = getTextAndAttributes(nextElement)
+				citations.append(d)
+				nextElement = elementIterator.next()
+			returnData["Citations"] = citations
 
-	if(nextElement.tag == "Images") :
-		nextElement = elementIterator.next()
-		while(nextElement.tag == "li"):
-			d=getTextAndAttributes(nextElement)
-			images.append(d)
+		if (nextElement.tag == "ExternalLinks"):
 			nextElement = elementIterator.next()
-		returnData["Images"] = images
+			while (nextElement.tag == "li"):
+				d = getTextAndAttributes(nextElement)
+				externalLinks.append(d)
+				nextElement = elementIterator.next()
+			returnData["ExternalLinks"] = externalLinks
 
-	if(nextElement.tag == "Videos") :
-		nextElement = elementIterator.next()
-		while(nextElement.tag == "li"):
-			d=getTextAndAttributes(nextElement)
-			videos.append(d)
+		if (nextElement.tag == "Images"):
 			nextElement = elementIterator.next()
-		returnData["Videos"] = videos
+			while (nextElement.tag == "li"):
+				d = getTextAndAttributes(nextElement)
+				images.append(d)
+				nextElement = elementIterator.next()
+			returnData["Images"] = images
 
-	if(nextElement.tag == "Maps") :
-		nextElement = elementIterator.next()
-		while(nextElement.tag == "li"):
-			d=getTextAndAttributes(nextElement)
-			maps.append(d)
+		if (nextElement.tag == "Videos"):
 			nextElement = elementIterator.next()
-		returnData["Maps"] = maps
+			while (nextElement.tag == "li"):
+				d = getTextAndAttributes(nextElement)
+				videos.append(d)
+				nextElement = elementIterator.next()
+			returnData["Videos"] = videos
 
-	if(nextElement.tag == "Feeds") :
-		nextElement = elementIterator.next()
-		while(nextElement.tag == "li"):
-			d=getTextAndAttributes(nextElement)
-			feeds.append(d)
+		if (nextElement.tag == "Maps"):
 			nextElement = elementIterator.next()
-		returnData["Feeds"] = feeds
+			while (nextElement.tag == "li"):
+				d = getTextAndAttributes(nextElement)
+				maps.append(d)
+				nextElement = elementIterator.next()
+			returnData["Maps"] = maps
 
-	if(nextElement.tag == "Summary") :
-		crisisSummary=nextElement.text
-		returnData["Summary"] = crisisSummary
-		#nextElement = elementIterator.next()
+		if (nextElement.tag == "Feeds"):
+			nextElement = elementIterator.next()
+			while (nextElement.tag == "li"):
+				d = getTextAndAttributes(nextElement)
+				feeds.append(d)
+				nextElement = elementIterator.next()
+			returnData["Feeds"] = feeds
+
+		if (nextElement.tag == "Summary"):
+			crisisSummary = nextElement.text
+			returnData["Summary"] = crisisSummary
+			nextElement = elementIterator.next()
+
+	# It's possible the end of file might be reached. If so, still continue and return the data.
+	except StopIteration as e:
+		# print "Got a StopIteration Exception inside of getCommonData()!"
+		pass
 
 	return (nextElement, elementIterator, returnData)
 
@@ -189,9 +196,8 @@ def elementTreeToModels(elementTree):
 
 
 	nextElement = treeIter.next() # Retrieves root element
-	print nextElement
 	nextElement = treeIter.next() # Retrieves next Crisis element
-	print nextElement
+	
 
 	try:
 		# Parse crises. 
@@ -220,69 +226,69 @@ def elementTreeToModels(elementTree):
 			crisisSummary = ""
 
 			nextElement = treeIter.next() # People element
-			if(nextElement.tag == "People") :
+			if (nextElement.tag == "People"):
 				nextElement = treeIter.next() # First Person in People sequence
 				while (nextElement.tag == "Person"):
 					crisisPersonIDs.append(nextElement.attrib['ID'])
 					nextElement = treeIter.next()
 
-			if(nextElement.tag == "Organizations") :
+			if (nextElement.tag == "Organizations"):
 				nextElement = treeIter.next()
-				while(nextElement.tag == "Org") :
+				while (nextElement.tag == "Org"):
 					crisisOrgIDs.append(nextElement.attrib['ID'])
 					nextElement = treeIter.next()
 					
-			if(nextElement.tag == "Kind") :
+			if (nextElement.tag == "Kind"):
 				crisisKind = nextElement.text
 				nextElement = treeIter.next()
 			
-			if(nextElement.tag == "Date") :
+			if (nextElement.tag == "Date"):
 				crisisDate = nextElement.text
 				nextElement = treeIter.next()
 
-			if(nextElement.tag == "Time") :
+			if (nextElement.tag == "Time"):
 				crisisTime = nextElement.text
 				nextElement = treeIter.next()
 
-			if(nextElement.tag == "Locations") :
+			if (nextElement.tag == "Locations"):
 				nextElement = treeIter.next()
-				while(nextElement.tag == "li") :
-					d=getTextAndAttributes(nextElement)
+				while (nextElement.tag == "li"):
+					d = getTextAndAttributes(nextElement)
 					crisisLocations.append(d)
 					nextElement = treeIter.next()
 
-			if(nextElement.tag == "HumanImpact") :
+			if (nextElement.tag == "HumanImpact"):
 				nextElement = treeIter.next()
-				while(nextElement.tag == "li") :
-					d=getTextAndAttributes(nextElement)
+				while (nextElement.tag == "li"):
+					d = getTextAndAttributes(nextElement)
 					crisisHumanImpact.append(d)
 					nextElement = treeIter.next()
 
-			if(nextElement.tag == "EconomicImpact") :
+			if (nextElement.tag == "EconomicImpact"):
 				nextElement = treeIter.next()
-				while(nextElement.tag == "li") :
-					d=getTextAndAttributes(nextElement)
+				while (nextElement.tag == "li"):
+					d = getTextAndAttributes(nextElement)
 					crisisEconomicImpact.append(d)
 					nextElement = treeIter.next()
 
-			if(nextElement.tag == "ResourcesNeeded") :
+			if (nextElement.tag == "ResourcesNeeded"):
 				nextElement = treeIter.next()
-				while(nextElement.tag == "li") :
-					d=getTextAndAttributes(nextElement)
+				while (nextElement.tag == "li"):
+					d = getTextAndAttributes(nextElement)
 					crisisResourcesNeeded.append(d)
 					nextElement = treeIter.next()
 
-			if(nextElement.tag == "WaysToHelp") :
+			if (nextElement.tag == "WaysToHelp"):
 				nextElement = treeIter.next()
-				while(nextElement.tag == "li") :
-					d=getTextAndAttributes(nextElement)
+				while (nextElement.tag == "li"):
+					d = getTextAndAttributes(nextElement)
 					crisisWaysToHelp.append(d)
 					nextElement = treeIter.next()
 
-			if(nextElement.tag == "Common") :
+			if (nextElement.tag == "Common"):
 				nextElement, treeIter, d = getCommonData(nextElement, treeIter)
 				crisisCitations = d.get('Citations')
-				crisisExternalLinks = d.get('Links')
+				crisisExternalLinks = d.get('ExternalLinks')
 				crisisImages = d.get('Images')
 				crisisVideos = d.get('Videos')
 				crisisMaps = d.get('Maps')
@@ -290,7 +296,7 @@ def elementTreeToModels(elementTree):
 				crisisSummary = d.get('Summary')
 
 			
-			print "----- crisis -----"
+			print "\n\n\n========== CRISIS =========="
 			print "crisisID: ", crisisID
 			print "crisisName: ", crisisName
 			print "crisisPersonIDs = ", crisisPersonIDs
@@ -303,6 +309,7 @@ def elementTreeToModels(elementTree):
 			print "crisisEconomicImpact = ", crisisEconomicImpact
 			print "crisisResourcesNeeded = ", crisisResourcesNeeded
 			print "crisisWaysToHelp = ", crisisWaysToHelp
+			print "\n---- COMMON DATA ----"
 			print "crisisCitations = ", crisisCitations
 			print "crisisExternalLinks = ", crisisExternalLinks
 			print "crisisImages = ", crisisImages
@@ -311,7 +318,7 @@ def elementTreeToModels(elementTree):
 			print "crisisFeeds = ", crisisFeeds
 			print "crisisSummary = ", crisisSummary
 
-			nextElement = treeIter.next()
+			print "\nnextElement is:", nextElement
 		
 		# Parse people. 
 		while (nextElement.tag == "Person"):
@@ -342,7 +349,7 @@ def elementTreeToModels(elementTree):
 				
 			if (nextElement.tag == "Organizations"):
 				nextElement = treeIter.next() # First Org in Organizations sequence
-				while(nextElement.tag == "Org"):
+				while (nextElement.tag == "Org"):
 					personOrgIDs.append(nextElement.attrib['ID'])
 					nextElement = treeIter.next()
 			
@@ -354,23 +361,25 @@ def elementTreeToModels(elementTree):
 				personLocation = nextElement.text # Location text
 				nextElement = treeIter.next()
 
-			if(nextElement.tag == "Common") :
+			if (nextElement.tag == "Common"):
 				nextElement, treeIter, d = getCommonData(nextElement, treeIter)
 				personCitations = d.get('Citations')
-				personExternalLinks = d.get('Links')
+				personExternalLinks = d.get('ExternalLinks')
 				personImages = d.get('Images')
 				personVideos = d.get('Videos')
 				personMaps = d.get('Maps')
 				personFeeds = d.get('Feeds')
 				personSummary = d.get('Summary')
+	
 
-			print "----- person -----"
+			print "\n\n\n========== PERSON =========="
 			print "personID:", personID
 			print "personName:", personName
 			print "personCrisisIDs:", personCrisisIDs
 			print "personOrgIDs:", personOrgIDs
 			print "personKind:", personKind
 			print "personLocation:", personLocation
+			print "\n---- COMMON DATA ----"
 			print "personCitations = ", personCitations
 			print "personExternalLinks = ", personExternalLinks
 			print "personImages = ", personImages
@@ -378,6 +387,8 @@ def elementTreeToModels(elementTree):
 			print "personMaps = ", personMaps
 			print "personFeeds = ", personFeeds
 			print "personSummary = ", personSummary
+
+			print "\nnextElement is:", nextElement
 
 
 
@@ -427,29 +438,31 @@ def elementTreeToModels(elementTree):
 
 			if (nextElement.tag == "History"):
 				nextElement = treeIter.next()
-				while(nextElement.tag == "li") :
-					d=getTextAndAttributes(nextElement)
+				while (nextElement.tag == "li"):
+					d = getTextAndAttributes(nextElement)
 					orgHistory.append(d)
 					nextElement = treeIter.next()
 
 			if (nextElement.tag == "ContactInfo"):
 				nextElement = treeIter.next()
-				while(nextElement.tag == "li") :
-					d=getTextAndAttributes(nextElement)
+				while (nextElement.tag == "li"):
+					d = getTextAndAttributes(nextElement)
 					orgContactInfo.append(d)
 					nextElement = treeIter.next()
 
-			if(nextElement.tag == "Common") :
+
+			if (nextElement.tag == "Common"):
 				nextElement, treeIter, d = getCommonData(nextElement, treeIter)
 				orgCitations = d.get('Citations')
-				orgExternalLinks = d.get('Links')
+				orgExternalLinks = d.get('ExternalLinks')
 				orgImages = d.get('Images')
 				orgVideos = d.get('Videos')
 				orgMaps = d.get('Maps')
 				orgFeeds = d.get('Feeds')
 				orgSummary = d.get('Summary')
+				
 
-			print "----- organization -----"
+			print "\n\n\n========== ORGANIZATION =========="
 			print "orgID:", orgID
 			print "orgName:", orgName
 			print "orgCrisisIDs:", orgCrisisIDs
@@ -458,6 +471,7 @@ def elementTreeToModels(elementTree):
 			print "orgLocation:", orgLocation
 			print "orgHistory:", orgHistory
 			print "orgContactInfo:", orgContactInfo
+			print "\n---- COMMON DATA ----"
 			print "orgCitations = ", orgCitations
 			print "orgExternalLinks = ", orgExternalLinks
 			print "orgImages = ", orgImages
@@ -466,14 +480,20 @@ def elementTreeToModels(elementTree):
 			print "orgFeeds = ", orgFeeds
 			print "orgSummary = ", orgSummary
 
+			print "\nnextElement is:", nextElement
+
 			
 
 
-		#nextElement = treeIter.next()
-	except StopIteration as e:
-		print "StopIteration Exception"
-		pass
+		nextElement = treeIter.next()
 
+	# Control should normally reach here and return from the function.
+	except StopIteration as e:
+		print "\nReached end of file correctly!"
+		return
+
+	# Control should never normally reach here.
+	raise IOError("Invalid file!")
 
 
 

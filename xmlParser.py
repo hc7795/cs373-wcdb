@@ -15,6 +15,8 @@ from genxmlif import GenXmlIfError
 
 import logging
 
+#import django.db
+raise Exception ("Need to figure out importing django.db correctly! Also need to import classes from models.py!")
 
 
 
@@ -194,6 +196,7 @@ def getCommonData(element, elementIterator):
 def elementTreeToModels(elementTree):
 
 	treeIter = elementTree.iter()
+	models = []
 
 
 	nextElement = treeIter.next() # Retrieves root element
@@ -296,6 +299,14 @@ def elementTreeToModels(elementTree):
 				crisisFeeds = d.get('Feeds')
 				crisisSummary = d.get('Summary')
 
+			"""
+			c = Crisis
+			c.crisisID = crisisID[0] 
+			crisis.Time = crisisTime
+			..
+			models.append(c)
+			"""
+
 			
 			print "\n\n\n========== CRISIS =========="
 			print "crisisID: ", crisisID
@@ -371,6 +382,13 @@ def elementTreeToModels(elementTree):
 				personMaps = d.get('Maps')
 				personFeeds = d.get('Feeds')
 				personSummary = d.get('Summary')
+
+			"""
+			p = Person
+			p.personID = personID[0] 
+			..
+			models.append(p)
+			"""
 	
 
 			print "\n\n\n========== PERSON =========="
@@ -461,6 +479,13 @@ def elementTreeToModels(elementTree):
 				orgMaps = d.get('Maps')
 				orgFeeds = d.get('Feeds')
 				orgSummary = d.get('Summary')
+
+			"""
+			org = Organization
+			o.organizationID = orgID[0] 
+			..
+			models.append(org)
+			"""
 				
 
 			print "\n\n\n========== ORGANIZATION =========="
@@ -491,7 +516,7 @@ def elementTreeToModels(elementTree):
 	# Control should normally reach here and return from the function.
 	except StopIteration as e:
 		print "\nReached end of file correctly!"
-		return
+		return models
 
 	# Control should never normally reach here.
 	raise IOError("Invalid file!")
@@ -504,7 +529,11 @@ def elementTreeToModels(elementTree):
 	Takes a list of Django models and saves them to a database.
 """
 def modelsToDjango(models):
-	pass
+
+	for m in models:
+		# Ensure that every m inherits from django.db.models.Model
+		assert( issubclass(m, models.Model) )
+		model.save()
 
 
 			

@@ -41,7 +41,8 @@ def xmlToDjango():
 	# Uncomment the following lines when hardcoded XML/Schema files are no longer necessary.
 	# xmlFilename = raw_input("Filename of the XML file: ")
 	# schemaFilename = raw_input("Filename of the schema file: ")
-	xmlFilename = "test/example.xml"
+	#xmlFilename = "test/example.xml"
+	xmlFilename = "WorldCrises.xml"
 	schemaFilename = "test/schema.xml"
 
 	# Validate the XML file.
@@ -173,7 +174,7 @@ def getCommonData(element, elementIterator):
 	if(nextElement.tag == "Summary") :
 		crisisSummary=nextElement.text
 		returnData["Summary"] = crisisSummary
-		#nextElement = elementIterator.next()	#took this line out, added line 313 (nextElement = treeIter.next()) so that I can get to the end of organization
+		#nextElement = elementIterator.next()
 
 	return (nextElement, elementIterator, returnData)
 
@@ -314,7 +315,6 @@ def elementTreeToModels(elementTree):
 		
 		# Parse people. 
 		while (nextElement.tag == "Person"):
-
 			personAttributes = getTextAndAttributes(nextElement)
 			personID = personAttributes['ID']
 			personName = personAttributes['Name']
@@ -466,10 +466,10 @@ def elementTreeToModels(elementTree):
 			print "orgFeeds = ", orgFeeds
 			print "orgSummary = ", orgSummary
 
-			nextElement = treeIter.next()
+			
 
 
-
+		#nextElement = treeIter.next()
 	except StopIteration as e:
 		print "StopIteration Exception"
 		pass

@@ -1,7 +1,7 @@
 Using elementtree interface module...
 Parsing WorldCrises.xml...
 Parsing test/schema.xml...
-Parsing /Users/russelljahn/Development/Coursework/CS373/project3/minixsv/XMLSchema.xsd...
+Parsing /v/filer4b/v38q001/wrj322/CS373/project3/minixsv/XMLSchema.xsd...
 Validating test/schema.xml...
 Validating WorldCrises.xml...
 
@@ -22,15 +22,15 @@ crisisResourcesNeeded =  []
 crisisWaysToHelp =  []
 
 ---- COMMON DATA ----
-crisisCitations =  None
+crisisCitations =  []
 crisisExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/Hurricane_Ike'}]
 crisisImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Hurricane_Ike_off_the_Lesser_Antilles.jpg'}]
-crisisVideos =  None
-crisisMaps =  None
-crisisFeeds =  None
-crisisSummary =  None
+crisisVideos =  []
+crisisMaps =  []
+crisisFeeds =  []
+crisisSummary =  []
 
-nextElement is: <Element 'Crisis' at 0x1017b2450>
+nextElement is: <Element 'Crisis' at 0x2915650>
 
 
 
@@ -49,15 +49,15 @@ crisisResourcesNeeded =  []
 crisisWaysToHelp =  []
 
 ---- COMMON DATA ----
-crisisCitations =  None
+crisisCitations =  []
 crisisExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/July_12,_2007_Baghdad_airstrike'}]
 crisisImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/7/7c/July_12%2C_2007_Baghdad_airstrike_targets_%281%29.png'}]
-crisisVideos =  None
-crisisMaps =  None
-crisisFeeds =  None
-crisisSummary =  None
+crisisVideos =  []
+crisisMaps =  []
+crisisFeeds =  []
+crisisSummary =  []
 
-nextElement is: <Element 'Crisis' at 0x1017b28d0>
+nextElement is: <Element 'Crisis' at 0x2915ad0>
 
 
 
@@ -76,15 +76,15 @@ crisisResourcesNeeded =  []
 crisisWaysToHelp =  []
 
 ---- COMMON DATA ----
-crisisCitations =  None
+crisisCitations =  []
 crisisExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/Iraq_war'}]
 crisisImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Iraq_War_montage.png'}]
-crisisVideos =  None
-crisisMaps =  None
-crisisFeeds =  None
-crisisSummary =  None
+crisisVideos =  []
+crisisMaps =  []
+crisisFeeds =  []
+crisisSummary =  []
 
-nextElement is: <Element 'Crisis' at 0x1017b2d90>
+nextElement is: <Element 'Crisis' at 0x2915f90>
 
 
 
@@ -103,15 +103,15 @@ crisisResourcesNeeded =  []
 crisisWaysToHelp =  []
 
 ---- COMMON DATA ----
-crisisCitations =  None
+crisisCitations =  []
 crisisExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/Water_scarcity_in_Africa'}]
 crisisImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/a/a7/Map_showing_Global_Physical_and_Economic_Water_Scarcity_2006.gif'}]
-crisisVideos =  None
-crisisMaps =  None
-crisisFeeds =  None
-crisisSummary =  None
+crisisVideos =  []
+crisisMaps =  []
+crisisFeeds =  []
+crisisSummary =  []
 
-nextElement is: <Element 'Crisis' at 0x1017b8390>
+nextElement is: <Element 'Crisis' at 0x291d550>
 
 
 
@@ -130,15 +130,15 @@ crisisResourcesNeeded =  []
 crisisWaysToHelp =  []
 
 ---- COMMON DATA ----
-crisisCitations =  None
+crisisCitations =  []
 crisisExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/2009_flu_pandemic'}]
 crisisImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/f/f0/H1N1_influenza_virus.jpg'}]
-crisisVideos =  None
-crisisMaps =  None
-crisisFeeds =  None
-crisisSummary =  None
+crisisVideos =  []
+crisisMaps =  []
+crisisFeeds =  []
+crisisSummary =  []
 
-nextElement is: <Element 'Crisis' at 0x1017b8850>
+nextElement is: <Element 'Crisis' at 0x291da50>
 
 
 
@@ -157,15 +157,15 @@ crisisResourcesNeeded =  []
 crisisWaysToHelp =  []
 
 ---- COMMON DATA ----
-crisisCitations =  None
+crisisCitations =  []
 crisisExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/Exxon_Valdez_oil_spill'}]
 crisisImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/6/66/Exval.jpeg'}]
-crisisVideos =  None
-crisisMaps =  None
-crisisFeeds =  None
-crisisSummary =  None
+crisisVideos =  []
+crisisMaps =  []
+crisisFeeds =  []
+crisisSummary =  []
 
-nextElement is: <Element 'Crisis' at 0x1017b8d50>
+nextElement is: <Element 'Crisis' at 0x291df50>
 
 
 
@@ -184,15 +184,15 @@ crisisResourcesNeeded =  []
 crisisWaysToHelp =  []
 
 ---- COMMON DATA ----
-crisisCitations =  None
+crisisCitations =  []
 crisisExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/2010_Haiti_earthquake'}]
 crisisImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Haiti_Earthquake_building_damage.jpg'}]
-crisisVideos =  None
-crisisMaps =  None
-crisisFeeds =  None
-crisisSummary =  None
+crisisVideos =  []
+crisisMaps =  []
+crisisFeeds =  []
+crisisSummary =  []
 
-nextElement is: <Element 'Crisis' at 0x1017c0290>
+nextElement is: <Element 'Crisis' at 0x2924490>
 
 
 
@@ -211,15 +211,15 @@ crisisResourcesNeeded =  []
 crisisWaysToHelp =  []
 
 ---- COMMON DATA ----
-crisisCitations =  None
+crisisCitations =  []
 crisisExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/AIDS/HIV'}]
 crisisImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/6/63/HIV_Virion-en.png'}]
-crisisVideos =  None
-crisisMaps =  None
-crisisFeeds =  None
-crisisSummary =  None
+crisisVideos =  []
+crisisMaps =  []
+crisisFeeds =  []
+crisisSummary =  []
 
-nextElement is: <Element 'Crisis' at 0x1017c0790>
+nextElement is: <Element 'Crisis' at 0x2924990>
 
 
 
@@ -238,15 +238,15 @@ crisisResourcesNeeded =  []
 crisisWaysToHelp =  []
 
 ---- COMMON DATA ----
-crisisCitations =  None
+crisisCitations =  []
 crisisExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/2012%E2%80%9313_Egyptian_protests'}]
 crisisImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/d/d2/Tahrir_Square_on_Novemeber_27_2012_%28Morning%29.jpg'}]
-crisisVideos =  None
-crisisMaps =  None
-crisisFeeds =  None
-crisisSummary =  None
+crisisVideos =  []
+crisisMaps =  []
+crisisFeeds =  []
+crisisSummary =  []
 
-nextElement is: <Element 'Crisis' at 0x1017c0c90>
+nextElement is: <Element 'Crisis' at 0x2924e90>
 
 
 
@@ -265,15 +265,15 @@ crisisResourcesNeeded =  []
 crisisWaysToHelp =  []
 
 ---- COMMON DATA ----
-crisisCitations =  None
+crisisCitations =  []
 crisisExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/September_11_Attacks'}]
 crisisImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/6/65/September_11_Photo_Montage.jpg'}]
-crisisVideos =  None
-crisisMaps =  None
-crisisFeeds =  None
-crisisSummary =  None
+crisisVideos =  []
+crisisMaps =  []
+crisisFeeds =  []
+crisisSummary =  []
 
-nextElement is: <Element 'Person' at 0x1020861d0>
+nextElement is: <Element 'Person' at 0x29ce410>
 
 
 
@@ -286,15 +286,15 @@ personKind: Private First Class
 personLocation: 
 
 ---- COMMON DATA ----
-personCitations =  None
+personCitations =  []
 personExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/Bradley_Manning'}]
 personImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Bradley_Manning_US_Army.jpg/614px-Bradley_Manning_US_Army.jpg'}]
-personVideos =  None
-personMaps =  None
-personFeeds =  None
-personSummary =  None
+personVideos =  []
+personMaps =  []
+personFeeds =  []
+personSummary =  []
 
-nextElement is: <Element 'Person' at 0x102086490>
+nextElement is: <Element 'Person' at 0x29ce6d0>
 
 
 
@@ -307,15 +307,15 @@ personKind: Editor-in-chief and spokesman for WikiLeak
 personLocation: 
 
 ---- COMMON DATA ----
-personCitations =  None
+personCitations =  []
 personExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/Julian_Assange'}]
 personImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/7/75/Julian_Assange_cropped_%28Norway%2C_March_2010%29.jpg'}]
-personVideos =  None
-personMaps =  None
-personFeeds =  None
-personSummary =  None
+personVideos =  []
+personMaps =  []
+personFeeds =  []
+personSummary =  []
 
-nextElement is: <Element 'Person' at 0x102086750>
+nextElement is: <Element 'Person' at 0x29ce950>
 
 
 
@@ -328,15 +328,15 @@ personKind: Head of Public Relations/Social Media for World Health Organization
 personLocation: 
 
 ---- COMMON DATA ----
-personCitations =  None
+personCitations =  []
 personExternalLinks =  [{'content': 'Twitter', 'href': 'https://twitter.com/HaertlG'}]
 personImages =  [{'embed': 'http://news.bbcimg.co.uk/media/images/67578000/jpg/_67578538_67578537.jpg'}]
-personVideos =  None
-personMaps =  None
-personFeeds =  None
-personSummary =  None
+personVideos =  []
+personMaps =  []
+personFeeds =  []
+personSummary =  []
 
-nextElement is: <Element 'Person' at 0x102086a50>
+nextElement is: <Element 'Person' at 0x29cec50>
 
 
 
@@ -349,15 +349,15 @@ personKind: President of the United States
 personLocation: 
 
 ---- COMMON DATA ----
-personCitations =  None
+personCitations =  []
 personExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/George_H._W._Bush'}]
 personImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/George_H._W._Bush%2C_President_of_the_United_States%2C_1989_official_portrait.jpg/520px-George_H._W._Bush%2C_President_of_the_United_States%2C_1989_official_portrait.jpg'}]
-personVideos =  None
-personMaps =  None
-personFeeds =  None
-personSummary =  None
+personVideos =  []
+personMaps =  []
+personFeeds =  []
+personSummary =  []
 
-nextElement is: <Element 'Person' at 0x102086c90>
+nextElement is: <Element 'Person' at 0x29cee90>
 
 
 
@@ -370,15 +370,15 @@ personKind: President of the United States
 personLocation: 
 
 ---- COMMON DATA ----
-personCitations =  None
+personCitations =  []
 personExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/Obama'}]
 personImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/615px-President_Barack_Obama.jpg'}]
-personVideos =  None
-personMaps =  None
-personFeeds =  None
-personSummary =  None
+personVideos =  []
+personMaps =  []
+personFeeds =  []
+personSummary =  []
 
-nextElement is: <Element 'Person' at 0x102086f10>
+nextElement is: <Element 'Person' at 0x29d5150>
 
 
 
@@ -391,15 +391,15 @@ personKind: President of Haiti
 personLocation: 
 
 ---- COMMON DATA ----
-personCitations =  None
+personCitations =  []
 personExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/Ren%C3%A9_Pr%C3%A9val'}]
 personImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Ren%C3%A9_Pr%C3%A9val_on_March_31%2C_2010.jpg/640px-Ren%C3%A9_Pr%C3%A9val_on_March_31%2C_2010.jpg'}]
-personVideos =  None
-personMaps =  None
-personFeeds =  None
-personSummary =  None
+personVideos =  []
+personMaps =  []
+personFeeds =  []
+personSummary =  []
 
-nextElement is: <Element 'Person' at 0x10208e1d0>
+nextElement is: <Element 'Person' at 0x29d53d0>
 
 
 
@@ -412,15 +412,15 @@ personKind: Basketball Player
 personLocation: 
 
 ---- COMMON DATA ----
-personCitations =  None
+personCitations =  []
 personExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/Magic_Johnson'}]
 personImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Magic_Lipofsky.jpg'}]
-personVideos =  None
-personMaps =  None
-personFeeds =  None
-personSummary =  None
+personVideos =  []
+personMaps =  []
+personFeeds =  []
+personSummary =  []
 
-nextElement is: <Element 'Person' at 0x10208e410>
+nextElement is: <Element 'Person' at 0x29d5610>
 
 
 
@@ -433,15 +433,15 @@ personKind: President of Egypt
 personLocation: 
 
 ---- COMMON DATA ----
-personCitations =  None
+personCitations =  []
 personExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/Hosni_Mubarak'}]
 personImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/b/b6/Hosni_Mubarak_ritratto.jpg'}]
-personVideos =  None
-personMaps =  None
-personFeeds =  None
-personSummary =  None
+personVideos =  []
+personMaps =  []
+personFeeds =  []
+personSummary =  []
 
-nextElement is: <Element 'Person' at 0x10208e650>
+nextElement is: <Element 'Person' at 0x29d5850>
 
 
 
@@ -454,15 +454,15 @@ personKind: Managing Director of the IMF
 personLocation: 
 
 ---- COMMON DATA ----
-personCitations =  None
+personCitations =  []
 personExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/Michel_Camdessus'}]
 personImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Michel_Camdessus-IMG_3655.jpg/768px-Michel_Camdessus-IMG_3655.jpg'}]
-personVideos =  None
-personMaps =  None
-personFeeds =  None
-personSummary =  None
+personVideos =  []
+personMaps =  []
+personFeeds =  []
+personSummary =  []
 
-nextElement is: <Element 'Person' at 0x10208e890>
+nextElement is: <Element 'Person' at 0x29d5ad0>
 
 
 
@@ -475,15 +475,15 @@ personKind: President of Iraq
 personLocation: 
 
 ---- COMMON DATA ----
-personCitations =  None
+personCitations =  []
 personExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/Saddam_Hussein'}]
 personImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Iraq%2C_Saddam_Hussein_%28222%29.jpg'}]
-personVideos =  None
-personMaps =  None
-personFeeds =  None
-personSummary =  None
+personVideos =  []
+personMaps =  []
+personFeeds =  []
+personSummary =  []
 
-nextElement is: <Element 'Person' at 0x10208ead0>
+nextElement is: <Element 'Person' at 0x29d5cd0>
 
 
 
@@ -496,15 +496,15 @@ personKind: Founder of al-Qaeda
 personLocation: 
 
 ---- COMMON DATA ----
-personCitations =  None
+personCitations =  []
 personExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/Osama_Bin_Laden'}]
 personImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/c/ca/Osama_bin_Laden_portrait.jpg'}]
-personVideos =  None
-personMaps =  None
-personFeeds =  None
-personSummary =  None
+personVideos =  []
+personMaps =  []
+personFeeds =  []
+personSummary =  []
 
-nextElement is: <Element 'Organization' at 0x10208ed90>
+nextElement is: <Element 'Organization' at 0x29d5f90>
 
 
 
@@ -519,15 +519,15 @@ orgHistory: [{'content': 'Founded in 1945'}]
 orgContactInfo: [{'content': 'Phone: 1-800-521-CARE'}]
 
 ---- COMMON DATA ----
-orgCitations =  None
+orgCitations =  []
 orgExternalLinks =  [{'content': 'Official Website', 'href': 'http://www.care.org/index.asp'}]
 orgImages =  [{'embed': 'http://www.care.org/modules/takeovers/carousel5/slides/2013/03/Gender-Based-Violence-Slide-postIWD.jpg'}]
-orgVideos =  None
-orgMaps =  None
-orgFeeds =  None
-orgSummary =  None
+orgVideos =  []
+orgMaps =  []
+orgFeeds =  []
+orgSummary =  []
 
-nextElement is: <Element 'Organization' at 0x102096190>
+nextElement is: <Element 'Organization' at 0x29dd390>
 
 
 
@@ -542,15 +542,15 @@ orgHistory: [{'content': 'Founded in 1946'}]
 orgContactInfo: [{'content': 'Phone: 1-800-FOR-KIDS'}]
 
 ---- COMMON DATA ----
-orgCitations =  None
+orgCitations =  []
 orgExternalLinks =  [{'content': 'Official Website', 'href': 'http://www.unicefusa.org/'}]
 orgImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Flag_of_UNICEF.svg'}]
-orgVideos =  None
-orgMaps =  None
-orgFeeds =  None
-orgSummary =  None
+orgVideos =  []
+orgMaps =  []
+orgFeeds =  []
+orgSummary =  []
 
-nextElement is: <Element 'Organization' at 0x1020965d0>
+nextElement is: <Element 'Organization' at 0x29dd7d0>
 
 
 
@@ -565,15 +565,15 @@ orgHistory: [{'content': 'Launched in 2006'}]
 orgContactInfo: [{'content': 'IRC: http://chat.wikileaks.org/'}]
 
 ---- COMMON DATA ----
-orgCitations =  None
+orgCitations =  []
 orgExternalLinks =  [{'content': 'Official Website', 'href': 'http://wikileaks.org/'}]
 orgImages =  [{'embed': 'http://wikileaks.org/IMG/wlogo.png'}]
-orgVideos =  None
-orgMaps =  None
-orgFeeds =  None
-orgSummary =  None
+orgVideos =  []
+orgMaps =  []
+orgFeeds =  []
+orgSummary =  []
 
-nextElement is: <Element 'Organization' at 0x102096a10>
+nextElement is: <Element 'Organization' at 0x29ddc10>
 
 
 
@@ -588,15 +588,15 @@ orgHistory: [{'content': 'Founded in 1988'}]
 orgContactInfo: []
 
 ---- COMMON DATA ----
-orgCitations =  None
+orgCitations =  []
 orgExternalLinks =  [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/Al_Queda'}]
-orgImages =  None
-orgVideos =  None
-orgMaps =  None
-orgFeeds =  None
-orgSummary =  None
+orgImages =  []
+orgVideos =  []
+orgMaps =  []
+orgFeeds =  []
+orgSummary =  []
 
-nextElement is: <Element 'Organization' at 0x102096d50>
+nextElement is: <Element 'Organization' at 0x29ddf50>
 
 
 
@@ -611,15 +611,15 @@ orgHistory: [{'content': 'Founded in 1948'}]
 orgContactInfo: [{'content': 'Phone: +41 22 791 2111'}]
 
 ---- COMMON DATA ----
-orgCitations =  None
+orgCitations =  []
 orgExternalLinks =  [{'content': 'Official Website', 'href': 'http://www.who.int/en/'}]
 orgImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/8/89/Flag_of_WHO.svg'}]
-orgVideos =  None
-orgMaps =  None
-orgFeeds =  None
-orgSummary =  None
+orgVideos =  []
+orgMaps =  []
+orgFeeds =  []
+orgSummary =  []
 
-nextElement is: <Element 'Organization' at 0x10209f290>
+nextElement is: <Element 'Organization' at 0x29e4490>
 
 
 
@@ -634,15 +634,15 @@ orgHistory: [{'content': 'Founded in 1946'}]
 orgContactInfo: [{'content': 'Phone: 1-800-CDC-INFO'}]
 
 ---- COMMON DATA ----
-orgCitations =  None
+orgCitations =  []
 orgExternalLinks =  [{'content': 'Official Website', 'href': 'http://www.cdc.gov/'}]
 orgImages =  [{'embed': 'http://www.cdc.gov/homepage/images/img-cdcLogoHeader.png'}]
-orgVideos =  None
-orgMaps =  None
-orgFeeds =  None
-orgSummary =  None
+orgVideos =  []
+orgMaps =  []
+orgFeeds =  []
+orgSummary =  []
 
-nextElement is: <Element 'Organization' at 0x10209f650>
+nextElement is: <Element 'Organization' at 0x29e4850>
 
 
 
@@ -657,15 +657,15 @@ orgHistory: [{'content': 'Founded in 1978'}]
 orgContactInfo: [{'content': 'Phone: 1-800-621-FEMA '}]
 
 ---- COMMON DATA ----
-orgCitations =  None
+orgCitations =  []
 orgExternalLinks =  [{'content': 'Official Website', 'href': 'http://www.fema.gov/'}]
 orgImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/FEMA_logo.svg/640px-FEMA_logo.svg.png'}]
-orgVideos =  None
-orgMaps =  None
-orgFeeds =  None
-orgSummary =  None
+orgVideos =  []
+orgMaps =  []
+orgFeeds =  []
+orgSummary =  []
 
-nextElement is: <Element 'Organization' at 0x10209fa50>
+nextElement is: <Element 'Organization' at 0x29e4c50>
 
 
 
@@ -680,15 +680,15 @@ orgHistory: [{'content': 'Founded in 1919'}]
 orgContactInfo: [{'content': 'Phone: 1-800-RED CROSS'}]
 
 ---- COMMON DATA ----
-orgCitations =  None
+orgCitations =  []
 orgExternalLinks =  [{'content': 'Official Website', 'href': 'http://www.redcross.org/'}]
 orgImages =  [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/0/08/Flag_of_Switzerland_%28Pantone%29.svg'}]
-orgVideos =  None
-orgMaps =  None
-orgFeeds =  None
-orgSummary =  None
+orgVideos =  []
+orgMaps =  []
+orgFeeds =  []
+orgSummary =  []
 
-nextElement is: <Element 'Organization' at 0x10209fe90>
+nextElement is: <Element 'Organization' at 0x29ec090>
 
 
 
@@ -703,15 +703,15 @@ orgHistory: [{'content': 'Founded in 1989'}]
 orgContactInfo: [{'content': 'Phone: 907-424-5800 x222'}]
 
 ---- COMMON DATA ----
-orgCitations =  None
+orgCitations =  []
 orgExternalLinks =  [{'content': 'Official Website', 'href': 'http://www.pws-osri.org/'}]
 orgImages =  [{'embed': 'http://www.pws-osri.org/wp-content/themes/atahualpa/images/logobar3.jpg'}]
-orgVideos =  None
-orgMaps =  None
-orgFeeds =  None
-orgSummary =  None
+orgVideos =  []
+orgMaps =  []
+orgFeeds =  []
+orgSummary =  []
 
-nextElement is: <Element 'Organization' at 0x1020a7290>
+nextElement is: <Element 'Organization' at 0x29ec490>
 
 
 
@@ -726,15 +726,15 @@ orgHistory: [{'content': 'Founded in 1985'}]
 orgContactInfo: [{'content': 'Phone: (202 ) 3636811 - 3620467'}]
 
 ---- COMMON DATA ----
-orgCitations =  None
+orgCitations =  []
 orgExternalLinks =  [{'content': 'Official Website', 'href': 'http://en.eohr.org/'}]
-orgImages =  None
-orgVideos =  None
-orgMaps =  None
-orgFeeds =  None
-orgSummary =  None
+orgImages =  []
+orgVideos =  []
+orgMaps =  []
+orgFeeds =  []
+orgSummary =  []
 
-nextElement is: <Element 'Organization' at 0x1020a7590>
+nextElement is: <Element 'Organization' at 0x29ec790>
 
 
 
@@ -749,14 +749,14 @@ orgHistory: [{'content': 'Founded in 2004'}]
 orgContactInfo: [{'content': 'Phone: 212-982-9699'}]
 
 ---- COMMON DATA ----
-orgCitations =  None
+orgCitations =  []
 orgExternalLinks =  [{'content': 'Official Website', 'href': 'http://iava.org/'}]
-orgImages =  None
-orgVideos =  None
-orgMaps =  None
-orgFeeds =  None
-orgSummary =  None
+orgImages =  [{'embed': 'http://patrickstjohn.org/images/iava-logo.jpg'}]
+orgVideos =  []
+orgMaps =  []
+orgFeeds =  []
+orgSummary =  It's an organization.
 
-nextElement is: <Element 'li' at 0x1020a7950>
+nextElement is: <Element 'Summary' at 0x29ecb90>
 
 Reached end of file correctly!

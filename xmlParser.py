@@ -131,7 +131,6 @@ def getCommonData(element, elementIterator):
 				d = getTextAndAttributes(nextElement)
 				citations.append(d)
 				nextElement = elementIterator.next()
-			returnData["Citations"] = citations
 
 		if (nextElement.tag == "ExternalLinks"):
 			nextElement = elementIterator.next()
@@ -139,7 +138,6 @@ def getCommonData(element, elementIterator):
 				d = getTextAndAttributes(nextElement)
 				externalLinks.append(d)
 				nextElement = elementIterator.next()
-			returnData["ExternalLinks"] = externalLinks
 
 		if (nextElement.tag == "Images"):
 			nextElement = elementIterator.next()
@@ -147,7 +145,6 @@ def getCommonData(element, elementIterator):
 				d = getTextAndAttributes(nextElement)
 				images.append(d)
 				nextElement = elementIterator.next()
-			returnData["Images"] = images
 
 		if (nextElement.tag == "Videos"):
 			nextElement = elementIterator.next()
@@ -155,7 +152,6 @@ def getCommonData(element, elementIterator):
 				d = getTextAndAttributes(nextElement)
 				videos.append(d)
 				nextElement = elementIterator.next()
-			returnData["Videos"] = videos
 
 		if (nextElement.tag == "Maps"):
 			nextElement = elementIterator.next()
@@ -163,7 +159,6 @@ def getCommonData(element, elementIterator):
 				d = getTextAndAttributes(nextElement)
 				maps.append(d)
 				nextElement = elementIterator.next()
-			returnData["Maps"] = maps
 
 		if (nextElement.tag == "Feeds"):
 			nextElement = elementIterator.next()
@@ -171,17 +166,23 @@ def getCommonData(element, elementIterator):
 				d = getTextAndAttributes(nextElement)
 				feeds.append(d)
 				nextElement = elementIterator.next()
-			returnData["Feeds"] = feeds
 
 		if (nextElement.tag == "Summary"):
-			crisisSummary = nextElement.text
-			returnData["Summary"] = crisisSummary
+			summary = nextElement.text
 			nextElement = elementIterator.next()
 
 	# It's possible the end of file might be reached. If so, still continue and return the data.
 	except StopIteration as e:
-		# print "Got a StopIteration Exception inside of getCommonData()!"
 		pass
+
+	finally:
+		returnData["Citations"] = citations
+		returnData["ExternalLinks"] = externalLinks
+		returnData["Images"] = images
+		returnData["Videos"] = videos
+		returnData["Maps"] = maps
+		returnData["Feeds"] = feeds
+		returnData["Summary"] = summary
 
 	return (nextElement, elementIterator, returnData)
 

@@ -5,35 +5,27 @@
 	Contains functions to parse crisis XML files into Django models and vice versa.
 """
 
+# ElementTree XML parsing.
 try:
 	import xml.etree.cElementTree as ET
 except ImportError:
 	import xml.etree.ElementTree as ET
 
+# minixsv XML validation and parsing.
 from minixsv import pyxsval
 from genxmlif import GenXmlIfError
 
-import logging
+# Setup Django environment.
+from django.core.management import setup_environ
+from WorldCrisisDB import settings
+setup_environ(settings)
 
-
-#from wcdb.models import Person
-
+# Django code.
 from django.db import models
 from WorldCrisisDB.wcdb.models import Person, Organization, Crisis
-#raise Exception ("Need to figure out importing django.db correctly! Also need to import classes from models.py!")
 
-
-
-
-"""
-	Driver function.
-"""
-def main():
-	try:
-		xmlToDjango()
-
-	except Exception as e:
-		logging.exception("Fatal error, ending program. Error message:")
+# Misc.
+import logging
 
 
 
@@ -97,7 +89,7 @@ def getTextAndAttributes(element):
 
 	content = element.text
 	# check the existence of text
-	if (content != None):
+	if (content != None and content.strip() != ''):
 		d['content'] = content
 	
 	return d
@@ -581,5 +573,13 @@ def djangoToXml():
 
 
 
+"""
+	Only run this code if not calling 'import'.
+"""
+if __name__ == "__main__":
+	try:
+		xmlToDjango()
 
-main()
+	except Exception as e:
+		logging.exception("Fatal error, ending program. Error message:")
+

@@ -22,17 +22,44 @@ import logging
 # importing models.py
 
 # 1 terminal: have to do this everytime you open new terminal
-#export DJANGO_SETTINGS_MODULE = WorldCrisisDB.settings 
+#export DJANGO_SETTINGS_MODULE = wcdb.settings 
 
 # 2 set up the environment using the settings module
 from django.core.management import setup_environ
-from WorldCrisisDB import settings
+from wcdb import settings
 setup_environ(settings)
 
-from WorldCrisisDB.wcdb.models import Crisis, Person, Organizations
+#import wcdb
+from wcdb.db.models import Crisis#, Person, Organizations
+print "pass import"
 
 
+# manually adding data to models
+# use python manage.py shell + line 46,50,51 to check whats in the table
 
+#crisisTest = Crisis.crisisManager.create(crisisID="t2", crisisName="test2")
+#crisisTest.save()
+#crisisTest2 = Crisis.crisisManager.create(crisisID="t3", crisisName="test3")
+#crisisTest2.save()
+#crisisTest2 = Crisis.crisisManager.create(crisisID="t4", crisisName="test4")
+#crisisTest2.save()
+a = Crisis.crisisManager.all()
+#
+#a = Crisis.objects
+print a
+for e in a:
+	print e, (e.crisisID), (e.crisisName)
+#b = Crisis.crisisManager.get(crisisID='t2')
+#print "t2: ", b.crisisName
+#b = Crisis.crisisManager.get(crisisID='t3')
+#print "t3: ", b.crisisName
+#b = Crisis.crisisManager.get(crisisID='t4')
+#print "t4: ", b.crisisName
+
+
+#a.delete()
+
+print "end"
 
 """
 	Driver function.
@@ -312,7 +339,7 @@ def elementTreeToModels(elementTree):
 				crisisFeeds = d.get('Feeds')
 				crisisSummary = d.get('Summary')
 
-			
+			"""
 			c = Crisis
 			c.crisisID = crisisID
 			c.crisisName = crisisName
@@ -325,8 +352,9 @@ def elementTreeToModels(elementTree):
 			c.crisisResourcesNeeded = crisisResourcesNeeded
 			c.crisisWaytoHelp = crisisWaysToHelp
 			models.append(c)
-			
+			"""
 
+			"""
 			
 			print "\n\n\n========== CRISIS =========="
 			print "crisisID: ", crisisID
@@ -351,6 +379,8 @@ def elementTreeToModels(elementTree):
 			print "crisisSummary = ", crisisSummary
 
 			print "\nnextElement is:", nextElement
+
+			"""
 		
 		# Parse people. 
 		while (nextElement.tag == "Person"):
@@ -403,15 +433,16 @@ def elementTreeToModels(elementTree):
 				personFeeds = d.get('Feeds')
 				personSummary = d.get('Summary')
 
-			
+			"""
 			p = Person
 			p.personID = personID
 			p.personName = personName
 			p.personKind = personKind
 			p.personLocation = personLocation
 			models.append(p)
-			
-	
+			"""
+
+			"""
 
 			print "\n\n\n========== PERSON =========="
 			print "personID:", personID
@@ -431,6 +462,7 @@ def elementTreeToModels(elementTree):
 
 			print "\nnextElement is:", nextElement
 
+			"""
 
 
 		# Parse organizations.
@@ -502,7 +534,7 @@ def elementTreeToModels(elementTree):
 				orgFeeds = d.get('Feeds')
 				orgSummary = d.get('Summary')
 
-			
+			"""
 			o = Organizations
 			o.orgID = orgID
 			o.orgname = orgName
@@ -511,8 +543,9 @@ def elementTreeToModels(elementTree):
 			o.orgHistory = orgHistory
 			o.orgContact = orgContactInfo
 			models.append(o)
-		
-				
+			"""
+
+			"""
 
 			print "\n\n\n========== ORGANIZATION =========="
 			print "orgID:", orgID
@@ -534,7 +567,7 @@ def elementTreeToModels(elementTree):
 
 			print "\nnextElement is:", nextElement
 
-			
+			"""
 
 
 		nextElement = treeIter.next()

@@ -4,7 +4,10 @@ from django.db import models
   
 
 class Person(models.Model):
-	personID = models.CharField(max_length=25)
+#	personID = models.AutoField(primary_key=True)
+#	id = models.AutoField(primary_key=True)
+#	personID = models.CharField(max_length=25)
+	personID = models.CharField(primary_key=True, max_length=25)
 	personName = models.CharField(max_length=50)
 	personKind = models.CharField(max_length=25)
 	personLocation = models.CharField(max_length=25)
@@ -13,7 +16,10 @@ class Person(models.Model):
 #	com = models.ForeignKey('Common', related_name='person_com')
   
 class Organizations(models.Model):
-	orgID = models.CharField(max_length=25)
+#	orgID = models.AutoField(primary_key=True)
+#	id = models.AutoField(primary_key=True)
+#	orgID = models.CharField(max_length=25)
+	orgID = models.CharField(primary_key=True, max_length=25)
 	orgname = models.CharField(max_length = 25)
 	orgKind = models.CharField(max_length=25)
 	orgLocation = models.CharField(max_length=25)
@@ -24,10 +30,15 @@ class Organizations(models.Model):
 #	com = models.ForeignKey('Organizations', related_name = 'organizations_com')
 
 class Crisis(models.Model):
-	crisisID = models.CharField(max_length=25)
+#	crisisID = models.AutoField(primary_key=True)
+	crisisID = models.CharField(primary_key=True, max_length=25)
+#	id = models.AutoField(primary_key=True)
+#	crisisID = models.CharField(max_length=25)
 	crisisName = models.CharField(max_length=50)
+	crisisManager = models.Manager()
+	"""
 	crisisKind = models.CharField(max_length=25)
-	crisisDate = models.DateTimeField(max_length=25)
+#	crisisDate = models.DateTimeField(max_length=25)
 	crisisTime = models.CharField(max_length=25)
 	crisisLocation = models.CharField(max_length=100)
 	crisisHumanImpact = models.CharField(max_length=100)
@@ -37,6 +48,7 @@ class Crisis(models.Model):
 #	people = models.ForeignKey('Person', related_name='crisis_people') 
 #	org = models.ForeignKey('Organizations', related_name='crisis_org')
 #	com = models.ForeignKey('Common', related_name = 'crisis_com')
+	"""
 
 """
 class Common(models.Model) :

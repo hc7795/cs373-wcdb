@@ -1,4 +1,4 @@
-# Django settings for WorldCrisisDB project.
+# Django settings for wcdb project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -87,7 +87,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'uu@=k9&f@a@nriz0epbe!(ki0&&n^ssgf0s)%1*708k1u0by7k'
+SECRET_KEY = 'i&@-l7a!#4o$cygp%nljrb&3mu7=^c=pfiw=y+-c3m^l1$qs%t'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -104,7 +104,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'WorldCrisisDB.urls'
+ROOT_URLCONF = 'wcdb.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -119,8 +119,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'models'
-    #'wcdb',
+    'db'
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

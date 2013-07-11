@@ -13,3 +13,7 @@ cs373-wcdb
   * username: gummy_pandas
   * password: saucysalamander
 
+* My SQL Info
+*  user = hnp248
+   database = cs373_hnp248
+   password = TbWNGpEkMj

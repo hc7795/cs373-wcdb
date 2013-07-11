@@ -1,3 +1,4 @@
+
 """
 	xmlParser.py
 	============
@@ -16,7 +17,19 @@ from genxmlif import GenXmlIfError
 import logging
 
 #import django.db
-raise Exception ("Need to figure out importing django.db correctly! Also need to import classes from models.py!")
+#raise Exception ("Need to figure out importing django.db correctly! Also need to import classes from models.py!")
+
+# importing models.py
+
+# 1 terminal: have to do this everytime you open new terminal
+#export DJANGO_SETTINGS_MODULE = WorldCrisisDB.settings 
+
+# 2 set up the environment using the settings module
+from django.core.management import setup_environ
+from WorldCrisisDB import settings
+setup_environ(settings)
+
+from WorldCrisisDB.wcdb.models import Crisis, Person, Organizations
 
 
 
@@ -299,13 +312,20 @@ def elementTreeToModels(elementTree):
 				crisisFeeds = d.get('Feeds')
 				crisisSummary = d.get('Summary')
 
-			"""
+			
 			c = Crisis
-			c.crisisID = crisisID[0] 
-			crisis.Time = crisisTime
-			..
+			c.crisisID = crisisID
+			c.crisisName = crisisName
+			c.crisisKind = crisisKind
+			c.crisisDate = crisisDate
+			c.crisisTime = crisisTime
+			c.crisisLocation = crisisLocations
+			c.crisisHumanImpact = crisisHumanImpact
+			c.crisisEconomicImpact = crisisEconomicImpact
+			c.crisisResourcesNeeded = crisisResourcesNeeded
+			c.crisisWaytoHelp = crisisWaysToHelp
 			models.append(c)
-			"""
+			
 
 			
 			print "\n\n\n========== CRISIS =========="
@@ -383,12 +403,14 @@ def elementTreeToModels(elementTree):
 				personFeeds = d.get('Feeds')
 				personSummary = d.get('Summary')
 
-			"""
+			
 			p = Person
-			p.personID = personID[0] 
-			..
+			p.personID = personID
+			p.personName = personName
+			p.personKind = personKind
+			p.personLocation = personLocation
 			models.append(p)
-			"""
+			
 	
 
 			print "\n\n\n========== PERSON =========="
@@ -480,12 +502,16 @@ def elementTreeToModels(elementTree):
 				orgFeeds = d.get('Feeds')
 				orgSummary = d.get('Summary')
 
-			"""
-			org = Organization
-			o.organizationID = orgID[0] 
-			..
-			models.append(org)
-			"""
+			
+			o = Organizations
+			o.orgID = orgID
+			o.orgname = orgName
+			o.orgKind = orgKind
+			o.orgLocation = orgLocation
+			o.orgHistory = orgHistory
+			o.orgContact = orgContactInfo
+			models.append(o)
+		
 				
 
 			print "\n\n\n========== ORGANIZATION =========="
@@ -530,11 +556,14 @@ def elementTreeToModels(elementTree):
 """
 def modelsToDjango(models):
 
+	print 
+
+	"""
 	for m in models:
 		# Ensure that every m inherits from django.db.models.Model
 		assert( issubclass(m, models.Model) )
 		model.save()
-
+	"""
 
 			
 		

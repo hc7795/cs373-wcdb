@@ -15,5 +15,5 @@ cs373-wcdb
 
 * My SQL Info
 *  user = hnp248
-   database = cs373_hnp248
-   password = TbWNGpEkMj
+*  database = cs373_hnp248
+*  password = TbWNGpEkMj

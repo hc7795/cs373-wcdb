@@ -1,4 +1,3 @@
-
 """
 	xmlParser.py
 	============
@@ -16,50 +15,15 @@ from genxmlif import GenXmlIfError
 
 import logging
 
-#import django.db
+
+#from wcdb.models import Person
+
+from django.db import models
+from WorldCrisisDB.wcdb.models import Person, Organization, Crisis
 #raise Exception ("Need to figure out importing django.db correctly! Also need to import classes from models.py!")
 
-# importing models.py
-
-# 1 terminal: have to do this everytime you open new terminal
-#export DJANGO_SETTINGS_MODULE = wcdb.settings 
-
-# 2 set up the environment using the settings module
-from django.core.management import setup_environ
-from wcdb import settings
-setup_environ(settings)
-
-#import wcdb
-from wcdb.db.models import Crisis#, Person, Organizations
-print "pass import"
 
 
-# manually adding data to models
-# use python manage.py shell + line 46,50,51 to check whats in the table
-
-#crisisTest = Crisis.crisisManager.create(crisisID="t2", crisisName="test2")
-#crisisTest.save()
-#crisisTest2 = Crisis.crisisManager.create(crisisID="t3", crisisName="test3")
-#crisisTest2.save()
-#crisisTest2 = Crisis.crisisManager.create(crisisID="t4", crisisName="test4")
-#crisisTest2.save()
-a = Crisis.crisisManager.all()
-#
-#a = Crisis.objects
-print a
-for e in a:
-	print e, (e.crisisID), (e.crisisName)
-#b = Crisis.crisisManager.get(crisisID='t2')
-#print "t2: ", b.crisisName
-#b = Crisis.crisisManager.get(crisisID='t3')
-#print "t3: ", b.crisisName
-#b = Crisis.crisisManager.get(crisisID='t4')
-#print "t4: ", b.crisisName
-
-
-#a.delete()
-
-print "end"
 
 """
 	Driver function.
@@ -339,22 +303,28 @@ def elementTreeToModels(elementTree):
 				crisisFeeds = d.get('Feeds')
 				crisisSummary = d.get('Summary')
 
-			"""
-			c = Crisis
-			c.crisisID = crisisID
-			c.crisisName = crisisName
-			c.crisisKind = crisisKind
-			c.crisisDate = crisisDate
-			c.crisisTime = crisisTime
-			c.crisisLocation = crisisLocations
-			c.crisisHumanImpact = crisisHumanImpact
-			c.crisisEconomicImpact = crisisEconomicImpact
-			c.crisisResourcesNeeded = crisisResourcesNeeded
-			c.crisisWaytoHelp = crisisWaysToHelp
-			models.append(c)
-			"""
+			
+			c = Crisis(
+				crisisID = crisisID,
+				crisisName = crisisName,
+				#crisisKind = crisisKind,
+				#crisisDate = crisisDate,
+				#crisisTime = crisisTime,
+				#crisisLocation = crisisLocations[0],
+				#crisisHumanImpact = crisisHumanImpact[0],
+				#crisisEconomicImpact = crisisEconomicImpact[0],
+				#crisisResourcesNeeded = crisisResourcesNeeded[0],
+				#crisisWaytoHelp = crisisWaysToHelp[0]
+				#people = crisisPersonIDs[0],
+				#org = crisisOrgIDs[0]
+			)
+                   
+    #c.people = models.ForeignKey('Person', related_name='crisis_people')
+    #c.org = models.ForeignKey('Organizations', related_name='crisis_org')
+    #c.com = models.ForeignKey('Common', related_name = 'crisis_com')
 
-			"""
+			models.append(c)
+
 			
 			print "\n\n\n========== CRISIS =========="
 			print "crisisID: ", crisisID
@@ -379,8 +349,6 @@ def elementTreeToModels(elementTree):
 			print "crisisSummary = ", crisisSummary
 
 			print "\nnextElement is:", nextElement
-
-			"""
 		
 		# Parse people. 
 		while (nextElement.tag == "Person"):
@@ -433,16 +401,16 @@ def elementTreeToModels(elementTree):
 				personFeeds = d.get('Feeds')
 				personSummary = d.get('Summary')
 
-			"""
-			p = Person
-			p.personID = personID
-			p.personName = personName
-			p.personKind = personKind
-			p.personLocation = personLocation
-			models.append(p)
-			"""
+			
+			p = Person(
+				personID = personID,
+				personName = personName,
+				#personKind = personKind,
+				#personLocation = personLocation
+			)
 
-			"""
+			models.append(p)
+	
 
 			print "\n\n\n========== PERSON =========="
 			print "personID:", personID
@@ -462,7 +430,6 @@ def elementTreeToModels(elementTree):
 
 			print "\nnextElement is:", nextElement
 
-			"""
 
 
 		# Parse organizations.
@@ -534,18 +501,17 @@ def elementTreeToModels(elementTree):
 				orgFeeds = d.get('Feeds')
 				orgSummary = d.get('Summary')
 
-			"""
-			o = Organizations
-			o.orgID = orgID
-			o.orgname = orgName
-			o.orgKind = orgKind
-			o.orgLocation = orgLocation
-			o.orgHistory = orgHistory
-			o.orgContact = orgContactInfo
-			models.append(o)
-			"""
-
-			"""
+			org = Organization(
+				orgID = orgID,
+				orgName = orgName,
+				#orgKind = orgKind,
+				#orgLocation = orgLocation,
+				#orgHistory = orgHistory,
+				#orgContact = orgContact
+			)
+			
+			models.append(org)
+				
 
 			print "\n\n\n========== ORGANIZATION =========="
 			print "orgID:", orgID
@@ -567,7 +533,7 @@ def elementTreeToModels(elementTree):
 
 			print "\nnextElement is:", nextElement
 
-			"""
+			
 
 
 		nextElement = treeIter.next()
@@ -589,18 +555,20 @@ def elementTreeToModels(elementTree):
 """
 def modelsToDjango(models):
 
-	print 
+	print "models:", models
 
-	"""
 	for m in models:
+		print "type(m):", type(m)
+
 		# Ensure that every m inherits from django.db.models.Model
-		assert( issubclass(m, models.Model) )
-		model.save()
-	"""
+		print "m= ", m
+		#assert( issubclass(m, models.Model) )
+		m.save()
+
 
 			
 		
-		
+
 		
 """
 	Parses Django models into a new XML file. 

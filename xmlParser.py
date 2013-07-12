@@ -26,7 +26,6 @@ setup_environ(settings)
 # Django code.
 from django.db import models
 from WorldCrisisDB.wcdb.models import Person, Organization, Crisis
-from WorldCrisisDB import *
 
 
 # Misc.
@@ -302,8 +301,8 @@ def elementTreeToModels(elementTree):
 
 			
 			c = Crisis(
-				id = crisisID,
-				name = crisisName,
+				crisisID = crisisID,
+				crisisName = crisisName,
 				#crisisKind = crisisKind,
 				#crisisDate = crisisDate,
 				#crisisTime = crisisTime,
@@ -400,8 +399,8 @@ def elementTreeToModels(elementTree):
 
 			
 			p = Person(
-				id = personID,
-				name = personName,
+				personID = personID,
+				personName = personName,
 				#personKind = personKind,
 				#personLocation = personLocation
 			)
@@ -499,8 +498,8 @@ def elementTreeToModels(elementTree):
 				orgSummary = d.get('Summary')
 
 			org = Organization(
-				id = orgID,
-				name = orgName,
+				orgID = orgID,
+				orgName = orgName,
 				#orgKind = orgKind,
 				#orgLocation = orgLocation,
 				#orgHistory = orgHistory,
@@ -576,35 +575,71 @@ def djangoToXml():
 	root = ET.Element("WorldCrises")
 
 
-
 	for crisis in Crisis.objects.all():
 
-		child = ET.SubElement(root, "Crisis")
-		child.set("crisisID", crisis.crisisID)
-		child.set("crisisName", crisis.crisisName)
+		rootChild = ET.SubElement(root, "Crisis")
+		rootChild.set("crisisID", crisis.crisisID)
+		rootChild.set("crisisName", crisis.crisisName)
 
+		crisisChild = ET.SubElement(rootChild, "Kind")
+		crisisChild.text = crisis.crisisKind
+
+		# crisisChild = ET.SubElement(rootChild, "Date")
+		# crisisChild.text = crisis.crisisDate
+
+		# crisisChild = ET.SubElement(rootChild, "Time")
+		# crisisChild.text = crisis.crisisTime
+
+		# crisisChild = ET.SubElement(rootChild, "Locations")
+		# crisisChild.text = crisis.crisisLocations
+
+		# crisisChild = ET.SubElement(rootChild, "HumanImpact")
+		# crisisChild.text = crisis.crisisHumanImpact
+
+		# crisisChild = ET.SubElement(rootChild, "EconomicImpact")
+		# crisisChild.text = crisis.crisisEconomicImpact
+
+		# crisisChild = ET.SubElement(rootChild, "ResourcesNeeded")
+		# crisisChild.text = crisis.crisisResourcesNeeded
+
+		# crisisChild = ET.SubElement(rootChild, "WaysToHelp")
+		# crisisChild.text = crisis.crisisWaysToHelp
 
 
 	for person in Person.objects.all():
-		child = ET.SubElement(root, "Person")
-		child.set("personID", person.personID)
-		child.set("personName", person.personName)
+		rootChild = ET.SubElement(root, "Person")
+		rootChild.set("personID", person.personID)
+		rootChild.set("personName", person.personName)
+		
+		personChild = ET.SubElement(rootChild, "Kind")
+		personChild.text = person.personKind
 
+		# personChild = ET.SubElement(rootChild, "Location")
+		# personChild.text = person.personLocation
 
 
 	for org in Organization.objects.all():
-		child = ET.SubElement(root, "Organization")
-		child.set("orgID", org.orgID)
-		child.set("orgName", org.orgName)
+		rootChild = ET.SubElement(root, "Organization")
+		rootChild.set("orgID", org.orgID)
+		rootChild.set("orgName", org.orgName)
+
+		orgChild = ET.SubElement(rootChild, "Kind")
+		orgChild.text = org.orgKind
+
+		orgChild = ET.SubElement(rootChild, "Location")
+		orgChild.text = org.orgLocation
+
+		# orgChild = ET.SubElement(rootChild, "History")
+		# orgChild.text = org.orgHistory
+
+		# orgChild = ET.SubElement(rootChild, "ContactInfo")
+		# orgChild.text = org.orgContactInfo
 
 		
-	
+	indent(root)
 	tree = ET.ElementTree(root)
-	for e in tree.iter():
-		indent(e)
 
-
-	tree.write(outfile, xml_declaration=True, method="html")
+	tree.write(outfile, method="xml")
 	outfile.close()
 
 
@@ -627,7 +662,6 @@ def indent(elem, level=0):
     else:
         if level and (not elem.tail or not elem.tail.strip()):
             elem.tail = i
-
 
 
 """

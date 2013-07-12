@@ -1,0 +1,40 @@
+divheader{
+    background-color: red;
+    
+}
+#header{
+    color:white;
+    text-align:center;
+}
+
+a{
+    text-decoration:none;
+    
+}
+a:link{
+    color: black
+}
+a:hover{
+    text-decoration: underline;    
+    
+}
+a:visited{
+    color: #9F3ED5;
+}
+#content{
+    position:fixed;
+    
+    border:2px solid black;
+    height:240px;
+    width: 135px;
+    background-color: grey;
+}
+#team{
+    float:right;
+    background-color: #808080;
+    
+}
+h3{
+    color: orange;
+}
+

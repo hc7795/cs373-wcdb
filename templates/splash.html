@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="css/splashstyle.css"/>
+		<title>Splash</title>
+	</head>
+	<body>
+        <div id = "divheader">
+        <h1 id="header">World Crisis Database</h1> 
+        </div>
+        <div id = "pages">
+          {% for crisis in crises %}
+            <p><a href="crises/{{ crisis.slug }}/">{{crisis}}</a></p>
+          {% for organization in organizations %}
+            <p><a href="organizations/{{ organization.slug }}/">{{organization}}</a></p>
+          {% for person in people}
+            <p><a href="people/{{ person.slug }}/">{{ person }}</a></p> 
+        <div id = "team">
+            <h3 >Created by Gummy Pandas</h3>
+                <ul>
+                    <li>Young Seo</li>
+                    <li>Hoang Pham</li>
+                    <li>Hongchui Choi</li>
+                    <li>Zhen Yang</li>
+                    <li>Russel Jahn</li>
+                    <li>Arturo Lemus</li>
+                </ul>
+        </div>
+	</body>
+</html>

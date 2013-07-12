@@ -17,3 +17,11 @@ cs373-wcdb
 *  user = hnp248
 *  database = cs373_hnp248
 *  password = TbWNGpEkMj
+*  
+   user = lemus
+   database = cs373_lemus
+   password = 7leuEjJU2x
+
+   /u/z/users/cs373/lemus
+
+   mysql -h z -u lemus -p7leuEjJU2x

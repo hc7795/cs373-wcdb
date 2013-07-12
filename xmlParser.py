@@ -11,6 +11,9 @@ try:
 except ImportError:
 	import xml.etree.ElementTree as ET
 
+# Pretty formatting for writing XML.
+from xml.dom import minidom
+
 # minixsv XML validation and parsing.
 from minixsv import pyxsval
 from genxmlif import GenXmlIfError
@@ -23,6 +26,8 @@ setup_environ(settings)
 # Django code.
 from django.db import models
 from WorldCrisisDB.wcdb.models import Person, Organization, Crisis
+from WorldCrisisDB import *
+
 
 # Misc.
 import logging
@@ -297,8 +302,8 @@ def elementTreeToModels(elementTree):
 
 			
 			c = Crisis(
-				crisisID = crisisID,
-				crisisName = crisisName,
+				id = crisisID,
+				name = crisisName,
 				#crisisKind = crisisKind,
 				#crisisDate = crisisDate,
 				#crisisTime = crisisTime,
@@ -395,8 +400,8 @@ def elementTreeToModels(elementTree):
 
 			
 			p = Person(
-				personID = personID,
-				personName = personName,
+				id = personID,
+				name = personName,
 				#personKind = personKind,
 				#personLocation = personLocation
 			)
@@ -494,8 +499,8 @@ def elementTreeToModels(elementTree):
 				orgSummary = d.get('Summary')
 
 			org = Organization(
-				orgID = orgID,
-				orgName = orgName,
+				id = orgID,
+				name = orgName,
 				#orgKind = orgKind,
 				#orgLocation = orgLocation,
 				#orgHistory = orgHistory,
@@ -566,10 +571,62 @@ def modelsToDjango(models):
 	Parses Django models into a new XML file. 
 """
 def djangoToXml():
-	pass
+
+	outfile = open("dbOutput.xml", "w")
+	root = ET.Element("WorldCrises")
 
 
 
+	for crisis in Crisis.objects.all():
+
+		child = ET.SubElement(root, "Crisis")
+		child.set("crisisID", crisis.crisisID)
+		child.set("crisisName", crisis.crisisName)
+
+
+
+	for person in Person.objects.all():
+		child = ET.SubElement(root, "Person")
+		child.set("personID", person.personID)
+		child.set("personName", person.personName)
+
+
+
+	for org in Organization.objects.all():
+		child = ET.SubElement(root, "Organization")
+		child.set("orgID", org.orgID)
+		child.set("orgName", org.orgName)
+
+		
+	
+	tree = ET.ElementTree(root)
+	for e in tree.iter():
+		indent(e)
+
+
+	tree.write(outfile, xml_declaration=True, method="html")
+	outfile.close()
+
+
+
+
+"""
+	Adds indention to an ElementTree element. Written by Fredrik Lundh.
+"""
+def indent(elem, level=0):
+    i = "\n" + level * "  "
+    if len(elem):
+        if not elem.text or not elem.text.strip():
+            elem.text = i + "  "
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = i
+        for elem in elem:
+            indent(elem, level+1)
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = i
+    else:
+        if level and (not elem.tail or not elem.tail.strip()):
+            elem.tail = i
 
 
 
@@ -578,7 +635,8 @@ def djangoToXml():
 """
 if __name__ == "__main__":
 	try:
-		xmlToDjango()
+		# xmlToDjango()
+		djangoToXml();
 
 	except Exception as e:
 		logging.exception("Fatal error, ending program. Error message:")

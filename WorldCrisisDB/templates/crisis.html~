@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ crisis }} {% endblock %}
+
+{% block content %}
+	<div id = "crisis">
+		<p>Name: {{ crisis.name }}</p>
+    <p>Kind: {{ crisis.kind }}</p>
+    <p>Location: {{ crisis.location }}</p>
+    <p>Date: {{ crisis.date }}</p>
+    <p>Time: {{ crisis.time }}</p>
+    <p>Human Impact: {{ crisis.humanImpact }} </p>
+    <p>Economic Impact: {{ crisis.economicImpact }}</p>
+    <p>Resources Needed: {{ crisis.resourcesNeeded }}</p>
+    <p>Ways to Help: {{ crisis.waytoHelp }}</p>
+
+		<p>Organizations: {{ crisis.organization }}</p>
+		<p>People: {{ crisis.people }}</p>
+{% endblock %}

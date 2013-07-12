@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{{ organization }} {% endblock %}
+
+{% block content %}
+	<div id = "organization">
+		<p>Name: {{ organization.name }}</p>
+    <p>Kind: {{ organization.kind }}</p>
+    <p>location: {{ organization.location }}</p>
+    <p>history: {{ organization.history }}</p>
+    <p>contact info: {{ organization.contact }}</p>
+		<p>Crisis: {{ organization.crisis }}</p>
+		<p></p>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,109 @@
+<WorldCrises>
+  <Crisis crisisID="CRI_HURIKE" crisisName="Hurricane Ike">
+    <Kind>Natural Disaster</Kind>
+  </Crisis>
+  <Crisis crisisID="CRI_BAGAIR" crisisName="Baghdad Airstrike">
+    <Kind>War</Kind>
+  </Crisis>
+  <Crisis crisisID="CRI_IRAQWR" crisisName="Iraq War">
+    <Kind>War</Kind>
+  </Crisis>
+  <Crisis crisisID="CRI_WSAFRC" crisisName="Water Scarcity in Africa">
+    <Kind>Natural Disaster</Kind>
+  </Crisis>
+  <Crisis crisisID="CRI_SWNFLU" crisisName="Influenza A virus subtype H1N1">
+    <Kind>Pandemic</Kind>
+  </Crisis>
+  <Crisis crisisID="CRI_EXXONV" crisisName="Exxon Valdez Oil Spill">
+    <Kind>Oil Spill</Kind>
+  </Crisis>
+  <Crisis crisisID="CRI_HAITIE" crisisName="Haiti Earthquake">
+    <Kind>Natural Disaster</Kind>
+  </Crisis>
+  <Crisis crisisID="CRI_AIDSHI" crisisName="AIDS/HIV">
+    <Kind>Pandemic</Kind>
+  </Crisis>
+  <Crisis crisisID="CRI_UEGYPT" crisisName="Political unrest in Egypt">
+    <Kind>Political Protest</Kind>
+  </Crisis>
+  <Crisis crisisID="CRI_NINEOO" crisisName="September 11 Attacks">
+    <Kind>Terrorism</Kind>
+  </Crisis>
+  <Person personID="PER_BRAMAN" personName="Bradley Manning">
+    <Kind>Private First Class</Kind>
+  </Person>
+  <Person personID="PER_JULASS" personName="Julian Assange">
+    <Kind>Editor-in-chief and spokesman for WikiLeak</Kind>
+  </Person>
+  <Person personID="PER_GHARTL" personName="Gregory Hartl">
+    <Kind>Head of Public Relations/Social Media for World Health Organization</Kind>
+  </Person>
+  <Person personID="PER_BUSDAD" personName="George H. W. Bush">
+    <Kind>President of the United States</Kind>
+  </Person>
+  <Person personID="PER_BROBMA" personName="Barack Obama">
+    <Kind>President of the United States</Kind>
+  </Person>
+  <Person personID="PER_RENPRE" personName="Rene Preval">
+    <Kind>President of Haiti</Kind>
+  </Person>
+  <Person personID="PER_MAGICJ" personName="Magic Johnson">
+    <Kind>Basketball Player</Kind>
+  </Person>
+  <Person personID="PER_MUBRAK" personName="Hosni Mubarak">
+    <Kind>President of Egypt</Kind>
+  </Person>
+  <Person personID="PER_MICCAM" personName="Michel Camdessus">
+    <Kind>Managing Director of the IMF</Kind>
+  </Person>
+  <Person personID="PER_SADHUS" personName="Saddam Hussein">
+    <Kind>President of Iraq</Kind>
+  </Person>
+  <Person personID="PER_OSAMAB" personName="Osama Bin Laden">
+    <Kind>Founder of al-Qaeda</Kind>
+  </Person>
+  <Organization orgID="ORG_CARERA" orgName="Care">
+    <Kind>Humanitarian</Kind>
+    <Location>Atlanta, USA</Location>
+  </Organization>
+  <Organization orgID="ORG_UNICEF" orgName="UNICEF">
+    <Kind>Humanitarian</Kind>
+    <Location>New York, USA</Location>
+  </Organization>
+  <Organization orgID="ORG_WIKLKS" orgName="Wikileaks">
+    <Kind>Nonprofit document archive and disclosure</Kind>
+    <Location>Online</Location>
+  </Organization>
+  <Organization orgID="ORG_AQAEDA" orgName="al-Qaeda">
+    <Kind>Terrorist</Kind>
+    <Location>World Wide</Location>
+  </Organization>
+  <Organization orgID="ORG_WHLORG" orgName="World Health Organization">
+    <Kind>Public Health</Kind>
+    <Location>Geneva, Switzerland</Location>
+  </Organization>
+  <Organization orgID="ORG_CFDCAP" orgName="Centers for Disease Control and Prevention">
+    <Kind>Public Health</Kind>
+    <Location>Georgia, USA</Location>
+  </Organization>
+  <Organization orgID="ORG_FEDEMA" orgName="Federal Emergency Management Agency">
+    <Kind>Disaster Relief</Kind>
+    <Location>USA</Location>
+  </Organization>
+  <Organization orgID="ORG_REDCRS" orgName="Red Cross">
+    <Kind>Humanitarian</Kind>
+    <Location>Geneva, Switzerland</Location>
+  </Organization>
+  <Organization orgID="ORG_OILREC" orgName="Oil Spill Recovery Institute">
+    <Kind>Enviromental</Kind>
+    <Location>Alaska</Location>
+  </Organization>
+  <Organization orgID="ORG_EGYHUM" orgName="Egyptian Organization for Human Rights">
+    <Kind>Human Rights</Kind>
+    <Location>Egypt</Location>
+  </Organization>
+  <Organization orgID="ORG_IAVETA" orgName="Iraq and Afghanistan Veterans of America">
+    <Kind>Advocacy group dedicated to US veterans</Kind>
+    <Location>New York, USA</Location>
+  </Organization>
+</WorldCrises>

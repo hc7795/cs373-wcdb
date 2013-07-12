@@ -48,7 +48,9 @@ def index(request):
 	return HttpResponse(template.render(context))
 
 def CRI_IRAQWR(request):
-	return HttpResponse("CRI_IRAQWR")
+	template = loader.get_template('CRI_IRAQWR.html')
+	context = RequestContext(request)
+	return HttpResponse(template.render(context))
 
 def CRI_HURIKE(request):
 	return HttpResponse("CRI_HURIKE")

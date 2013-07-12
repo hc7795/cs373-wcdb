@@ -11,26 +11,22 @@ try:
 except ImportError:
 	import xml.etree.ElementTree as ET
 
-# Pretty formatting for writing XML.
-from xml.dom import minidom
-
 # minixsv XML validation and parsing.
 from minixsv import pyxsval
 from genxmlif import GenXmlIfError
 
 # Setup Django environment.
 from django.core.management import setup_environ
-from WorldCrisisDB import settings
+import settings
 setup_environ(settings)
 
 # Django code.
 from django.db import models
-from WorldCrisisDB.wcdb.models import Person, Organization, Crisis
+from wcdb.models import Person, Organization, Crisis
 
 
 # Misc.
 import logging
-
 
 
 
@@ -44,8 +40,8 @@ def xmlToDjango():
 	# xmlFilename = raw_input("Filename of the XML file: ")
 	# schemaFilename = raw_input("Filename of the schema file: ")
 	#xmlFilename = "test/example.xml"
-	xmlFilename = "WorldCrises.xml"
-	schemaFilename = "test/schema.xml"
+	xmlFilename = "static/WorldCrises.xml"
+	schemaFilename = "static/WorldCrises.xsd.xml"
 
 	# Validate the XML file.
 	try:
@@ -97,6 +93,33 @@ def getTextAndAttributes(element):
 		d['content'] = content
 	
 	return d
+
+
+"""
+	take an ID and check to see if that ID is already in Crisis/Person/Organization or not
+"""
+def isNotDuplicate (checkID, modelType):
+
+	if modelType == "person":
+		getAllObjects = Person.objects.all()
+		for currentID in getAllObjects:
+			if currentID.PersonID == checkID:
+				return False
+
+	if modelType == "crisis":
+		getAllObjects = Crisis.objects.all()
+		for currentID in getAllObjects:
+			if currentID.CrisisID == checkID:
+				return False
+
+	if modelType == "org":
+		getAllObjects = Organization.objects.all()
+		for currentID in getAllObjects:
+			if currentID.OrganizationID == checkID:
+				return False
+
+	
+	return True
 
 
 
@@ -197,6 +220,14 @@ def elementTreeToModels(elementTree):
 
 	treeIter = elementTree.iter()
 	models = []
+
+	crisisModels = []
+	personModels = []
+	orgModels = []
+
+	models.append(crisisModels)
+	models.append(personModels)
+	models.append(orgModels)
 
 
 	nextElement = treeIter.next() # Retrieves root element
@@ -299,27 +330,33 @@ def elementTreeToModels(elementTree):
 				crisisFeeds = d.get('Feeds')
 				crisisSummary = d.get('Summary')
 
-			
-			c = Crisis(
-				crisisID = crisisID,
-				crisisName = crisisName,
-				#crisisKind = crisisKind,
-				#crisisDate = crisisDate,
-				#crisisTime = crisisTime,
-				#crisisLocation = crisisLocations[0],
-				#crisisHumanImpact = crisisHumanImpact[0],
-				#crisisEconomicImpact = crisisEconomicImpact[0],
-				#crisisResourcesNeeded = crisisResourcesNeeded[0],
-				#crisisWaytoHelp = crisisWaysToHelp[0]
-				#people = crisisPersonIDs[0],
-				#org = crisisOrgIDs[0]
-			)
-                   
-    #c.people = models.ForeignKey('Person', related_name='crisis_people')
-    #c.org = models.ForeignKey('Organizations', related_name='crisis_org')
-    #c.com = models.ForeignKey('Common', related_name = 'crisis_com')
+			if isNotDuplicate(crisisID, "crisis"):
+				# crisisAdd = Crisis.objects.create(crisisID = crisisID,
+				# 	crisisName = crisisName, crisisKind = crisisKind,
+				# 	crisisDate = crisisDate)
+				models[0].append(
+						Crisis(
+						CrisisID = crisisID,
+						CrisisName = crisisName,
+						crisisKind = crisisKind,
+						crisisDate = crisisDate,
+						crisisTime = crisisTime,
+						#crisisLocation = crisisLocations[0],
+						#crisisHumanImpact = crisisHumanImpact[0],
+						#crisisEconomicImpact = crisisEconomicImpact[0],
+						#crisisResourcesNeeded = crisisResourcesNeeded[0],
+						#crisisWaytoHelp = crisisWaysToHelp[0]
+						#people = crisisPersonIDs[0],
+						#org = crisisOrgIDs[0]
+					)
+				)
 
-			models.append(c)
+				   
+	#c.people = models.ForeignKey('Person', related_name='crisis_people')
+	#c.org = models.ForeignKey('Organizations', related_name='crisis_org')
+	#c.com = models.ForeignKey('Common', related_name = 'crisis_com')
+
+			#models.append(c)
 
 			
 			print "\n\n\n========== CRISIS =========="
@@ -397,15 +434,19 @@ def elementTreeToModels(elementTree):
 				personFeeds = d.get('Feeds')
 				personSummary = d.get('Summary')
 
+			if isNotDuplicate(personID, "person"):
+				# personAdd = Person.objects.create(personID = personID,
+				#  	personName = personName, personKind = personKind)	
+				models[1].append(
+					Person(
+						PersonID = personID,
+						PersonName = personName,
+						personKind = personKind,
+						personLocation = personLocation
+					)
+				)
 			
-			p = Person(
-				personID = personID,
-				personName = personName,
-				#personKind = personKind,
-				#personLocation = personLocation
-			)
 
-			models.append(p)
 	
 
 			print "\n\n\n========== PERSON =========="
@@ -497,16 +538,20 @@ def elementTreeToModels(elementTree):
 				orgFeeds = d.get('Feeds')
 				orgSummary = d.get('Summary')
 
-			org = Organization(
-				orgID = orgID,
-				orgName = orgName,
-				#orgKind = orgKind,
-				#orgLocation = orgLocation,
-				#orgHistory = orgHistory,
-				#orgContact = orgContact
-			)
-			
-			models.append(org)
+			if isNotDuplicate(orgID, "org"):
+				# org = Organization.objects.create(orgID = orgID,
+				# 	orgName = orgName, orgKind = orgKind,
+				# 	orgLocation = orgLocation)
+				models[2].append(
+					Organization(
+						OrganizationID = orgID,
+						OrganizationName = orgName,
+						orgKind = orgKind,
+						orgLocation = orgLocation,
+						#orgHistory = orgHistory,
+						#orgContact = orgContact
+					)
+				)
 				
 
 			print "\n\n\n========== ORGANIZATION =========="
@@ -537,10 +582,18 @@ def elementTreeToModels(elementTree):
 	# Control should normally reach here and return from the function.
 	except StopIteration as e:
 		print "\nReached end of file correctly!"
+		print models
 		return models
+	"""
+	except IntegrityError, e:
+   		print "hello"
+   		continue
+   	"""
+	
 
 	# Control should never normally reach here.
 	raise IOError("Invalid file!")
+
 
 
 
@@ -553,13 +606,14 @@ def modelsToDjango(models):
 
 	print "models:", models
 
-	for m in models:
-		print "type(m):", type(m)
+	for subList in models:
+		for m in subList:
+			print "type(m):", type(m)
 
-		# Ensure that every m inherits from django.db.models.Model
-		print "m= ", m
-		#assert( issubclass(m, models.Model) )
-		m.save()
+			# Ensure that every m inherits from django.db.models.Model
+			print "m = ", m
+			#assert( issubclass(m, models.Model) )
+			m.save()
 
 
 			
@@ -571,15 +625,15 @@ def modelsToDjango(models):
 """
 def djangoToXml():
 
-	outfile = open("dbOutput.xml", "w")
+	outfile = open("static/dbOutput.xml", "w")
 	root = ET.Element("WorldCrises")
 
 
 	for crisis in Crisis.objects.all():
 
 		rootChild = ET.SubElement(root, "Crisis")
-		rootChild.set("crisisID", crisis.crisisID)
-		rootChild.set("crisisName", crisis.crisisName)
+		rootChild.set("crisisID", crisis.CrisisID)
+		rootChild.set("crisisName", crisis.CrisisName)
 
 		crisisChild = ET.SubElement(rootChild, "Kind")
 		crisisChild.text = crisis.crisisKind
@@ -587,8 +641,9 @@ def djangoToXml():
 		# crisisChild = ET.SubElement(rootChild, "Date")
 		# crisisChild.text = crisis.crisisDate
 
-		# crisisChild = ET.SubElement(rootChild, "Time")
-		# crisisChild.text = crisis.crisisTime
+		if (crisis.crisisTime != ""):
+			crisisChild = ET.SubElement(rootChild, "Time")
+			crisisChild.text = crisis.crisisTime
 
 		# crisisChild = ET.SubElement(rootChild, "Locations")
 		# crisisChild.text = crisis.crisisLocations
@@ -608,8 +663,8 @@ def djangoToXml():
 
 	for person in Person.objects.all():
 		rootChild = ET.SubElement(root, "Person")
-		rootChild.set("personID", person.personID)
-		rootChild.set("personName", person.personName)
+		rootChild.set("personID", person.PersonID)
+		rootChild.set("personName", person.PersonName)
 		
 		personChild = ET.SubElement(rootChild, "Kind")
 		personChild.text = person.personKind
@@ -620,8 +675,8 @@ def djangoToXml():
 
 	for org in Organization.objects.all():
 		rootChild = ET.SubElement(root, "Organization")
-		rootChild.set("orgID", org.orgID)
-		rootChild.set("orgName", org.orgName)
+		rootChild.set("orgID", org.OrganizationID)
+		rootChild.set("orgName", org.OrganizationName)
 
 		orgChild = ET.SubElement(rootChild, "Kind")
 		orgChild.text = org.orgKind
@@ -669,7 +724,7 @@ def indent(elem, level=0):
 """
 if __name__ == "__main__":
 	try:
-		# xmlToDjango()
+		xmlToDjango()
 		djangoToXml();
 
 	except Exception as e:

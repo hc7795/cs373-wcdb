@@ -105,10 +105,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'WorldCrisisDB.urls'
+ROOT_URLCONF = 'project3.urls'
 
 TEMPLATE_DIRS = (
-    '/cs373/cs373-WCDB1/cs373-wcdb/gummypandas/WorldCrisisDB/templates'
+    '/u/wrj322/CS373/project3/templates/'
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.

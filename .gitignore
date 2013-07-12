@@ -1,4 +1,5 @@
 *.log
 *.pot
 *.pyc
+.nfs*
 local_settings.py

@@ -1,29 +1,12 @@
 cs373-wcdb
 ==========
 
-*Identify common attributes of the data and insure that every data item has a value for that attribute. 
- 
-*Post the schema and instance to the public repository.
-
-*Create an import/export facility from the XML into the Django models and back using ElementTree.
-
 *It must be password protected.
 
 *It must not crash when given a bad file.
 
 *It must report an error if the XML being imported does not match the schema using MiniXsv.
 
-*The export facility must export from the Django models to the screen in a way that is recognizable as XML.
-
-*Hint: There is a way to set the HTTP Content-Type to be text/wcdb1.
-
-*Create a static HTML page for three crises, three organizations, and three people that displays all of the data collected.
-
-*The pages must be served by Django.
-
-*Create a set of unittest tests.
-
-*Write an initial technical report.
 
 
 

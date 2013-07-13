@@ -1,13 +1,8 @@
 cs373-wcdb
 ==========
 
-*It must be password protected.
-
-*It must not crash when given a bad file.
-
-*It must report an error if the XML being imported does not match the schema using MiniXsv.
-
-
+Expected 50 hours.
+Actually spent 70 hours on the project.
 
 
 

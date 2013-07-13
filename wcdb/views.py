@@ -53,25 +53,29 @@ def CRI_IRAQWR(request):
 	return HttpResponse(template.render(context))
 
 def CRI_HURIKE(request):
-	return HttpResponse("CRI_HURIKE")
+	template = loader.get_template("CRI_HURIKE.html")
+	context = RequestContext(request)
+	return HttpResponse(template.render(context))
 
 def CRI_BAGAIR(request):
-	return HttpResponse("CRI_BAGAIR")
+	template = loader.get_template("CRI_BAGAIR.html")
+	context = RequestContext(request)
+	return HttpResponse(template.render(context))
 
 def ORG_WHLORG(request):
-	return HttpResponse("ORG_WHLORG")
+	return HttpResponse("ORG_WHLORG.html")
 
 def ORG_REDCRS(request):
-	return HttpResponse("ORG_REDCRS")
+	return HttpResponse("ORG_REDCRS.html")
 
 def ORG_IAVETA(request):
-	return HttpResponse("ORG_IAVETA")
+	return HttpResponse("ORG_IAVETA.html")
 
 def PER_SADHUS(request):
-	return HttpResponse("PER_SADHUS")
+	return HttpResponse("PER_SADHUS.html")
 
 def PER_BUSDAD(request):
-	return HttpResponse("PER_BUSDAD")
+	return HttpResponse("PER_BUSDAD.html")
 
 def PER_BRAMAN(request):
-	return HttpResponse("PER_BRAMAN")
+	return HttpResponse("PER_BRAMAN.html")

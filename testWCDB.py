@@ -34,7 +34,7 @@ from django.db import models
 from wcdb.models import Person, Organization, Crisis
 
 # xmlParser code.
-from xmlParser import getTextAndAttributes, getCommonData, elementTreeToModels
+from xmlParser import getTextAndAttributes, getCommonData, elementTreeToModels, isNotDuplicate, indent
 
 # Misc.
 import logging
@@ -288,6 +288,7 @@ class TestWCDB (unittest.TestCase):
 			raise Exception("StopIteration exception should have been raised!")
 		except StopIteration as e:
 			pass
+
 	def testGetCommonData_04(self) :
 		testXML = """
 			<Common>
@@ -379,7 +380,9 @@ class TestWCDB (unittest.TestCase):
 		testXML = " ".join(testXML.split())
 
 		tree = ET.fromstring(testXML)
-		models = elementTreeToModels(tree)
+		dictionary={};
+		models = elementTreeToModels(tree,dictionary)
+		print "@@@@@@@@@@@@@@@@@@@  ",models
 		self.assert_(len(models) == 3)
 		self.assert_( models[0][0].CrisisID == "CRI_HURIKE" )
 		self.assert_( models[0][0].CrisisName == "Hurricane Ike" )
@@ -413,7 +416,8 @@ class TestWCDB (unittest.TestCase):
 		testXML = " ".join(testXML.split())
 
 		tree = ET.fromstring(testXML)
-		models = elementTreeToModels(tree)
+		dictionary={};
+		models = elementTreeToModels(tree,dictionary)
 		self.assert_(len(models[0]) == 0)
 		self.assert_( models[1][0].PersonID == "PER_GHARTL" )
 		self.assert_( models[1][0].PersonName == "Gregory Hartl" )
@@ -451,11 +455,28 @@ class TestWCDB (unittest.TestCase):
 		testXML = " ".join(testXML.split())
 
 		tree = ET.fromstring(testXML)
-		models = elementTreeToModels(tree)
+		dictionary={};
+		models = elementTreeToModels(tree,dictionary)
 		self.assert_(len(models[1]) == 0)
 		self.assert_( models[2][0].OrganizationID == "ORG_UNICEF" )
 		self.assert_( models[2][0].OrganizationName == "UNICEF" )
 		self.assert_( models[2][0].orgKind == "Humanitarian" )
+
+	def testisNotDuplicate_01(self):
+		dictionary={1:"a",2:"b",3:"c"};
+		b = isNotDuplicate("d","a",dictionary)
+		self.assert_(b == True)
+
+	def testisNotDuplicate_02(self):
+		dictionary={1:"a",2:"b",3:"c"};
+		b = isNotDuplicate("a","a",dictionary)
+		self.assert_(b == False)
+
+	def testisNotDuplicate_03(self):
+		dictionary={1:"a",2:"b",3:"c"};
+		b = isNotDuplicate("c","a",dictionary)
+		self.assert_(b == False)
+
 
 	def test_indent_01 (self) :
 		testXML = """

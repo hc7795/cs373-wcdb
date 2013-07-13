@@ -1,5 +1,5 @@
 """
-	xmlParser.py
+xmlParser.py
 	============
 
 	Contains functions to parse crisis XML files into Django models and vice versa.
@@ -98,24 +98,30 @@ def getTextAndAttributes(element):
 """
 	take an ID and check to see if that ID is already in Crisis/Person/Organization or not
 """
-def isNotDuplicate (checkID, modelType):
+def isNotDuplicate (checkID, modelType, unitTestDB = "No"):
+	
+	if unitTestDB == "No":
+		if modelType == "person":
+			getAllObjects = Person.objects.all()
+			for currentID in getAllObjects:
+				if currentID.PersonID == checkID:
+					return False
 
-	if modelType == "person":
-		getAllObjects = Person.objects.all()
-		for currentID in getAllObjects:
-			if currentID.PersonID == checkID:
-				return False
+		if modelType == "crisis":
+			getAllObjects = Crisis.objects.all()
+			for currentID in getAllObjects:
+				if currentID.CrisisID == checkID:
+					return False
 
-	if modelType == "crisis":
-		getAllObjects = Crisis.objects.all()
-		for currentID in getAllObjects:
-			if currentID.CrisisID == checkID:
-				return False
+		if modelType == "org":
+			getAllObjects = Organization.objects.all()
+			for currentID in getAllObjects:
+				if currentID.OrganizationID == checkID:
+					return False
 
-	if modelType == "org":
-		getAllObjects = Organization.objects.all()
-		for currentID in getAllObjects:
-			if currentID.OrganizationID == checkID:
+	else:
+		for key in unitTestDB:
+			if checkID in unitTestDB.values():
 				return False
 
 	
@@ -216,7 +222,7 @@ def getCommonData(element, elementIterator):
 """
 	Parses an XML file and returns a list of Django models.
 """
-def elementTreeToModels(elementTree):
+def elementTreeToModels(elementTree, unitTestDB = "No"):
 
 	treeIter = elementTree.iter()
 	models = []
@@ -330,7 +336,7 @@ def elementTreeToModels(elementTree):
 				crisisFeeds = d.get('Feeds')
 				crisisSummary = d.get('Summary')
 
-			if isNotDuplicate(crisisID, "crisis"):
+			if isNotDuplicate(crisisID, "crisis", unitTestDB):
 				# crisisAdd = Crisis.objects.create(crisisID = crisisID,
 				# 	crisisName = crisisName, crisisKind = crisisKind,
 				# 	crisisDate = crisisDate)
@@ -434,7 +440,7 @@ def elementTreeToModels(elementTree):
 				personFeeds = d.get('Feeds')
 				personSummary = d.get('Summary')
 
-			if isNotDuplicate(personID, "person"):
+			if isNotDuplicate(personID, "person", unitTestDB):
 				# personAdd = Person.objects.create(personID = personID,
 				#  	personName = personName, personKind = personKind)	
 				models[1].append(
@@ -538,7 +544,7 @@ def elementTreeToModels(elementTree):
 				orgFeeds = d.get('Feeds')
 				orgSummary = d.get('Summary')
 
-			if isNotDuplicate(orgID, "org"):
+			if isNotDuplicate(orgID, "org", unitTestDB):
 				# org = Organization.objects.create(orgID = orgID,
 				# 	orgName = orgName, orgKind = orgKind,
 				# 	orgLocation = orgLocation)

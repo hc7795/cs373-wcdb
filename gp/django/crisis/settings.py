@@ -1,6 +1,6 @@
 #Django settings for crisis project.
 
-DEBUG = True
+DEBUG = True 
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -73,6 +73,7 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    '/gp/django/crisis/static'
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -107,7 +108,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'crisis.urls'
 
 TEMPLATE_DIRS = (
-    '/he/django/crisis/templates/'
+    '/u/z/users/cs373/lemus/gp/django/crisis/templates/'
 )
 
 INSTALLED_APPS = (

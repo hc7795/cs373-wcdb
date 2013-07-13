@@ -63,19 +63,31 @@ def CRI_BAGAIR(request):
 	return HttpResponse(template.render(context))
 
 def ORG_WHLORG(request):
-	return HttpResponse("ORG_WHLORG.html")
+	template = loader.get_template("ORG_WHLORG.html")
+	context = RequestContext(request)
+	return HttpResponse(template.render(context))
 
 def ORG_REDCRS(request):
-	return HttpResponse("ORG_REDCRS.html")
+	template = loader.get_template("ORG_REDCRS.html")
+	context = RequestContext(request)
+	return HttpResponse(template.render(context))
 
 def ORG_IAVETA(request):
-	return HttpResponse("ORG_IAVETA.html")
+	template = loader.get_template("ORG_IAVETA.html")
+	context = RequestContext(request)
+	return HttpResponse(template.render(context))
 
 def PER_SADHUS(request):
-	return HttpResponse("PER_SADHUS.html")
+	template = loader.get_template("PER_SADHUS.html")
+	context = RequestContext(request)
+	return HttpResponse(template.render(context))
 
 def PER_BUSDAD(request):
-	return HttpResponse("PER_BUSDAD.html")
+	template = loader.get_template("PER_BUSDAD.html")
+	context = RequestContext(request)
+	return HttpResponse(template.render(context))
 
 def PER_BRAMAN(request):
-	return HttpResponse("PER_BRAMAN.html")
+	template = loader.get_template("PER_BRAMAN.html")
+	context = RequestContext(request)
+	return HttpResponse(template.render(context))

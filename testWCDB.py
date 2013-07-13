@@ -487,6 +487,29 @@ class TestWCDB (unittest.TestCase):
 		indentReturned = ET.tostring(tree)
 		#ans = '<Organization ID="ORG_CARERA" Name="Care">\n  <Crises>\n    <Crisis ID="CRI_WSAFRC" />\n  </Crises>\n</Organization>'
 		self.assert_(indentReturned != testXML)
+		
+	def test_indent_03 (self) :
+		testXML = """
+			<Person ID="PER_BUSDAD" Name="George H. W. Bush">
+			<Crises>
+			<Crisis ID="CRI_EXXONV" />
+			</Crises>
+			<Kind>President of the United States</Kind>
+			<Common>
+			<ExternalLinks>
+			<li href="https://en.wikipedia.org/wiki/George_H._W._Bush">Wikipedia</li>
+			</ExternalLinks>
+			<Images>
+			<li embed="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/George_H._W._Bush%2C_President_of_the_United_States%2C_1989_official_portrait.jpg/520px-George_H._W._Bush%2C_President_of_the_United_States%2C_1989_official_portrait.jpg" />
+			</Images>
+			</Common>
+			</Person>
+			"""
+		testXML = " ".join(testXML.split())
+		tree = ET.fromstring(testXML)
+		indent(tree)
+		indentReturned = ET.tostring(tree)
+		self.assert_(indentReturned != testXML)
 
 
 

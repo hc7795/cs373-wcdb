@@ -586,7 +586,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 
 	# Control should normally reach here and return from the function.
 	except StopIteration as e:
-		#print "\nReached end of file correctly!"
+		print "\nReached end of file correctly!"
 		#print models
 		return models
 	"""

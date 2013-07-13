@@ -382,7 +382,6 @@ class TestWCDB (unittest.TestCase):
 		tree = ET.fromstring(testXML)
 		dictionary={};
 		models = elementTreeToModels(tree,dictionary)
-		print "@@@@@@@@@@@@@@@@@@@  ",models
 		self.assert_(len(models) == 3)
 		self.assert_( models[0][0].CrisisID == "CRI_HURIKE" )
 		self.assert_( models[0][0].CrisisName == "Hurricane Ike" )

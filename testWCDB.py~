@@ -288,59 +288,6 @@ class TestWCDB (unittest.TestCase):
 			raise Exception("StopIteration exception should have been raised!")
 		except StopIteration as e:
 			pass
-	def testGetCommonData_04(self) :
-		testXML = """
-			<Common>
-				<Citations>
-					<li href="href for Citations" />
-					<li embed="embed for Citations">text inside embed</li>
-				</Citations>
-				<Videos>
-					<li  embed="embed for Videos" />
-				</Videos>
-			</Common>
-			"""
-		testXML = " ".join(testXML.split())
-		tree = ET.fromstring(testXML)
-		treeIter = tree.iter()
-		nextElement = treeIter.next()
-		data = {}
-		self.assert_(nextElement.tag == "Common")
-		nextElement, treeIter, data = getCommonData(nextElement, treeIter)
-		self.assert_(data == {'Videos': [{'embed': 'embed for Videos'}], 'Summary': [], 'Maps': [], 'Citations': [{'href': 'href for Citations'}, {'content': 'text inside embed', 'embed': 'embed for Citations'}], 'ExternalLinks': [], 'Images': [], 'Feeds': []})
-		self.assert_(isinstance(data, dict))
-		self.assert_(data.has_key('Videos'))
-		self.assert_(data.has_key('Citations'))
-		self.assert_(data.get('Citations') == [{'href': 'href for Citations'}, {'content': 'text inside embed', 'embed': 'embed for Citations'}])
-		self.assert_(data.get('Citations')[0] == {'href': 'href for Citations'})
-		self.assert_(data.get('Citations')[1] == {'content': 'text inside embed', 'embed': 'embed for Citations'})
-		self.assert_(data.get('Videos') == [{'embed': 'embed for Videos'}])
-		
-
-		
-	def testGetCommonData_05(self) :
-		testXML = """
-			<Common>
-				<ExternalLinks>
-					 <li href="https://en.wikipedia.org/wiki/Osama_Bin_Laden">Wikipedia</li>
-				</ExternalLinks>
-				<Images>
-					<li  embed="https://upload.wikimedia.org/wikipedia/commons/c/ca/Osama_bin_Laden_portrait.jpg" />
-				</Images>
-			</Common>
-			""" 
-		testXML = " ".join(testXML.split())
-		tree = ET.fromstring(testXML)
-		treeIter = tree.iter()
-		nextElement = treeIter.next()
-		data = {}
-		self.assert_(nextElement.tag == "Common")
-		nextElement, treeIter, data = getCommonData(nextElement, treeIter)
-		self.assert_(data == {'Videos': [], 'Summary': [], 'Maps': [], 'Citations': [], 'ExternalLinks': [{'content': 'Wikipedia', 'href': 'https://en.wikipedia.org/wiki/Osama_Bin_Laden'}], 'Images': [{'embed': 'https://upload.wikimedia.org/wikipedia/commons/c/ca/Osama_bin_Laden_portrait.jpg'}], 'Feeds': []})
-		self.assert_(isinstance(data.get('ExternalLinks'), list))
-		self.assert_(isinstance(data.get('ExternalLinks')[0], dict))
-		self.assert_(data.has_key('ExternalLinks'))
-		self.assert_((data.get('ExternalLinks'))[0].get('content') == "Wikipedia")
 
 	def testelementTreeToModels_01(self):
 		testXML = """
@@ -456,37 +403,6 @@ class TestWCDB (unittest.TestCase):
 		self.assert_( models[2][0].OrganizationID == "ORG_UNICEF" )
 		self.assert_( models[2][0].OrganizationName == "UNICEF" )
 		self.assert_( models[2][0].orgKind == "Humanitarian" )
-
-	def test_indent_01 (self) :
-		testXML = """
-			<WorldCrises>
-			<Crisis ID="CRI_HURIKE" Name="Hurricane Ike">
-			<Kind>Natural Disaster</Kind>
-			<Date>2008-09-01</Date>
-			</Crisis>
-			</WorldCrises>
-			"""
-		testXML = " ".join(testXML.split())
-		tree = ET.fromstring(testXML)
-		indent(tree)
-		indentReturned = ET.tostring(tree)
-		#ans = '<WorldCrises>\n  <Crisis ID="CRI_HURIKE" Name="Hurricane Ike"\n    <Kind>Natural Disaster</Kind>\n    <Date>2008-09-01</Date>\n  </Crisis>\n</WorldCrises>'
-		self.assert_(indentReturned != testXML)		
-
-	def test_indent_02 (self) :
-		testXML = """
-			<Organization ID="ORG_CARERA" Name="Care">
-			<Crises>
-			<Crisis ID="CRI_WSAFRC" />
-			</Crises>
-			</Organization>
-			"""
-		testXML = " ".join(testXML.split())
-		tree = ET.fromstring(testXML)
-		indent(tree)
-		indentReturned = ET.tostring(tree)
-		#ans = '<Organization ID="ORG_CARERA" Name="Care">\n  <Crises>\n    <Crisis ID="CRI_WSAFRC" />\n  </Crises>\n</Organization>'
-		self.assert_(indentReturned != testXML)
 
 
 

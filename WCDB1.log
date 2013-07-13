@@ -1,0 +1,703 @@
+commit eb5b08bea09a259aefff74148be22a022bf7f488
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 22:23:08 2013 -0500
+
+    Update README.md
+
+commit ffc80d535b342cf7fde324dc1b89a68588c4f9b2
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 22:18:04 2013 -0500
+
+    Submission commit.
+
+commit 11f40516ed3495388023f2e70e6c1f5a4d33c7d7
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 21:39:48 2013 -0500
+
+    Added password and import/export options to xmlParser.py.
+
+commit 9e2428d75c3f3ad23cedf40398a0db8a0fa08429
+Merge: fda0d02 9129fc1
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 21:17:44 2013 -0500
+
+    Merge branch 'master' of https://github.com/hc7795/cs373-wcdb
+
+commit fda0d02c80c10efec1276a245f56905e9f74ab1f
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 21:17:34 2013 -0500
+
+    Added embedded images/videos to HTML pages.
+
+commit 9129fc1769514a838ca39dd44d0f798a8cfd9886
+Author: zhenyang1 <yangzhen@utexas.edu>
+Date:   Fri Jul 12 21:04:13 2013 -0500
+
+    tests for xmlparser
+
+commit a3c9412704ba6693907ca270ef6ecc79d928cec5
+Author: Arturo Lemus <lemus@cs.utexas.edu>
+Date:   Fri Jul 12 20:57:47 2013 -0500
+
+    website live!!
+
+commit b505ee8a8ccc9544dd65939995faa88a2686c19f
+Author: zhenyang1 <yangzhen@utexas.edu>
+Date:   Fri Jul 12 20:42:26 2013 -0500
+
+    finish the testWCDB.py
+
+commit 19a3289c5862d9abaf0a8f14467ff6f7ccadc220
+Author: zhenyang1 <yangzhen@utexas.edu>
+Date:   Fri Jul 12 20:39:54 2013 -0500
+
+    finish the testWCDB.py
+
+commit 847f90cddf020b9e281bb3e022c824474f1004c7
+Merge: 4c8101f fcb8d74
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 20:31:55 2013 -0500
+
+    Merge branch 'master' of https://github.com/hc7795/cs373-wcdb
+
+commit 4c8101f3ee3c36055aebb72850a700f4614fe45a
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 20:31:48 2013 -0500
+
+    Removed junk files.
+
+commit fcb8d74b6ad4bee68aa34fc552029cbda3c2d13c
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 20:20:40 2013 -0500
+
+    Update README.md
+
+commit 87d5e5eb55adc4e3ab6264a9e68f5c9b21bade6c
+Merge: 697a58b 2c01b63
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 20:03:32 2013 -0500
+
+    Merge branch 'master' of https://github.com/hc7795/cs373-wcdb
+
+commit 697a58b7dd01329ee28ab4121e85e4493d59dc93
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 20:03:24 2013 -0500
+
+    Finsihed hardcoded HTML pages.
+
+commit 2c01b6306b6ff37a588fac398340236544e0b8ea
+Author: hc7795 <hc7795@cs.utexas.edu>
+Date:   Fri Jul 12 19:21:48 2013 -0500
+
+    Update testWCDB.py
+
+commit c59fdb8c75b9e318d4b76b048a11c18aa194c3ab
+Merge: 36768c7 d601ebf
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 19:20:55 2013 -0500
+
+    Merge branch 'master' of https://github.com/hc7795/cs373-wcdb
+
+commit 36768c7f32ca0a2f76dc0d1993d308b774f67d20
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 19:20:45 2013 -0500
+
+    Finished hardcoding Crises pages. Have Organizations and People left.
+
+commit d601ebf97c8bc393d28f0becc87e0b940be1c4bd
+Author: HONGHUI CHOI <hc7795@cs.utexas.edu>
+Date:   Fri Jul 12 19:15:42 2013 -0500
+
+    testWCDB.py updated
+
+commit d3b84bbed458b3ec58c05ef1419d51220809c7e2
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 18:58:44 2013 -0500
+
+    Finished hardcoded Iraq War page.
+
+commit 5ad08250ba5f8b535c6cb24d863ee850575c4e28
+Author: zhenyang1 <yangzhen@utexas.edu>
+Date:   Fri Jul 12 18:53:57 2013 -0500
+
+    Update testWCDB.py
+
+commit 2c0e7b230c35489fce21628e8fac8e0791783113
+Merge: aa0d56e 0299ef1
+Author: Arturo Lemus <lemus@cs.utexas.edu>
+Date:   Fri Jul 12 18:30:10 2013 -0500
+
+    Merge https://github.com/hc7795/cs373-wcdb
+
+commit aa0d56e82875dfd0ceb745c363e1e4d45c307877
+Author: Arturo Lemus <lemus@cs.utexas.edu>
+Date:   Fri Jul 12 18:28:50 2013 -0500
+
+    File structure for crisis project
+
+commit 0299ef10891528ef4373464cf099a3023147f652
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 18:14:43 2013 -0500
+
+    Hardcoded HTML pages are now functional.
+
+commit afb975f8b9ecac3be30449557902bb9bfc2ceb10
+Merge: 70cbc4f 9f7f793
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 17:35:37 2013 -0500
+
+    Merge branch 'master' of https://github.com/hc7795/cs373-wcdb
+
+commit 70cbc4f9af5a14168cb2df20e10da910abe85b9c
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 17:35:17 2013 -0500
+
+    Got splash page up and running. Now need to hardcode 3 pages each for Crises, Organizations, and People.
+
+commit 9f7f79392893afd77e908498809a585816e7d2bd
+Author: zhenyang1 <yangzhen@utexas.edu>
+Date:   Fri Jul 12 16:21:50 2013 -0500
+
+    Update README.md
+
+commit 3a628b62ff579a758aa9f83951638f2202def93f
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 16:14:20 2013 -0500
+
+    Last commit didn't add some files/directories.
+
+commit 8e56cde6e08e90e6e6e96cac7aab14ed797077b4
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 16:10:26 2013 -0500
+
+    Revamped the entire directory structure and fixed path issues.
+
+commit 4a930f81178b66d77f4eeaeec883b67d42e54846
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 14:00:16 2013 -0500
+
+    Added code for exporting in xmlParser.py to handle more elements. Also wrote template code for exporting elements that we haven't implemented into the models yet.
+
+commit b9089976310f3b42735921f15ae375cb55b57a84
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Fri Jul 12 05:57:01 2013 -0500
+
+    Added a barebones database exporter to djangoToXml() in xmlParser.py.
+
+commit f96a96e52cdebf3b292002c859a2a43f8778c48d
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Thu Jul 11 22:31:34 2013 -0500
+
+    Added .gitignore.
+
+commit f71f09cebf177f5c3409ab615884bfe68cf990e0
+Merge: b3e1f6a 39fcfb4
+Author: Young Seo <youngseo@cs.utexas.edu>
+Date:   Thu Jul 11 19:19:58 2013 -0500
+
+    Merge https://github.com/hc7795/cs373-wcdb
+    
+    added models, templates, and amdmin file
+
+commit b3e1f6a8217347a51e272a2fa96e2d2f2f47ab2d
+Author: Young Seo <youngseo@cs.utexas.edu>
+Date:   Thu Jul 11 19:17:38 2013 -0500
+
+      changed models, added admin file and templates
+
+commit 39fcfb4f53416b64ae63f2f55faaf08d45a86b8c
+Author: alemus <lemus@utexas.edu>
+Date:   Thu Jul 11 19:12:23 2013 -0500
+
+    Update README.md
+
+commit aa693d9cc747f7371e3b8a4caa7c46df8262e60d
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Thu Jul 11 16:49:57 2013 -0500
+
+    Added unit tests for getTextAndAttributes() and fixed some bugs in xmlParser.py
+
+commit 9804f41b09ab6dc866ef94efb29f38f75c3ecaa9
+Author: russelljahn <russelljahn@gmail.com>
+Date:   Thu Jul 11 15:04:41 2013 -0500
+
+    Updated models.py file.
+
+commit efbb5ec903a7ea7142d1df58d759ea72f45eadc8
+Author: russelljahn <russelljahn@gmail.com>
+Date:   Thu Jul 11 14:51:06 2013 -0500
+
+    Saving models to database correctly. We need to improve on the models eventually, tho.
+
+commit 60b3210ea7416a663e3f23cc2a021e0addab5e86
+Author: Hoang Pham <hphamnk@utexas.edu>
+Date:   Thu Jul 11 14:42:05 2013 -0500
+
+    Update README.md
+
+commit 801219ba3730b0d206d0fd301cd9bfac2d8ce866
+Author: Hoang Pham <hphamnk@utexas.edu>
+Date:   Thu Jul 11 14:41:43 2013 -0500
+
+    Added my SQL info
+
+commit 8972c6b28697287b4bf6ed0a93fe739e2168dc98
+Author: Hoang Pham <hphamnk@yahoo.com>
+Date:   Thu Jul 11 10:40:29 2013 -0500
+
+    added some data into data table
+
+commit 5e8f7200dc88f28de60a1f09f09abb8bc48e0585
+Author: Hoang Pham <hphamnk@yahoo.com>
+Date:   Thu Jul 11 04:03:21 2013 -0500
+
+    updated some files
+
+commit f68c762e63783864414d09cfab56e62c4249ff85
+Author: Hoang Pham <hphamnk@yahoo.com>
+Date:   Thu Jul 11 04:02:49 2013 -0500
+
+    import Crisis, Person, Orgs from models.py
+
+commit 41f2c57399787ca7ea43ea803708b692369ddd13
+Author: Hoang Pham <hphamnk@yahoo.com>
+Date:   Thu Jul 11 03:58:07 2013 -0500
+
+    import Crisis, Person, Orgs from models.py
+
+commit c0b7d681a1c17e2d758876521a2c996cb9b0042e
+Author: Hoang Pham <hphamnk@yahoo.com>
+Date:   Thu Jul 11 00:46:49 2013 -0500
+
+    Fixed some bugs in worldCrsises.xml
+
+commit 94b7961d026b5758f7114f9f89ae6ff08ec010cb
+Author: hc7795 <hc7795@cs.utexas.edu>
+Date:   Wed Jul 10 15:42:36 2013 -0500
+
+    Update models.py~
+
+commit ec3c633dddbc2a9364cafb3a6419db8413904a4d
+Author: hc7795 <hc7795@cs.utexas.edu>
+Date:   Wed Jul 10 15:42:02 2013 -0500
+
+    Delete output.out
+
+commit dc3d1e199ab5f40292f2bca89a504e4c310c787e
+Author: hc7795 <hc7795@cs.utexas.edu>
+Date:   Wed Jul 10 15:41:00 2013 -0500
+
+    Delete models3.py
+
+commit f1bbc258c1c3a7ecc40dbe91db3e4fac7410583e
+Author: hc7795 <hc7795@cs.utexas.edu>
+Date:   Wed Jul 10 15:40:54 2013 -0500
+
+    Delete models2.py
+
+commit cbb7a9f45fc8a4526fb943e11b9f4fc120fccd58
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Wed Jul 10 12:56:07 2013 -0500
+
+    Added comments describing how to parse data into models in xmlParser.py. The file will raise an exception now, which indicates imports need to be figured out.
+
+commit 780ce66a879c57cf604d551e95cc6128dbd08def
+Merge: 7c098a8 2ef8e33
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Wed Jul 10 12:19:14 2013 -0500
+
+    Read in and save variables correctly from xmlParser.xml, including optional stuff. Needs to be tested, tho.
+
+commit 7c098a83744b2be54fae9eabecfcce9c0ec536e4
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Wed Jul 10 12:18:04 2013 -0500
+
+    Read in and save variables correctly from xmlParser.xml, including optional stuff. Needs to be tested, tho.
+
+commit 2ef8e33d7b59f0b7c040bf35da9e31807fad8804
+Author: HONGHUI CHOI <hc7795@cs.utexas.edu>
+Date:   Wed Jul 10 12:16:53 2013 -0500
+
+    models.py updated
+
+commit 72c98993b673cf55c3ddff9aa5bd64983c62df7b
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Wed Jul 10 07:28:56 2013 -0500
+
+    Delete .DS_Store
+
+commit 9c9c4bcfe02cb9ac7c2be731e127aac89cc8c5c3
+Author: russelljahn <russelljahn@gmail.com>
+Date:   Wed Jul 10 07:28:26 2013 -0500
+
+    Reformatted code in xmlParser.py and fixed some issues. The image information is still not being parsed right for the last Organization read in.
+
+commit ac4b5b83439b90710e1bb5e72048a7c1bf96a031
+Author: Hoang Pham <hphamnk@yahoo.com>
+Date:   Wed Jul 10 02:58:49 2013 -0500
+
+    xmlParser can read from worldCrises.xml now
+    
+    still need to read the last organization
+
+commit c9204913ebaa98f8c128d821c605bda68b3bc336
+Author: Hoang Pham <hphamnk@yahoo.com>
+Date:   Wed Jul 10 01:48:10 2013 -0500
+
+    xmlParser now read multiple ppl,orgs from example.xml
+    
+    line 176 nextElement = elementIterator.next() is the key to that
+
+commit 44a73935791a1946d15a9764b927b87d120895f7
+Author: Hoang Pham <hphamnk@utexas.edu>
+Date:   Wed Jul 10 00:57:32 2013 -0500
+
+    Update README.md
+
+commit b2a55bc6a3ab026190bbf474351a7b484a6bc390
+Merge: e3c8208 034e8d8
+Author: HONGHUI CHOI <hc7795@cs.utexas.edu>
+Date:   Wed Jul 10 00:52:49 2013 -0500
+
+    Merge branch 'master' of https://github.com/hc7795/cs373-wcdb
+
+commit e3c8208bccb20fa8158a3ebb179c8b221ba4fd40
+Author: HONGHUI CHOI <hc7795@cs.utexas.edu>
+Date:   Wed Jul 10 00:52:13 2013 -0500
+
+    xml parser mostly done by Russell and Zhen
+
+commit 034e8d858d2ea6d900757ceb5b5a17ebe9b255d5
+Author: Hoang Pham <hphamnk@utexas.edu>
+Date:   Wed Jul 10 00:42:41 2013 -0500
+
+    msg to Honghui
+
+commit df3b78492b5a87d1c33674afe82b94dc70171aa8
+Author: Hoang Pham <hphamnk@yahoo.com>
+Date:   Wed Jul 10 00:14:10 2013 -0500
+
+    Updated example.xml and schema.xml
+
+commit 38244c77060b3e9ff89e2461ed7347eed563bb17
+Merge: 72b9745 7178e45
+Author: HONGHUI CHOI <hc7795@cs.utexas.edu>
+Date:   Wed Jul 10 00:10:10 2013 -0500
+
+    Finished common element parsing in xmlParser.py. Need to fix all li elements for optional tags/attributes.
+
+commit 72b9745a68da6e1ebb4c26c8e2378d3a7044616e
+Author: HONGHUI CHOI <hc7795@cs.utexas.edu>
+Date:   Wed Jul 10 00:08:42 2013 -0500
+
+    In xmlParser.py, reading XML data  into variables correctly except for the end of Organization.
+
+commit 7178e45c9a36df06ecfc44fadc92aace207031f7
+Author: Hoang Pham <hphamnk@yahoo.com>
+Date:   Tue Jul 9 23:58:44 2013 -0500
+
+    Updated crises, ppl, org in xmlParser
+
+commit 0e5b29ebe1fc05e80a22df2f7855d05ebe9216e0
+Author: HONGHUI CHOI <hc7795@cs.utexas.edu>
+Date:   Tue Jul 9 22:41:10 2013 -0500
+
+    Finished common element parsing in xmlParser.py. Need to fix all li elements for optional tags/attributes.
+
+commit aa6c9cb4db3b73fa6ca55f4f575a58bc6a2e0f9d
+Author: HONGHUI CHOI <hc7795@cs.utexas.edu>
+Date:   Tue Jul 9 21:40:08 2013 -0500
+
+    xmlparser updated
+
+commit 65376c22b0ec05f8571f3f505912efdaff03f6f3
+Author: Hoang Pham <hphamnk@yahoo.com>
+Date:   Tue Jul 9 21:35:15 2013 -0500
+
+    Added Organizations in xmlParser
+
+commit 1cf1ac7ec6474057f25debaa65e5c66154b86988
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Tue Jul 9 17:24:55 2013 -0500
+
+    Fixed optional elements for Persons in xmlParser. Also Person info is now being stored in variables.
+
+commit b504881ff1ac025e7cfb927dcba1df9d55f7369c
+Merge: 3b3f988 83ae826
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Tue Jul 9 16:44:29 2013 -0500
+
+    Merge branch 'master' of https://github.com/hc7795/cs373-wcdb
+
+commit 3b3f988123b4d731f1fb8982a7d4ac5514c271df
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Tue Jul 9 16:35:56 2013 -0500
+
+    Some work on importer.
+
+commit 83ae826d805dcfd6240287579ca8c761d883fbe2
+Author: HONGHUI CHOI <hc7795@cs.utexas.edu>
+Date:   Tue Jul 9 16:14:30 2013 -0500
+
+    models1.py updated
+
+commit 47f66e94f2663e869dbbc137faaaa1b2f30ceeb9
+Author: Arturo Lemus <lemus@cs.utexas.edu>
+Date:   Tue Jul 9 15:33:17 2013 -0500
+
+    Django framework for database
+
+commit e99d3dbdb4fbf9e1766485b3d48f75c3f4bc8d5f
+Author: Hoang Pham <hphamnk@utexas.edu>
+Date:   Tue Jul 9 15:16:55 2013 -0500
+
+    Update worldCrises.xml
+
+commit b26a28fd65b20cbc7415a77b5a8e28c8b5432036
+Author: HONGHUI CHOI <hc7795@cs.utexas.edu>
+Date:   Tue Jul 9 15:07:40 2013 -0500
+
+    models1.py added
+
+commit b1c55a2bac9c879b69c8d51aa29ce6552cefb97b
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Tue Jul 9 14:39:13 2013 -0500
+
+    Update crises.md
+
+commit 1e59f1f75f3af87e93d309360d0140cac8f040fb
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Tue Jul 9 14:37:19 2013 -0500
+
+    Update and rename crises to crises.md
+
+commit f5ae40a47ab89d4450d1337d288538bb0a557465
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Tue Jul 9 14:17:59 2013 -0500
+
+    Broke up functions in xmlParser into smaller functions.
+
+commit 1653892cfa3d69a9091b4b1ac801383b93182c48
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Tue Jul 9 13:19:50 2013 -0500
+
+    Added testWCDB.py
+
+commit c0ba44861695e3104003df708e1ae82cb5d72541
+Author: Honghui Choi <chh8259@hotmail.com>
+Date:   Tue Jul 9 06:07:02 2013 -0500
+
+    models3.py added
+
+commit 0f70e7f7f56ed0dbf37bf43e9064c93cc3445566
+Author: Honghui Choi <chh8259@hotmail.com>
+Date:   Tue Jul 9 05:43:39 2013 -0500
+
+    models2.py added
+
+commit d7fed05704a8a6c86a0fc0d9c23629f0209948ea
+Merge: a8bf5d4 581683b
+Author: Honghui Choi <chh8259@hotmail.com>
+Date:   Tue Jul 9 00:46:50 2013 -0500
+
+    Merge branch 'master' of https://github.com/hc7795/cs373-wcdb
+
+commit a8bf5d429b50a82e9579b75c4db22810625a7b56
+Author: Honghui Choi <chh8259@hotmail.com>
+Date:   Tue Jul 9 00:46:22 2013 -0500
+
+    reuploading gnxmlif minixsv
+
+commit 581683be3f0bf0fc3c6e76c855e6581f593ba942
+Merge: d8fea53 a801805
+Author: Honghui Choi <chh8259@hotmail.com>
+Date:   Tue Jul 9 00:29:04 2013 -0500
+
+    Merge branch 'master' of https://github.com/hc7795/cs373-wcdb
+
+commit d8fea5335e89c537375192b5e5f0d8442e105e2a
+Author: Honghui Choi <chh8259@hotmail.com>
+Date:   Tue Jul 9 00:28:15 2013 -0500
+
+    Iteration through the xml
+
+commit a80180591e7783f025b83485ec3fef8b7066fbf9
+Author: Hoang Pham <hphamnk@yahoo.com>
+Date:   Mon Jul 8 20:19:52 2013 -0500
+
+    Updated People
+
+commit 570bbc378a6d3844900b2f7f9eec0e4a193ae99f
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Mon Jul 8 12:56:43 2013 -0500
+
+    Filled in more code in xmlParser.xml
+
+commit 183b7b3b87708fda9277bb00b3c8e3e8c7e742a2
+Merge: 4ed8253 3e04561
+Author: Young Seo <youngseo@cs.utexas.edu>
+Date:   Mon Jul 8 12:54:32 2013 -0500
+
+    Merge https://github.com/hc7795/cs373-wcdb
+
+commit 4ed82538bce029136e8d606d48d5586178189df5
+Author: Young Seo <youngseo@cs.utexas.edu>
+Date:   Mon Jul 8 12:51:56 2013 -0500
+
+    django model skeleton
+
+commit 3e04561eb804e614f00aa519dfaac4f6bef8f81d
+Author: Hoang Pham <hphamnk@yahoo.com>
+Date:   Mon Jul 8 08:20:12 2013 -0500
+
+    Updated Crises and Org for some people
+
+commit f0190b5b1cf716d5dbbbe8647fd3587df8fa7ae7
+Author: Hoang Pham <hphamnk@yahoo.com>
+Date:   Mon Jul 8 04:35:00 2013 -0500
+
+    Added skeleton for people
+
+commit 310b59f20d4509f2fb961487647e76c383f7c2b2
+Author: Hoang Pham <hphamnk@yahoo.com>
+Date:   Mon Jul 8 02:56:51 2013 -0500
+
+    Updated crisis to the newest schema
+
+commit 893abe885bafceae31bef0e97f1c1e0830d76d24
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Sun Jul 7 16:35:41 2013 -0500
+
+    Added more code to xmlParser.py.
+
+commit bec4a2279bda26da67221af8de6437c41556be3f
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Sun Jul 7 16:14:48 2013 -0500
+
+    Added minixsv validation. Wrote some of the parsing code in xmlToModel(), but it's unfinished.
+
+commit 74206af6fec2e53317dc90a5cc50cf62a7efe739
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Sun Jul 7 13:48:44 2013 -0500
+
+    Added skeleton file for parsing XML files.
+
+commit 6d658d0fd8f0b9029b71e64913c90cc636150681
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Sun Jul 7 13:44:15 2013 -0500
+
+    Update README.md
+
+commit a81910f717ff6c6ed399b0d924459a40add9bfe0
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Sun Jul 7 13:41:46 2013 -0500
+
+    Update README.md
+
+commit 8fc4a6d94dc73d189170b4b767c2d357c1c4a374
+Author: Hoang Pham <hphamnk@yahoo.com>
+Date:   Thu Jul 4 00:00:45 2013 -0500
+
+    Added Non-Unique Crises, Corrected Attributes
+
+commit b9799abeb32ae8b4001d955c98b46a744a852e19
+Author: Hoang Pham <hphamnk@utexas.edu>
+Date:   Wed Jul 3 18:13:02 2013 -0500
+
+    Added Unique Crises
+
+commit 4a5ea8af021793ebd3703c3e6866d533dc7f8afb
+Author: hc7795 <hc7795@cs.utexas.edu>
+Date:   Wed Jul 3 18:00:30 2013 -0500
+
+    Update crises
+
+commit 4ea8af7aa808a84668a51c8be36251f5c6de9e2f
+Author: hc7795 <hc7795@cs.utexas.edu>
+Date:   Wed Jul 3 17:58:27 2013 -0500
+
+    Update crises
+
+commit 8a09545b982172efa24509eb7edad7e6feb870a6
+Author: Hoang Pham <hphamnk@utexas.edu>
+Date:   Wed Jul 3 17:47:46 2013 -0500
+
+    Fixed Places ID
+
+commit 16e379754a3547ccd2c0334d162f6f2edd9c6938
+Author: hc7795 <hc7795@cs.utexas.edu>
+Date:   Wed Jul 3 17:42:18 2013 -0500
+
+    Update crises
+
+commit a7a1206b79a4f16b8051386ba7249ad4d980895a
+Author: zhenyang1 <yangzhen@utexas.edu>
+Date:   Wed Jul 3 17:26:47 2013 -0500
+
+    Update worldCrises.xml
+
+commit 4ff856debc1a867bca87c770ea9337d3e7ff3c5b
+Author: Hoang Pham <hphamnk@utexas.edu>
+Date:   Wed Jul 3 17:22:54 2013 -0500
+
+    Added Crises, Places, Organizations
+
+commit d506ef7c8169e13301d6a0e22b64111d88ecbe4c
+Author: hc7795 <hc7795@cs.utexas.edu>
+Date:   Wed Jul 3 17:15:06 2013 -0500
+
+    Update crises
+
+commit 2dd45a1ea0011f3c0bbbcc3010d0b231c2a372ec
+Author: Hoang Pham <hphamnk@utexas.edu>
+Date:   Wed Jul 3 16:29:24 2013 -0500
+
+    Added Person
+
+commit 014f1e318244e6cb9c3d880ca0bcc5fbe02e463b
+Author: Hoang Pham <hphamnk@utexas.edu>
+Date:   Wed Jul 3 16:05:14 2013 -0500
+
+    Update worldCrises.xml
+
+commit caf76d342485b52b3e21b8b579935dad10403945
+Author: hc7795 <hc7795@cs.utexas.edu>
+Date:   Wed Jul 3 16:02:21 2013 -0500
+
+    Update README.md
+
+commit 17dc8a683c0ea04517a0ea1a7149def153571b58
+Author: hc7795 <hc7795@cs.utexas.edu>
+Date:   Wed Jul 3 15:46:57 2013 -0500
+
+    Update and rename worldCrises.xsd.xml to worldCrises.xml
+
+commit cd89e079c3e0a83156e665ac28d25f4fd8220e1f
+Author: HONGHUI CHOI <hc7795@cs.utexas.edu>
+Date:   Wed Jul 3 15:46:02 2013 -0500
+
+    xml schema
+
+commit 2e853b658fc48954e7feb173240ab94c5fbe61c6
+Author: Hoang Pham <hphamnk@utexas.edu>
+Date:   Wed Jul 3 15:31:35 2013 -0500
+
+    Update README.md
+
+commit 9bb77601a9ffc282e78d798f3d6517491c2ecf02
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Wed Jul 3 14:25:37 2013 -0500
+
+    Update README.md
+
+commit 0ee2ce342065fee2a6d4b51d0779765251ff01e0
+Author: Russell Jahn <russelljahn@gmail.com>
+Date:   Wed Jul 3 13:54:39 2013 -0500
+
+    Create README.md
+
+commit 69d05c188de2d69462bbf2a200bb482183c5be6c
+Author: HONGHUI CHOI <hc7795@cs.utexas.edu>
+Date:   Tue Jul 2 18:17:45 2013 -0500
+
+    first commit, crises

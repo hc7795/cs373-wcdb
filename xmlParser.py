@@ -27,7 +27,7 @@ from wcdb.models import Person, Organization, Crisis
 
 # Misc.
 import logging
-
+import sys
 
 
 
@@ -36,12 +36,15 @@ import logging
 """
 def xmlToDjango():
 
-	# Uncomment the following lines when hardcoded XML/Schema files are no longer necessary.
-	# xmlFilename = raw_input("Filename of the XML file: ")
-	# schemaFilename = raw_input("Filename of the schema file: ")
-	#xmlFilename = "test/example.xml"
-	xmlFilename = "static/WorldCrises.xml"
-	schemaFilename = "static/WorldCrises.xsd.xml"
+	password = raw_input("Password: ")
+	if (password != "gummy"):
+		print "Bad password!"
+		exit(1)
+
+
+	xmlFilename = raw_input("Filename of the XML file: ")
+	schemaFilename = raw_input("Filename of the schema file: ")
+
 
 	# Validate the XML file.
 	try:
@@ -337,9 +340,6 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 				crisisSummary = d.get('Summary')
 
 			if isNotDuplicate(crisisID, "crisis", unitTestDB):
-				# crisisAdd = Crisis.objects.create(crisisID = crisisID,
-				# 	crisisName = crisisName, crisisKind = crisisKind,
-				# 	crisisDate = crisisDate)
 				models[0].append(
 						Crisis(
 						CrisisID = crisisID,
@@ -347,48 +347,9 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 						crisisKind = crisisKind,
 						crisisDate = crisisDate,
 						crisisTime = crisisTime,
-						#crisisLocation = crisisLocations[0],
-						#crisisHumanImpact = crisisHumanImpact[0],
-						#crisisEconomicImpact = crisisEconomicImpact[0],
-						#crisisResourcesNeeded = crisisResourcesNeeded[0],
-						#crisisWaytoHelp = crisisWaysToHelp[0]
-						#people = crisisPersonIDs[0],
-						#org = crisisOrgIDs[0]
 					)
 				)
 
-				   
-	#c.people = models.ForeignKey('Person', related_name='crisis_people')
-	#c.org = models.ForeignKey('Organizations', related_name='crisis_org')
-	#c.com = models.ForeignKey('Common', related_name = 'crisis_com')
-
-			#models.append(c)
-
-			"""
-			print "\n\n\n========== CRISIS =========="
-			print "crisisID: ", crisisID
-			print "crisisName: ", crisisName
-			print "crisisPersonIDs = ", crisisPersonIDs
-			print "crisisOrgIDs = ", crisisOrgIDs
-			print "crisisKind = ", crisisKind
-			print "crisisDate = ", crisisDate
-			print "crisisTime = ", crisisTime
-			print "crisisLocations = ", crisisLocations
-			print "crisisHumanImpact = ", crisisHumanImpact
-			print "crisisEconomicImpact = ", crisisEconomicImpact
-			print "crisisResourcesNeeded = ", crisisResourcesNeeded
-			print "crisisWaysToHelp = ", crisisWaysToHelp
-			print "\n---- COMMON DATA ----"
-			print "crisisCitations = ", crisisCitations
-			print "crisisExternalLinks = ", crisisExternalLinks
-			print "crisisImages = ", crisisImages
-			print "crisisVideos = ", crisisVideos
-			print "crisisMaps = ", crisisMaps
-			print "crisisFeeds = ", crisisFeeds
-			print "crisisSummary = ", crisisSummary
-
-			print "\nnextElement is:", nextElement
-			"""
 		# Parse people. 
 		while (nextElement.tag == "Person"):
 			personAttributes = getTextAndAttributes(nextElement)
@@ -441,8 +402,6 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 				personSummary = d.get('Summary')
 
 			if isNotDuplicate(personID, "person", unitTestDB):
-				# personAdd = Person.objects.create(personID = personID,
-				#  	personName = personName, personKind = personKind)	
 				models[1].append(
 					Person(
 						PersonID = personID,
@@ -451,27 +410,6 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 						personLocation = personLocation
 					)
 				)
-			
-
-	
-			"""
-			print "\n\n\n========== PERSON =========="
-			print "personID:", personID
-			print "personName:", personName
-			print "personCrisisIDs:", personCrisisIDs
-			print "personOrgIDs:", personOrgIDs
-			print "personKind:", personKind
-			print "personLocation:", personLocation
-			print "\n---- COMMON DATA ----"
-			print "personCitations = ", personCitations
-			print "personExternalLinks = ", personExternalLinks
-			print "personImages = ", personImages
-			print "personVideos = ", personVideos
-			print "personMaps = ", personMaps
-			print "personFeeds = ", personFeeds
-			print "personSummary = ", personSummary
-			print "\nnextElement is:", nextElement
-			"""
 
 
 		# Parse organizations.
@@ -544,43 +482,14 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 				orgSummary = d.get('Summary')
 
 			if isNotDuplicate(orgID, "org", unitTestDB):
-				# org = Organization.objects.create(orgID = orgID,
-				# 	orgName = orgName, orgKind = orgKind,
-				# 	orgLocation = orgLocation)
 				models[2].append(
 					Organization(
 						OrganizationID = orgID,
 						OrganizationName = orgName,
 						orgKind = orgKind,
 						orgLocation = orgLocation,
-						#orgHistory = orgHistory,
-						#orgContact = orgContact
 					)
 				)
-				
-			"""
-			print "\n\n\n========== ORGANIZATION =========="
-			print "orgID:", orgID
-			print "orgName:", orgName
-			print "orgCrisisIDs:", orgCrisisIDs
-			print "orgPeopleIDs:", orgPeopleIDs
-			print "orgKind:", orgKind
-			print "orgLocation:", orgLocation
-			print "orgHistory:", orgHistory
-			print "orgContactInfo:", orgContactInfo
-			print "\n---- COMMON DATA ----"
-			print "orgCitations = ", orgCitations
-			print "orgExternalLinks = ", orgExternalLinks
-			print "orgImages = ", orgImages
-			print "orgVideos = ", orgVideos
-			print "orgMaps = ", orgMaps
-			print "orgFeeds = ", orgFeeds
-			print "orgSummary = ", orgSummary
-
-			print "\nnextElement is:", nextElement
-			"""
-
-
 
 		nextElement = treeIter.next()
 
@@ -609,15 +518,8 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 """
 def modelsToDjango(models):
 
-	#print "models:", models
-
 	for subList in models:
 		for m in subList:
-			#print "type(m):", type(m)
-
-			# Ensure that every m inherits from django.db.models.Model
-			#print "m = ", m
-			#assert( issubclass(m, models.Model) )
 			m.save()
 
 
@@ -643,27 +545,9 @@ def djangoToXml():
 		crisisChild = ET.SubElement(rootChild, "Kind")
 		crisisChild.text = crisis.crisisKind
 
-		# crisisChild = ET.SubElement(rootChild, "Date")
-		# crisisChild.text = crisis.crisisDate
-
 		if (crisis.crisisTime != ""):
 			crisisChild = ET.SubElement(rootChild, "Time")
 			crisisChild.text = crisis.crisisTime
-
-		# crisisChild = ET.SubElement(rootChild, "Locations")
-		# crisisChild.text = crisis.crisisLocations
-
-		# crisisChild = ET.SubElement(rootChild, "HumanImpact")
-		# crisisChild.text = crisis.crisisHumanImpact
-
-		# crisisChild = ET.SubElement(rootChild, "EconomicImpact")
-		# crisisChild.text = crisis.crisisEconomicImpact
-
-		# crisisChild = ET.SubElement(rootChild, "ResourcesNeeded")
-		# crisisChild.text = crisis.crisisResourcesNeeded
-
-		# crisisChild = ET.SubElement(rootChild, "WaysToHelp")
-		# crisisChild.text = crisis.crisisWaysToHelp
 
 
 	for person in Person.objects.all():
@@ -673,9 +557,6 @@ def djangoToXml():
 		
 		personChild = ET.SubElement(rootChild, "Kind")
 		personChild.text = person.personKind
-
-		# personChild = ET.SubElement(rootChild, "Location")
-		# personChild.text = person.personLocation
 
 
 	for org in Organization.objects.all():
@@ -689,19 +570,12 @@ def djangoToXml():
 		orgChild = ET.SubElement(rootChild, "Location")
 		orgChild.text = org.orgLocation
 
-		# orgChild = ET.SubElement(rootChild, "History")
-		# orgChild.text = org.orgHistory
-
-		# orgChild = ET.SubElement(rootChild, "ContactInfo")
-		# orgChild.text = org.orgContactInfo
-
 		
 	indent(root)
 	tree = ET.ElementTree(root)
 
 	tree.write(outfile, method="xml")
 	outfile.close()
-
 
 
 
@@ -724,13 +598,24 @@ def indent(elem, level=0):
             elem.tail = i
 
 
+
 """
 	Only run this code if not calling 'import'.
 """
 if __name__ == "__main__":
 	try:
-		xmlToDjango()
-		djangoToXml();
+		if len(sys.argv) == 2:
+			if sys.argv[1] == "import":
+				xmlToDjango()
+				exit(0)
+			elif sys.argv[1] == "export":
+				djangoToXml()
+				exit(0)
+
+		print "\nUsage:\n\n\tReading from XML to database:\n\txmlParser.py input\n\n\tWriting database to XML:\n\txmlParser.py output\n"
+
+	except IOError as ioe:
+		print "Error parsing files!"
 
 	except Exception as e:
 		logging.exception("Fatal error, ending program. Error message:")

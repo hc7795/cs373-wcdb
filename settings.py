@@ -10,12 +10,23 @@ ADMINS = (
 MANAGERS = ADMINS
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+#         'NAME': 'cs373_lemus',                      # Or path to database file if using sqlite3.
+#         'USER': 'lemus',                      # Not used with sqlite3.
+#         'PASSWORD': '7leuEjJU2x',                  # Not used with sqlite3.
+#         'HOST': 'z',                      # Set to empty string for localhost. Not used with sqlite3.
+#         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'cs373_lemus',                      # Or path to database file if using sqlite3.
-        'USER': 'lemus',                      # Not used with sqlite3.
-        'PASSWORD': '7leuEjJU2x',                  # Not used with sqlite3.
+        'NAME': 'cs373_wrj322',                      # Or path to database file if using sqlite3.
+        'USER': 'wrj322',                      # Not used with sqlite3.
+        'PASSWORD': 'tUaELGlmIV',                  # Not used with sqlite3.
         'HOST': 'z',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -48,14 +59,17 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
+# Absolute path to website root
+SITE_ROOT = "/u/wrj322/CS373/project4"
+
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = SITE_ROOT + '/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -77,7 +91,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/u/wrj322/CS373/project3/static/'
+    ("assets", SITE_ROOT + "/static")
 )
 
 # List of finder classes that know how to find static files in
@@ -106,10 +120,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'project3.urls'
+ROOT_URLCONF = 'project4.urls'
 
 TEMPLATE_DIRS = (
-    '/u/wrj322/CS373/project3/templates/'
+    SITE_ROOT + '/templates/'
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.

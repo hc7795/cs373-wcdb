@@ -38,7 +38,7 @@ def index(request):
 	people.append(Person.objects.get(PersonID="PER_BUSDAD"))
 	people.append(Person.objects.get(PersonID="PER_BRAMAN"))
 
-	template = loader.get_template("splash.html")
+	template = loader.get_template("base.html")
 	context = RequestContext(request, {
 		"crises" : crises,
 		"organizations" : organizations,

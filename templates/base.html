@@ -1,18 +1,39 @@
+<!DOCTYPE html>
 <html>
+{% load static %}
+{% get_static_prefix as STATIC_PREFIX %}
+
+
 <head>
-  <link rel = "stylesheet" type = "text/css" href="/css/basestyle.css">
+  <link rel="stylesheet" type="text/css" href="{{STATIC_URL}} "css/basestyle.css" %}">
   {% block head %}
   {% endblock %}
 </head>
+
+
+
 <body>
-<div id = "header">
-  <div id = "team name">
+<div id="wrapper">
+
+<div id="header">
+  <div id="nav">
+  I AM A BANANA!
+  "{{STATIC_URL}}"
   <!--- Gummy Pandas --> 
-  </div>
-</div>
-<div id = "container">
+  </div> <!-- /nav -->
+<div> <!-- /header -->
+
+
+<div id = "content">
   {% block content %}
   {% endblock %}
-</div>
+</div> <!-- /content -->
+
+
+<div id="footer">
+</div> <!-- /footer -->
+
+
+</div> <!-- /wrapper -->
 </body>
 </html>

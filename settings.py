@@ -60,7 +60,7 @@ USE_I18N = True
 USE_L10N = True
 
 # Absolute path to website root
-SITE_ROOT = "/u/wrj322/CS373/project4"
+SITE_ROOT = "/u/wrj322/CS373/project4/"
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
@@ -91,7 +91,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    ("assets", SITE_ROOT + "/static")
+    SITE_ROOT + "/static/",
 )
 
 # List of finder classes that know how to find static files in

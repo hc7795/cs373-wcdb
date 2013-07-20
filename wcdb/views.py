@@ -23,26 +23,26 @@ def index(request):
 	# organizations = Organization.objects.all().order_by('OrganizationName')
 	# people = Person.objects.all().order_by('PersonName')
 
-	crises = []
-	crises.append(Crisis.objects.get(CrisisID="CRI_IRAQWR"))
-	crises.append(Crisis.objects.get(CrisisID="CRI_HURIKE"))
-	crises.append(Crisis.objects.get(CrisisID="CRI_BAGAIR"))
+	# crises = []
+	# crises.append(Crisis.objects.get(CrisisID="CRI_IRAQWR"))
+	# crises.append(Crisis.objects.get(CrisisID="CRI_HURIKE"))
+	# crises.append(Crisis.objects.get(CrisisID="CRI_BAGAIR"))
 
-	organizations = []
-	organizations.append(Organization.objects.get(OrganizationID="ORG_WHLORG"))
-	organizations.append(Organization.objects.get(OrganizationID="ORG_REDCRS"))
-	organizations.append(Organization.objects.get(OrganizationID="ORG_IAVETA"))
+	# organizations = []
+	# organizations.append(Organization.objects.get(OrganizationID="ORG_WHLORG"))
+	# organizations.append(Organization.objects.get(OrganizationID="ORG_REDCRS"))
+	# organizations.append(Organization.objects.get(OrganizationID="ORG_IAVETA"))
 
-	people = []
-	people.append(Person.objects.get(PersonID="PER_SADHUS"))
-	people.append(Person.objects.get(PersonID="PER_BUSDAD"))
-	people.append(Person.objects.get(PersonID="PER_BRAMAN"))
+	# people = []
+	# people.append(Person.objects.get(PersonID="PER_SADHUS"))
+	# people.append(Person.objects.get(PersonID="PER_BUSDAD"))
+	# people.append(Person.objects.get(PersonID="PER_BRAMAN"))
 
 	template = loader.get_template("base.html")
 	context = RequestContext(request, {
-		"crises" : crises,
-		"organizations" : organizations,
-		"people" : people
+		# "crises" : crises,
+		# "organizations" : organizations,
+		# "people" : people
 	})
 
 	return HttpResponse(template.render(context))

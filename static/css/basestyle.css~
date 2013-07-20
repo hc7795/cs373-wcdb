@@ -1,0 +1,7 @@
+body {
+	background-color: white;
+	background-position: center top;
+	color: blue;
+	margin: 0;
+	padding: auto;
+}

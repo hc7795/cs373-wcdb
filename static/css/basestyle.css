@@ -1,0 +1,12 @@
+body {
+	background-color: red;
+	background-position: center top;
+	color: green;
+	margin: 0;
+	padding: auto;
+}
+
+#nav {
+	height:7.5%;
+	background-color:rgba(0.90, 0.90, 0.90, 0.95);
+}

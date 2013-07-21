@@ -1,6 +1,6 @@
 /* Font imports. */
 @import url(http://fonts.googleapis.com/css?family=Inconsolata:400,700); /* Inconsolata: normal, bold */
-
+@import url(http://fonts.googleapis.com/css?family=Indie+Flower|Delius|Architects+Daughter);
 
 body {
 	background-image:url(../images/bg_clay_green_tint.jpg);
@@ -9,7 +9,6 @@ body {
 	padding: auto;
 	height:1000px;
 }
-
 
 #nav {
 	position:fixed;
@@ -26,18 +25,37 @@ body {
 #nav_link_box {
 	margin:auto;
 	position:relative;
-	width:25em;
+	width:40em;
 }
 #nav_link_box a {	
 	display:inline-block;
-	width:23%;
+	float:left;
 	margin-top:0.5em;
+	margin-left:3%;
+	margin-right:3%;
+	/*border-left: 1px solid #BFCFDE;*/
+
+	
 
 	color:inherit;
 	text-decoration:none;
 	opacity:0.85;
 }
-
+#wcdb_logo {
+	/*font-family:'Indie Flower', cursive;*/
+	/*font-family: 'Delius', cursive;*/
+	font-family: 'Architects Daughter', cursive;
+	color:#059FFF !important;
+	/*border-right: 2px solid #BFCFDE;*/
+	padding-right:5%;
+	margin-left:0.5% !important;
+	float:left;
+}
+#wcdb_logo_bear {
+	margin-top: 0.35em;
+	float:left;
+	width:3%;
+}
 
 #content {
 	position:absolute;

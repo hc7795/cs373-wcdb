@@ -67,6 +67,12 @@ def organizations(request):
 	})
 	return HttpResponse(template.render(context))
 
+def about(request):
+	template = loader.get_template("about.html")
+	context = RequestContext(request, {
+	})
+	return HttpResponse(template.render(context))
+
 def CRI_IRAQWR(request):
 	template = loader.get_template('CRI_IRAQWR.html')
 	context = RequestContext(request)

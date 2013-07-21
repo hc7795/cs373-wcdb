@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import patterns, include, url
-from django.views.generic.simple import direct_to_template
+# from django.views.generic.simple import direct_to_template
 from django.contrib import admin
 from wcdb import views
 admin.autodiscover()
@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 	url(r'crises', views.crises, name='crises'),
 	url(r'people', views.people, name='people'),
 	url(r'organizations', views.organizations, name='organizations'),
+	url(r'about', views.about, name='about'),
 
 	# Hardcoded HTML pages.
 	url(r'CRI_IRAQWR', views.CRI_IRAQWR, name='CRI_IRAQWR'),

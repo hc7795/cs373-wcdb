@@ -3,12 +3,11 @@
 
 
 body {
-	background-color: white;
-	background-position: center top;
+	background-image:url(../images/bg_clay_green_tint.jpg);
 	color: black;
 	margin: 0;
 	padding: auto;
-	height:2000px;
+	height:1000px;
 }
 
 

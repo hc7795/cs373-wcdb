@@ -1,12 +1,49 @@
+/* Font imports. */
+@import url(http://fonts.googleapis.com/css?family=Inconsolata:400,700); /* Inconsolata: normal, bold */
+
 body {
 	background-color: white;
 	background-position: center top;
 	color: black;
 	margin: 0;
 	padding: auto;
+	height:2000px;
 }
 
 #nav {
-	height:7.5%;
-	background-color:rgba(0.90, 0.90, 0.90, 0.95);
+	position:fixed;
+	height:2.25em;
+	width:100%;
+
+	font-family: 'Inconsolata', sans-serif;
+	color:rgba(230, 230, 230, 1.0);
+	font-size:150%;
+
+	background-color:rgba(45, 45, 45, 0.90);
 }
+
+/* Box of links inside of nav. */
+#nav_link_box {
+	width:52%;
+	margin:auto;
+}
+
+#nav_link_box a {
+	display:inline-block;
+	width:24%;
+	margin-top:1.20%;
+
+	color:inherit;
+	text-decoration:none;
+}
+
+#nav_link_box a:hover {
+	color:white;
+	text-decoration:underline;
+}
+
+#content {
+	position:absolute;
+	top:7.5%;
+}
+

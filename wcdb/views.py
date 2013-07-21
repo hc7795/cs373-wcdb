@@ -38,13 +38,33 @@ def index(request):
 	# people.append(Person.objects.get(PersonID="PER_BUSDAD"))
 	# people.append(Person.objects.get(PersonID="PER_BRAMAN"))
 
-	template = loader.get_template("base.html")
+	template = loader.get_template("index.html")
 	context = RequestContext(request, {
 		# "crises" : crises,
 		# "organizations" : organizations,
 		# "people" : people
 	})
+	return HttpResponse(template.render(context))
 
+def crises(request):
+	template = loader.get_template("crises.html")
+	context = RequestContext(request, {
+		# "crises" : crises,
+	})
+	return HttpResponse(template.render(context))
+
+def people(request):
+	template = loader.get_template("people.html")
+	context = RequestContext(request, {
+		# "people" : people,
+	})
+	return HttpResponse(template.render(context))
+
+def organizations(request):
+	template = loader.get_template("organizations.html")
+	context = RequestContext(request, {
+		# "organizations" : organizations,
+	})
 	return HttpResponse(template.render(context))
 
 def CRI_IRAQWR(request):

@@ -5,7 +5,14 @@ from wcdb import views
 admin.autodiscover()
 
 urlpatterns = patterns('',
+	# Index page.
 	url(r'^$', views.index, name='index'),
+	url(r'index', views.index, name='index'),
+
+	# Category pages.
+	url(r'crises', views.crises, name='crises'),
+	url(r'people', views.people, name='people'),
+	url(r'organizations', views.organizations, name='organizations'),
 
 	# Hardcoded HTML pages.
 	url(r'CRI_IRAQWR', views.CRI_IRAQWR, name='CRI_IRAQWR'),

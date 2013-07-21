@@ -35,6 +35,12 @@ $(document).ready(
 				$(this).css("text-decoration", $(this).data("originalDecoration"));
 			}
 		);
+
+
+		$('.column').masonry({
+			columnWidth: 200,
+			itemSelector: '.item'
+		});
 		
 
 	}

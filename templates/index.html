@@ -1,5 +1,24 @@
 {% extends "base.html" %}
 
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index.css">
+<script src="{{ STATIC_URL }}js/index.js"></script>
+{% endblock %}
+<center>
 {% block content %}
-	<p>index!</p>
+<div class="container">
+
+		<div class="column">
+		<p>more SHIT</p> 
+		</div>
+
+		<div class="column"> 
+		<p>horse SHIT</p>
+		</div>
+
+		<div class="column"> 
+		<p>bull SHIT</p>
+		</div>
+</div>
+</center>
 {% endblock %}

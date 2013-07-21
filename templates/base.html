@@ -4,6 +4,9 @@
 
 <head>
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/basestyle.css">
+  <script src="{{ STATIC_URL }}js/jquery-1.10.2.min.js"></script>
+  <script src="{{ STATIC_URL }}js/masonry.pkgd.min.js"></script>
+  <script src="{{ STATIC_URL }}js/main.js"></script>
 
   {% block head %}
   {% endblock %}
@@ -18,10 +21,10 @@
 <div id="header">
   <div id="nav">
   	<div id="nav_link_box">
-  		<a href="index.html">Home</a>
-  		<a href="crises.html">Crises</a>
-  		<a href="people.html">People</a>
-  		<a href="organizations.html">Organizations</a>
+  		<a class="hover_lightup hover_underline" href="index.html">Home</a>
+  		<a class="hover_lightup hover_underline" href="crises.html">Crises</a>
+  		<a class="hover_lightup hover_underline" href="people.html">People</a>
+  		<a class="hover_lightup hover_underline" href="organizations.html">Organizations</a>
   	</div>
   </div> <!-- /nav -->
 </div> <!-- /header -->

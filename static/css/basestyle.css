@@ -1,6 +1,7 @@
 /* Font imports. */
 @import url(http://fonts.googleapis.com/css?family=Inconsolata:400,700); /* Inconsolata: normal, bold */
 
+
 body {
 	background-color: white;
 	background-position: center top;
@@ -9,6 +10,7 @@ body {
 	padding: auto;
 	height:2000px;
 }
+
 
 #nav {
 	position:fixed;
@@ -21,27 +23,22 @@ body {
 
 	background-color:rgba(45, 45, 45, 0.90);
 }
-
 /* Box of links inside of nav. */
 #nav_link_box {
-	width:52%;
 	margin:auto;
+	position:relative;
+	width:25em;
 }
-
-#nav_link_box a {
+#nav_link_box a {	
 	display:inline-block;
-	width:24%;
-	margin-top:1.20%;
+	width:23%;
+	margin-top:0.5em;
 
 	color:inherit;
 	text-decoration:none;
 	opacity:0.85;
 }
 
-/*#nav_link_box a:hover {
-	color:white;
-	text-decoration:underline;
-}*/
 
 #content {
 	position:absolute;

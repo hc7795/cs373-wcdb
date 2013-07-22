@@ -22,13 +22,15 @@ setup_environ(settings)
 
 # Django code.
 from django.db import models
-from wcdb.models import Person, Organization, Crisis
+from wcdb.models import Person, Organization, Crisis, Common, List
 
 
 # Misc.
 import logging
 import sys
 
+#cast a string of ID into list
+import ast
 
 
 """
@@ -270,6 +272,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 			crisisMaps = []
 			crisisFeeds = []
 			crisisSummary = ""
+			commonExist=False
 
 			nextElement = treeIter.next() # People element
 			if (nextElement.tag == "People"):
@@ -332,6 +335,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					nextElement = treeIter.next()
 
 			if (nextElement.tag == "Common"):
+				commonExist=True
 				nextElement, treeIter, d = getCommonData(nextElement, treeIter)
 				crisisCitations = d.get('Citations')
 				crisisExternalLinks = d.get('ExternalLinks')
@@ -342,6 +346,70 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 				crisisSummary = d.get('Summary')
 
 			if isNotDuplicate(crisisID, "crisis", unitTestDB):
+				if (commonExist==False):
+					common=None
+					#common.save()
+				else:
+					common=	Common()
+					common.save()
+					for c in crisisCitations:
+						li=List()
+				
+						li.ListHref=c.get("href")
+						li.ListEmbed=c.get("embed")
+						li.ListText=c.get("text")
+						li.ListContent=c.get("content")
+						li.save()
+						common.commonCitations.add(li)
+
+					for c in crisisExternalLinks:
+						li=List(
+						ListHref=c.get("href"),
+						ListEmbed=c.get("embed"),
+						ListText=c.get("text"),
+						ListContent=c.get("content")
+						)
+						li.save()
+						common.commonExternalLinks.add(li)
+
+					for c in crisisImages:
+						li=List(
+						ListHref=c.get("href"),
+						ListEmbed=c.get("embed"),
+						ListText=c.get("text"),
+						ListContent=c.get("content")
+						)
+						li.save()
+						common.commonImages.add(li)
+
+					for c in crisisVideos:
+						li=List(
+						ListHref=c.get("href"),
+						ListEmbed=c.get("embed"),
+						ListText=c.get("text"),
+						ListContent=c.get("content")
+						)
+						li.save()
+						common.commonVideos.add(li)
+					for c in crisisMaps:
+						li=List(
+						ListHref=c.get("href"),
+						ListEmbed=c.get("embed"),
+						ListText=c.get("text"),
+						ListContent=c.get("content")
+						)
+						li.save()
+						common.commonMaps.add(li)
+					for c in crisisFeeds:
+						li=List(
+						ListHref=c.get("href"),
+						ListEmbed=c.get("embed"),
+						ListText=c.get("text"),
+						ListContent=c.get("content")
+						)
+						li.save()
+						common.commonFeeds.add(li)
+					common.commonSummary=crisisSummary
 				models[0].append(
 						Crisis(
 						CrisisID = crisisID,
@@ -349,6 +417,10 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 						crisisKind = crisisKind,
 						crisisDate = crisisDate,
 						crisisTime = crisisTime,
+						CrisisPerson=str(crisisPersonIDs),
+						CrisisOrganization=str(crisisOrgIDs),
+						com=common
+						
 					)
 				)
 
@@ -409,7 +481,9 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 						PersonID = personID,
 						PersonName = personName,
 						personKind = personKind,
-						personLocation = personLocation
+						personLocation = personLocation,
+						PersonCrisis=str(personCrisisIDs),
+						PersonOrganization=str(personOrgIDs),
 					)
 				)
 
@@ -490,6 +564,8 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 						OrganizationName = orgName,
 						orgKind = orgKind,
 						orgLocation = orgLocation,
+						OrganizationCrisis=str(orgCrisisIDs),
+						OrganizationPerson=str(orgPeopleIDs),
 					)
 				)
 
@@ -543,7 +619,24 @@ def djangoToXml():
 		rootChild = ET.SubElement(root, "Crisis")
 		rootChild.set("crisisID", crisis.CrisisID)
 		rootChild.set("crisisName", crisis.CrisisName)
+		#People ID
+		crisis_person_str=crisis.CrisisPerson
+		crisis_person_list=ast.literal_eval(crisis_person_str)
+		rootChild2 = ET.SubElement(rootChild, "People")
+		for cp in crisis_person_list:
+			rootChild3 = ET.SubElement(rootChild2, "Person")
+			rootChild3.set("ID", cp)
 
+
+		#Organization ID
+		crisis_Organization_str=crisis.CrisisOrganization
+		crisis_Organization_list=ast.literal_eval(crisis_Organization_str)
+		rootChild2 = ET.SubElement(rootChild, "Organizations")
+		for co in crisis_Organization_list:
+			rootChild3 = ET.SubElement(rootChild2, "Org")
+			rootChild3.set("ID", co)
+
+		#Kind
 		crisisChild = ET.SubElement(rootChild, "Kind")
 		crisisChild.text = crisis.crisisKind
 
@@ -551,6 +644,50 @@ def djangoToXml():
 			crisisChild = ET.SubElement(rootChild, "Time")
 			crisisChild.text = crisis.crisisTime
 
+		#Common
+		if(crisis.com!=None):
+			crisisChild = ET.SubElement(rootChild, "Common")
+			if(crisis.com.commonCitations.exists()):
+				print "citation :   ", (crisis.com.commonCitations)
+				commonChild=ET.SubElement(crisisChild,"Citations")
+				for li in crisis.com.commonCitations.all():
+					CitationsChild=ET.SubElement(commonChild,"li")
+					if(li.ListHref!=None):
+						CitationsChild.set("href",li.ListHref)
+					if(li.ListEmbed!=None):
+						CitationsChild.set("href",li.ListEmbed)
+					if(li.ListText!=None):
+						CitationsChild.set("href",li.ListText)
+					if(li.ListContent!=None):
+						CitationsChild.text=li.ListContent
+
+			if(crisis.com.commonExternalLinks.exists()):
+				commonChild=ET.SubElement(crisisChild,"ExternalLinks")
+				for li in crisis.com.commonExternalLinks.all():
+					ExternalLinksChild=ET.SubElement(commonChild,"li")
+					if(li.ListHref!=None):
+						ExternalLinksChild.set("href",li.ListHref)
+					if(li.ListEmbed!=None):
+						ExternalLinksChild.set("href",li.ListEmbed)
+					if(li.ListText!=None):
+						ExternalLinksChild.set("href",li.ListText)
+					if(li.ListContent!=None):
+						ExternalLinksChild.text=li.ListContent
+
+			if(crisis.com.commonImages.exists()):
+				commonChild=ET.SubElement(crisisChild,"Images")
+				for li in crisis.com.commonImages.all():
+					ImagesChild=ET.SubElement(commonChild,"li")
+					if(li.ListHref!=None):
+						ImagesChild.set("href",li.ListHref)
+					if(li.ListEmbed!=None):
+						ImagesChild.set("href",li.ListEmbed)
+					if(li.ListText!=None):
+						ImagesChild.set("href",li.ListText)
+					if(li.ListContent!=None):
+						ImagesChild.text=li.ListContent
+
+			
 
 	for person in Person.objects.all():
 		rootChild = ET.SubElement(root, "Person")

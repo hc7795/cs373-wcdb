@@ -12,7 +12,7 @@ body {
 	position:fixed;
 	height:2.25em;
 	width:100%;
-
+	z-index: 5000;
 	font-family: 'Inconsolata', sans-serif;
 	color:rgba(230, 230, 230, 1.0);
 	font-size:150%;

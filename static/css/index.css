@@ -1,18 +1,108 @@
-.container {
-	width: 100%;
+/*	width: 100%;
 	margin-left:0px;
 	margin-right: 0px;
 	position: relative;
 }
-
+*/
 
 .column {
-	padding-left:auto;
-	padding-right:auto;
-	color:green;
-	position:relative;
-	display:inline-block;
-	width:33.33%;
-	float: left;
-	background-color: yellow;
+/*    -moz-column-count: 3;
+    -moz-column-gap: 10px;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 10px;
+    column-count: 3;*/
+    /*column-gap: 10px;*/
+    width: 30%;
+    margin: 0% 1.5% 0% 1.5%; 
+    display:inline-block;
 }
+
+li {
+  list-style-type:none;
+
+}
+
+
+
+#myContent img {
+	display: inline-block;
+	margin-bottom: 1%;
+	max-width: 100%;
+	position:relative;
+
+}
+
+
+
+/*
+@media only screen and (max-width : 1199px),
+only screen and (max-device-width : 1199px){
+	#myContent {
+		-moz-column-count: 5;
+		-moz-column-gap: 0px;
+		-webkit-column-count: 5;
+		-webkit-column-gap: 0px;
+		column-count: 5;
+		column-gap: 0px;
+		width: 1000px;
+	}
+	 
+	#container {
+		width: 1000px;
+	}
+}
+ 
+ 
+@media only screen and (max-width : 999px),
+only screen and (max-device-width : 999px){
+	#myContent {
+		-moz-column-count: 4;
+		-moz-column-gap: 0px;
+		-webkit-column-count: 4;
+		-webkit-column-gap: 0px;
+		column-count: 4;
+		column-gap: 0px;
+		width: 800px;
+	}
+	 
+	#container {
+		width: 800px;
+	}
+}
+ 
+@media only screen and (max-width : 799px),
+only screen and (max-device-width : 799px){
+	#myContent {
+		-moz-column-count: 3;
+		-moz-column-gap: 0px;
+		-webkit-column-count: 3;
+		-webkit-column-gap: 0px;
+		column-count: 34;
+		column-gap: 0px;
+		width: 600px;
+	}
+	 
+	#container {
+		width: 600px;
+	}
+}
+ 
+@media only screen and (max-width : 599px),
+only screen and (max-device-width : 599px){
+	#myContent {
+		-moz-column-count: 2;
+		-moz-column-gap: 0px;
+		-webkit-column-count: 2;
+		-webkit-column-gap: 0px;
+		column-count: 2;
+		column-gap: 0px;
+		width: 400px;
+	}
+	 
+	#container {
+		width: 400px;
+	}
+}
+/*
+http://designshack.net/articles/css/masonry/
+*/

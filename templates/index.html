@@ -2,23 +2,97 @@
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index.css">
-<script src="{{ STATIC_URL }}js/index.js"></script>
+<script src="http://masonry.desandro.com/masonry.pkgd.min.js", type="text/javascript"></script>
 {% endblock %}
 <center>
 {% block content %}
-<div class="container">
 
 		<div class="column">
-		<p>more SHIT</p> 
+		<p>Crises</p>
+
+			<ul id="myContent">
+				<li class="item"><img src="{{ STATIC_URL }}images/cri/HIV.png" alt=""></li>
+
+				<li class="item"><img src="{{ STATIC_URL }}images/cri/Baghdad_airstrike.png" alt=""></li>
+
+				<li class="item"><img src="{{ STATIC_URL }}images/cri/Egypt_protest.jpg" alt=""></li>
+
+				<li class="item"><img src="{{ STATIC_URL }}images/cri/H1N1_influenza.jpg" alt=""></li>
+
+				<li class="item"><img src="{{ STATIC_URL }}images/cri/Haiti_Earthquake.jpg" alt=""></li>
+
+				<li class="item"><img src="{{ STATIC_URL }}images/cri/Iraq_War.png" alt=""></li>
+
+				<li class="item"><img src="{{ STATIC_URL }}images/cri/September_11.jpg" alt=""></li>
+
+				<li class="item"><img src="{{ STATIC_URL }}images/cri/Water_Scarcity.gif" alt=""></li>
+
+				<li class="item"><img src="{{ STATIC_URL }}images/cri/Exval.jpeg" alt=""></li>
+
+				<li class="item"><img src="{{ STATIC_URL }}images/cri/Hurricane_Ike.jpg" alt=""></li>
+
+			 </ul> 
+
 		</div>
 
 		<div class="column"> 
-		<p>horse SHIT</p>
+		<p>peeps</p>
+					<ul id="myContent">  
+				<li><img src="{{ STATIC_URL }}images/ppl/bush_dad.jpg" alt=""></li>
+
+				<li><img src="{{ STATIC_URL }}images/ppl/Camdessus.jpg" alt=""></li>
+
+				<li><img src="{{ STATIC_URL }}images/ppl/Bradley.jpg" alt=""></li>
+
+				<li><img src="{{ STATIC_URL }}images/ppl/Gregory.jpg" alt=""></li>
+
+				<li><img src="{{ STATIC_URL }}images/ppl/Hosni_Mubarak.jpg" alt=""></li>
+
+				<li><img src="{{ STATIC_URL }}images/ppl/Julian_Assange.jpg" alt=""></li>
+
+				<li><img src="{{ STATIC_URL }}images/ppl/Obama.jpg" alt=""></li>
+
+				<li><img src="{{ STATIC_URL }}images/ppl/Osama.jpg" alt=""></li>
+
+				<li><img src="{{ STATIC_URL }}images/ppl/rene_preval.jpg" alt=""></li>
+
+				<li><img src="{{ STATIC_URL }}images/ppl/Saddam.jpg" alt=""></li>
+
+
+			 </ul> 
 		</div>
 
 		<div class="column"> 
-		<p>bull SHIT</p>
+		<p>orgies</p>
+					<ul id="myContent">  
+				<li><img src="{{ STATIC_URL }}images/org/al_qaeda.svg" alt=""></li>
+
+				<li><img src="{{ STATIC_URL }}images/org/Care.jpg" alt=""></li>
+
+				<li><img src="{{ STATIC_URL }}images/org/cdc.png" alt=""></li>
+
+				<li><img src="{{ STATIC_URL }}images/org/fema.png" alt=""></li>
+
+				<li><img src="{{ STATIC_URL }}images/org/iava.jpg" alt=""></li>
+
+				<li><img src="{{ STATIC_URL }}images/org/oil_spill_recovery.jpg" alt=""></li>
+
+				<li><img src="{{ STATIC_URL }}images/org/red _cross.svg" alt=""></li>
+
+				<li><img src="{{ STATIC_URL }}images/org/unicef.svg" alt=""></li>
+
+				<li><img src="{{ STATIC_URL }}images/org/who.svg" alt=""></li>
+
+				<li><img src="{{ STATIC_URL }}images/org/wikileaks.png" alt=""></li>
+
+
+			 </ul> 
 		</div>
-</div>
-</center>
+
+</center> 
+
+
+	
+
+
 {% endblock %}

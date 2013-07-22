@@ -553,7 +553,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 						)
 						li.save()
 						common.commonFeeds.add(li)
-					common.commonSummary=crisisSummary
+					common.commonSummary=personSummary
 				models[1].append(
 					Person(
 						PersonID = personID,
@@ -614,7 +614,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 				nextElement = treeIter.next()
 				while (nextElement.tag == "li"):
 					d = getTextAndAttributes(nextElement)
-					orgHistory.append(d)
+		crisisSummary			orgHistory.append(d)
 					nextElement = treeIter.next()
 
 			if (nextElement.tag == "ContactInfo"):
@@ -626,6 +626,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 
 
 			if (nextElement.tag == "Common"):
+				commonExists = True
 				nextElement, treeIter, d = getCommonData(nextElement, treeIter)
 				orgCitations = d.get('Citations')
 				orgExternalLinks = d.get('ExternalLinks')
@@ -634,6 +635,69 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 				orgMaps = d.get('Maps')
 				orgFeeds = d.get('Feeds')
 				orgSummary = d.get('Summary')
+				
+			if (commonExist == False):
+					common=None
+				else:
+					common=	Common()
+					common.save()
+					for c in orgCitations:
+						li=List()
+						li.ListHref=c.get("href")
+						li.ListEmbed=c.get("embed")
+						li.ListText=c.get("text")
+						li.ListContent=c.get("content")
+						li.save()
+						common.commonCitations.add(li)
+
+					for c in orgExternalLinks:
+						li=List(
+						ListHref=c.get("href"),
+						ListEmbed=c.get("embed"),
+						ListText=c.get("text"),
+						ListContent=c.get("content")
+						)
+						li.save()
+						common.commonExternalLinks.add(li)
+
+					for c in orgImages:
+						li=List(
+						ListHref=c.get("href"),
+						ListEmbed=c.get("embed"),
+						ListText=c.get("text"),
+						ListContent=c.get("content")
+						)
+						li.save()
+						common.commonImages.add(li)
+
+					for c in orgVideos:
+						li=List(
+						ListHref=c.get("href"),
+						ListEmbed=c.get("embed"),
+						ListText=c.get("text"),
+						ListContent=c.get("content")
+						)
+						li.save()
+						common.commonVideos.add(li)
+					for c in orgMaps:
+						li=List(
+						ListHref=c.get("href"),
+						ListEmbed=c.get("embed"),
+						ListText=c.get("text"),
+						ListContent=c.get("content")
+						)
+						li.save()
+						common.commonMaps.add(li)
+					for c in orgFeeds:
+						li=List(
+						ListHref=c.get("href"),
+						ListEmbed=c.get("embed"),
+						ListText=c.get("text"),
+						ListContent=c.get("content")
+						)
+						li.save()
+						common.commonFeeds.add(li)
+					common.commonSummary=orgSummary
 
 			if isNotDuplicate(orgID, "org", unitTestDB):
 				models[2].append(
@@ -642,6 +706,8 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 						OrganizationName = orgName,
 						orgKind = orgKind,
 						orgLocation = orgLocation,
+						orgHistory = orgHistory,
+						orgContact = orgContactInfo,
 						OrganizationCrisis=str(orgCrisisIDs),
 						OrganizationPerson=str(orgPeopleIDs),
 					)

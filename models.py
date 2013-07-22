@@ -36,11 +36,11 @@ class Organization(models.Model):
 	OrganizationName = models.CharField(max_length = 200)
 	orgKind = models.CharField(max_length=100, null = True)
 	orgLocation = models.CharField(max_length=10000, null = True)
-	#orgHistory = models.CharField(max_length=25)
-	#orgContact = models.CharField(max_length=50)
+	orgHistory = models.CharField(max_length=25)
+	orgContact = models.CharField(max_length=50)
 	OrganizationCrisis = models.TextField()
 	OrganizationPerson = models.TextField()
-	#com = models.ForeignKey('Organizations', related_name = 'organizations_com')
+	com = models.ForeignKey('Common', null=True)
 
 	def __unicode__(self):
 	   return self.OrganizationName  

@@ -25,11 +25,11 @@
 	-webkit-column-count: 3;
 	-webkit-column-gap: 2px;
 
-/*	-moz-column-count: 6;
-	-moz-column-gap: 0px;
-	column-count: 6;*/
+	-moz-column-count: 3;
+	-moz-column-gap: 2px;
+	
+	column-count: 6;
 	column-gap: 2px;
-	/*width: 1200px;*/
 }
  
 #myContent img{

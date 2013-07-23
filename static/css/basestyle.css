@@ -6,7 +6,6 @@ body {
 	color: black;
 	margin: 0;
 	height:1000px;
-    display:inline-block;	
 }
 
 #nav {
@@ -17,7 +16,6 @@ body {
 	font-family: 'Inconsolata', sans-serif;
 	color:rgba(230, 230, 230, 1.0);
 	font-size:150%;
-
 
 	background-color:rgba(45, 45, 45, 0.90);
 }
@@ -33,7 +31,6 @@ body {
 	margin-top:0.5em;
 	margin-left:3%;
 	margin-right:3%;
-
 
 	color:inherit;
 	text-decoration:none;
@@ -52,63 +49,11 @@ body {
 	width:3%;
 }
 
-#content{
+#content {
 	position:absolute;
-	top:5em;
+	top:7.5%;
 	left:0px;
 	right: 0px;
-
+	font-family: 'Inconsolata', sans-serif;
 }
 
-/*
-#wrapper {
-	position:absolute;
-	top:0%;
-	left:0px;
-	right: 0px;
-}
-*/
-
-/*
-@media only screen and (max-width:1920px),
-only screen and (max-device-width:1920px) {
-	#shitpickle {
-		width:1700px;
-	}
-}
-
-@media only screen and (max-width:1199px),
-only screen and (max-device-width:1199px) {
-	#shitpickle {
-		width:800px;
-	}
-}
-
-@media only screen and (max-width:999px),
-only screen and (max-device-width:999px) {
-	#shitpickle {
-		width:800px;
-	}
-}
-
-@media only screen and (max-width:799px),
-only screen and (max-device-width:799px) {
-	#shitpickle {
-		width:600px;
-	}
-}
-
-@media only screen and (max-width:599px),
-only screen and (max-device-width:599px) {
-	#shitpickle {
-		width:400px;
-	}
-}
-
-@media only screen and (max-width:399px),
-only screen and (max-device-width:399px) {
-	#shitpickle {
-		width:200px;
-	}
-}
-*/

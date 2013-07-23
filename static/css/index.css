@@ -1,11 +1,42 @@
 
 #container {
-	/*top:0;*/
     width: 33%;
-    /*margin: 0% 1.5% 0% 1.5%; */
     display:inline-block;
-    position: relative;
+    position: absolute;
+    /*top:0;*/
+    /*margin: 0% 1.5% 0% 1.5%; */
+    margin-left:-50%;
 }
+
+#container2 {
+    width: 33%;
+    display:inline-block;
+    position: absolute;
+    margin-left:-18%;
+    /*top:0;*/
+    /*margin: 0% 1.5% 0% 1.5%; */
+
+    /*
+    static 	Default. Elements render in order, as they appear in the document flow
+    absolute 	The element is positioned relative to its first positioned (not static) ancestor element
+    fixed 	The element is positioned relative to the browser window
+    relative 	The element is positioned relative to its normal position, so "left:20" adds 20 pixels to the element's LEFT position
+    inherit 	The value of the position property is inherited from the parent element
+    */
+
+}
+
+
+#container3 {
+    width: 33%;
+    display:inline-block;
+    position: absolute;
+    margin-left:15%;
+    /*top:0;*/
+    /*margin: 0% 1.5% 0% 1.5%; */
+}
+
+
 
 li {
 	display: inline-block;
@@ -16,6 +47,7 @@ li {
 .item {
 	display: inline-block;
 	margin-bottom: 1%;
+	margin-left:1%;
 	max-width: 100%;
 	max-height: 100%;
 	/*position:relative;*/
@@ -23,9 +55,10 @@ li {
 
 .item img {
 	display: inline-block;
-	max-width: 80%;
+	max-width: 90%;
 	max-height: 80%;
 	position:relative;
+	border-radius:15px;
 }
 
 .grid-sizer{
@@ -33,7 +66,7 @@ li {
 }
 
 
-@media only screen and (max-width:1920px),
+/*@media only screen and (max-width:1920px),
 only screen and (max-device-width:1920px) {
 	#shitpickle {
 		width:1700px;
@@ -74,7 +107,7 @@ only screen and (max-device-width:399px) {
 		width:200px;
 	}
 }
-
+*/
 
 
 

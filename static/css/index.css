@@ -1,14 +1,8 @@
-/*{
-	width: 100%;
-	margin-left:0px;
-	margin-right: 0px;
-	position: relative;
-}
-*/
 
 #container {
-    width: 30%;
-    margin: 0% 1.5% 0% 1.5%; 
+	/*top:0;*/
+    width: 33%;
+    /*margin: 0% 1.5% 0% 1.5%; */
     display:inline-block;
     position: relative;
 }
@@ -19,30 +13,18 @@ li {
 	position:relative;
 }
 
-#myContent {
-	-webkit-column-count: 3;
-	-webkit-column-gap: 2px;
-
-/*	-moz-column-count: 6;
-	-moz-column-gap: 0px;
-	column-count: 6;*/
-	column-gap: 2px;
-	/*width: 1200px;*/
-}
-
 .item {
 	display: inline-block;
 	margin-bottom: 1%;
 	max-width: 100%;
 	max-height: 100%;
-	float:left;
 	/*position:relative;*/
 }
 
 .item img {
 	display: inline-block;
-	max-width: 100%;
-	max-height: 100%;
+	max-width: 80%;
+	max-height: 80%;
 	position:relative;
 }
 
@@ -50,11 +32,52 @@ li {
 	width:33.33%;
 }
 
-#shitpickle{
-	width:100%;
-	position: relative;
 
+@media only screen and (max-width:1920px),
+only screen and (max-device-width:1920px) {
+	#shitpickle {
+		width:1700px;
+	}
 }
+
+@media only screen and (max-width:1199px),
+only screen and (max-device-width:1199px) {
+	#shitpickle {
+		width:800px;
+	}
+}
+
+@media only screen and (max-width:999px),
+only screen and (max-device-width:999px) {
+	#shitpickle {
+		width:800px;
+	}
+}
+
+@media only screen and (max-width:799px),
+only screen and (max-device-width:799px) {
+	#shitpickle {
+		width:600px;
+	}
+}
+
+@media only screen and (max-width:599px),
+only screen and (max-device-width:599px) {
+	#shitpickle {
+		width:400px;
+	}
+}
+
+@media only screen and (max-width:399px),
+only screen and (max-device-width:399px) {
+	#shitpickle {
+		width:200px;
+	}
+}
+
+
+
+
 
 /*
 @media only screen and (max-width : 1199px),

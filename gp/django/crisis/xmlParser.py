@@ -272,13 +272,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 			crisisFeeds = []
 			crisisSummary = ""
 			commonExist=False
-			
-			LocationsExists = False
-			HumanImpactExists = False
-			EconomicImpactExists = False
-			ResourcesNeededExists = False
-			WaysToHelpExists = False
-			
+
 
 			nextElement = treeIter.next() # People element
 			if (nextElement.tag == "People"):
@@ -306,35 +300,30 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 				nextElement = treeIter.next()
 
 			if (nextElement.tag == "Locations"):
-				LocationsExists = True
 				nextElement = treeIter.next()
 				while (nextElement.tag == "li"):
 					crisisLocations.append(nextElement.text)
 					nextElement = treeIter.next()
 
 			if (nextElement.tag == "HumanImpact"):
-				HumanImpactExists = True
 				nextElement = treeIter.next()
 				while (nextElement.tag == "li"):
 					crisisHumanImpact.append(nextElement.text)
 					nextElement = treeIter.next()
 
 			if (nextElement.tag == "EconomicImpact"):
-				EconomicImpactExists = True
 				nextElement = treeIter.next()
 				while (nextElement.tag == "li"):
 					crisisEconomicImpact.append(nextElement.text)
 					nextElement = treeIter.next()
 
 			if (nextElement.tag == "ResourcesNeeded"):
-				ResourcesNeededExists = True
 				nextElement = treeIter.next()
 				while (nextElement.tag == "li"):
 					crisisResourcesNeeded.append(nextElement.text)
 					nextElement = treeIter.next()
 
 			if (nextElement.tag == "WaysToHelp"):
-				WaysToHelpExists = True
 				nextElement = treeIter.next()
 				while (nextElement.tag == "li"):
 					crisisWaysToHelp.append(nextElement.text)
@@ -590,6 +579,8 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 			commonExists = False
 
 			nextElement = treeIter.next()
+			
+
 
 			if (nextElement.tag == "Crises"):
 				nextElement = treeIter.next()
@@ -614,15 +605,13 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 			if (nextElement.tag == "History"):
 				nextElement = treeIter.next()
 				while (nextElement.tag == "li"):
-					d = getTextAndAttributes(nextElement)
-					orgHistory.append(d)
+					orgHistory.append(nextElement.text)
 					nextElement = treeIter.next()
 
 			if (nextElement.tag == "ContactInfo"):
 				nextElement = treeIter.next()
 				while (nextElement.tag == "li"):
-					d = getTextAndAttributes(nextElement)
-					orgContactInfo.append(d)
+					orgContactInfo.append(nextElement.text)
 					nextElement = treeIter.next()
 
 
@@ -765,6 +754,7 @@ def djangoToXml():
 		rootChild = ET.SubElement(root, "Crisis")
 		rootChild.set("crisisID", crisis.CrisisID)
 		rootChild.set("crisisName", crisis.CrisisName)
+		
 		#People ID
 		crisis_person_str=crisis.CrisisPerson
 		crisis_person_list=ast.literal_eval(crisis_person_str)
@@ -783,20 +773,66 @@ def djangoToXml():
 			rootChild3.set("ID", co)
 
 		#Kind
-		if(crisis.crisisKind != "") :
+		if(crisis.crisisKind) :
 			crisisChild = ET.SubElement(rootChild, "Kind")
 			crisisChild.text = crisis.crisisKind
 		
 		#Time
-		if (crisis.crisisTime != ""):
+		if (crisis.crisisTime):
 			crisisChild = ET.SubElement(rootChild, "Time")
 			crisisChild.text = crisis.crisisTime
 		
 		#Date	
-		if (crisis.crisisDate != "" ):
+		if (crisis.crisisDate):
 			crisisChild = ET.SubElement(rootChild, "Date")
 			crisisChild.text = crisis.crisisDate
-
+			
+		#Location
+		crisis_Location_str=crisis.crisisLocation
+		crisis_Location_list=ast.literal_eval(crisis_Location_str)
+		if(crisis_Location_list) :
+			rootChild2 = ET.SubElement(rootChild, "Locations")
+			for cl in crisis_Location_list:
+				rootChild3 = ET.SubElement(rootChild2, "li")
+				rootChild3.text = cl
+		
+		#crisisHumanImpact
+		crisis_HumanImpact_str=crisis.crisisHumanImpact
+		crisis_HumanImpact_list=ast.literal_eval(crisis_HumanImpact_str)
+		if(crisis_HumanImpact_list) :
+			rootChild2 = ET.SubElement(rootChild, "HumanImpact")
+			for ch in crisis_HumanImpact_list:
+				rootChild3 = ET.SubElement(rootChild2, "li")
+				rootChild3.text = ch
+		
+		#crisisEconomicImpact
+		crisis_EconomicImpact_str=crisis.crisisEconomicImpact
+		crisis_EconomicImpact_list=ast.literal_eval(crisis_EconomicImpact_str)
+		if(crisis_EconomicImpact_list) :	
+			rootChild2 = ET.SubElement(rootChild, "EconomicImpact")
+			for ce in crisis_EconomicImpact_list:
+				rootChild3 = ET.SubElement(rootChild2, "li")
+				rootChild3.text = ce
+		
+		#crisisResourcesNeeded
+		crisis_ResourcesNeeded_str=crisis.crisisResourcesNeeded
+		crisis_ResourcesNeeded_list=ast.literal_eval(crisis_ResourcesNeeded_str)
+		if(crisis_ResourcesNeeded_list) :
+			print "hello"
+			rootChild2 = ET.SubElement(rootChild, "ResourcesNeeded")
+			for cr in crisis_ResourcesNeeded_list:
+				rootChild3 = ET.SubElement(rootChild2, "li")
+				rootChild3.text = cr
+		
+		#crisisWayToHelp
+		crisis_WaytoHelp_str=crisis.crisisWaytoHelp
+		crisis_WaytoHelp_list=ast.literal_eval(crisis_WaytoHelp_str)
+		if(crisis_WaytoHelp_list) :
+			rootChild2 = ET.SubElement(rootChild, "WaysToHelp")
+			for cw in crisis_WaytoHelp_list:
+				rootChild3 = ET.SubElement(rootChild2, "li")
+				rootChild3.text = cw
+		
 
 		#Common
 		if(crisis.com!=None):
@@ -847,21 +883,167 @@ def djangoToXml():
 		rootChild = ET.SubElement(root, "Person")
 		rootChild.set("personID", person.PersonID)
 		rootChild.set("personName", person.PersonName)
+			
+		#Location
+		if(person.personLocation):
+			personChild = ET.SubElement(rootChild, "Location")
+			personChild.text = person.personLocation
+			
+		#Crisis ID
+		person_crisis_str=person.PersonCrisis
+		person_crisis_list=ast.literal_eval(person_crisis_str)
+		rootChild2 = ET.SubElement(rootChild, "Crises")
+		for pc in person_crisis_list:
+			rootChild3 = ET.SubElement(rootChild2, "Crisis")
+			rootChild3.set("ID", pc)	
+			
+		#Organization ID
+		person_Organization_str = person.PersonOrganization
+		person_Organization_list = ast.literal_eval(person_Organization_str)
+		rootChild2 = ET.SubElement(rootChild, "Organizations")
+		for po in person_Organization_list:
+			rootChild3 = ET.SubElement(rootChild2, "Org")
+			rootChild3.set("ID", po)
+		
+		#kind
+		if(person.personKind):
+			personChild = ET.SubElement(rootChild, "Kind")
+			personChild.text = person.personKind
+		
+		#Common
+		if(person.com!=None):
+			personChild = ET.SubElement(rootChild, "Common")
+			if(person.com.commonCitations.exists()):
+				commonChild=ET.SubElement(personChild,"Citations")
+				for li in person.com.commonCitations.all():
+					CitationsChild=ET.SubElement(commonChild,"li")
+					if(li.ListHref!=None):
+						CitationsChild.set("href",li.ListHref)
+					if(li.ListEmbed!=None):
+						CitationsChild.set("href",li.ListEmbed)
+					if(li.ListText!=None):
+						CitationsChild.set("href",li.ListText)
+					if(li.ListContent!=None):
+						CitationsChild.text=li.ListContent
 
-		personChild = ET.SubElement(rootChild, "Kind")
-		personChild.text = person.personKind
+			if(person.com.commonExternalLinks.exists()):
+				commonChild=ET.SubElement(personChild,"ExternalLinks")
+				for li in person.com.commonExternalLinks.all():
+					ExternalLinksChild=ET.SubElement(commonChild,"li")
+					if(li.ListHref!=None):
+						ExternalLinksChild.set("href",li.ListHref)
+					if(li.ListEmbed!=None):
+						ExternalLinksChild.set("href",li.ListEmbed)
+					if(li.ListText!=None):
+						ExternalLinksChild.set("href",li.ListText)
+					if(li.ListContent!=None):
+						ExternalLinksChild.text=li.ListContent
+
+			if(person.com.commonImages.exists()):
+				commonChild=ET.SubElement(personChild,"Images")
+				for li in person.com.commonImages.all():
+					ImagesChild=ET.SubElement(commonChild,"li")
+					if(li.ListHref!=None):
+						ImagesChild.set("href",li.ListHref)
+					if(li.ListEmbed!=None):
+						ImagesChild.set("href",li.ListEmbed)
+					if(li.ListText!=None):
+						ImagesChild.set("href",li.ListText)
+					if(li.ListContent!=None):
+						ImagesChild.text=li.ListContent
 
 
 	for org in Organization.objects.all():
 		rootChild = ET.SubElement(root, "Organization")
 		rootChild.set("orgID", org.OrganizationID)
 		rootChild.set("orgName", org.OrganizationName)
+		
+		#OrganizationCrisis
+		org_crisis_str=org.OrganizationCrisis
+		org_crisis_list=ast.literal_eval(org_crisis_str)
+		rootChild2 = ET.SubElement(rootChild, "Crises")
+		for oc in org_crisis_list:
+			rootChild3 = ET.SubElement(rootChild2, "Crisis")
+			rootChild3.set("ID", oc)
+			
+		#OrganizationPerson
+		org_OrganizationPerson_str=org.OrganizationPerson
+		org_OrganizationPerson_list=ast.literal_eval(org_OrganizationPerson_str)
+		rootChild2 = ET.SubElement(rootChild, "People")
+		for op in org_OrganizationPerson_list:
+			rootChild3 = ET.SubElement(rootChild2, "Person")
+			rootChild3.set("ID", op)
+			
+		#kind
+		if(org.orgKind) :
+			orgChild = ET.SubElement(rootChild, "Kind")
+			orgChild.text = org.orgKind
+		
+		#Location
+		if(org.orgLocation) :
+			orgChild = ET.SubElement(rootChild, "Location")
+			orgChild.text = org.orgLocation
+		
+		#orgHistory
+		org_orgHistory_str=org.orgHistory
+		org_orgHistory_list=ast.literal_eval(org_orgHistory_str)
+		if(org_orgHistory_list) :
+			rootChild2 = ET.SubElement(rootChild, "History")
+			for oh in org_orgHistory_list:
+				rootChild3 = ET.SubElement(rootChild2, "li")
+				rootChild3.text = oh
+		
+		#orgContact
+		org_orgContact_str=org.orgContact
+		org_orgContact_list=ast.literal_eval(org_orgContact_str)
+		if(org_orgContact_list) :
+			rootChild2 = ET.SubElement(rootChild, "ContactInfo")
+			for oc in org_orgContact_list:
+				rootChild3 = ET.SubElement(rootChild2, "li")
+				rootChild3.text = oc
+		
+		#Common
+		if(org.com!=None):
+			orgChild = ET.SubElement(rootChild, "Common")
+			if(org.com.commonCitations.exists()):
+				commonChild=ET.SubElement(orgChild,"Citations")
+				for li in org.com.commonCitations.all():
+					CitationsChild=ET.SubElement(commonChild,"li")
+					if(li.ListHref!=None):
+						CitationsChild.set("href",li.ListHref)
+					if(li.ListEmbed!=None):
+						CitationsChild.set("href",li.ListEmbed)
+					if(li.ListText!=None):
+						CitationsChild.set("href",li.ListText)
+					if(li.ListContent!=None):
+						CitationsChild.text=li.ListContent
 
-		orgChild = ET.SubElement(rootChild, "Kind")
-		orgChild.text = org.orgKind
+			if(org.com.commonExternalLinks.exists()):
+				commonChild=ET.SubElement(orgChild,"ExternalLinks")
+				for li in org.com.commonExternalLinks.all():
+					ExternalLinksChild=ET.SubElement(commonChild,"li")
+					if(li.ListHref!=None):
+						ExternalLinksChild.set("href",li.ListHref)
+					if(li.ListEmbed!=None):
+						ExternalLinksChild.set("href",li.ListEmbed)
+					if(li.ListText!=None):
+						ExternalLinksChild.set("href",li.ListText)
+					if(li.ListContent!=None):
+						ExternalLinksChild.text=li.ListContent
 
-		orgChild = ET.SubElement(rootChild, "Location")
-		orgChild.text = org.orgLocation
+			if(org.com.commonImages.exists()):
+				commonChild=ET.SubElement(orgChild,"Images")
+				for li in org.com.commonImages.all():
+					ImagesChild=ET.SubElement(commonChild,"li")
+					if(li.ListHref!=None):
+						ImagesChild.set("href",li.ListHref)
+					if(li.ListEmbed!=None):
+						ImagesChild.set("href",li.ListEmbed)
+					if(li.ListText!=None):
+						ImagesChild.set("href",li.ListText)
+					if(li.ListContent!=None):
+						ImagesChild.text=li.ListContent
+		
 
 
 	indent(root)

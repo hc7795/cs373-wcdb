@@ -8,15 +8,17 @@ body {
 	height:1000px;
 }
 
+#wrapper {
+	color:rgba(230, 230, 230, 1.0);
+}
+
 #nav {
 	position:fixed;
 	height:2.25em;
 	width:100%;
 	z-index: 5000;
 	font-family: 'Inconsolata', sans-serif;
-	color:rgba(230, 230, 230, 1.0);
 	font-size:150%;
-
 	background-color:rgba(45, 45, 45, 0.90);
 }
 /* Box of links inside of nav. */
@@ -57,3 +59,17 @@ body {
 	font-family: 'Inconsolata', sans-serif;
 }
 
+#footer {
+	text-align:center;
+	background-color:rgba(45, 45, 45, 0.90);
+	width:100%;
+	bottom:0px;
+	position:absolute;
+	padding-top:.05%;
+	padding-bottom:.05%;
+	font-size:1.05em;
+}
+
+.blue {
+	color:#059FFF !important;
+}

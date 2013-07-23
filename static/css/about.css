@@ -23,12 +23,11 @@
 	padding-left: 6%;
 	padding-right: 6%;
 	padding-bottom: 3%;
-	color:white;
 }
 
 #about_me_text h2 {
 	font-size: 1.40em;
-	text-align: center
+	text-align: center;
 }
 
 #about_me_text p {

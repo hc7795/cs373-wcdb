@@ -7,107 +7,46 @@
 
 
 .column {
-	padding-left:auto;
-	padding-right:auto;
-	color:green;
+	padding-right:2%;
 	position:relative;
 	display:inline-block;
-	width:33.33%;
+	width:28%;
+	margin-left:2%;
 	float: left;
+	background-color:rgba(45, 45, 45, 0.80);
+	border-radius:15px;
+	list-style-type: none;
+}
+
+.column h1 {
+	text-align: center;
 }
 
 #cri {
-   /* width: 1200px;*/
 	margin: 0 auto;
 }
  
 #myContent {
 	-webkit-column-count: 3;
-	-webkit-column-gap: 2px;
+	-webkit-column-gap: 8%;
 
 	-moz-column-count: 3;
-	-moz-column-gap: 2px;
-	
-	column-count: 6;
-	column-gap: 2px;
+	-moz-column-gap: 15%;
+
+	column-count: 3;
+	column-gap: 15%;
+	list-style-type: none;
 }
  
-#myContent img{
+#myContent img {
 	display: inline-block;
 	margin-bottom: 0px;
 	width: 100%;
-	border-radius:15px;
+	border-radius:5px;
+	margin-bottom: 0.5%;
+	list-style-type: none;
 }
 
-/*
-@media only screen and (max-width : 1199px),
-only screen and (max-device-width : 1199px){
-	#myContent {
-		-moz-column-count: 5;
-		-moz-column-gap: 0px;
-		-webkit-column-count: 5;
-		-webkit-column-gap: 0px;
-		column-count: 5;
-		column-gap: 0px;
-		width: 1000px;
-	}
-	 
-	#container {
-		width: 1000px;
-	}
+#myContent ul {
+	list-style-type: none;
 }
- 
- 
-@media only screen and (max-width : 999px),
-only screen and (max-device-width : 999px){
-	#myContent {
-		-moz-column-count: 4;
-		-moz-column-gap: 0px;
-		-webkit-column-count: 4;
-		-webkit-column-gap: 0px;
-		column-count: 4;
-		column-gap: 0px;
-		width: 800px;
-	}
-	 
-	#container {
-		width: 800px;
-	}
-}
- 
-@media only screen and (max-width : 799px),
-only screen and (max-device-width : 799px){
-	#myContent {
-		-moz-column-count: 3;
-		-moz-column-gap: 0px;
-		-webkit-column-count: 3;
-		-webkit-column-gap: 0px;
-		column-count: 34;
-		column-gap: 0px;
-		width: 600px;
-	}
-	 
-	#container {
-		width: 600px;
-	}
-}
- 
-@media only screen and (max-width : 599px),
-only screen and (max-device-width : 599px){
-	#myContent {
-		-moz-column-count: 2;
-		-moz-column-gap: 0px;
-		-webkit-column-count: 2;
-		-webkit-column-gap: 0px;
-		column-count: 2;
-		column-gap: 0px;
-		width: 400px;
-	}
-	 
-	#container {
-		width: 400px;
-	}
-}
-/*
-http://designshack.net/articles/css/masonry/
-*/

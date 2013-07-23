@@ -36,12 +36,5 @@ $(document).ready(
 			}
 		);
 
-
-		$('.column').masonry({
-			columnWidth: 200,
-			itemSelector: '.item'
-		});
-		
-
 	}
 );

@@ -2,9 +2,9 @@
 
 $(document).ready( function() { 
 	var container = document.querySelector('#container');
-	var msnry = new Masonry( container, {
+	var msnry = new Masonry( container);
 	  itemSelector: 'item',
-	  columnWidth: container.querySelector('.grid-sizer')
+	  columnWidth: container.querySelector('#myContent');
 	});
 });
 

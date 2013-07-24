@@ -3,6 +3,20 @@
 {% block content %}
 	<p>crises!</p>
     {% for crisis in crises %}
-        <p><a href="crises/{{ crisis.CrisisID }}/">{{crisis}}</a></p>
+        <p><a href="crises/{{ crisis.id }}/">{{crisis}}</a></p>
+        <p>{{crisis.id}} <br>
+        	{{crisis.name}} <br>
+        	{{crisis.kind}} <br>
+        	{{crisis.date}} <br>
+        	{{crisis.time}} <br>
+        	{{crisis.location}} <br>
+        	{{crisis.humanImpact}}<br>
+        	{{crisis.economicImpact}}<br>
+        	{{crisis.resourcesNeeded}} <br>
+        	{{crisis.waytoHelp}} <br>
+        	{{crisis.people}}<br>
+        	{{crisis.organizations}}<br>
+        	{{crisis.common}}<br><br>
+        </p>        
     {% endfor %}	
 {% endblock %}

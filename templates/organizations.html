@@ -3,6 +3,16 @@
 {% block content %}
 	<p>organizations!</p>
     {% for organization in organizations %}
-        <p><a href="organizations/{{ organization.OrganizationID }}/">{{organization}}</a></p>
+        <p><a href="organizations/{{ organization.id }}/">{{organization}}</a></p>
+        <p>{{organization.id}} <br>
+        	{{organization.name}} <br>
+        	{{organization.kind}} <br>
+        	{{organization.location}} <br>
+        	{{organization.history}}<br>
+        	{{organization.contact}}<br>
+        	{{organization.crises}} <br>
+        	{{organization.people}} <br>
+        	{{organization.common}}<br><br>
+        </p>
     {% endfor %}	
 {% endblock %}

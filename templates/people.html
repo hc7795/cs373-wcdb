@@ -3,6 +3,14 @@
 {% block content %}
 	<p>people!</p>
     {% for person in people %}
-        <p><a href="people/{{ person.PersonID }}/">{{ person }}</a></p> 
+        <p><a href="people/{{ person.id }}/">{{ person }}</a></p>
+        <p>{{person.id}} <br>
+        	{{person.name}} <br>
+        	{{person.kind}} <br>
+        	{{person.location}}<br>
+        	{{person.crises}} <br>
+        	{{person.organizations}}<br>
+        	{{person.common}}<br><br>
+        </p>         
     {% endfor %}	
 {% endblock %}

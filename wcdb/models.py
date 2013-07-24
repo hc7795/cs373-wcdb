@@ -2,65 +2,66 @@ from django.db import models
 
 
 class Crisis(models.Model):
-	CrisisID = models.CharField(max_length=10, primary_key=True)
-	CrisisName = models.CharField(max_length=100)
-	crisisKind = models.CharField(max_length=100, null = True)
-	crisisDate = models.DateTimeField(max_length=25, null = True)
-	crisisTime = models.CharField(max_length=25, null = True)
-	crisisLocation = models.CharField(max_length=10000, null = True)
-	#crisisHumanImpact = models.CharField(max_length=100)
-	#crisisEconomicImpact = models.CharField(max_length=100)
-	#crisisResourcesNeeded = models.CharField(max_length=100)
-	#crisisWaytoHelp = models.CharField(max_length=100)
-	CrisisPerson = models.TextField()
-	CrisisOrganization = models.TextField()
-	com = models.ForeignKey('Common',null=True)
+	id = models.CharField(max_length=10, primary_key=True)
+	name = models.CharField(max_length=100)
+	kind = models.CharField(max_length=100, null = True)
+	date = models.CharField(max_length=25, null = True)
+	time = models.CharField(max_length=25, null = True)
+	location = models.TextField()
+	humanImpact = models.TextField()
+	economicImpact = models.TextField()
+	resourcesNeeded = models.TextField()
+	waytoHelp = models.TextField()
+	people = models.TextField()
+	organizations = models.TextField()
+	common = models.ForeignKey('Common',null=True)
 
 	def __unicode__(self):
-	   return self.CrisisName  
+	   return self.name  
 
 class Person(models.Model):
-	PersonID = models.CharField(max_length=10, primary_key=True)
-	PersonName = models.CharField(max_length=100)
-	personKind = models.CharField(max_length=100, null = True)
-	personLocation = models.CharField(max_length=10000, null = True)
-	PersonCrisis = models.TextField()
-	PersonOrganization = models.TextField()
-	#com = models.ForeignKey('Common', related_name='person_com')
+	id = models.CharField(max_length=10, primary_key=True)
+	name = models.CharField(max_length=100)
+	kind = models.CharField(max_length=100, null = True)
+	location = models.CharField(max_length=10000, null = True)
+	crises = models.TextField()
+	organizations = models.TextField()
+	common = models.ForeignKey('Common', null=True)
 
 	def __unicode__(self):
-	   return self.PersonName  
+	   return self.name  
   
 class Organization(models.Model):
-	OrganizationID = models.CharField(max_length=10, primary_key=True)
-	OrganizationName = models.CharField(max_length = 200)
-	orgKind = models.CharField(max_length=100, null = True)
-	orgLocation = models.CharField(max_length=10000, null = True)
-	#orgHistory = models.CharField(max_length=25)
-	#orgContact = models.CharField(max_length=50)
-	OrganizationCrisis = models.TextField()
-	OrganizationPerson = models.TextField()
-	#com = models.ForeignKey('Organizations', related_name = 'organizations_com')
+	id = models.CharField(max_length=10, primary_key=True)
+	name = models.CharField(max_length = 200)
+	kind = models.CharField(max_length=100, null = True)
+	location = models.CharField(max_length=10000, null = True)
+	history = models.CharField(max_length=1000)
+	contact = models.CharField(max_length=50)
+	crises = models.TextField()
+	people = models.TextField()
+	common = models.ForeignKey('Common', null=True)
 
 	def __unicode__(self):
-	   return self.OrganizationName  
+	   return self.name  
+
 
 class List(models.Model):
-	ListHref=models.TextField(null=True)
-	ListEmbed=models.TextField(null=True)
-	ListText=models.TextField(null=True)
-	ListContent=models.TextField(null=True)
+	href=models.TextField(null=True)
+	embed=models.TextField(null=True)
+	text=models.TextField(null=True)
+	content=models.TextField(null=True)
 
 
 
 class Common(models.Model) :
-	commonCitations = models.ManyToManyField(List,  related_name ='Citations+', null=True)
-	commonExternalLinks = models.ManyToManyField(List,  related_name ='ExternalLinks+', null=True)
-	commonImages = models.ManyToManyField(List,  related_name ='Images+', null=True)
-	commonVideos = models.ManyToManyField(List,  related_name ='Videos+', null=True)
-	commonMaps = models.ManyToManyField(List,  related_name ='Maps+', null=True)
-	commonFeeds = models.ManyToManyField(List,  related_name ='Feeds+', null=True)
-	commonSummary = models.TextField()
+	citations = models.ManyToManyField(List,  related_name ='Citations+', null=True)
+	externalLinks = models.ManyToManyField(List,  related_name ='ExternalLinks+', null=True)
+	images = models.ManyToManyField(List,  related_name ='Images+', null=True)
+	videos = models.ManyToManyField(List,  related_name ='Videos+', null=True)
+	maps = models.ManyToManyField(List,  related_name ='Maps+', null=True)
+	feeds = models.ManyToManyField(List,  related_name ='Feeds+', null=True)
+	summary = models.TextField()
 
 
 

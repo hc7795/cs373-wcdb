@@ -160,7 +160,7 @@ def getCommonData(element, elementIterator):
 	videos = []
 	maps = []
 	feeds = []
-	summary = []
+	summary = ""
 
 	try:
 		nextElement = elementIterator.next()
@@ -351,6 +351,8 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					#common.save()
 				else:
 					common=	Common()
+					if(crisisSummary != "") :
+					  common.summary= crisisSummary
 					common.save()
 					for c in crisisCitations:
 						li=List()
@@ -408,7 +410,6 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 						)
 						li.save()
 						common.feeds.add(li)
-					common.commonSummary=crisisSummary
 
 
 				models[0].append(
@@ -489,6 +490,8 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					common=None
 				else:
 					common=	Common()
+					if(personSummary != "") :
+					  common.summary= personSummary
 					common.save()
 					for c in personCitations:
 						li=List()
@@ -546,7 +549,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 						)
 						li.save()
 						common.feeds.add(li)
-					common.commonSummary=personSummary
+
 				models[1].append(
 					Person(
 						id = personID,
@@ -635,6 +638,8 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					common=None
 			else:
 					common=	Common()
+					if(orgSummary != "") :
+					  common.summary= orgSummary
 					common.save()
 					for c in orgCitations:
 						li=List()
@@ -692,7 +697,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 						)
 						li.save()
 						common.feeds.add(li)
-					common.commonSummary=orgSummary
+
 
 			if isNotDuplicate(orgID, "org", unitTestDB):
 				models[2].append(
@@ -824,7 +829,6 @@ def djangoToXml():
 		crisis_ResourcesNeeded_str=crisis.resourcesNeeded
 		crisis_ResourcesNeeded_list=ast.literal_eval(crisis_ResourcesNeeded_str)
 		if(crisis_ResourcesNeeded_list) :
-			print "hello"
 			rootChild2 = ET.SubElement(rootChild, "ResourcesNeeded")
 			for cr in crisis_ResourcesNeeded_list:
 				rootChild3 = ET.SubElement(rootChild2, "li")
@@ -844,7 +848,6 @@ def djangoToXml():
 		if(crisis.common!=None):
 			crisisChild = ET.SubElement(rootChild, "Common")
 			if(crisis.common.citations.exists()):
-				#print "citation :   ", (crisis.com.commonCitations)
 				commonChild=ET.SubElement(crisisChild,"Citations")
 				for li in crisis.common.commonCitations.all():
 					CitationsChild=ET.SubElement(commonChild,"li")
@@ -882,6 +885,9 @@ def djangoToXml():
 						ImagesChild.set("text",li.text)
 					if(li.content!=None):
 						ImagesChild.text=li.content
+			if(crisis.common.summary != None):
+				commonChild=ET.SubElement(crisisChild,"Summary")
+				crisisChild.text = crisis.common.summary
 
 
 
@@ -957,6 +963,9 @@ def djangoToXml():
 						ImagesChild.set("text",li.text)
 					if(li.content!=None):
 						ImagesChild.text=li.content
+			if(person.common.summary != None):
+				commonChild=ET.SubElement(personChild,"Summary")
+				personChild.text = person.common.summary
 
 
 	for org in Organization.objects.all():
@@ -1049,6 +1058,9 @@ def djangoToXml():
 						ImagesChild.set("text",li.text)
 					if(li.content!=None):
 						ImagesChild.text=li.content
+			if(org.common.summary != None):
+				commonChild=ET.SubElement(orgChild,"Summary")
+				orgChild.text = org.common.summary
 
 
 

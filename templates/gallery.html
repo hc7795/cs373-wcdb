@@ -1,24 +1,26 @@
 {% extends "base.html" %}
 
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index.css">
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/gallery.css">
 <script src="{{ STATIC_URL }}js/index.js"></script>
 {% endblock %}
-<center>
+
 {% block content %}
 
 <div class="container">
 
 		<div class="column">
-			{% if modelObjects %}
-				<h1>Objects</h1>
+			{% if name %}
+				<h1>{{name}}</h1>
 			{% endif %}
 			<ul id="myContent">  
 				{% if modelObjects %}
 				    {% for modelObject, list in modelObjects %}	
 				    	<li>
-				    		<img src="{{list.embed}}" alt="{{modelObject.name}}">
-				    		<p>{{modelObject.name}}</p>
+				    		<a class="hover_lightup hover_underline" href="{{modelObject.slug}}">
+					    		<img src="{{list.embed}}" alt="{{modelObject.name}}">
+					    		<p>{{modelObject.name}}</p>
+					    	</a>
 				    	</li>				   
 				    {% endfor %}
 				{% else %}
@@ -28,12 +30,7 @@
 			 </ul> 
 		</div>
 
-</div>
-</center> 
-
-
-	
-
+</div>	
 
 {% endblock %}
 

@@ -1,21 +1,18 @@
-*.container {
-	width: 100%;
-	margin-left:0px;
-	margin-right: 0px;
-	position: relative;
+
+.container {
+	text-align:center;
 }
 
-
 .column {
-	padding-right:2%;
 	position:relative;
 	display:inline-block;
-	width:100%;
-	margin-left:2%;
-	float: left;
+	width:45%;
+	margin-left:auto;
+	margin-right:auto;
 	background-color:rgba(45, 45, 45, 0.80);
 	border-radius:15px;
 	list-style-type: none;
+	padding-right:2%;
 }
 
 .column h1 {
@@ -45,4 +42,8 @@
 
 #myContent ul {
 	list-style-type: none;
+}
+
+a {
+	opacity:0.80;
 }

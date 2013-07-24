@@ -31,8 +31,8 @@ def index(request):
 
 	for peep in peeps:
 		try:
-			l = person.common.images.all()[0]
-			peepsToPass.append((person, l))
+			l = peep.common.images.all()[0]
+			peepsToPass.append((peep, l))
 		except:
 			pass
 
@@ -59,6 +59,7 @@ def crises(request):
 	template = loader.get_template("gallery.html")
 	context = RequestContext(request, {
 		"modelObjects" : crisesToPass,
+		"name" : "Crises"
 	})
 	return HttpResponse(template.render(context))
 
@@ -77,6 +78,7 @@ def people(request):
 	template = loader.get_template("gallery.html")
 	context = RequestContext(request, {
 		"modelObjects" : peepsToPass,
+		"name" : "Peeps"
 	})
 	return HttpResponse(template.render(context))
 
@@ -94,6 +96,7 @@ def organizations(request):
 	template = loader.get_template("gallery.html")
 	context = RequestContext(request, {
 		"modelObjects" : orgsToPass,
+		"name" : "Organizations"
 	})
 	return HttpResponse(template.render(context))
 

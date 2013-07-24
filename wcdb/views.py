@@ -19,30 +19,51 @@ def OrganizationsAll(request):
 
 def index(request):
 	# Uncomment below when we want to move on from hardcoded pages.
-	# crises = Crisis.objects.all().order_by('CrisisName')
-	# organizations = Organization.objects.all().order_by('OrganizationName')
-	# people = Person.objects.all().order_by('PersonName')
+	crises = Crisis.objects.all().order_by('name')
+	organizations = Organization.objects.all().order_by('name')
+	people = Person.objects.all().order_by('name')
 
-	# crises = []
-	# crises.append(Crisis.objects.get(CrisisID="CRI_IRAQWR"))
-	# crises.append(Crisis.objects.get(CrisisID="CRI_HURIKE"))
-	# crises.append(Crisis.objects.get(CrisisID="CRI_BAGAIR"))
+	crisesToPass = []
+	orgsToPass = []
+	peopleToPass = []
 
-	# organizations = []
-	# organizations.append(Organization.objects.get(OrganizationID="ORG_WHLORG"))
-	# organizations.append(Organization.objects.get(OrganizationID="ORG_REDCRS"))
-	# organizations.append(Organization.objects.get(OrganizationID="ORG_IAVETA"))
+	for crisis in crises:
+		try:
+			l = crisis.common.images.all()[0]
+			crisesToPass.append((crisis, l))
+		except:
+			pass
 
-	# people = []
-	# people.append(Person.objects.get(PersonID="PER_SADHUS"))
-	# people.append(Person.objects.get(PersonID="PER_BUSDAD"))
-	# people.append(Person.objects.get(PersonID="PER_BRAMAN"))
+	for org in organizations:
+		try:
+			l = org.common.images.all()[0]
+			orgsToPass.append((org, l))
+		except:
+			pass
+
+	for person in people:
+		try:
+			# print "person.common.images.all(): " + str(person.common.images.all())
+			l = person.common.images.all()[0]
+			peopleToPass.append((person, l))
+		except:
+			pass
+
+
+	# crisesToPass = []
+	# for peep in people:
+	# 	l = peep.common.images.all()[0]
+	# 	peopleToPass.append((peep, l))
+
+	print people
+	# print orgsToPass
+	# print peopleToPass
 
 	template = loader.get_template("index.html")
 	context = RequestContext(request, {
-		# "crises" : crises,
-		# "organizations" : organizations,
-		# "people" : people
+		"crises" : crisesToPass,
+		"organizations" : orgsToPass,
+		"people" : peopleToPass
 	})
 	return HttpResponse(template.render(context))
 
@@ -59,16 +80,6 @@ def people(request):
 		# "people" : people,
 	})
 	return HttpResponse(template.render(context))
-
-
-# added 
-def person(request):
-	template = loader.get_template("person.html")
-	context = RequestContext(request, {
-		# "person" : person,
-	})
-	return HttpResponse(template.render(context))
-
 
 def organizations(request):
 	template = loader.get_template("organizations.html")

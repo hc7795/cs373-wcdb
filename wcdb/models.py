@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 
 
 class Crisis(models.Model):
@@ -15,6 +16,7 @@ class Crisis(models.Model):
 	people = models.TextField()
 	organizations = models.TextField()
 	common = models.ForeignKey('Common',null=True)
+	slug = slugify(name)
 
 	def __unicode__(self):
 	   return self.name  
@@ -27,6 +29,8 @@ class Person(models.Model):
 	crises = models.TextField()
 	organizations = models.TextField()
 	common = models.ForeignKey('Common', null=True)
+	slug = slugify(name)
+
 
 	def __unicode__(self):
 	   return self.name  
@@ -41,18 +45,17 @@ class Organization(models.Model):
 	crises = models.TextField()
 	people = models.TextField()
 	common = models.ForeignKey('Common', null=True)
+	slug = slugify(name)
+
 
 	def __unicode__(self):
 	   return self.name  
-
 
 class List(models.Model):
 	href=models.TextField(null=True)
 	embed=models.TextField(null=True)
 	text=models.TextField(null=True)
 	content=models.TextField(null=True)
-
-
 
 class Common(models.Model) :
 	citations = models.ManyToManyField(List,  related_name ='Citations+', null=True)
@@ -63,7 +66,3 @@ class Common(models.Model) :
 	feeds = models.ManyToManyField(List,  related_name ='Feeds+', null=True)
 	summary = models.TextField()
 
-
-
-
-# Create your models here.

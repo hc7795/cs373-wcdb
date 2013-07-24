@@ -12,75 +12,51 @@
 		<div class="column">
 			<h1>Crises</h1>
 			<ul id="myContent">  
-				<li><img src="{{ STATIC_URL }}images/cri/HIV.png" alt=""></li>
+				{% if crises %}
+				    {% for crisis, list in crises %}	
+				    	<li>
+				    		<img src="{{list.embed}}" alt="{{crisis.name}}">
+				    		<p>{{crisis.name}}</p>
+				    	</li>				   
+				    {% endfor %}
+				{% else %}
+				    <p>No crises are available.</p>
+				{% endif %}
 
-				<li><img src="{{ STATIC_URL }}images/cri/Baghdad_airstrike.png" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/cri/Egypt_protest.jpg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/cri/H1N1_influenza.jpg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/cri/Haiti_Earthquake.jpg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/cri/Iraq_War.png" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/cri/September_11.jpg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/cri/Water_Scarcity.gif" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/cri/Exval.jpeg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/cri/Hurricane_Ike.jpg" alt=""></li>
 			 </ul> 
 		</div>
 
 		<div class="column">
 			<h1>Peeps</h1>
 			<ul id="myContent">  
-				<li><img src="{{ STATIC_URL }}images/ppl/bush_dad.jpg" alt=""></li>
+				{% if people %}
+				    {% for person, list in people %}	
+				    	<li>
+				    		<img src="{{list.embed}}" alt="{{person.name}}">
+				    		<p>{{person.name}}</p>
+				    	</li>				   
+				    {% endfor %}
+				{% else %}
+				    <p>No peeps are available.</p>
+				{% endif %}
 
-				<li><img src="{{ STATIC_URL }}images/ppl/Camdessus.jpg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/ppl/Bradley.jpg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/ppl/Gregory.jpg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/ppl/Hosni_Mubarak.jpg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/ppl/Julian_Assange.jpg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/ppl/Obama.jpg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/ppl/Osama.jpg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/ppl/rene_preval.jpg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/ppl/Saddam.jpg" alt=""></li>
 			 </ul> 
 		</div>
 
-		<div class="column"> 
+		<div class="column">
 			<h1>Organizations</h1>
 			<ul id="myContent">  
-				<li><img src="{{ STATIC_URL }}images/org/al_qaeda.svg" alt=""></li>
+				{% if organizations %}
+				    {% for org, list in organizations %}	
+				    	<li>
+				    		<img src="{{list.embed}}" alt="{{org.name}}">
+				    		<p>{{org.name}}</p>
+				    	</li>				   
+				    {% endfor %}
+				{% else %}
+				    <p>No organizations are available.</p>
+				{% endif %}
 
-				<li><img src="{{ STATIC_URL }}images/org/Care.jpg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/org/cdc.png" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/org/fema.png" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/org/iava.jpg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/org/oil_spill_recovery.jpg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/org/red_cross.svg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/org/unicef.svg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/org/who.svg" alt=""></li>
-
-				<li><img src="{{ STATIC_URL }}images/org/wikileaks.png" alt=""></li>
 			 </ul> 
 		</div>
 </div>

@@ -22,11 +22,6 @@
 	text-align: center;
 }
 
-.column p {
-	margin-top:0.5%;
-	margin-bottom:15%;
-}
-
 #cri {
 	margin: 0 auto;
 }
@@ -45,8 +40,10 @@
  
 #myContent img {
 	display: inline-block;
+	margin-bottom: 0px;
 	width: 100%;
 	border-radius:5px;
+	margin-bottom: 0.5%;
 	list-style-type: none;
 }
 

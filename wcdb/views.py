@@ -59,7 +59,8 @@ def crises(request):
 	template = loader.get_template("gallery.html")
 	context = RequestContext(request, {
 		"modelObjects" : crisesToPass,
-		"name" : "Crises"
+		"name" : "Crises",
+		"type" : "crisis"
 	})
 	return HttpResponse(template.render(context))
 
@@ -78,7 +79,8 @@ def people(request):
 	template = loader.get_template("gallery.html")
 	context = RequestContext(request, {
 		"modelObjects" : peepsToPass,
-		"name" : "Peeps"
+		"name" : "Peeps",
+		"type" : "person"
 	})
 	return HttpResponse(template.render(context))
 
@@ -96,7 +98,8 @@ def organizations(request):
 	template = loader.get_template("gallery.html")
 	context = RequestContext(request, {
 		"modelObjects" : orgsToPass,
-		"name" : "Organizations"
+		"name" : "Organizations",
+		"type" : "org"
 	})
 	return HttpResponse(template.render(context))
 
@@ -105,5 +108,44 @@ def organizations(request):
 def about(request):
 	template = loader.get_template("about.html")
 	context = RequestContext(request, {
+	})
+	return HttpResponse(template.render(context))
+
+
+
+def crisis(request, urlSlug):
+
+	crisis = Crisis.objects.get(slug=urlSlug)
+	print "slug: " + str(urlSlug)
+
+	template = loader.get_template("crisis.html")
+	context = RequestContext(request, {
+		"crisis" : crisis
+	})
+	return HttpResponse(template.render(context))
+
+
+
+def person(request, urlSlug):
+
+	person = Person.objects.get(slug=urlSlug)
+	print "slug: " + str(urlSlug)
+
+	template = loader.get_template("person.html")
+	context = RequestContext(request, {
+		"person" : person
+	})
+	return HttpResponse(template.render(context))
+
+
+
+def org(request, urlSlug):
+
+	org = Organization.objects.get(slug=urlSlug)
+	print "slug: " + str(urlSlug)
+
+	template = loader.get_template("org.html")
+	context = RequestContext(request, {
+		"org" : org
 	})
 	return HttpResponse(template.render(context))

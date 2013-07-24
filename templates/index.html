@@ -15,7 +15,7 @@
 				{% if crises %}
 				    {% for crisis, list in crises %}	
 				    	<li>
-				    		<a class="hover_lightup hover_underline" href="{{crisis.slug}}">
+				    		<a class="hover_lightup hover_underline" href="crisis/{{crisis.slug}}">
 					    		<img src="{{list.embed}}" alt="{{crisis.name}}">
 					    		<p>{{crisis.name}}</p>
 				    		</a>
@@ -34,7 +34,7 @@
 				{% if people %}
 				    {% for person, list in people %}
 				    	<li>
-				    		<a class="hover_lightup hover_underline" href="{{person.slug}}">
+				    		<a class="hover_lightup hover_underline" href="person/{{person.slug}}">
 					    		<img src="{{list.embed}}" alt="{{person.name}}">
 					    		<p>{{person.name}}</p>
 					    	</a>		
@@ -53,7 +53,7 @@
 				{% if organizations %}
 				    {% for org, list in organizations %}	
 				    	<li>
-				    		<a class="hover_lightup hover_underline" href="{{org.slug}}">
+				    		<a class="hover_lightup hover_underline" href="org/{{org.slug}}">
 					    		<img src="{{list.embed}}" alt="{{org.name}}">
 					    		<p>{{org.name}}</p>
 					    	</a>

@@ -14,8 +14,7 @@ urlpatterns = patterns('',
 	url(r'people', views.people, name='people'),
 	url(r'organizations', views.organizations, name='organizations'),
 	url(r'about', views.about, name='about'),
-	# url(r'person', views.person, name='person'),
-	
+
 
     #url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),

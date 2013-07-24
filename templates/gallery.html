@@ -9,12 +9,24 @@
 
 <div class="container">
 
-	<div class="column">
-		<h1> PAGE_NAME </h1>
-		<ul id="myContent">  
-			
-		</ul> 
-	</div>
+		<div class="column">
+			{% if modelObjects %}
+				<h1>Objects</h1>
+			{% endif %}
+			<ul id="myContent">  
+				{% if modelObjects %}
+				    {% for modelObject, list in modelObjects %}	
+				    	<li>
+				    		<img src="{{list.embed}}" alt="{{modelObject.name}}">
+				    		<p>{{modelObject.name}}</p>
+				    	</li>				   
+				    {% endfor %}
+				{% else %}
+				    <p>No images are available.</p>
+				{% endif %}
+
+			 </ul> 
+		</div>
 
 </div>
 </center> 

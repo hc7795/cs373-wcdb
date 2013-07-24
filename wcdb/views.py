@@ -3,29 +3,17 @@ from django.template import RequestContext, loader
 
 from wcdb.models import Crisis, Organization, Person
 
-def CrisesAll(request):
-  crises = Crisis.objects.all().order_by('crisisName')
-  context = { 'crises': crises }
-  #return render_to_response("crisesAll.html", context, context_instance-RequestContext(request))
-"""
-def PeopleAll(request):
-	people = Person.objects.all().order_by('name')
-	context = { 'people' : people }
 
-def OrganizationsAll(request):
-	organizations = Organization.objects.all().order_by('name')
-	context = { 'organizations' = organizations } 
-"""
 
 def index(request):
 	# Uncomment below when we want to move on from hardcoded pages.
 	crises = Crisis.objects.all().order_by('name')
 	organizations = Organization.objects.all().order_by('name')
-	people = Person.objects.all().order_by('name')
+	peeps = Person.objects.all().order_by('name')
 
 	crisesToPass = []
 	orgsToPass = []
-	peopleToPass = []
+	peepsToPass = []
 
 	for crisis in crises:
 		try:
@@ -41,100 +29,78 @@ def index(request):
 		except:
 			pass
 
-	for person in people:
+	for peep in peeps:
 		try:
-			# print "person.common.images.all(): " + str(person.common.images.all())
 			l = person.common.images.all()[0]
-			peopleToPass.append((person, l))
+			peepsToPass.append((person, l))
 		except:
 			pass
-
-
-	# crisesToPass = []
-	# for peep in people:
-	# 	l = peep.common.images.all()[0]
-	# 	peopleToPass.append((peep, l))
-
-	print people
-	# print orgsToPass
-	# print peopleToPass
 
 	template = loader.get_template("index.html")
 	context = RequestContext(request, {
 		"crises" : crisesToPass,
 		"organizations" : orgsToPass,
-		"people" : peopleToPass
+		"people" : peepsToPass
 	})
 	return HttpResponse(template.render(context))
+
+
 
 def crises(request):
-	template = loader.get_template("crises.html")
+	crises = Crisis.objects.all().order_by('name')
+	crisesToPass = []
+	for crisis in crises:
+		try:
+			l = crisis.common.images.all()[0]
+			crisesToPass.append((crisis, l))
+		except:
+			pass
+
+	template = loader.get_template("gallery.html")
 	context = RequestContext(request, {
-		# "crises" : crises,
+		"modelObjects" : crisesToPass,
 	})
 	return HttpResponse(template.render(context))
+
+
 
 def people(request):
-	template = loader.get_template("people.html")
+	peeps = Person.objects.all().order_by('name')
+	peepsToPass = []
+	for peep in peeps:
+		try:
+			l = peep.common.images.all()[0]
+			peepsToPass.append((peep, l))
+		except:
+			pass
+
+	template = loader.get_template("gallery.html")
 	context = RequestContext(request, {
-		# "people" : people,
+		"modelObjects" : peepsToPass,
 	})
 	return HttpResponse(template.render(context))
 
+
+
 def organizations(request):
-	template = loader.get_template("organizations.html")
+	orgs = Organization.objects.all().order_by('name')
+	orgsToPass = []
+	for org in orgs:
+		try:
+			l = org.common.images.all()[0]
+			orgsToPass.append((org, l))
+		except:
+			pass
+	template = loader.get_template("gallery.html")
 	context = RequestContext(request, {
-		# "organizations" : organizations,
+		"modelObjects" : orgsToPass,
 	})
 	return HttpResponse(template.render(context))
+
+
 
 def about(request):
 	template = loader.get_template("about.html")
 	context = RequestContext(request, {
 	})
-	return HttpResponse(template.render(context))
-
-def CRI_IRAQWR(request):
-	template = loader.get_template('CRI_IRAQWR.html')
-	context = RequestContext(request)
-	return HttpResponse(template.render(context))
-
-def CRI_HURIKE(request):
-	template = loader.get_template("CRI_HURIKE.html")
-	context = RequestContext(request)
-	return HttpResponse(template.render(context))
-
-def CRI_BAGAIR(request):
-	template = loader.get_template("CRI_BAGAIR.html")
-	context = RequestContext(request)
-	return HttpResponse(template.render(context))
-
-def ORG_WHLORG(request):
-	template = loader.get_template("ORG_WHLORG.html")
-	context = RequestContext(request)
-	return HttpResponse(template.render(context))
-
-def ORG_REDCRS(request):
-	template = loader.get_template("ORG_REDCRS.html")
-	context = RequestContext(request)
-	return HttpResponse(template.render(context))
-
-def ORG_IAVETA(request):
-	template = loader.get_template("ORG_IAVETA.html")
-	context = RequestContext(request)
-	return HttpResponse(template.render(context))
-
-def PER_SADHUS(request):
-	template = loader.get_template("PER_SADHUS.html")
-	context = RequestContext(request)
-	return HttpResponse(template.render(context))
-
-def PER_BUSDAD(request):
-	template = loader.get_template("PER_BUSDAD.html")
-	context = RequestContext(request)
-	return HttpResponse(template.render(context))
-
-def PER_BRAMAN(request):
-	template = loader.get_template("PER_BRAMAN.html")
-	context = RequestContext(request)
 	return HttpResponse(template.render(context))

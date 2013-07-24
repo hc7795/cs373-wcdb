@@ -10,7 +10,7 @@
 	padding-right:2%;
 	position:relative;
 	display:inline-block;
-	width:28%;
+	width:100%;
 	margin-left:2%;
 	float: left;
 	background-color:rgba(45, 45, 45, 0.80);
@@ -20,10 +20,6 @@
 
 .column h1 {
 	text-align: center;
-}
-
-#cri {
-	margin: 0 auto;
 }
  
 #myContent {

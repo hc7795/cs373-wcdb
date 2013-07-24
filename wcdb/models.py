@@ -1,5 +1,5 @@
 from django.db import models
-from django.template.defaultfilters import slugify
+
 
 
 class Crisis(models.Model):
@@ -16,7 +16,7 @@ class Crisis(models.Model):
 	people = models.TextField()
 	organizations = models.TextField()
 	common = models.ForeignKey('Common',null=True)
-	slug = models.SlugField(max_length = 100)
+	slug = models.SlugField(max_length = 100, unique=True)
 
 	def __unicode__(self):
 	   return self.name  
@@ -29,7 +29,7 @@ class Person(models.Model):
 	crises = models.TextField()
 	organizations = models.TextField()
 	common = models.ForeignKey('Common', null=True)
-	slug = models.SlugField(max_length = 100)
+	slug = models.SlugField(max_length = 100, unique=True)
 
 
 	def __unicode__(self):
@@ -45,7 +45,7 @@ class Organization(models.Model):
 	crises = models.TextField()
 	people = models.TextField()
 	common = models.ForeignKey('Common', null=True)
-	slug = models.SlugField(max_length = 100)
+	slug = models.SlugField(max_length = 100, unique=True)
 
 
 	def __unicode__(self):
@@ -64,5 +64,5 @@ class Common(models.Model) :
 	videos = models.ManyToManyField(List,  related_name ='Videos+', null=True)
 	maps = models.ManyToManyField(List,  related_name ='Maps+', null=True)
 	feeds = models.ManyToManyField(List,  related_name ='Feeds+', null=True)
-	summary = models.TextField()
+	summary = models.TextField(null=True)
 

@@ -60,6 +60,16 @@ def people(request):
 	})
 	return HttpResponse(template.render(context))
 
+
+# added 
+def person(request):
+	template = loader.get_template("person.html")
+	context = RequestContext(request, {
+		# "person" : person,
+	})
+	return HttpResponse(template.render(context))
+
+
 def organizations(request):
 	template = loader.get_template("organizations.html")
 	context = RequestContext(request, {

@@ -14,6 +14,7 @@ urlpatterns = patterns('',
 	url(r'people', views.people, name='people'),
 	url(r'organizations', views.organizations, name='organizations'),
 	url(r'about', views.about, name='about'),
+	url(r'person', views.person, name='person'),
 
 	# Hardcoded HTML pages.
 	url(r'CRI_IRAQWR', views.CRI_IRAQWR, name='CRI_IRAQWR'),

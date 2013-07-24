@@ -1,7 +1,12 @@
 {% extends "base.html" %}
-
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/cop_plural.css">
+<!-- <script src="{{ STATIC_URL }}js/index.js"></script>
+ -->
+{% endblock %}
 {% block content %}
 	<p>people!</p>
+    <div id = "cop_plural">	
     {% for person in people %}
         <p><a href="people/{{ person.id }}/">{{ person }}</a></p>
         <p>{{person.id}} <br>
@@ -12,5 +17,6 @@
         	{{person.organizations}}<br>
         	{{person.common}}<br><br>
         </p>         
-    {% endfor %}	
+    {% endfor %}
+    </div>	    	
 {% endblock %}

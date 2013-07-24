@@ -1,14 +1,18 @@
 {% extends "base.html" %}
 {% block title %}{{ organization }} {% endblock %}
-
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/cop_singular.css">
+<!-- <script src="{{ STATIC_URL }}js/index.js"></script>
+ -->
+{% endblock %}
 {% block content %}
-	<div id = "organization">
-		<p>Name: {{ organization.name }}</p>
+	<div id = "cop">
+	<p>Name: {{ organization.name }}</p>
     <p>Kind: {{ organization.kind }}</p>
     <p>Location: {{ organization.location }}</p>
     <p>History: {{ organization.history }}</p>
     <p>Contact info: {{ organization.contact }}</p>
-		<p>Crisis: {{ organization.crisis }}</p>
+	<p>Crisis: {{ organization.crisis }}</p>
 		<p></p>
   </div>
 

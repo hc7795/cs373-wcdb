@@ -1,7 +1,12 @@
 {% extends "base.html" %}
-
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/cop_plural.css">
+<!-- <script src="{{ STATIC_URL }}js/index.js"></script>
+ -->
+{% endblock %}
 {% block content %}
 	<p>crises!</p>
+    <div id = "cop_plural">		
     {% for crisis in crises %}
         <p><a href="crises/{{ crisis.id }}/">{{crisis}}</a></p>
         <p>{{crisis.id}} <br>
@@ -19,4 +24,5 @@
         	{{crisis.common}}<br><br>
         </p>        
     {% endfor %}	
+	</div>    
 {% endblock %}

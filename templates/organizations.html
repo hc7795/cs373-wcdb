@@ -2,4 +2,7 @@
 
 {% block content %}
 	<p>organizations!</p>
+    {% for organization in organizations %}
+        <p><a href="organizations/{{ organization.OrganizationID }}/">{{organization}}</a></p>
+    {% endfor %}	
 {% endblock %}

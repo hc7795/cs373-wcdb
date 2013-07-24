@@ -2,4 +2,7 @@
 
 {% block content %}
 	<p>people!</p>
+    {% for person in people %}
+        <p><a href="people/{{ person.PersonID }}/">{{ person }}</a></p> 
+    {% endfor %}	
 {% endblock %}

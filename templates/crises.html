@@ -2,4 +2,7 @@
 
 {% block content %}
 	<p>crises!</p>
+    {% for crisis in crises %}
+        <p><a href="crises/{{ crisis.CrisisID }}/">{{crisis}}</a></p>
+    {% endfor %}	
 {% endblock %}

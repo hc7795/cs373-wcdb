@@ -15,12 +15,14 @@
             <p>Location: {{org.location}}</p>
             <p>History:  {{history}}</p>
             <p>Contact:  {{contact}}</p>
-            <p>Crises:  {{crises}}</p>
-            {% if people != "" %}
-                   <p>People:  {{people}}</p>
+            {% if crises %}
+                <p>Crises:  {{crises}}</p>
+            {% endif %}
+            {% if people %}
+               <p>People:  {{people.name}}</p>
             {% endif %}
             <p>External Links:
-                <a href={{externalLinks.href}}>{{externalLinks.href}}</a>     
+                <a href={{externalLinks.href}} target="_blank">{{externalLinks.href}}</a>     
             </p>
                           
 

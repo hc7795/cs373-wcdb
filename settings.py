@@ -60,7 +60,7 @@ USE_I18N = True
 USE_L10N = True
 
 # Absolute path to website root
-SITE_ROOT = "/u/wrj322/CS373/project4/"
+SITE_ROOT = "/u/youngseo/cs373/cs373-wcdb/"
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
@@ -120,7 +120,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'project4.urls'
+ROOT_URLCONF = 'cs373-wcdb.urls'
 
 TEMPLATE_DIRS = (
     SITE_ROOT + '/templates/'

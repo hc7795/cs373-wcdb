@@ -12,13 +12,12 @@
             <h1>{{person.name}}</h1>  
             <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
             <p>Type: {{person.kind}}</p>
-            <!-- <o>Location: {{person.location}} -->
             <p>Crises: {{crises}}</p>
             {% if organizations != "" %}
-                <p>Organizations: {{organizations}}</p>                
+                <p>Organizations: {{organizations.name}}</p>                
             {% endif %}
             <p>External Links:
-                <a href={{externalLinks.href}}>{{externalLinks.href}}</a>     
+                <a href={{externalLinks.href}} target="_blank">{{externalLinks.href}}</a>     
             </p>
            
         {% else %}

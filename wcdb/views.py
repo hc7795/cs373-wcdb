@@ -163,6 +163,9 @@ def person(request, urlSlug):
 	org = replaceBrackets(person.organizations)
 	externalLinks = person.common.externalLinks.all()[0]
 
+	crises = Crisis.objects.get(id=crises)
+	org = Organization.objects.get(id=org)
+
 	template = loader.get_template("person.html")
 	context = RequestContext(request, {
 		"person" : person,
@@ -185,16 +188,30 @@ def org(request, urlSlug):
 	ppl = replaceBrackets(org.people)
 	externalLinks = org.common.externalLinks.all()[0]
 
-	template = loader.get_template("organization.html")
-	context = RequestContext(request, {
+	d = {
 		"org" : org,
 		"list" : l,
 		"history": history,
 		"contact": contact,
-		"crises" : crises,
-		"people": ppl,
-		"externalLinks" : externalLinks
-	})
+		"externalLinks" : externalLinks,
+		 # "crises" : crises
+	}
+
+	strToList = crises.split(',')
+	# crises = Crisis.objects.get(id=crises)
+	crisisList =[]
+	for a in strToList:
+		crisisList.append(Crisis.objects.get(id=str(a).strip('u')))
+	d["crises"] = strToList
+
+	if ppl.strip() != "":
+		ppl = Person.objects.get(id=ppl)
+		d["people"] = ppl
+
+
+
+	template = loader.get_template("organization.html")
+	context = RequestContext(request, d)
 	return HttpResponse(template.render(context))
 
 def replaceBrackets(stringToReplace):

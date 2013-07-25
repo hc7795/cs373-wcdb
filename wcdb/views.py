@@ -116,11 +116,12 @@ def about(request):
 def crisis(request, urlSlug):
 
 	crisis = Crisis.objects.get(slug=urlSlug)
-	print "slug: " + str(urlSlug)
+	l = crisis.common.images.all()[0]
 
 	template = loader.get_template("crisis.html")
 	context = RequestContext(request, {
-		"crisis" : crisis
+		"crisis" : crisis,
+		"list" : list
 	})
 	return HttpResponse(template.render(context))
 
@@ -129,11 +130,12 @@ def crisis(request, urlSlug):
 def person(request, urlSlug):
 
 	person = Person.objects.get(slug=urlSlug)
-	print "slug: " + str(urlSlug)
+	l = person.common.images.all()[0]
 
 	template = loader.get_template("person.html")
 	context = RequestContext(request, {
-		"person" : person
+		"person" : person,
+		"list" : list
 	})
 	return HttpResponse(template.render(context))
 
@@ -142,10 +144,11 @@ def person(request, urlSlug):
 def org(request, urlSlug):
 
 	org = Organization.objects.get(slug=urlSlug)
-	print "slug: " + str(urlSlug)
+	l = org.common.images.all()[0]
 
 	template = loader.get_template("organization.html")
 	context = RequestContext(request, {
-		"org" : org
+		"org" : org,
+		"list" : list
 	})
 	return HttpResponse(template.render(context))

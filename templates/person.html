@@ -1,23 +1,34 @@
 {% extends "base.html" %}
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/cop_plural.css">
-<!-- <script src="{{ STATIC_URL }}js/index.js"></script>
- -->
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/person.css">
+
 {% endblock %}
 {% block content %}
-	<p>people!</p>
-    <div id = "cop_plural">	
-    <a href="person.html"><img src= "{{ STATIC_URL }}images/ppl/Julian_Assange.jpg"></a>
-    {% for person in people %}
-        <p><a href="people/{{ person.id }}/">{{ person }}</a></p>
-        <p>{{person.id}} <br>
-        	{{person.name}} <br>
-        	{{person.kind}} <br>
-        	{{person.location}}<br>
-        	{{person.crises}} <br>
-        	{{person.organizations}}<br>
-        	{{person.common}}<br><br>
-        </p>         
-    {% endfor %}
-    </div>	    	
+
+<div class="container">
+
+    <div class="column">
+        {% if person %}
+            <h1>{{person.name}}</h1>  
+            <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
+            <p>{{list.embed}}</p>
+            <p>Type: {{person.kind}}</p>
+            <p>Date: {{person.date}}</p>
+            <p>Time: {{person.time}}</p>
+            <p>Location: {{person.location}}</p> 
+            <p>Human Impact: {{person.humanImpact}}</p>
+            <p>Economic Impact: {{person.economicImpact}}</p>
+            <p>Resources Needed: {{person.resourcesNeeded}}</p>
+            <p>Ways to Help: {{person.waytoHelp}}</p>
+            <p>Associated People: {{person.people}}</p>
+            <p>Associated personanizations: {{person.personanizations}}</p>
+            <p>{{person.common}}</p>                
+
+        {% else %}
+            <p>Person is not available.</p>
+        {% endif %}
+    </div>
+
+</div>  
+
 {% endblock %}

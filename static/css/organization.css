@@ -1,0 +1,49 @@
+
+.container {
+	text-align:center;
+}
+
+.column {
+	position:relative;
+	display:inline-block;
+	width:45%;
+	margin-left:auto;
+	margin-right:auto;
+	background-color:rgba(45, 45, 45, 0.80);
+	border-radius:15px;
+	list-style-type: none;
+	padding-right:2%;
+}
+
+.column h1 {
+	text-align: center;
+}
+ 
+#myContent {
+	-webkit-column-count: 3;
+	-webkit-column-gap: 8%;
+
+	-moz-column-count: 3;
+	-moz-column-gap: 15%;
+
+	column-count: 3;
+	column-gap: 15%;
+	list-style-type: none;
+}
+ 
+#myContent img {
+	display: inline-block;
+	margin-bottom: 0px;
+	width: 100%;
+	border-radius:5px;
+	margin-bottom: 0.5%;
+	list-style-type: none;
+}
+
+#myContent ul {
+	list-style-type: none;
+}
+
+a {
+	opacity:0.80;
+}

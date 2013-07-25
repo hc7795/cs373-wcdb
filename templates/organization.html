@@ -1,24 +1,34 @@
 {% extends "base.html" %}
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/cop_plural.css">
-<!-- <script src="{{ STATIC_URL }}js/index.js"></script>
- -->
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/organization.css">
+
 {% endblock %}
 {% block content %}
-	<p>organizations!</p>
-    <div id = "cop_plural">	
-    {% for organization in organizations %}
-        <p><a href="organizations/{{ organization.id }}/">{{organization}}</a></p>
-        <p>{{organization.id}} <br>
-        	{{organization.name}} <br>
-        	{{organization.kind}} <br>
-        	{{organization.location}} <br>
-        	{{organization.history}}<br>
-        	{{organization.contact}}<br>
-        	{{organization.crises}} <br>
-        	{{organization.people}} <br>
-        	{{organization.common}}<br><br>
-        </p>
-    {% endfor %}
-    </div>	
+
+<div class="container">
+
+    <div class="column">
+        {% if org %}
+            <h1>{{org.name}}</h1>  
+            <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
+            <p>{{list.embed}}</p>
+            <p>Type: {{org.kind}}</p>
+            <p>Date: {{org.date}}</p>
+            <p>Time: {{org.time}}</p>
+            <p>Location: {{org.location}}</p> 
+            <p>Human Impact: {{org.humanImpact}}</p>
+            <p>Economic Impact: {{org.economicImpact}}</p>
+            <p>Resources Needed: {{org.resourcesNeeded}}</p>
+            <p>Ways to Help: {{org.waytoHelp}}</p>
+            <p>Associated People: {{org.people}}</p>
+            <p>Associated Organizations: {{org.organizations}}</p>
+            <p>{{org.common}}</p>                
+
+        {% else %}
+            <p>Organization is not available.</p>
+        {% endif %}
+    </div>
+
+</div>  
+
 {% endblock %}

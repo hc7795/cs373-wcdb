@@ -31,3 +31,5 @@ Actually spent 70 hours on the project.
    /u/z/users/cs373/lemus
 
    mysql -h z -u lemus -p7leuEjJU2x
+
+   mysql -h z -u hc7795 -pe~wmbU1mGm

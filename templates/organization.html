@@ -11,18 +11,18 @@
         {% if org %}
             <h1>{{org.name}}</h1>  
             <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
-            <p>{{list.embed}}</p>
             <p>Type: {{org.kind}}</p>
-            <p>Date: {{org.date}}</p>
-            <p>Time: {{org.time}}</p>
-            <p>Location: {{org.location}}</p> 
-            <p>Human Impact: {{org.humanImpact}}</p>
-            <p>Economic Impact: {{org.economicImpact}}</p>
-            <p>Resources Needed: {{org.resourcesNeeded}}</p>
-            <p>Ways to Help: {{org.waytoHelp}}</p>
-            <p>Associated People: {{org.people}}</p>
-            <p>Associated Organizations: {{org.organizations}}</p>
-            <p>{{org.common}}</p>                
+            <p>Location: {{org.location}}</p>
+            <p>History:  {{history}}</p>
+            <p>Contact:  {{contact}}</p>
+            <p>Crises:  {{crises}}</p>
+            {% if people != "" %}
+                   <p>People:  {{people}}</p>
+            {% endif %}
+            <p>External Links:
+                <a href={{externalLinks.href}}>{{externalLinks.href}}</a>     
+            </p>
+                          
 
         {% else %}
             <p>Organization is not available.</p>

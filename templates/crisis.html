@@ -11,19 +11,22 @@
         {% if crisis %}
             <h1>{{crisis.name}}</h1>  
             <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
-            <p>{{list.embed}}</p>
             <p>Type: {{crisis.kind}}</p>
             <p>Date: {{crisis.date}}</p>
-            <p>Time: {{crisis.time}}</p>
-            <p>Location: {{crisis.location}}</p> 
-            <p>Human Impact: {{crisis.humanImpact}}</p>
-            <p>Economic Impact: {{crisis.economicImpact}}</p>
-            <p>Resources Needed: {{crisis.resourcesNeeded}}</p>
-            <p>Ways to Help: {{crisis.waytoHelp}}</p>
-            <p>Associated People: {{crisis.people}}</p>
-            <p>Associated Organizations: {{crisis.organizations}}</p>
-            <p>{{crisis.common}}</p>                
-
+            <!-- <p>Time: {{crisis.time}}</p> -->
+            <p>Location: {{location}}</p> 
+            <p>Human Impact: {{humanImpact}}</p>
+            {% if economicImpact != "" %}
+                <p>Economic Impact: {{economicImpact}}</p>
+            {% endif %}
+            <!-- <p>Resources Needed: {{crisis.resourcesNeeded}}</p>
+            <p>Ways to Help: {{crisis.waytoHelp}}</p> -->
+            <p>Associated People: {{people}}</p>
+            <p>Associated Organizations: {{organizations}}</p>
+            <p>External Links:
+                <a href={{externalLinks.href}}>{{externalLinks.href}}</a>     
+            </p>
+            <p>stuff: {{stuff}} </p>
         {% else %}
             <p>Crisis is not available.</p>
         {% endif %}

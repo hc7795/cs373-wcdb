@@ -40,6 +40,10 @@
 	list-style-type: none;
 }
 
+img{
+	max-width:25em;
+}
+
 #myContent ul {
 	list-style-type: none;
 }

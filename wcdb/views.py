@@ -117,11 +117,39 @@ def crisis(request, urlSlug):
 
 	crisis = Crisis.objects.get(slug=urlSlug)
 	l = crisis.common.images.all()[0]
+	location = replaceBrackets(crisis.location)
+	humanImpact = replaceBrackets(crisis.humanImpact)
+	economicImpact = replaceBrackets(crisis.economicImpact)
+	ppl = replaceBrackets(crisis.people)
+	org = replaceBrackets(crisis.organizations)
+	externalLinks = crisis.common.externalLinks.all()[0]
+
+	strToList = ppl.split(",",10)
+	pplInfo = []
+
+
+	for person in strToList:
+		pplInfo.append(person)
+		
+		# found = Crisis.objects.get(id=person)
+		# name = found.name
+		# foundID = found.id
+		# pplInfo.append((name,foundID))
+
+
+
 
 	template = loader.get_template("crisis.html")
 	context = RequestContext(request, {
 		"crisis" : crisis,
-		"list" : list
+		"list" : l,
+		"location": location,
+		"humanImpact": humanImpact,
+		"economicImpact": economicImpact,
+		"people": ppl,
+		"organizations": org,
+		"externalLinks" : externalLinks,
+		"stuff": strToList
 	})
 	return HttpResponse(template.render(context))
 
@@ -131,11 +159,17 @@ def person(request, urlSlug):
 
 	person = Person.objects.get(slug=urlSlug)
 	l = person.common.images.all()[0]
+	crises = replaceBrackets(person.crises)
+	org = replaceBrackets(person.organizations)
+	externalLinks = person.common.externalLinks.all()[0]
 
 	template = loader.get_template("person.html")
 	context = RequestContext(request, {
 		"person" : person,
-		"list" : list
+		"list" : l,
+		"crises" : crises,
+		"organizations": org,
+		"externalLinks" : externalLinks
 	})
 	return HttpResponse(template.render(context))
 
@@ -145,10 +179,26 @@ def org(request, urlSlug):
 
 	org = Organization.objects.get(slug=urlSlug)
 	l = org.common.images.all()[0]
+	history = replaceBrackets(org.history)
+	contact = replaceBrackets(org.contact)
+	crises = replaceBrackets(org.crises)
+	ppl = replaceBrackets(org.people)
+	externalLinks = org.common.externalLinks.all()[0]
 
 	template = loader.get_template("organization.html")
 	context = RequestContext(request, {
 		"org" : org,
-		"list" : list
+		"list" : l,
+		"history": history,
+		"contact": contact,
+		"crises" : crises,
+		"people": ppl,
+		"externalLinks" : externalLinks
 	})
 	return HttpResponse(template.render(context))
+
+def replaceBrackets(stringToReplace):
+	stringAnswer = (stringToReplace).replace('[','')
+	stringAnswer = (stringAnswer).replace(']','')
+	stringAnswer = (stringAnswer).replace("'","")
+	return stringAnswer

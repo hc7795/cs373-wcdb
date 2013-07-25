@@ -1,3 +1,4 @@
+
 """
 xmlParser.py
 	============
@@ -274,7 +275,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 			crisisMaps = []
 			crisisFeeds = []
 			crisisSummary = ""
-			commonExist=False
+			commonExists=False
 
 
 			nextElement = treeIter.next() # People element
@@ -333,7 +334,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					nextElement = treeIter.next()
 
 			if (nextElement.tag == "Common"):
-				commonExist=True
+				commonExists=True
 				nextElement, treeIter, d = getCommonData(nextElement, treeIter)
 				crisisCitations = d.get('Citations')
 				crisisExternalLinks = d.get('ExternalLinks')
@@ -346,7 +347,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 
 			if isNotDuplicate(crisisID, "crisis", unitTestDB):
 				# Common
-				if (commonExist==False):
+				if (commonExists==False):
 					common=None
 					#common.save()
 				else:
@@ -486,7 +487,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 				personSummary = d.get('Summary')
 
 			if isNotDuplicate(personID, "person", unitTestDB):
-				if (commonExist == False):
+				if (commonExists == False):
 					common=None
 				else:
 					common=	Common()
@@ -634,7 +635,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 				orgFeeds = d.get('Feeds')
 				orgSummary = d.get('Summary')
 				
-			if (commonExist == False):
+			if (commonExists == False):
 					common=None
 			else:
 					common=	Common()

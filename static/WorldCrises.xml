@@ -129,8 +129,8 @@
 			<li>World Wide</li>
 		</Locations>
 		<HumanImpact>
-			<li>caused severe illness in 3–5 million people</li>
-			<li>250,000–500,000 deaths worldwide</li>
+			<li>caused severe illness in 3 to 5 million people</li>
+			<li>250,000 to 500,000 deaths worldwide</li>
 		</HumanImpact>
 		<Common>
 			<ExternalLinks>
@@ -294,6 +294,7 @@
 			<Org ID="ORG_IAVETA" />
 		</Organizations>
 		<Kind>Private First Class</Kind>
+		<Location>United States</Location>
 		<Common>
 			<ExternalLinks>
 				 <li href="https://en.wikipedia.org/wiki/Bradley_Manning">Wikipedia</li>
@@ -312,6 +313,7 @@
 			<Org ID="ORG_WIKLKS" />
 		</Organizations>
 		<Kind>Editor-in-chief and spokesman for WikiLeak</Kind>
+		<Location>Australia</Location>
 		<Common>
 			<ExternalLinks>
 				 <li href="https://en.wikipedia.org/wiki/Julian_Assange">Wikipedia</li>
@@ -330,6 +332,7 @@
 			<Org ID="ORG_WHLORG" />
 		</Organizations>
 		<Kind>Head of Public Relations/Social Media for World Health Organization</Kind>
+		<Location>Switzerland</Location>
 		<Common>
 			<ExternalLinks>
 				 <li href="https://twitter.com/HaertlG">Twitter</li>
@@ -345,6 +348,7 @@
 			<Crisis ID="CRI_EXXONV" />
 		</Crises>
 		<Kind>President of the United States</Kind>
+		<Location>United States</Location>
 		<Common>
 			<ExternalLinks>
 				 <li href="https://en.wikipedia.org/wiki/George_H._W._Bush">Wikipedia</li>
@@ -361,6 +365,7 @@
 			<Crisis ID="CRI_SWNFLU" />
 		</Crises>
 		<Kind>President of the United States</Kind>
+		<Location>United States</Location>
 		<Common>
 			<ExternalLinks>
 				 <li href="https://en.wikipedia.org/wiki/Obama">Wikipedia</li>
@@ -377,6 +382,7 @@
 			<Crisis ID="CRI_HAITIE" />
 		</Crises>
 		<Kind>President of Haiti</Kind>
+		<Location>Haiti</Location>
 		<Common>
 			<ExternalLinks>
 				 <li href="https://en.wikipedia.org/wiki/Ren%C3%A9_Pr%C3%A9val">Wikipedia</li>
@@ -392,6 +398,7 @@
 			<Crisis ID="CRI_AIDSHI" />
 		</Crises>
 		<Kind>Basketball Player</Kind>
+		<Location>United States</Location>
 		<Common>
 			<ExternalLinks>
 				 <li href="https://en.wikipedia.org/wiki/Magic_Johnson">Wikipedia</li>
@@ -407,6 +414,7 @@
 			<Crisis ID="CRI_UEGYPT" />
 		</Crises>
 		<Kind>President of Egypt</Kind>
+		<Location>Egypt</Location>
 		<Common>
 			<ExternalLinks>
 				 <li href="https://en.wikipedia.org/wiki/Hosni_Mubarak">Wikipedia</li>
@@ -422,6 +430,7 @@
 			<Crisis ID="CRI_WSAFRC" />
 		</Crises>
 		<Kind>Managing Director of the IMF</Kind>
+		<Location>France</Location>
 		<Common>
 			<ExternalLinks>
 				 <li href="https://en.wikipedia.org/wiki/Michel_Camdessus">Wikipedia</li>
@@ -437,6 +446,7 @@
 			<Crisis ID="CRI_IRAQWR" />
 		</Crises>
 		<Kind>President of Iraq</Kind>
+		<Location>Iraq</Location>
 		<Common>
 			<ExternalLinks>
 				 <li href="https://en.wikipedia.org/wiki/Saddam_Hussein">Wikipedia</li>
@@ -455,6 +465,7 @@
 			<Org ID="ORG_AQAEDA" />
 		</Organizations>
 		<Kind>Founder of al-Qaeda</Kind>
+		<Location>Saudi Arabia</Location>
 		<Common>
 			<ExternalLinks>
 				 <li href="https://en.wikipedia.org/wiki/Osama_Bin_Laden">Wikipedia</li>
@@ -552,6 +563,9 @@
 			<ExternalLinks>
 				 <li href="https://en.wikipedia.org/wiki/Al_Queda">Wikipedia</li>
 			</ExternalLinks>
+			<Images>
+				 <li embed = "http://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Flag_of_al-Qaeda_in_Iraq.svg/780px-Flag_of_al-Qaeda_in_Iraq.svg.png" />
+			</Images>
 		</Common>
 	</Organization>
 
@@ -685,6 +699,9 @@
 			<ExternalLinks>
 				 <li href="http://en.eohr.org/">Official Website</li>
 			</ExternalLinks>
+			<Images>
+				 <li embed = "https://profile-a.xx.fbcdn.net/hprofile-ash3/174889_509378269080454_1464461054_n.jpg">
+			</Images>
 		</Common>
 	</Organization>
 

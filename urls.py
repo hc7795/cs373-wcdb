@@ -16,9 +16,9 @@ urlpatterns = patterns('',
 	url(r'^about', views.about, name='about'),
 
 	# Individual pages.
-	url(r'^crisis/(\d+)', views.crisis),
-	url(r'^person/(\d+)', views.person),
-	url(r'^org/(\d+)', views.org),
+	url(r'^crisis/([a-z-]+)', views.crisis),
+	url(r'^person/([a-z-]+)', views.person),
+	url(r'^org/([a-z-]+)', views.org),
 
     #url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),

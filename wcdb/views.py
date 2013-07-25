@@ -144,7 +144,7 @@ def org(request, urlSlug):
 	org = Organization.objects.get(slug=urlSlug)
 	print "slug: " + str(urlSlug)
 
-	template = loader.get_template("org.html")
+	template = loader.get_template("organization.html")
 	context = RequestContext(request, {
 		"org" : org
 	})

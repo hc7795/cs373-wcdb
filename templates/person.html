@@ -11,12 +11,21 @@
         {% if person %}
             <h1>{{person.name}}</h1>  
             <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
-            <p>Type: {{person.kind}}</p>
-            <p>Crises: {{crises}}</p>
+            <p><b>Occupation:</b> {{person.kind}}</p>
+            <p><b>Location:</b> {{person.location}}</p>
+            <ul><b>Crisis Involved:</b>    
+                {% for name,slug in crises%}
+                     <li><a href="/crisis/{{slug}}">{{name}}</a></li>
+                {% endfor %}   
+            </ul>        
             {% if organizations != "" %}
-                <p>Organizations: {{organizations.name}}</p>                
+                <ul><b>Associated Organizations:</b> 
+                    {% for name,slug in organizations%}
+                         <li><a href="/org/{{slug}}">{{name}}</a></li>
+                    {% endfor %}  
+                </ul>         
             {% endif %}
-            <p>External Links:
+            <p><b>Links:</b>
                 <a href={{externalLinks.href}} target="_blank">{{externalLinks.href}}</a>     
             </p>
            

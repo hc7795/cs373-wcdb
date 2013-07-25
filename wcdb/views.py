@@ -126,18 +126,21 @@ def crisis(request, urlSlug):
 
 	strToList = ppl.split(",",10)
 	pplInfo = []
+	for person in strToList:		
+		found = Person.objects.get(id=(person.encode('ascii')).strip())
+		name = str(found.name)
+		foundID = str(found.slug)
+		pplInfo.append((name,foundID))
 
-
-	for person in strToList:
-		pplInfo.append(person)
-		
-		# found = Crisis.objects.get(id=person)
-		# name = found.name
-		# foundID = found.id
-		# pplInfo.append((name,foundID))
-
-
-
+	strToList = org.split(",",10)
+	orgInfo = []
+	test = []
+	for org in strToList:		
+		test.append(person.encode('ascii').strip())
+		found = Organization.objects.get(id=(org.encode('ascii')).strip())
+		name = str(found.name)
+		foundID = str(found.slug)
+		orgInfo.append((name,foundID))
 
 	template = loader.get_template("crisis.html")
 	context = RequestContext(request, {
@@ -146,10 +149,10 @@ def crisis(request, urlSlug):
 		"location": location,
 		"humanImpact": humanImpact,
 		"economicImpact": economicImpact,
-		"people": ppl,
-		"organizations": org,
+		"people": pplInfo,
+		"organizations": orgInfo,
 		"externalLinks" : externalLinks,
-		"stuff": strToList
+		"stuff": test
 	})
 	return HttpResponse(template.render(context))
 
@@ -163,18 +166,37 @@ def person(request, urlSlug):
 	org = replaceBrackets(person.organizations)
 	externalLinks = person.common.externalLinks.all()[0]
 
-	crises = Crisis.objects.get(id=crises)
-	org = Organization.objects.get(id=org)
+	strToList = crises.split(",",10)
+	criInfo = []
+	for crisis in strToList:		
+		found = Crisis.objects.get(id=(crisis.encode('ascii')).strip())
+		name = str(found.name)
+		foundID = str(found.slug)
+		criInfo.append((name,foundID))
+
+
+	orgInfo = ""
+	if org != "":
+		orgInfo = []
+		strToList = org.split(",",10)
+		for org in strToList:		
+			# test.append(org.encode('ascii').strip())
+			found = Organization.objects.get(id=(org.encode('ascii')).strip())
+			name = str(found.name)
+			foundID = str(found.slug)
+			orgInfo.append((name,foundID))
+
 
 	template = loader.get_template("person.html")
 	context = RequestContext(request, {
 		"person" : person,
 		"list" : l,
-		"crises" : crises,
-		"organizations": org,
+		"crises" : criInfo,
+		"organizations": orgInfo,
 		"externalLinks" : externalLinks
 	})
 	return HttpResponse(template.render(context))
+
 
 
 
@@ -188,34 +210,41 @@ def org(request, urlSlug):
 	ppl = replaceBrackets(org.people)
 	externalLinks = org.common.externalLinks.all()[0]
 
-	d = {
+	strToList = crises.split(",",10)
+	criInfo = []
+	for crisis in strToList:		
+		found = Crisis.objects.get(id=(crisis.encode('ascii')).strip())
+		name = str(found.name)
+		foundID = str(found.slug)
+		criInfo.append((name,foundID))
+
+	pplInfo = ""
+	if ppl != "":
+		pplInfo =[]
+		strToList = ppl.split(",",10)
+		pplInfo = []
+		for person in strToList:		
+			found = Person.objects.get(id=(person.encode('ascii')).strip())
+			name = str(found.name)
+			foundID = str(found.slug)
+			pplInfo.append((name,foundID))
+
+
+	template = loader.get_template("organization.html")
+	context = RequestContext(request, {
 		"org" : org,
 		"list" : l,
 		"history": history,
 		"contact": contact,
 		"externalLinks" : externalLinks,
-		 # "crises" : crises
-	}
-
-	strToList = crises.split(',')
-	# crises = Crisis.objects.get(id=crises)
-	crisisList =[]
-	for a in strToList:
-		crisisList.append(Crisis.objects.get(id=str(a).strip('u')))
-	d["crises"] = strToList
-
-	if ppl.strip() != "":
-		ppl = Person.objects.get(id=ppl)
-		d["people"] = ppl
-
-
-
-	template = loader.get_template("organization.html")
-	context = RequestContext(request, d)
+		"crises" : criInfo,
+		"people": pplInfo
+	})
 	return HttpResponse(template.render(context))
 
 def replaceBrackets(stringToReplace):
 	stringAnswer = (stringToReplace).replace('[','')
 	stringAnswer = (stringAnswer).replace(']','')
 	stringAnswer = (stringAnswer).replace("'","")
+	stringAnswer = (stringAnswer).replace('"','')
 	return stringAnswer

@@ -11,22 +11,33 @@
         {% if crisis %}
             <h1>{{crisis.name}}</h1>  
             <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
-            <p>Type: {{crisis.kind}}</p>
-            <p>Date: {{crisis.date}}</p>
+            <p><b>Type:</b> {{crisis.kind}}</p>
+            <p><b>Date:</b> {{crisis.date}}</p>
             <!-- <p>Time: {{crisis.time}}</p> -->
-            <p>Location: {{location}}</p> 
-            <p>Human Impact: {{humanImpact}}</p>
+            <p><b>Location:</b> {{location}}</p> 
+            <p><b>Human Impact:</b> {{humanImpact}}</p>
             {% if economicImpact != "" %}
-                <p>Economic Impact: {{economicImpact}}</p>
+                <p><b>Economic Impact:</b> {{economicImpact}}</p>
             {% endif %}
             <!-- <p>Resources Needed: {{crisis.resourcesNeeded}}</p>
             <p>Ways to Help: {{crisis.waytoHelp}}</p> -->
-            <p>Associated People: {{people}}</p>
-            <p>Associated Organizations: {{organizations}}</p>
-            <p>External Links:
+            <ul><b>Associated People:</b>
+            {% for name,slug in people%}
+                <li>
+                <a href="/person/{{slug}}">{{name}}</a>
+                </li>
+            {% endfor %}
+            </p>
+            </ul>
+            <ul><b>Associated Organizations:</b>
+            {% for name,slug in organizations%}
+                <li>
+                <a href="/org/{{slug}}">{{name}}</a>
+                </li>
+            {% endfor %}
+            <p><b>Link:</b>
                 <a href={{externalLinks.href}} target="_blank">{{externalLinks.href}}</a>     
             </p>
-            <p>stuff: {{stuff}} </p>
         {% else %}
             <p>Crisis is not available.</p>
         {% endif %}

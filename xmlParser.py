@@ -1,3 +1,4 @@
+
 """
 xmlParser.py
 	============
@@ -344,92 +345,92 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 				crisisSummary = d.get('Summary')
 			
 
-			if isNotDuplicate(crisisID, "crisis", unitTestDB):
-				# Common
-				if (commonExists==False):
-					common=None
-					#common.save()
-				else:
-					common=	Common()
-					if(crisisSummary != "") :
-					  common.summary= crisisSummary
-					common.save()
-					for c in crisisCitations:
-						li=List()
-						li.href=c.get("href")
-						li.embed=c.get("embed")
-						li.text=c.get("text")
-						li.content=c.get("content")
-						li.save()
-						common.citations.add(li)
+			#if isNotDuplicate(crisisID, "crisis", unitTestDB):
+			# Common
+			if (commonExists==False):
+				common=None
+				#common.save()
+			else:
+				common=	Common()
+				if(crisisSummary != "") :
+				  common.summary= crisisSummary
+				common.save()
+				for c in crisisCitations:
+					li=List()
+					li.href=c.get("href")
+					li.embed=c.get("embed")
+					li.text=c.get("text")
+					li.content=c.get("content")
+					li.save()
+					common.citations.add(li)
 
-					for c in crisisExternalLinks:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.externalLinks.add(li)
+				for c in crisisExternalLinks:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
+					)
+					li.save()
+					common.externalLinks.add(li)
 
-					for c in crisisImages:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.images.add(li)
+				for c in crisisImages:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
+					)
+					li.save()
+					common.images.add(li)
 
-					for c in crisisVideos:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.videos.add(li)
-					for c in crisisMaps:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.maps.add(li)
-					for c in crisisFeeds:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.feeds.add(li)
+				for c in crisisVideos:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
+					)
+					li.save()
+					common.videos.add(li)
+				for c in crisisMaps:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
+					)
+					li.save()
+					common.maps.add(li)
+				for c in crisisFeeds:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
+					)
+					li.save()
+					common.feeds.add(li)
 
 
-				models[0].append(
-						Crisis(
-						id = crisisID,
-						name = crisisName,
-						kind = crisisKind,
-						date = crisisDate,
-						time = crisisTime,
-						people = str(crisisPersonIDs),
-						organizations = str(crisisOrgIDs),
-						location = str(crisisLocations),
-						humanImpact = str(crisisHumanImpact),
-						economicImpact = str(crisisEconomicImpact),
-						resourcesNeeded = str(crisisResourcesNeeded),
-						waytoHelp = str(crisisWaysToHelp),						
-						common = common,
-						slug = slugify(crisisName),
-						)
-				)
+			models[0].append(
+					Crisis(
+					id = crisisID,
+					name = crisisName,
+					kind = crisisKind,
+					date = crisisDate,
+					time = crisisTime,
+					people = str(crisisPersonIDs),
+					organizations = str(crisisOrgIDs),
+					location = str(crisisLocations),
+					humanImpact = str(crisisHumanImpact),
+					economicImpact = str(crisisEconomicImpact),
+					resourcesNeeded = str(crisisResourcesNeeded),
+					waytoHelp = str(crisisWaysToHelp),						
+					common = common,
+					slug = slugify(crisisName),
+					)
+			)
 
 		# Parse people. 
 		
@@ -485,83 +486,83 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 				personFeeds = d.get('Feeds')
 				personSummary = d.get('Summary')
 
-			if isNotDuplicate(personID, "person", unitTestDB):
-				if (commonExists == False):
-					common=None
-				else:
-					common=	Common()
-					if(personSummary != "") :
-					  common.summary= personSummary
-					common.save()
-					for c in personCitations:
-						li=List()
-						li.href=c.get("href")
-						li.embed=c.get("embed")
-						li.text=c.get("text")
-						li.content=c.get("content")
-						li.save()
-						common.citations.add(li)
+			#if isNotDuplicate(personID, "person", unitTestDB):
+			if (commonExists == False):
+				common=None
+			else:
+				common=	Common()
+				if(personSummary != "") :
+				  common.summary= personSummary
+				common.save()
+				for c in personCitations:
+					li=List()
+					li.href=c.get("href")
+					li.embed=c.get("embed")
+					li.text=c.get("text")
+					li.content=c.get("content")
+					li.save()
+					common.citations.add(li)
 
-					for c in personExternalLinks:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.externalLinks.add(li)
-
-					for c in personImages:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.images.add(li)
-
-					for c in personVideos:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.videos.add(li)
-					for c in personMaps:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.maps.add(li)
-					for c in personFeeds:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.feeds.add(li)
-
-				models[1].append(
-					Person(
-						id = personID,
-						name = personName,
-						kind = personKind,
-						location = personLocation,
-						crises=str(personCrisisIDs),
-						organizations=str(personOrgIDs),
-						common = common,
-						slug = slugify(personName),
+				for c in personExternalLinks:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
 					)
+					li.save()
+					common.externalLinks.add(li)
+
+				for c in personImages:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
+					)
+					li.save()
+					common.images.add(li)
+
+				for c in personVideos:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
+					)
+					li.save()
+					common.videos.add(li)
+				for c in personMaps:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
+					)
+					li.save()
+					common.maps.add(li)
+				for c in personFeeds:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
+					)
+					li.save()
+					common.feeds.add(li)
+
+			models[1].append(
+				Person(
+					id = personID,
+					name = personName,
+					kind = personKind,
+					location = personLocation,
+					crises=str(personCrisisIDs),
+					organizations=str(personOrgIDs),
+					common = common,
+					slug = slugify(personName),
 				)
+			)
 
 		# Parse organizations.
 		while (nextElement.tag == "Organization"):
@@ -699,21 +700,21 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 						common.feeds.add(li)
 
 
-			if isNotDuplicate(orgID, "org", unitTestDB):
-				models[2].append(
-					Organization(
-						id = orgID,
-						name = orgName,
-						kind = kind,
-						location = location,
-						history = history,
-						contact = contactInfo,
-						crises=str(orgCrisisIDs),
-						people=str(orgPeopleIDs),
-						common = common,
-						slug = slugify(orgName),
-					)
+			#if isNotDuplicate(orgID, "org", unitTestDB):
+			models[2].append(
+				Organization(
+					id = orgID,
+					name = orgName,
+					kind = kind,
+					location = location,
+					history = history,
+					contact = contactInfo,
+					crises=str(orgCrisisIDs),
+					people=str(orgPeopleIDs),
+					common = common,
+					slug = slugify(orgName),
 				)
+			)
 
 		nextElement = treeIter.next()
 
@@ -731,7 +732,6 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 
 	# Control should never normally reach here.
 	raise IOError("Invalid file!")
-
 
 
 
@@ -1132,4 +1132,3 @@ if __name__ == "__main__":
 
 	except Exception as e:
 		logging.exception("Fatal error, ending program. Error message:")
-

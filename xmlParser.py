@@ -1,4 +1,3 @@
-
 """
 xmlParser.py
 	============
@@ -738,14 +737,36 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 
 
 
+def merge(c, m):
+	pass
+
+
+
 """
 	Takes a list of Django models and saves them to a database.
 """
 def modelsToDjango(models):
-
-	for subList in models:
-		for m in subList:
+	
+	crises = models[0]
+	people = models[1]
+	orgs =   models[2]
+	count=1;
+	print "elements of model[0] ",crises
+	for m in crises:
+		checkExistence = Crisis.objects.filter(id=m.id).count()
+		if checkExistence == 1:
+			#append images from m to c
+			# ... ditto for rest of attributes
+			print count
+			count+=1
+			c=Crisis.objects.get(id = m.id)
+			merge(c, m)
+			c.save()
+		elif checkExistence == 0:
+			print "save",m.id
 			m.save()
+		else:
+			print "something wrong"
 
 
 

@@ -81,13 +81,32 @@ body {
 	opacity:0.80;
 }
 
+a {
+	color:inherit;
+	text-decoration:none;
+}
+
+
+/* 
+===============
+	Colors
+===============
+*/
+
 .blue {
 	color:#059FFF !important;
 }
 
-a {
-	color:inherit;
-	text-decoration:none;
+.yellow {
+	color:#fdfc80 !important;
+}
+
+.light_grey {
+	color:#CCC !important;
+}
+
+.grey {
+	color:#999 !important;
 }
 
 

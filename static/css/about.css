@@ -1,15 +1,19 @@
 
 #about_me_box {
+	margin-top:1.5%;
 	position: relative;
 	margin-left:auto;
 	margin-right:auto;
-	width:50%;
+	width:55%;
+}
+
+#about_me_content {
 	border-radius:15px;
 	background-color:rgba(45, 45, 45, 0.80);
 	margin-top: 2.5%;
 }
 
-#about_me_box img {
+#about_me_content img {
 	display:block;
 	position: relative;
 	width:80%;
@@ -32,4 +36,15 @@
 
 #about_me_text p {
 	text-indent: 5%;
+}
+
+#about_me_header {
+	width:90%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background-color:rgba(25, 25, 25, 0.95);
+	border-radius:15px;
+	padding-top:0.5%;
+	padding-bottom:0.5%;
 }

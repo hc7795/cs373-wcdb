@@ -1,6 +1,8 @@
 .common_wrapper {
-	width:80%;
-	margin-left:8%;
+	width:85%;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
 }
 
 .common_galleria { 
@@ -22,7 +24,7 @@
 }
 
 .common_box p {
-	text-indent:10%;
+	text-indent:50px;
 	color:#CCC !important;
 }
 
@@ -31,7 +33,9 @@
 	width:100%;
 	position:relative;
 	text-align:center;
+	margin-top:2%;
 	margin-bottom:1.5%;
+	background-color:rgba(25, 25, 25, 0.95);
 }
 
 #top_box {
@@ -47,12 +51,13 @@
 	background-color:black;
 	width:60%;
 	height:100%;
+	float:left;
 }
 
 .associated_box {
-	width:12.5%;
+	width:12.2%;
 	height:100%;
-	float:right;
+	float:left;
 	margin-left:0.83%;
 }
 
@@ -73,8 +78,17 @@
 	background-color:rgba(25, 25, 25, 0.90);
 }
 
+#history_box {
+	width:60%;
+	background-color:rgba(25, 25, 25, 0.90);
+}
+
+#contact_box {
+	width:60%;
+	background-color:rgba(25, 25, 25, 0.90);
+}
+
 #external_links_box {
 	width:75%;
-	/*background-color:rgba(32, 32, 32, 0.85);*/
 	background-color:rgba(25, 25, 25, 0.90);
 }

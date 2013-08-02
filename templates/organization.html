@@ -1,45 +1,88 @@
 {% extends "base.html" %}
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/organization.css">
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/common_data.css">
+<script src="{{ STATIC_URL }}js/common_data.js"></script>
 
 {% endblock %}
 {% block content %}
 
-<div class="container">
+<div class="common_wrapper">
 
-    <div class="column">
-        {% if org %}
-            <h1>{{org.name}}</h1>  
-            <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
-            <p><b>Type</b>: {{org.kind}}</p>
-            <p><b>Location</b>: {{org.location}}</p>
-            <p><b>History</b>: {{history}}</p>
-            {% if contact != "" %}
-                <p><b>Contact</b>:  {{contact}}</p>
-            {% endif %}
-                <ul> <b>Crisis Involved</b>:
-                {% for name,slug in crises%}
-                     <li><a href="/crisis/{{slug}}">{{name}}</a></li>
-                {% endfor %}
-                </ul>    
-            {% if people != "" %}
-                <ul> <b>Associated People</b>:
-                {% for name,slug in people%}
-                    <li><a href="/person/{{slug}}">{{name}}</a></li>
+    {% if org %}
+
+        <div class="common_box" id="name">
+            <h1>{{org.name}}</h1> 
+        </div>
+
+        <div id="top_box">
+            <div class="common_box" id="galleria_box"> 
+                <div class="common_galleria">
+                    <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
+                </div>
+            </div>
+
+            <div class="common_box associated_box">
+                <h3>Associated Crises:</h3>
+                <ul class="light_grey">
+                {% for name, slug in crises %}
+                    <li>
+                    <a href="/crisis/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a>
+                    </li>
                 {% endfor %}
                 </ul>
+            </div>
+
+            {% if people != "" %}
+                <div class="common_box associated_box">
+
+                    <h3>Associated People:</h3>
+                    <ul class="light_grey">
+                    {% for name, slug in people %}
+                        <li>
+                        <a href="/person/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
             {% endif %}
-            </p>
-            <p><b>Link</b>:
-                <a href={{externalLinks.href}} target="_blank">{{externalLinks.href}}</a>     
-            </p>
-                          
+        </div>
 
-        {% else %}
-            <p>Organization is not available.</p>
-        {% endif %}
-    </div>
+        <div id="middle_box">
+            <div class="common_box" id="general_info_box">
+                <h3>Type:</h3> <p>{{org.kind}}</p>
+                <h3>Location:</h3> <p>{{org.location}}</p>
+            </div>
 
-</div>  
+            <div class="common_box" id="history_box">
+                <h3>History:</h3>
+                <p>{{history}}</p>
+            </div>
+
+            {% if contact != "" %}
+                <div class="common_box" id="contact_box">
+                    {% if economicImpact != "" %}
+                        <h3>Contact:</h3>
+                        <p>{{contact}}</p>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+        
+        <div>
+            <div class="common_box" id="external_links_box">
+                <h3>External Links:</h3>
+                <ul class="light_grey">
+                    <li>
+                        <a href={{externalLinks.href}} target="_blank" class="hover_lightup hover_underline yellow">{{externalLinks.href}}</a>   
+                    </li>
+                </ul>  
+            </div>
+        </div>
+
+    {% else %}
+        <p>Organization is not available.</p>
+    {% endif %}
+</div>
 
 {% endblock %}

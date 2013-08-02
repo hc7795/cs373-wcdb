@@ -1,39 +1,77 @@
 {% extends "base.html" %}
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/person.css">
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/common_data.css">
+<script src="{{ STATIC_URL }}js/common_data.js"></script>
 
 {% endblock %}
 {% block content %}
 
-<div class="container">
+<div class="common_wrapper">
 
-    <div class="column">
-        {% if person %}
-            <h1>{{person.name}}</h1>  
-            <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
-            <p><b>Occupation:</b> {{person.kind}}</p>
-            <p><b>Location:</b> {{person.location}}</p>
-            <ul><b>Crisis Involved:</b>    
-                {% for name,slug in crises%}
-                     <li><a href="/crisis/{{slug}}">{{name}}</a></li>
-                {% endfor %}   
-            </ul>        
+    {% if person %}
+
+        <div class="common_box" id="name">
+            <h1>{{person.name}}</h1> 
+        </div>
+
+        <div id="top_box">
+            <div class="common_box" id="galleria_box"> 
+                <div class="common_galleria">
+                    <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
+                </div>
+            </div>
+
+            <div class="common_box associated_box">
+                <h3>Associated Crises:</h3>
+                <ul class="light_grey">
+                {% for name, slug in crises %}
+                    <li>
+                    <a href="/crisis/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+
             {% if organizations != "" %}
-                <ul><b>Associated Organizations:</b> 
-                    {% for name,slug in organizations%}
-                         <li><a href="/org/{{slug}}">{{name}}</a></li>
-                    {% endfor %}  
-                </ul>         
-            {% endif %}
-            <p><b>Links:</b>
-                <a href={{externalLinks.href}} target="_blank">{{externalLinks.href}}</a>     
-            </p>
-           
-        {% else %}
-            <p>Person is not available.</p>
-        {% endif %}
-    </div>
+                <div class="common_box associated_box">
 
-</div>  
+                    <h3>Associated Organizations:</h3>
+                    <ul class="light_grey">
+                    {% for name, slug in organizations %}
+                        <li>
+                        <a href="/org/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+
+        <div id="middle_box">
+            <div class="common_box" id="general_info_box">
+                <h3>Occupation:</h3> <p>{{crisis.kind}}</p>
+                <h3>Date:</h3> <p>{{crisis.date}}</p>
+                <!-- <p>Time: {{crisis.time}}</p> -->
+                <h3>Location:</h3> <p>{{location}}</p>
+            </div>
+        </div>
+        
+        <div>
+            <div class="common_box" id="external_links_box">
+                <h3>External Links:</h3>
+                <ul class="light_grey">
+                    <li>
+                        <a href={{externalLinks.href}} target="_blank" class="hover_lightup hover_underline yellow">{{externalLinks.href}}</a>   
+                    </li>
+                </ul>  
+            <div class="common_box">
+        </div>
+
+    {% else %}
+        <p>Person is not available.</p>
+    {% endif %}
+</div>
+    
 
 {% endblock %}

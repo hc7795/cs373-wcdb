@@ -6,16 +6,23 @@
 
 {% block content %}
 
-	<div id="about_me_box">
+<div id="about_me_box">
+	<div id="about_me_header">
+		<h1>About Us</h1>
+	</div>
+
+	<div id="about_me_content">
 		
 		<img src="{{ STATIC_URL }}images/gummy_pandas_epic.png" />
 		<div id="about_me_text">
 			<h2>
 			What is WCDB? Who are these "Gummy Pandas"?
 			</h2>
-			<p>
+			<p class="light_grey">
 				Infuriated at all of the great evils in the world, six brave gummy bears banded together to form the "Illustrious Gummy Pandas", with the ultimate goal to destroy all world crises. After one of the bears was devoured by a hamster-breathing Cocoa Puffs monster, the bears realized that this wasn't going too well, and built this site instead to inform others of the evils they could not defeat.
 			</p>
 		</div>
 	</div>
+</div>
+
 {% endblock %}

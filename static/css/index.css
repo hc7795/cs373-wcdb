@@ -5,13 +5,32 @@
 	position: relative;
 }
 
+#index_name {
+	margin-top:1.5%;
+	text-align: center;
+	background-color:rgba(25, 25, 25, 0.95);
+	border-radius:15px;
+	padding-top:0.1%;
+	padding-bottom:0.1%;
+	width:90%;
+	margin-left:auto;
+	margin-right:auto;
+	font-size:250%;
+}
+
+#column_box {
+	width:90%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
 
 .column {
 	padding-right:2%;
 	position:relative;
 	display:inline-block;
 	width:28%;
-	margin-left:2%;
+	margin-left:2.75%;
 	float: left;
 	list-style-type: none;
 	text-align:center;

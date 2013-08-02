@@ -1,4 +1,3 @@
-
 """
 xmlParser.py
 	============
@@ -738,7 +737,17 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 
 
 def merge(c, m):
-	pass
+          #attributeList = Crisis._meta.get_all_field_names()
+          # compare c.date (old value) and m.Crisis.date (new value)
+
+        #print "str(m.location) = ", str(m.location)
+        #print "len(str(c.location)) = ", str(c.location)
+        ast.literal_eval(m.location)
+        ast.literal_eval(c.location)
+        if(m.location > c.location):
+
+          #commonAttributes = Common._meta.get_all_field_names();
+          #print "commonAttributes = ", commonAttributes
 
 
 

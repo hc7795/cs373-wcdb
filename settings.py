@@ -21,21 +21,10 @@ MANAGERS = ADMINS
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-#         'NAME': 'cs373_hc7795',                      # Or path to database file if using sqlite3.
-#         'USER': 'hc7795',                      # Not used with sqlite3.
-#         'PASSWORD': 'e~wmbU1mGm',                  # Not used with sqlite3.
-#         'HOST': 'z',                      # Set to empty string for localhost. Not used with sqlite3.
-#         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'database',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'cs373_hc7795',                      # Or path to database file if using sqlite3.
         'USER': 'hc7795',                      # Not used with sqlite3.
         'PASSWORD': 'e~wmbU1mGm',                  # Not used with sqlite3.
         'HOST': 'z',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -71,7 +60,7 @@ USE_I18N = True
 USE_L10N = True
 
 # Absolute path to website root
-SITE_ROOT = "/Users/russelljahn/Development/Coursework/CS373/project5/"
+SITE_ROOT = "/u/wrj322/CS373/project5/"
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"

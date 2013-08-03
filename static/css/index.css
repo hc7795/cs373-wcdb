@@ -1,24 +1,55 @@
-*.container {
+.content_container {
+	margin-top: 5%;
 	width: 100%;
-	margin-left:0px;
-	margin-right: 0px;
+	height: 400px;
+	background-color: rgba(245, 245, 245, 0.40);
 	position: relative;
 }
 
-#index_name {
-	margin-top:1.5%;
-	text-align: center;
-	background-color:rgba(25, 25, 25, 0.95);
-	border-radius:15px;
-	padding-top:0.1%;
-	padding-bottom:0.1%;
-	width:90%;
-	margin-left:auto;
-	margin-right:auto;
-	font-size:250%;
+.galleria_container {
+	width: 60%;
+	height: 100%;
+	background-color: black;
 }
 
-#column_box {
+.right_container {
+	float:right;
+}
+
+#header_wrapper {
+	padding-top: 1%;
+	padding-bottom: 2%;
+	/*background-color:#efe69b;*/
+	/*background-color:#ff9090;*/
+	/*background-color:#ffc490;*/
+	/*background-color:#ffae5e;*/
+	/*background-color:#ec3849;*/
+
+}
+
+#header_name {
+	margin-top: 1.5%;
+	text-align: center;
+	background-color: rgba(25, 25, 25, 0.70);
+	border-radius: 15px;
+	padding-top: 0.1%;
+	padding-bottom: 0.1%;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 250%;
+}
+
+#categories_wrapper {
+	/*background:#47404f;*/
+	/*background-color:rgba(71, 64, 79, 0.85);*/
+}
+
+#content_wrapper {
+	
+}
+
+.column_box {
 	width:90%;
 	margin-left:auto;
 	margin-right:auto;
@@ -41,7 +72,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
-	background-color:rgba(25, 25, 25, 0.95);
+	background-color:rgba(25, 25, 25, 0.70);
 	border-radius:15px;
 	padding-top:3%;
 	padding-bottom:3%;
@@ -52,35 +83,31 @@
 	margin-bottom:15%;
 }
  
-#myContent {
+.column_content {
 	padding-right:5%;
 	padding-top:10%;
 	padding-bottom:10%;
-	background-color:rgba(45, 45, 45, 0.80);
-	border-radius:15px;
+	/*background-color:rgba(45, 45, 45, 0.80);*/
+	/*border-radius:15px;*/
 
 	-webkit-column-count: 3;
 	-webkit-column-gap: 8%;
 
 	-moz-column-count: 3;
-	-moz-column-gap: 15%;
+	-moz-column-gap: 8%;
 
 	column-count: 3;
-	column-gap: 15%;
+	column-gap: 8%;
 	list-style-type: none;
 }
  
-#myContent img {
+.column_content img {
 	display: inline-block;
 	width: 100%;
-	border-radius:5px;
+	/*border-radius:2.5px;*/
 	list-style-type: none;
 }
 
-#myContent ul {
-	list-style-type: none;
-}
-
-a {
-	opacity:0.8;
+.clear_both {
+	clear:both;
 }

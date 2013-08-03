@@ -2,32 +2,142 @@
 @import url(http://fonts.googleapis.com/css?family=Inconsolata:400,700|Architects+Daughter); /* Inconsolata: normal, bold; Architect's Daughter */
 
 body {
-	background-image:url(../images/bg_clay_green_tint.jpg);
-	color: black;
+	color:black;
 	margin: 0;
-	height:1000px;
+	min-height:800px;
+	font-family: 'Inconsolata', sans-serif;
+	background-color:rgba(255, 255, 240, 0.80);
+	/*background-image:url(../images/bg_clay_green_tint.jpg);*/
 }
 
-#wrapper {
-	color:rgba(230, 230, 230, 1.0);
-	position: absolute;
+#outer_wrapper {
+	position: relative;
 	top:0px;
 	bottom:0px;
 	left:0px;
 	right:0px;
+	font-family: 'Inconsolata', sans-serif;
+	height:100%;
+}
+
+#inner_wrapper {
+	width:80%;
+	height:100%;
+	margin-left:auto;
+	margin-right:auto;
+	background-color:rgba(80, 80, 80, 0.90);
+}
+
+#content {
+	display:block;
+	position:relative;
+	left:0px;
+	right: 0px;
+}
+
+#header_title {
+	font-size:600%;
+	background-color:rgba(15, 11, 25, 0.90);
+	color:white;
+	text-align:center;
+	padding-top:4%;
+	padding-bottom:4%;
+	display:block;
+}
+
+#header_title a:visited, #header_title a:link {
+	text-decoration: none;
+	color:inherit;
+}
+#header_title a:hover {
+	background-color:rgba(240, 240, 240, 0.15);
 }
 
 #nav {
-	position:fixed;
-	height:2.25em;
-	width:100%;
-	z-index: 5000;
-	font-family: 'Inconsolata', sans-serif;
-	font-size:150%;
-	background-color:rgba(45, 45, 45, 0.90);
+	background-image:url(../images/hokusai_06.jpg);
+	background-position:40% 39%;
+	background-size:cover;
+	height:100px;
 }
+
+#nav a {
+	position:relative;
+	height:100%;
+	width:20%;
+	display:inline-block;
+	margin:0px;
+	margin-right: -8px;
+	/*font-weight: bold;*/
+}
+
+#nav span {
+	position:absolute;
+	color:#0c0c0c;
+	font-size:165%;
+	bottom:1%;
+	right:3%;
+}
+
+#nav_box_1 {
+	background-color:rgba(220, 31, 38, 0.50);
+}
+#nav_box_1:hover {
+	/*background-color:#dc1f26;*/
+	background-color:rgba(220, 31, 38, 0.65);
+}
+
+#nav_box_2 {
+	/*background-color:#00b0ec;*/
+	background-color:rgba(0, 176, 236, 0.50);
+
+
+	/*border: 1px solid black;
+	left:-1px;*/
+}
+#nav_box_2:hover {
+	/*background-color:#00b0ec;*/
+	background-color:rgba(0, 176, 236, 0.65);
+	text-decoration:underline;
+}
+
+#nav_box_3 {
+	/*background-color:#d7719f;*/
+	background-color:rgba(215, 113, 159, 0.50);
+	/*border: 1px solid black;
+	left:-2px;*/
+}
+#nav_box_3:hover {
+	/*background-color:#d7719f;*/
+	background-color:rgba(215, 113, 159, 0.65);
+	text-decoration:underline;
+}
+
+#nav_box_4 {
+	/*background-color:#42b549;*/
+	background-color:rgba(66, 181, 73, 0.50);
+	/*border: 1px solid black;
+	left:-3px;
+*/}
+#nav_box_4:hover {
+	/*background-color:#42b549;*/
+	background-color:rgba(66, 181, 73, 0.65);
+	text-decoration:underline;
+}
+
+#nav_box_5 {
+	/*background-color:#1d439c;*/
+	background-color:rgba(29, 67, 156, 0.50);
+/*	border: 1px solid black;
+	left:-6px;*/
+}
+#nav_box_5:hover {
+	/*background-color:#1d439c;*/
+	background-color:rgba(29, 67, 156, 0.65);
+	text-decoration:underline;
+}
+
 /* Box of links inside of nav. */
-#nav_link_box {
+/*#nav_link_box {
 	margin:auto;
 	position:relative;
 	width:40em;
@@ -50,31 +160,25 @@ body {
 	margin-left:0.5% !important;
 	float:left;
 }
+*/
 #wcdb_logo_bear {
-	margin-top: 0.35em;
-	float:left;
-	width:3%;
+	width:3.25%;
 }
 
-#content {
-	display:block;
-	position:absolute;
-	top:7.5%;
-	left:0px;
-	right: 0px;
-	font-family: 'Inconsolata', sans-serif;
-	padding-bottom: 2.5%;
+#wcdb_text {
+	margin-left: -2.5%;
 }
+
 
 #footer {
-	text-align:center;
-	background-color:rgba(45, 45, 45, 0.90);
-	width:100%;
-	padding-top:.05%;
-	padding-bottom:.05%;
-	font-size:1.05em;
-	position:fixed;
-	bottom:0px;
+	color: white;
+	text-align: center;
+	background-color: rgba(45, 45, 45, 0.90);
+	width: 100%;
+	margin-top: 5%;
+	padding-top: 0.5%;
+	padding-bottom: 0.5%;
+	font-size: 1.05em;
 }
 
 #footer a {

@@ -7,9 +7,9 @@ from wcdb.models import Crisis, Organization, Person
 
 def index(request):
 	# Uncomment below when we want to move on from hardcoded pages.
-	crises = Crisis.objects.all().order_by('name')
-	organizations = Organization.objects.all().order_by('name')
-	peeps = Person.objects.all().order_by('name')
+	crises = Crisis.objects.all().order_by('?')
+	organizations = Organization.objects.all().order_by('?')
+	peeps = Person.objects.all().order_by('?')
 
 	crisesToPass = []
 	orgsToPass = []
@@ -47,7 +47,7 @@ def index(request):
 
 
 def crises(request):
-	crises = Crisis.objects.all().order_by('name')
+	crises = Crisis.objects.all().order_by('?')
 	crisesToPass = []
 	for crisis in crises:
 		try:
@@ -67,7 +67,7 @@ def crises(request):
 
 
 def people(request):
-	peeps = Person.objects.all().order_by('name')
+	peeps = Person.objects.all().order_by('?')
 	peepsToPass = []
 	for peep in peeps:
 		try:
@@ -87,7 +87,7 @@ def people(request):
 
 
 def organizations(request):
-	orgs = Organization.objects.all().order_by('name')
+	orgs = Organization.objects.all().order_by('?')
 	orgsToPass = []
 	for org in orgs:
 		try:

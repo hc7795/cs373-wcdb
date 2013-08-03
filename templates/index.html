@@ -7,72 +7,126 @@
 
 {% block content %}
 
-<div class="container">
 
-		<div id="index_name">
-			<h1>WCDB</h1>
-		</div>
-
-		<div id="column_box">
-			<div class="column">
-				<h1>Crises</h1>
-				<ul id="myContent">  
-					{% if crises %}
-					    {% for crisis, list in crises %}	
-					    	<li>
-					    		<a class="hover_lightup hover_underline" href="crisis/{{crisis.slug}}">
-						    		<img src="{{list.embed}}" alt="{{crisis.name}}">
-						    		<p>{{crisis.name}}</p>
-					    		</a>
-					    	</li>				   
-					    {% endfor %}
-					{% else %}
-					    <p>No crises are available.</p>
-					{% endif %}
-
-				 </ul> 
-			</div>
-
-			<div class="column">
-				<h1>Peeps</h1>
-				<ul id="myContent">  
-					{% if people %}
-					    {% for person, list in people %}
-					    	<li>
-					    		<a class="hover_lightup hover_underline" href="person/{{person.slug}}">
-						    		<img src="{{list.embed}}" alt="{{person.name}}">
-						    		<p>{{person.name}}</p>
-						    	</a>		
-					    	</li>		   
-					    {% endfor %}
-					{% else %}
-					    <p>No peeps are available.</p>
-					{% endif %}
-
-				 </ul> 
-			</div>
-
-			<div class="column">
-				<h1>Organizations</h1>
-				<ul id="myContent">  
-					{% if organizations %}
-					    {% for org, list in organizations %}	
-					    	<li>
-					    		<a class="hover_lightup hover_underline" href="org/{{org.slug}}">
-						    		<img src="{{list.embed}}" alt="{{org.name}}">
-						    		<p>{{org.name}}</p>
-						    	</a>
-					    	</li>				   
-					    {% endfor %}
-					{% else %}
-					    <p>No organizations are available.</p>
-					{% endif %}
-
-				 </ul> 
-			</div>
-		</div>
+<div class="content_container">
+	<div class="galleria_container">
+		
+		{% if crises %}
+		    {% for crisis, list in crises %}	
+		    	<li>
+		    		<a class="hover_lightup hover_underline" href="crisis/{{crisis.slug}}">
+			    		<img src="{{list.embed}}" alt="{{crisis.name}}">
+			    		
+		    		</a>
+		    	</li>				   
+		    {% endfor %}
+		{% else %}
+		    <p>No crises are available.</p>
+		{% endif %}
+	</div>
 </div>
 
+
+<div class="content_container">
+	<div class="galleria_container right_container">
+		
+		{% if people %}
+		    {% for person, list in people %}
+		    	<li>
+		    		<a class="hover_lightup hover_underline" href="person/{{person.slug}}">
+			    		<img src="{{list.embed}}" alt="{{person.name}}">  
+			    	</a>		
+		    	</li>		   
+		    {% endfor %}
+		{% else %}
+		    <p>No people are available.</p>
+		{% endif %}
+	</div>
+</div>
+
+
+<div class="content_container">
+	<div class="galleria_container">
+		
+		{% if organizations %}
+		    {% for org, list in organizations %}	
+		    	<li>
+		    		<a class="hover_lightup hover_underline" href="org/{{org.slug}}">
+			    		<img src="{{list.embed}}" alt="{{org.name}}">
+			    	</a>
+		    	</li>				   
+		    {% endfor %}
+		{% else %}
+		    <p>No organizations are available.</p>
+		{% endif %}
+	</div>
+</div>
+
+
+<!-- <div class="container">
+
+		<div id="content_wrapper">
+			<div class="column_box">
+				<div class="column">
+					<ul class="column_content">  
+						{% if crises %}
+						    {% for crisis, list in crises %}	
+						    	<li>
+						    		<a class="hover_lightup hover_underline" href="crisis/{{crisis.slug}}">
+							    		<img src="{{list.embed}}" alt="{{crisis.name}}">
+							    		
+						    		</a>
+						    	</li>				   
+						    {% endfor %}
+						{% else %}
+						    <p>No crises are available.</p>
+						{% endif %}
+
+					 </ul> 
+				</div>
+
+				<div class="column">
+					<ul class="column_content">  
+						{% if people %}
+						    {% for person, list in people %}
+						    	<li>
+						    		<a class="hover_lightup hover_underline" href="person/{{person.slug}}">
+							    		<img src="{{list.embed}}" alt="{{person.name}}">
+							   
+							    	</a>		
+						    	</li>		   
+						    {% endfor %}
+						{% else %}
+						    <p>No peeps are available.</p>
+						{% endif %}
+
+					 </ul> 
+				</div>
+
+				<div class="column">
+					<ul class="column_content">  
+						{% if organizations %}
+						    {% for org, list in organizations %}	
+						    	<li>
+						    		<a class="hover_lightup hover_underline" href="org/{{org.slug}}">
+							    		<img src="{{list.embed}}" alt="{{org.name}}">
+							    
+							    	</a>
+						    	</li>				   
+						    {% endfor %}
+						{% else %}
+						    <p>No organizations are available.</p>
+						{% endif %}
+
+					 </ul> 
+				</div>
+			</div>
+			<div class="clear_both">
+			</div>
+		</div>
+
+</div>
+ -->
 
 	
 

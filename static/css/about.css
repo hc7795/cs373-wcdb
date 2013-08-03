@@ -1,6 +1,6 @@
 
 #about_me_box {
-	margin-top:1.5%;
+	margin-top:3%;
 	position: relative;
 	margin-left:auto;
 	margin-right:auto;
@@ -39,12 +39,12 @@
 }
 
 #about_me_header {
-	width:90%;
+	width:100%;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
 	background-color:rgba(25, 25, 25, 0.95);
-	border-radius:15px;
 	padding-top:0.5%;
 	padding-bottom:0.5%;
+	color:white;
 }

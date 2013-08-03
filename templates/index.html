@@ -8,7 +8,7 @@
 {% block page_header %}
 <!--<p>"Successful people recognize crisis as a time for change - from lesser to greater, smaller to bigger."
 <p id="quote_author">Edwin Louis Cole </p>-->
-<p>Informing others about the world's perils.</p>
+<p>Informing others about this world's perils.</p>
 {% endblock %}
 
 
@@ -19,12 +19,7 @@
 		
 		{% if crises %}
 		    {% for crisis, list in crises %}	
-		    	<li>
-		    		<a class="hover_lightup hover_underline" href="crisis/{{crisis.slug}}">
-			    		<img src="{{list.embed}}" alt="{{crisis.name}}">
-			    		
-		    		</a>
-		    	</li>				   
+			    <img src="{{list.embed}}" alt="{{crisis.name}}">				   
 		    {% endfor %}
 		{% else %}
 		    <p>No crises are available.</p>
@@ -38,11 +33,7 @@
 		
 		{% if people %}
 		    {% for person, list in people %}
-		    	<li>
-		    		<a class="hover_lightup hover_underline" href="person/{{person.slug}}">
-			    		<img src="{{list.embed}}" alt="{{person.name}}">  
-			    	</a>		
-		    	</li>		   
+			    <img src="{{list.embed}}" alt="{{person.name}}">  	   
 		    {% endfor %}
 		{% else %}
 		    <p>No people are available.</p>
@@ -56,11 +47,7 @@
 		
 		{% if organizations %}
 		    {% for org, list in organizations %}	
-		    	<li>
-		    		<a class="hover_lightup hover_underline" href="org/{{org.slug}}">
-			    		<img src="{{list.embed}}" alt="{{org.name}}">
-			    	</a>
-		    	</li>				   
+			    <img src="{{list.embed}}" alt="{{org.name}}">			   
 		    {% endfor %}
 		{% else %}
 		    <p>No organizations are available.</p>

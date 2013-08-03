@@ -1,13 +1,12 @@
 /* Font imports. */
-@import url(http://fonts.googleapis.com/css?family=Inconsolata:400,700|Architects+Daughter); /* Inconsolata: normal, bold; Architect's Daughter */
+@import url(http://fonts.googleapis.com/css?family=Inconsolata:400,700); /* Inconsolata: normal */
 
 body {
 	color:black;
 	margin: 0;
 	min-height:800px;
-	font-family: 'Inconsolata', sans-serif;
+	font-family: "Inconsolata", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 	background-color:rgba(255, 255, 240, 0.80);
-	/*background-image:url(../images/bg_clay_green_tint.jpg);*/
 }
 
 #outer_wrapper {
@@ -16,7 +15,6 @@ body {
 	bottom:0px;
 	left:0px;
 	right:0px;
-	font-family: 'Inconsolata', sans-serif;
 	height:100%;
 }
 
@@ -93,10 +91,13 @@ body {
 
 #nav_box_1 {
 	background-color:rgba(220, 31, 38, 0.50);
+	color:inherit;
 }
 #nav_box_1:hover {
 	/*background-color:#dc1f26;*/
-	background-color:rgba(220, 31, 38, 0.65);
+	/*background-color:rgba(220, 31, 38, 0.75);*/
+	background-color: rgba(45, 45, 45, 0.70);
+	color:white;
 }
 
 #nav_box_2 {
@@ -109,8 +110,9 @@ body {
 }
 #nav_box_2:hover {
 	/*background-color:#00b0ec;*/
-	background-color:rgba(0, 176, 236, 0.65);
-	text-decoration:underline;
+	/*background-color:rgba(0, 176, 236, 0.75);
+	text-decoration:underline;*/
+	background-color: rgba(45, 45, 45, 0.70);
 }
 
 #nav_box_3 {
@@ -121,8 +123,9 @@ body {
 }
 #nav_box_3:hover {
 	/*background-color:#d7719f;*/
-	background-color:rgba(215, 113, 159, 0.65);
-	text-decoration:underline;
+	/*background-color:rgba(215, 113, 159, 0.75);
+	text-decoration:underline;*/
+	background-color: rgba(45, 45, 45, 0.70);
 }
 
 #nav_box_4 {
@@ -133,8 +136,9 @@ body {
 */}
 #nav_box_4:hover {
 	/*background-color:#42b549;*/
-	background-color:rgba(66, 181, 73, 0.65);
-	text-decoration:underline;
+	/*background-color:rgba(66, 181, 73, 0.75);
+	text-decoration:underline;*/
+	background-color: rgba(45, 45, 45, 0.70);
 }
 
 #nav_box_5 {
@@ -145,8 +149,9 @@ body {
 }
 #nav_box_5:hover {
 	/*background-color:#1d439c;*/
-	background-color:rgba(29, 67, 156, 0.65);
-	text-decoration:underline;
+	/*background-color:rgba(29, 67, 156, 0.75);
+	text-decoration:underline;*/
+	background-color: rgba(45, 45, 45, 0.70);
 }
 
 

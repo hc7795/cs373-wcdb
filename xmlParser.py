@@ -736,18 +736,38 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 
 
 
+"""
 def merge(c, m):
           #attributeList = Crisis._meta.get_all_field_names()
           # compare c.date (old value) and m.Crisis.date (new value)
-
+        
+        #Location Merge
+        m.location = ast.literal_eval(m.location)
+        c.location = ast.literal_eval(c.location)
         #print "str(m.location) = ", str(m.location)
         #print "len(str(c.location)) = ", str(c.location)
-        ast.literal_eval(m.location)
-        ast.literal_eval(c.location)
-        if(m.location > c.location):
-
+        #print "len(m.location) = ", len(m.location[0])
+        #print "len(c.location) = ", len(c.location[0])
+        if(len(m.location[0]) > len(c.location[0])):
+          #print "merge"
+          c.location.append(m.location[0])
+        
+        #Common Merge
+        print "m.common = ", m.common
+        print "c.common = ", c.common
+        #ExternalLinks
+        print "m.common.ExternalLinks.all()[0].href = ",  m.common.externalLinks.all()[0].href
+        #print "m.common.ExternalLinks.all()[1].href = ",  m.common.externalLinks.all()[1].href
+        print "c.common.externalLinks.all()[0].href = ",  c.common.externalLinks.all()[0].href 
+        oldHref = c.common.externalLinks.all()[0].href
+        newHref = m.common.externalLinks.all()[0].href
+        #if(oldHref != newHref) :
+        #  print "inside if"
+        #  c.common.externalLinks.add(m.common.externalLinks.all()[0])
+             
           #commonAttributes = Common._meta.get_all_field_names();
           #print "commonAttributes = ", commonAttributes
+"""
 
 
 
@@ -755,27 +775,43 @@ def merge(c, m):
 	Takes a list of Django models and saves them to a database.
 """
 def modelsToDjango(models):
-	
-	crises = models[0]
-	people = models[1]
-	orgs =   models[2]
-	count=1;
-	print "elements of model[0] ",crises
-	for m in crises:
-		checkExistence = Crisis.objects.filter(id=m.id).count()
-		if checkExistence == 1:
-			#append images from m to c
-			# ... ditto for rest of attributes
-			print count
-			count+=1
-			c=Crisis.objects.get(id = m.id)
-			merge(c, m)
-			c.save()
-		elif checkExistence == 0:
-			print "save",m.id
-			m.save()
-		else:
-			print "something wrong"
+        crises = models[0]
+        people = models[1]
+        orgs =   models[2]
+        count=1;
+        print "elements of model[0] ",crises
+        for m in crises:
+                checkExistence = Crisis.objects.filter(id=m.id).count()
+                if checkExistence == 1:
+                        #append images from m to c
+                        # ... ditto for rest of attributes
+                        print count
+                        count+=1
+                        c=Crisis.objects.get(id = m.id)
+                        #merge(c, m)
+                        #c.common.citations.clear()
+                        c.common.externalLinks.all().delete()
+                        #c.common.images.clear()
+                        #c.common.videos.all().clear()
+                        #c.common.maps.all().clear()
+                        #c.common.feeds.all().clear()
+                        #m.common.summary.clear()
+                        #c.common.on_delete
+                        c.common.delete()
+                        c.delete()
+                        m.save()
+                elif checkExistence == 0:
+                        print "save",m.id
+                        m.save()
+                else:
+                        print "something wrong"
+
+
+"""
+def modelsToDjango(models):
+        Crisis.objects.all().delete()
+        Common.objects.get(pk=98).delete()
+"""
 
 
 

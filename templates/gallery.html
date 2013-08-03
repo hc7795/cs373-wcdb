@@ -4,6 +4,10 @@
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/gallery.css">
 {% endblock %}
 
+{% block page_header %}
+<p>A gallery of {{name}}.</p>
+{% endblock %}
+
 {% block content %}
 
 <div id="gallery_container">

@@ -11,9 +11,10 @@
 
     {% if org %}
 
-        <div class="common_box" id="name">
-            <h1>{{org.name}}</h1> 
-        </div>
+        {% block page_header %}
+        <p>{{org.name}}</p>
+        {% endblock %}
+
 
         <div id="top_box">
             <div class="common_box" id="galleria_box"> 

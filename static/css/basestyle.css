@@ -35,6 +35,7 @@ body {
 	right: 0px;
 }
 
+
 #header_title {
 	font-size:600%;
 	background-color:rgba(15, 11, 25, 0.90);
@@ -49,9 +50,20 @@ body {
 	text-decoration: none;
 	color:inherit;
 }
+
 #header_title a:hover {
 	background-color:rgba(240, 240, 240, 0.15);
 }
+
+
+#wcdb_logo_bear {
+	width:3.25%;
+}
+
+#wcdb_text {
+	margin-left: -2.5%;
+}
+
 
 #nav {
 	background-image:url(../images/hokusai_06.jpg);
@@ -77,6 +89,7 @@ body {
 	bottom:1%;
 	right:3%;
 }
+
 
 #nav_box_1 {
 	background-color:rgba(220, 31, 38, 0.50);
@@ -136,37 +149,17 @@ body {
 	text-decoration:underline;
 }
 
-/* Box of links inside of nav. */
-/*#nav_link_box {
-	margin:auto;
-	position:relative;
-	width:40em;
-}
-#nav_link_box a {	
-	display:inline-block;
-	float:left;
-	margin-top:0.5em;
-	margin-left:3%;
-	margin-right:3%;
 
-	color:inherit;
-	text-decoration:none;
-	opacity:0.85;
-}
-#wcdb_logo {
-	font-family: 'Architects Daughter', cursive;
-	color:#059FFF !important;
-	padding-right:5%;
-	margin-left:0.5% !important;
-	float:left;
-}
-*/
-#wcdb_logo_bear {
-	width:3.25%;
-}
-
-#wcdb_text {
-	margin-left: -2.5%;
+#page_header {
+	font-size: 1.40em;
+	width:100%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background-color:rgba(25, 25, 25, 0.95);
+	padding-top:0.5%;
+	padding-bottom:0.5%;
+	color:white;
 }
 
 

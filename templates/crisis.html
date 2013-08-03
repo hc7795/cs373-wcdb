@@ -3,17 +3,20 @@
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/crisis.css">
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/common_data.css">
 <script src="{{ STATIC_URL }}js/common_data.js"></script>
-
 {% endblock %}
+
+
+
+
 {% block content %}
 
 <div class="common_wrapper">
 
         {% if crisis %}
 
-            <div class="common_box" id="name">
-                <h1>{{crisis.name}}</h1> 
-            </div>
+            {% block page_header %}
+            <p>{{crisis.name}}</p>
+            {% endblock %}
 
             <div id="top_box">
                 <div class="common_box" id="galleria_box"> 

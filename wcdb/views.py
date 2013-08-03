@@ -59,7 +59,7 @@ def crises(request):
 	template = loader.get_template("gallery.html")
 	context = RequestContext(request, {
 		"modelObjects" : crisesToPass,
-		"name" : "Crises",
+		"name" : "crises",
 		"type" : "crisis"
 	})
 	return HttpResponse(template.render(context))
@@ -79,7 +79,7 @@ def people(request):
 	template = loader.get_template("gallery.html")
 	context = RequestContext(request, {
 		"modelObjects" : peepsToPass,
-		"name" : "Peeps",
+		"name" : "people",
 		"type" : "person"
 	})
 	return HttpResponse(template.render(context))
@@ -98,7 +98,7 @@ def organizations(request):
 	template = loader.get_template("gallery.html")
 	context = RequestContext(request, {
 		"modelObjects" : orgsToPass,
-		"name" : "Organizations",
+		"name" : "organizations",
 		"type" : "org"
 	})
 	return HttpResponse(template.render(context))

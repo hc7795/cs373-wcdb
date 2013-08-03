@@ -1,3 +1,9 @@
+#quote_author {
+	position: relative;
+	margin-top: -1.25%;
+	font-style: italic;
+}
+
 .content_container {
 	margin-top: 5%;
 	width: 100%;

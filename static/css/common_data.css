@@ -1,10 +1,3 @@
-/*.common_wrapper {
-	width:85%;
-	display:block;
-	margin-left:auto;
-	margin-right:auto;
-}*/
-
 .common_container {
 	margin-top: 5%;
 	width: 100%;
@@ -19,36 +12,17 @@
 }
 
 .common_galleria { 
-	width: 60%;
+	width: 55%;
 	height: 100%;
 	background-color: black;
-} 
-
-#name {
-	display:block;
-	width:100%;
-	position:relative;
-	text-align:center;
-	margin-top:2%;
-	margin-bottom:1.5%;
-	/*background-color:rgba(25, 25, 25, 0.95);*/
-	background-color:rgba(45, 45, 45, 0.80);
-}
-
-#galleria_box {
-	background-color:black;
-	width:60%;
-	height:100%;
 	float:left;
-}
+} 
 
 .associated_container {
 	color: black;
-	width: 16%;
+	width: 18.5%;
 	height: 100%;
-	float: left;
-	height: 98.5%;
-	padding-top: 0.5%;
+	float: right;
 	margin-left: 2%;
 	padding-left: 1%;
 	padding-right: 1%;

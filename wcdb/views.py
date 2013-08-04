@@ -143,12 +143,12 @@ def crisis(request, urlSlug):
 	template = loader.get_template("crisis.html")
 	context = RequestContext(request, {
 		"crisis" : crisis,
+		"associatedPeople": pplInfo,
+		"associatedOrganizations": orgInfo,
 		"list" : l,
 		"location": location,
 		"humanImpact": humanImpact,
 		"economicImpact": economicImpact,
-		"people": pplInfo,
-		"organizations": orgInfo,
 		"externalLinks" : externalLinks,
 	})
 	return HttpResponse(template.render(context))
@@ -186,10 +186,10 @@ def person(request, urlSlug):
 
 	template = loader.get_template("person.html")
 	context = RequestContext(request, {
+		"associatedCrises" : criInfo,
+		"associatedOrganizations": orgInfo,
 		"person" : person,
 		"list" : l,
-		"crises" : criInfo,
-		"organizations": orgInfo,
 		"externalLinks" : externalLinks
 	})
 	return HttpResponse(template.render(context))
@@ -230,12 +230,12 @@ def org(request, urlSlug):
 	template = loader.get_template("organization.html")
 	context = RequestContext(request, {
 		"org" : org,
+		"associatedCrises" : criInfo,
+		"associatedPeople": pplInfo,
 		"list" : l,
 		"history": history,
 		"contact": contact,
 		"externalLinks" : externalLinks,
-		"crises" : criInfo,
-		"people": pplInfo
 	})
 	return HttpResponse(template.render(context))
 

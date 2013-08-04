@@ -21,59 +21,56 @@
 <!-- <div class="common_wrapper"> -->
 
 {% if person %}
-
-    <div id="top_box">
-        <div class="common_box" id="galleria_box"> 
-            <div class="common_galleria">
-                <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
-            </div>
+    <div class="common_container">
+        <div class="common_galleria" id="galleria">
+            <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
         </div>
 
-        <div class="common_box associated_box">
-            <h4>Associated Crises:</h4>
-            <ul class="light_grey">
-            {% for name, slug in crises %}
-                <li>
-                <a href="/crisis/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a>
-                </li>
+        <div class="associated_container associated_organizations">
+            <h3>Associated Organizations:</h3>
+            <ul>
+            {% for name, slug in associatedOrganizations %}
+                <li><a href="/org/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a></li>
             {% endfor %}
             </ul>
         </div>
 
-        {% if organizations != "" %}
-            <div class="common_box associated_box">
+        <div class="associated_container associated_crises">
+            <h3>Associated Crises:</h3>
+            <ul>
+            {% for name, slug in associatedCrises %}
+                <li><a href="/person/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
 
-                <h4>Associated Organizations:</h4>
-                <ul class="light_grey">
-                {% for name, slug in organizations %}
-                    <li>
-                    <a href="/org/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a>
-                    </li>
-                {% endfor %}
-                </ul>
+   
+    <div class="common_container auto_height">
+        {% if person.kind != "" or person.location != "" %}
+            <div class="general_info_container">
+                {% if person.kind != "" %}
+                    <h3>Occupation:</h3> <p>{{person.kind}}</p>
+                {% endif %}
+
+                {% if person.location != "" %}
+                    <h3>Location:</h3> <p>{{person.location}}</p>
+                {% endif %}
+
             </div>
         {% endif %}
     </div>
 
-    <div id="middle_box">
-        <div class="common_box" id="general_info_box">
-            <h3>Occupation:</h3> <p>{{crisis.kind}}</p>
-            <h3>Date:</h3> <p>{{crisis.date}}</p>
-            <!-- <p>Time: {{crisis.time}}</p> -->
-            <h3>Location:</h3> <p>{{location}}</p>
-        </div>
-    </div>
-    
-    <div>
-        <div class="common_box" id="external_links_box">
+    {% if externalLinks != "" %}
+        <div class="common_container clearfix" id="external_links_box">
             <h3>External Links:</h3>
             <ul class="light_grey">
                 <li>
                     <a href={{externalLinks.href}} target="_blank" class="hover_lightup hover_underline yellow">{{externalLinks.href}}</a>   
                 </li>
             </ul>  
-        <div class="common_box">
-    </div>
+        </div>
+    {% endif %}
 {% endif %}
 <!-- </div> -->
     

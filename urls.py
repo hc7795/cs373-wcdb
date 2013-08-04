@@ -14,6 +14,7 @@ urlpatterns = patterns('',
 	url(r'^people', views.people, name='people'),
 	url(r'^organizations', views.organizations, name='organizations'),
 	url(r'^about', views.about, name='about'),
+	url(r'^search', views.search, name='search'),
 	url(r'^import-export', views.import_export, name='import-export'),
 
 	# Individual pages.

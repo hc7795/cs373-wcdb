@@ -4,7 +4,6 @@
 	height: 400px;
 	background-color: rgba(245, 245, 245, 0.40);
 	position: relative;
-	overflow: hidden; /* This is a crappy fix to handle child floating elements that overflow this container. Should eventually implement a better fix. */
 }
 
 .common_container p {
@@ -18,6 +17,10 @@
 	background-color: black;
 	float:left;
 } 
+
+.auto_height {
+	height: auto;
+}
 
 .associated_container {
 	color: black;
@@ -55,6 +58,7 @@
 }
 
 .impact_container {
+	background-color: rgba(245, 245, 245, 0.40);
 	width: 56%;
 	height: 100%;
 	float: right;

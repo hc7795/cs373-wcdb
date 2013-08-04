@@ -242,6 +242,15 @@ def org(request, urlSlug):
 	})
 	return HttpResponse(template.render(context))
 
+
+def import_export(request):
+	template = loader.get_template("import-export.html")
+	context = RequestContext(request, {
+	})
+	return HttpResponse(template.render(context))
+
+
+
 def replaceBrackets(stringToReplace):
 	stringAnswer = (stringToReplace).replace('[','')
 	stringAnswer = (stringAnswer).replace(']','')

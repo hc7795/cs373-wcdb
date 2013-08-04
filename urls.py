@@ -14,6 +14,7 @@ urlpatterns = patterns('',
 	url(r'^people', views.people, name='people'),
 	url(r'^organizations', views.organizations, name='organizations'),
 	url(r'^about', views.about, name='about'),
+	url(r'^import-export', views.import_export, name='import-export'),
 
 	# Individual pages.
 	url(r'^crisis/([a-z0-9-]+)', views.crisis),

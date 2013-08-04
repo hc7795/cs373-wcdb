@@ -4,12 +4,13 @@
 	position: relative;
 	margin-left:auto;
 	margin-right:auto;
-	width:55%;
+	width:75%;
 }
 
 #about_me_content {
-	border-radius:15px;
-	background-color:rgba(45, 45, 45, 0.80);
+	/*border-radius:15px;*/
+	background-color:rgba(25, 25, 25, 0.95);
+
 	margin-top: 2.5%;
 }
 

@@ -3,7 +3,14 @@ from django.template import RequestContext, loader
 
 from wcdb.models import Crisis, Organization, Person
 
+#search
+import re
+from django.db.models import Q
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from django.http import HttpResponse
 
+#search
 
 def index(request):
 	# Uncomment below when we want to move on from hardcoded pages.
@@ -260,3 +267,78 @@ def replaceBrackets(stringToReplace):
 	stringAnswer = (stringAnswer).replace("'","")
 	stringAnswer = (stringAnswer).replace('"','')
 	return stringAnswer
+	
+	
+#search
+def normalize_query(query_string,
+					findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
+					normspace=re.compile(r'\s{2,}').sub):
+	''' Splits the query string in invidual keywords, getting rid of unecessary spaces
+		and grouping quoted words together.
+		Example:
+		
+		>>> normalize_query('  some random  words "with   quotes  " and   spaces')
+		['some', 'random', 'words', 'with quotes', 'and', 'spaces']
+	
+	'''
+	return [normspace(' ', (t[0] or t[1]).strip()) for t in findterms(query_string)] 
+
+def get_query(query_string, search_fields):
+	''' Returns a query, that is a combination of Q objects. That combination
+		aims to search keywords within a model by testing the given search fields.
+	
+	'''
+	query = None # Query to search for every search term        
+	terms = normalize_query(query_string)
+	for term in terms:
+		or_query = None # Query to search for a given term in each field
+		for field_name in search_fields:
+			q = Q(**{"%s__icontains" % field_name: term})
+			if or_query is None:
+				or_query = q
+			else:
+				or_query = or_query | q
+		if query is None:
+			query = or_query
+		else:
+			query = query & or_query
+	return query
+
+def search(request):
+	
+
+	query_string = ''
+	found_ppl = []
+	found_crisis = []
+	found_org = []
+	# ppl_model = ["name", "location", "kind", "crises", "organizations"]
+
+	if ('q' in request.GET) and request.GET['q'].strip():
+		query_string = request.GET['q']
+
+	if query_string != '':
+		entry_ppl = get_query(query_string, ['name', 'id', 'location', 'kind', 'crises', 'organizations'])
+		found_ppl = Person.objects.filter(entry_ppl)
+
+		# for field in ppl_model:
+		# 	entry_ppl = get_query(query_string,[field])
+		# 	filter_ppl = Person.objects.filter(entry_ppl)
+		# 	if filter_ppl.exists():
+		# 		context = filter_ppl.values(field)
+		# 	found_ppl += [filter_ppl,context]
+
+		# for ppl in Person.objects.all():
+		# 	for field in ppl_model:
+				# entry_ppl = get_query(query_string,[field])
+				# filter_ppl = Person.objects.get(entry_ppl)
+
+
+		entry_crisis = get_query(query_string, ['id', 'name', 'kind', 'location', 'organizations', 'date', 'time', 'humanImpact', 'economicImpact', 'resourcesNeeded', 'waytoHelp', 'people'])
+		found_crisis = Crisis.objects.filter(entry_crisis)
+		entry_org = get_query(query_string, ['name', 'id', 'location', 'kind', 'crises', 'history', 'contact', 'people'])
+		found_org = Organization.objects.filter(entry_org)
+
+
+	return render_to_response('search.html',
+						  { 'query_string': query_string, 'found_ppl': found_ppl, 'found_crisis': found_crisis, 'found_org': found_org },
+						  context_instance=RequestContext(request))

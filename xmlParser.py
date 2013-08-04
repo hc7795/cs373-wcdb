@@ -744,10 +744,6 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 
 """
 
-						li.href=c.get("href")
-						li.embed=c.get("embed")
-						li.text=c.get("text")
-						li.content=c.get("content")
 check if li is in the arrayOfLi, if li is in arrayOfLi, return true, otherwise return false
 """
 def compare(li,arrayOfLi):
@@ -762,20 +758,10 @@ def merge(c, m):
 	#attributeList = Crisis._meta.get_all_field_names()
 	#compare c.date (old value) and m.Crisis.date (new value)	
 	
-	#Location Merge
-	m.location = ast.literal_eval(m.location)
-	c.location = ast.literal_eval(c.location)
-	#print "str(m.location) = ", str(m.location)
-	#print "len(str(c.location)) = ", str(c.location)
-	#print "len(m.location) = ", len(m.location[0])
-	#print "len(c.location) = ", len(c.location[0])
-	if(len(m.location[0]) < len(c.location[0])):
-	  m.location[0] = c.location[0]
+
 	
 	#Common Merge
-	
 	#Merge Citations
-	
 	if(c.common.citations.exists()):
 		print "c.common.citations.all() = ", c.common.citations.all()
 		print "m.common.citations.all() = ", m.common.citations.all()
@@ -783,8 +769,14 @@ def merge(c, m):
 		newCitations = m.common.citations.all()
 		for li in oldCitations:
 			if not compare(li, oldCitations):
-				print "*************************8"
-				m.common.citations.add(li)
+				copyLi=List(
+				href=li.href,
+				embed=li.embed,
+				text=li.text,
+				content=li.content
+				)
+				copyLi.save()
+				m.common.citations.add(copyLi)
 	
 		print "after merge, m.common.citations.all() = ", m.common.citations.all()
 	
@@ -798,11 +790,16 @@ def merge(c, m):
 		
 		for li in oldHref:
 			if not compare(li, newHref):
-				print "*************************8"
-				m.common.externalLinks.add(li)
-		
+				copyLi=List(
+				href=li.href,
+				embed=li.embed,
+				text=li.text,
+				content=li.content
+				)
+				copyLi.save()
+				m.common.externalLinks.add(copyLi)
 		print "after merge, m.common.externalLinks.all() = ", m.common.externalLinks.all()
-	
+
 	#Merge images
 	"""
 	oldImg = c.common.images.all()
@@ -824,7 +821,7 @@ def merge(c, m):
 					print "after merge, m.common.images.all() = ", m.common.images.all()
 		
 	"""	
-	"""
+
 	#Merge videos
 	if(c.common.videos.exists()):
 		print "c.common.videos.all() = ", c.common.videos.all()
@@ -833,10 +830,19 @@ def merge(c, m):
 		oldVideos = c.common.videos.all()
 		newVideos = m.common.videos.all()
 		
-		m.common.videos = list(chain(oldVideos,newVideos))
+		for li in oldVideos:
+			if not compare(li, newVideos):
+				copyLi=List(
+				href=li.href,
+				embed=li.embed,
+				text=li.text,
+				content=li.content
+				)
+				copyLi.save()
+				m.common.videos.add(copyLi)
 		
 		print "after merge, m.common.videos.all() = ", m.common.videos.all()
-	
+
 	#Merge maps
 	if(c.common.maps.exists()):
 		print "c.common.maps.all() = ", c.common.maps.all()
@@ -845,11 +851,20 @@ def merge(c, m):
 		oldMaps = c.common.maps.all()
 		newMaps = m.common.maps.all()
 		
-		m.common.maps = list(chain(oldMaps,newMaps))
+		for li in oldMaps:
+			if not compare(li, newMaps):
+				copyLi=List(
+				href=li.href,
+				embed=li.embed,
+				text=li.text,
+				content=li.content
+				)
+				copyLi.save()
+				m.common.maps.add(copyLi)
 		
 		print "after merge, m.common.maps.all() = ", m.common.maps.all()
 		
-		
+
 	#Merge feeds
 	if(c.common.feeds.exists()):
 		print "c.common.feeds.all() = ", c.common.feeds.all()
@@ -858,24 +873,31 @@ def merge(c, m):
 		oldFeeds = c.common.feeds.all()
 		newFeeds = m.common.feeds.all()
 		
-		m.common.feeds = list(chain(oldFeeds,newFeeds))
+		for li in oldFeeds:
+			if not compare(li, newFeeds):
+				copyLi=List(
+				href=li.href,
+				embed=li.embed,
+				text=li.text,
+				content=li.content
+				)
+				copyLi.save()
+				m.common.feeds.add(copyLi)
 		
 		print "after merge, m.common.maps.all() = ", m.common.feeds.all()
-		
+
 	#Merge summary	
-	if(c.common.summary.exists()):
-		print "c.common.summary.all() = ", c.common.summary.all()
-		print "m.common.summary.all() = ", m.common.summary.all()
+	if(c.common.summary != None):
+		print "c.common.summary = ", c.common.summary
+		print "m.common.summary = ", m.common.summary
+		oldsummary = c.common.summary
+		newsummary = m.common.summary
+		if(len(oldsummary)>len(newsummary)):
+			m.common.summary = oldsummary
 		
-		oldFeeds = c.common.summary.all()
-		newFeeds = m.common.summary.all()
-		
-		m.common.summary = list(chain(oldFeeds,newFeeds))
-		
-		print "after merge, m.common.maps.all() = ", m.common.summary.all()
-	#commonAttributes = Common._meta.get_all_field_names();
-	#print "commonAttributes = ", commonAttributes
-	"""    
+		print "after merge, m.common.summary = ", m.common.summary
+
+
 
 
 """
@@ -893,33 +915,57 @@ def modelsToDjango(models):
 		if checkExistence == 1:
 			#append images from m to c
 			# ... ditto for rest of attributes
-			print count
-			count+=1
 			c=Crisis.objects.get(id = m.id)
-			#c.common.externalLinks.clear()
+			#Location Merge
+			m.location = ast.literal_eval(m.location)
+			c.location = ast.literal_eval(c.location)
+			if(len(m.location[0]) < len(c.location[0])):
+			  m.location[0] = c.location[0]
+			#merge common
 			merge(c,m)
-			m.save()
+			#merge humanImpact
+			oldcrisis_HumanImpact_list=ast.literal_eval(c.humanImpact)
+			newcrisis_HumanImpact_list=ast.literal_eval(m.humanImpact)
+			newcrisis_HumanImpact_list+=oldcrisis_HumanImpact_list
+			m.humanImpact=str(newcrisis_HumanImpact_list)
+			#merge economicImpact
+			oldcrisis_economicImpact_list=ast.literal_eval(c.economicImpact)
+			newcrisis_economicImpact_list=ast.literal_eval(m.economicImpact)
+			newcrisis_economicImpact_list+=oldcrisis_economicImpact_list
+			m.economicImpact=str(newcrisis_economicImpact_list)
+			#merge resourcesNeeded
+			oldcrisis_resourcesNeeded_list=ast.literal_eval(c.resourcesNeeded)
+			newcrisis_resourcesNeeded_list=ast.literal_eval(m.resourcesNeeded)
+			newcrisis_resourcesNeeded_list+=oldcrisis_resourcesNeeded_list
+			m.resourcesNeeded=str(newcrisis_resourcesNeeded_list)
+			#merge waytoHelp
+			oldcrisis_waytoHelp_list=ast.literal_eval(c.waytoHelp)
+			newcrisis_waytoHelp_list=ast.literal_eval(m.waytoHelp)
+			newcrisis_waytoHelp_list+=oldcrisis_waytoHelp_list
+			m.waytoHelp=str(newcrisis_waytoHelp_list)
+			#merge people
+			oldcrisis_people_list=ast.literal_eval(c.people)
+			newcrisis_people_list=ast.literal_eval(m.people)
+			for p in oldcrisis_people_list:
+				if not (p in newcrisis_people_list):
+					newcrisis_people_list.append(p)
+			m.people=str(newcrisis_people_list)
+			#merge organizations
+			oldcrisis_organizations_list=ast.literal_eval(c.organizations)
+			newcrisis_organizations_list=ast.literal_eval(m.organizations)
+			for o in oldcrisis_organizations_list:
+				if not (o in newcrisis_organizations_list):
+					newcrisis_organizations_list.append(p)
+			m.organizations=str(newcrisis_organizations_list)
+
 			c.common.externalLinks.all().delete()
 			c.common.citations.all().delete()
 			c.common.images.all().delete()
 			c.common.videos.all().delete()
 			c.common.maps.all().delete()
 			c.common.feeds.all().delete()
-			#if count == crisesSize :
-			#Crisis.objects.all().delete()
-			#Crisis.common.filter(id = c.id).delete()
 			Common.objects.filter(crisis__id = c.id).delete()
-			
-			#b = List.objects.get(id = 1)
-			#b.common_set.clear()
-			
-			#Common.objects.delete()
-
-			#c.common.objects.all().delete()
-			#Crisis.common.all().delete()
-			#Crisis.common.delete()
-			#Common.objects.all().delete()
-				
+			m.save()
 		elif checkExistence == 0:
 			print "save",m.id
 			m.save()
@@ -927,8 +973,93 @@ def modelsToDjango(models):
 			print "something wrong"
 
 
+	for m in people:
+		checkExistence = Person.objects.filter(id=m.id).count()
+		if checkExistence == 1:
+			c=Person.objects.get(id = m.id)
+			#print "type(c)   ++++++++   ",type(c)
+			#Location Merge
+			if(len(m.location) < len(c.location)):
+			  m.location = c.location
+			#merge common
+			merge(c,m)
+			#merge crises
+			oldcrisis_crises_list=ast.literal_eval(c.crises)
+			newcrisis_crises_list=ast.literal_eval(m.crises)
+			for cid in oldcrisis_crises_list:
+				if not (cid in newcrisis_crises_list):
+					newcrisis_crises_list.append(cid)
+			m.crises=str(newcrisis_crises_list)
+			#print "type(c)   ++++++++   ",type(c)
+			#merge organizations
+			if not m.organizations :
+				m.organizations = c.organizations
+			if not c.organizations:
+				oldcrisis_organizations_list=ast.literal_eval(c.organizations)
+				newcrisis_organizations_list=ast.literal_eval(m.organizations)
+				for o in oldcrisis_organizations_list:
+					if not (o in newcrisis_organizations_list):
+						newcrisis_organizations_list.append(p)
+				m.organizations=str(newcrisis_organizations_list)
+			c.common.externalLinks.all().delete()
+			c.common.citations.all().delete()
+			c.common.images.all().delete()
+			c.common.videos.all().delete()
+			c.common.maps.all().delete()
+			c.common.feeds.all().delete()
+			Common.objects.filter(person__id = c.id).delete()
+			m.save()
+
+		elif checkExistence == 0:
+			print "save",m.id
+			m.save()
+		else:
+			print "something wrong"
 
 
+	for m in orgs:
+		checkExistence = Organization.objects.filter(id=m.id).count()
+		if checkExistence == 1:
+			c=Organization.objects.get(id = m.id)
+
+			#Location Merge
+			if(len(m.location) < len(c.location)):
+			  m.location = c.location
+
+			#merge common
+			merge(c,m)
+
+			#merge people
+			oldcrisis_people_list=ast.literal_eval(c.people)
+			newcrisis_people_list=ast.literal_eval(m.people)
+			for cid in oldcrisis_people_list:
+				if not (cid in newcrisis_people_list):
+					newcrisis_people_list.append(cid)
+			m.people=str(newcrisis_people_list)
+
+
+			#merge crises
+			oldcrisis_crises_list=ast.literal_eval(c.crises)
+			newcrisis_crises_list=ast.literal_eval(m.crises)
+			for cid in oldcrisis_crises_list:
+				if not (cid in newcrisis_crises_list):
+					newcrisis_crises_list.append(cid)
+			m.crises=str(newcrisis_crises_list)
+
+			c.common.externalLinks.all().delete()
+			c.common.citations.all().delete()
+			c.common.images.all().delete()
+			c.common.videos.all().delete()
+			c.common.maps.all().delete()
+			c.common.feeds.all().delete()
+			Common.objects.filter(organization__id = c.id).delete()
+			m.save()
+
+		elif checkExistence == 0:
+			print "save",m.id
+			m.save()
+		else:
+			print "something wrong"
 
 
 """

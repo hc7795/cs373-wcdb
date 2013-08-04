@@ -124,7 +124,7 @@ def crisis(request, urlSlug):
 	org = replaceBrackets(crisis.organizations)
 	externalLinks = crisis.common.externalLinks.all()[0]
 
-	strToList = ppl.split(",",10)
+	strToList = ppl.split(",", 10)
 	pplInfo = []
 	for person in strToList:		
 		found = Person.objects.get(id=(person.encode('ascii')).strip())
@@ -132,7 +132,7 @@ def crisis(request, urlSlug):
 		foundID = str(found.slug)
 		pplInfo.append((name,foundID))
 
-	strToList = org.split(",",10)
+	strToList = org.split(",", 10)
 	orgInfo = []
 	for org in strToList:		
 		found = Organization.objects.get(id=(org.encode('ascii')).strip())
@@ -163,7 +163,7 @@ def person(request, urlSlug):
 	org = replaceBrackets(person.organizations)
 	externalLinks = person.common.externalLinks.all()[0]
 
-	strToList = crises.split(",",10)
+	strToList = crises.split(",", 10)
 	criInfo = []
 	for crisis in strToList:		
 		found = Crisis.objects.get(id=(crisis.encode('ascii')).strip())
@@ -175,9 +175,8 @@ def person(request, urlSlug):
 	orgInfo = ""
 	if org != "":
 		orgInfo = []
-		strToList = org.split(",",10)
+		strToList = org.split(",", 10)
 		for org in strToList:		
-			# test.append(org.encode('ascii').strip())
 			found = Organization.objects.get(id=(org.encode('ascii')).strip())
 			name = str(found.name)
 			foundID = str(found.slug)
@@ -207,7 +206,7 @@ def org(request, urlSlug):
 	ppl = replaceBrackets(org.people)
 	externalLinks = org.common.externalLinks.all()[0]
 
-	strToList = crises.split(",",10)
+	strToList = crises.split(",", 10)
 	criInfo = []
 	for crisis in strToList:		
 		found = Crisis.objects.get(id=(crisis.encode('ascii')).strip())
@@ -218,7 +217,7 @@ def org(request, urlSlug):
 	pplInfo = ""
 	if ppl != "":
 		pplInfo =[]
-		strToList = ppl.split(",",10)
+		strToList = ppl.split(",", 10)
 		pplInfo = []
 		for person in strToList:		
 			found = Person.objects.get(id=(person.encode('ascii')).strip())

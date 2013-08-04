@@ -28,20 +28,28 @@
 
         <div class="associated_container associated_organizations">
             <h3>Associated Organizations:</h3>
-            <ul>
-            {% for name, slug in associatedOrganizations %}
-                <li><a href="/org/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a></li>
-            {% endfor %}
-            </ul>
+            {% if associatedOrganizations %}
+                <ul>
+                    {% for name, slug in associatedOrganizations %}
+                        <li><a href="/org/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No associated organizations yet!</p>
+            {% endif %}
         </div>
 
         <div class="associated_container associated_crises">
             <h3>Associated Crises:</h3>
-            <ul>
-            {% for name, slug in associatedCrises %}
-                <li><a href="/person/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a></li>
-            {% endfor %}
-            </ul>
+            {% if associatedCrises %}
+                <ul>
+                    {% for name, slug in associatedCrises %}
+                        <li><a href="/person/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a></li>
+                    {% endfor %}
+                </ul>
+             {% else %}
+                <p>No associated crises yet!</p>
+            {% endif %}
         </div>
     </div>
 

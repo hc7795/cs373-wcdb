@@ -742,7 +742,20 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 	raise IOError("Invalid file!")
 
 
+"""
 
+						li.href=c.get("href")
+						li.embed=c.get("embed")
+						li.text=c.get("text")
+						li.content=c.get("content")
+check if li is in the arrayOfLi, if li is in arrayOfLi, return true, otherwise return false
+"""
+def compare(li,arrayOfLi):
+	result = False
+	for oldli in arrayOfLi:
+		if ((li.href==oldli.href) and (li.embed==oldli.embed) and (li.text==oldli.text) and (li.content==oldli.content)):
+			result=True
+	return result
 
 
 def merge(c, m):
@@ -768,8 +781,10 @@ def merge(c, m):
 		print "m.common.citations.all() = ", m.common.citations.all()
 		oldCitations = c.common.citations.all()
 		newCitations = m.common.citations.all()
-	
-		m.common.citations = list(chain(oldCitations, newCitations))
+		for li in oldCitations:
+			if not compare(li, oldCitations):
+				print "*************************8"
+				m.common.citations.add(li)
 	
 		print "after merge, m.common.citations.all() = ", m.common.citations.all()
 	
@@ -781,12 +796,15 @@ def merge(c, m):
 		oldHref = c.common.externalLinks.all()
 		newHref = m.common.externalLinks.all()
 		
-		m.common.externalLinks = list(chain(oldHref,newHref))
+		for li in oldHref:
+			if not compare(li, newHref):
+				print "*************************8"
+				m.common.externalLinks.add(li)
 		
 		print "after merge, m.common.externalLinks.all() = ", m.common.externalLinks.all()
 	
 	#Merge images
-
+	"""
 	oldImg = c.common.images.all()
 	newImg = m.common.images.all()
 	if(c.common.images.exists()):
@@ -805,6 +823,7 @@ def merge(c, m):
 					#m.common.images = list(chain(newImg, oldImage)) does not compile
 					print "after merge, m.common.images.all() = ", m.common.images.all()
 		
+	"""	
 	"""
 	#Merge videos
 	if(c.common.videos.exists()):
@@ -879,6 +898,7 @@ def modelsToDjango(models):
 			c=Crisis.objects.get(id = m.id)
 			#c.common.externalLinks.clear()
 			merge(c,m)
+			m.save()
 			c.common.externalLinks.all().delete()
 			c.common.citations.all().delete()
 			c.common.images.all().delete()
@@ -894,12 +914,12 @@ def modelsToDjango(models):
 			#b.common_set.clear()
 			
 			#Common.objects.delete()
-			
+
 			#c.common.objects.all().delete()
 			#Crisis.common.all().delete()
 			#Crisis.common.delete()
 			#Common.objects.all().delete()
-			m.save()	
+				
 		elif checkExistence == 0:
 			print "save",m.id
 			m.save()

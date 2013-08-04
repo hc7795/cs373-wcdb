@@ -135,11 +135,11 @@ body {
 #bottomnav ul {
 	list-style-type: none;
 	position: relative;
-	left:10%;
+	left: -5px;
 }
 #bottomnav ul a {
 	display: inline-block;
-	width: 10%;
+	width: 13.5%;
 	padding: 0.25% 1.5% 0.25% 1.5%;
 	margin-left: -10px;
 }

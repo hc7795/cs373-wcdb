@@ -18,78 +18,73 @@
 
 
 {% block content %}
-<div class="common_wrapper">
+{% if org %}
 
-    {% if org %}
-
-        <div id="top_box">
-            <div class="common_box" id="galleria_box"> 
-                <div class="common_galleria">
-                    <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
-                </div>
+    <div id="top_box">
+        <div class="common_box" id="galleria_box"> 
+            <div class="common_galleria">
+                <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
             </div>
+        </div>
 
+        <div class="common_box associated_box">
+            <h3>Associated Crises:</h3>
+            <ul class="light_grey">
+            {% for name, slug in crises %}
+                <li>
+                <a href="/crisis/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+
+        {% if people != "" %}
             <div class="common_box associated_box">
-                <h3>Associated Crises:</h3>
+
+                <h3>Associated People:</h3>
                 <ul class="light_grey">
-                {% for name, slug in crises %}
+                {% for name, slug in people %}
                     <li>
-                    <a href="/crisis/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a>
+                    <a href="/person/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a>
                     </li>
                 {% endfor %}
                 </ul>
             </div>
+        {% endif %}
+    </div>
 
-            {% if people != "" %}
-                <div class="common_box associated_box">
-
-                    <h3>Associated People:</h3>
-                    <ul class="light_grey">
-                    {% for name, slug in people %}
-                        <li>
-                        <a href="/person/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a>
-                        </li>
-                    {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
+    <div id="middle_box">
+        <div class="common_box" id="general_info_box">
+            <h3>Type:</h3> <p>{{org.kind}}</p>
+            <h3>Location:</h3> <p>{{org.location}}</p>
         </div>
 
-        <div id="middle_box">
-            <div class="common_box" id="general_info_box">
-                <h3>Type:</h3> <p>{{org.kind}}</p>
-                <h3>Location:</h3> <p>{{org.location}}</p>
-            </div>
-
-            <div class="common_box" id="history_box">
-                <h3>History:</h3>
-                <p>{{history}}</p>
-            </div>
-
-            {% if contact != "" %}
-                <div class="common_box" id="contact_box">
-                    {% if economicImpact != "" %}
-                        <h3>Contact:</h3>
-                        <p>{{contact}}</p>
-                    {% endif %}
-                </div>
-            {% endif %}
-        </div>
-        
-        <div>
-            <div class="common_box" id="external_links_box">
-                <h3>External Links:</h3>
-                <ul class="light_grey">
-                    <li>
-                        <a href={{externalLinks.href}} target="_blank" class="hover_lightup hover_underline yellow">{{externalLinks.href}}</a>   
-                    </li>
-                </ul>  
-            </div>
+        <div class="common_box" id="history_box">
+            <h3>History:</h3>
+            <p>{{history}}</p>
         </div>
 
-    {% else %}
-        <p>Organization is not available.</p>
-    {% endif %}
-</div>
+        {% if contact != "" %}
+            <div class="common_box" id="contact_box">
+                {% if economicImpact != "" %}
+                    <h3>Contact:</h3>
+                    <p>{{contact}}</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+    
+    <div>
+        <div class="common_box" id="external_links_box">
+            <h3>External Links:</h3>
+            <ul class="light_grey">
+                <li>
+                    <a href={{externalLinks.href}} target="_blank" class="hover_lightup hover_underline yellow">{{externalLinks.href}}</a>   
+                </li>
+            </ul>  
+        </div>
+    </div>
+{% endif %}
+<!-- </div> -->
 
 {% endblock %}

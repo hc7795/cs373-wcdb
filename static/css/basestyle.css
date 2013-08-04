@@ -188,6 +188,11 @@ a {
 	text-decoration:none;
 }
 
+.clearfix {
+    display: inline-block;
+    width: 100%;
+}
+
 
 /* 
 ===============

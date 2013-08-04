@@ -134,9 +134,7 @@ def crisis(request, urlSlug):
 
 	strToList = org.split(",",10)
 	orgInfo = []
-	test = []
 	for org in strToList:		
-		test.append(person.encode('ascii').strip())
 		found = Organization.objects.get(id=(org.encode('ascii')).strip())
 		name = str(found.name)
 		foundID = str(found.slug)
@@ -152,7 +150,6 @@ def crisis(request, urlSlug):
 		"people": pplInfo,
 		"organizations": orgInfo,
 		"externalLinks" : externalLinks,
-		"stuff": test
 	})
 	return HttpResponse(template.render(context))
 

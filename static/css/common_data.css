@@ -24,17 +24,6 @@
 	background-color: black;
 } 
 
-/*.common_box {
-	position:relative;
-	display:inline-block;
-	margin-left:auto;
-	margin-right:auto;
-	background-color:rgba(45, 45, 45, 0.80);
-	border-radius:15px;
-	padding: 1% 2% 1% 2%;
-	margin:.2%;
-}*/
-
 #name {
 	display:block;
 	width:100%;
@@ -44,15 +33,6 @@
 	margin-bottom:1.5%;
 	/*background-color:rgba(25, 25, 25, 0.95);*/
 	background-color:rgba(45, 45, 45, 0.80);
-}
-
-#top_box {
-	height:500px;
-	margin-bottom:4%;
-}
-
-#middle_box {
-	margin-bottom:1%;
 }
 
 #galleria_box {
@@ -67,6 +47,8 @@
 	width: 16%;
 	height: 100%;
 	float: left;
+	height: 98.5%;
+	padding-top: 0.5%;
 	margin-left: 2%;
 	padding-left: 1%;
 	padding-right: 1%;
@@ -86,9 +68,11 @@
 
 .general_info_container {
 	width: 37%;
-	height: 100%;
+	height: 88.5%;
 	float: left;
 	margin-right: 3%;
+
+	padding: 2% 1.5% 2% 1.5%;
 
 	background-color: rgba(25, 25, 25, 0.90);
 	color: white;
@@ -96,7 +80,7 @@
 }
 
 .impact_container {
-	width: 60%;
+	width: 54%;
 	height: 100%;
 	float: right;
 	color: white;
@@ -106,14 +90,14 @@
 	background-color: rgba(25, 25, 25, 0.90);
 	height: 40%;
 	margin: 0% 0% 3% 0%;
-	padding: 2% 0% 2% 0%;
+	padding: 2% 3% 2% 3%;
 }
 
 #economic_impact {
 	background-color: rgba(25, 25, 25, 0.90);
-	height: 41%;
+	height: 43%;
 	margin: 3% 0% 0% 0%;
-	padding: 2% 0% 2% 0%;
+	padding: 2% 3% 2% 3%;
 }
 
 #history_box {
@@ -127,6 +111,8 @@
 }
 
 #external_links_box {
+	width: 97%;
+	padding: 2% 1.5% 2% 1.5%;
 	color: white;
 	background-color: rgba(25, 25, 25, 0.90);
 	height: 100px;

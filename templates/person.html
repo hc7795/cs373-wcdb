@@ -3,18 +3,24 @@
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/person.css">
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/common_data.css">
 <script src="{{ STATIC_URL }}js/common_data.js"></script>
-
 {% endblock %}
-{% block content %}
 
+
+
+{% block page_header %}
+    {% if person %}
+        <p>{{person.name}}</p>
+    {% else %}
+        <p>Person is not available.</p>
+    {% endif %}
+{% endblock %}
+
+
+
+{% block content %}
 <div class="common_wrapper">
 
     {% if person %}
-
-        {% block page_header %}
-        <p>{{person.name}}</p>
-        {% endblock %}
-
 
         <div id="top_box">
             <div class="common_box" id="galleria_box"> 

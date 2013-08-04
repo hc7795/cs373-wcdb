@@ -29,13 +29,13 @@
       </a>
   </div>
   
-
-  <div id="nav">
-    <a id="nav_box_1" href="/crises.html"><span>CRISES</span></a>
-    <a id="nav_box_2" href="/people.html"><span>PEOPLE</span></a>
-    <a id="nav_box_3" href="/organizations.html"><span>ORGANIZATIONS</span></a>
-    <a id="nav_box_4" href="/about.html"><span>ABOUT</span></a>
-    <a id="nav_box_5" href="/search.html"><span>SEARCH</span></a>
+  <!-- Top navigation bar. -->
+  <div id="topnav">
+    <a id="topnav_crises" class="topnav_button" href="/crises.html"><span>CRISES</span></a>
+    <a id="topnav_people" class="topnav_button" href="/people.html"><span>PEOPLE</span></a>
+    <a id="topnav_organizations" class="topnav_button" href="/organizations.html"><span>ORGANIZATIONS</span></a>
+    <a id="topnav_about" class="topnav_button" href="/about.html"><span>ABOUT</span></a>
+    <a id="topnav_search" class="topnav_button" href="/search.html"><span>SEARCH</span></a>
   </div> 
 </div>
 
@@ -45,20 +45,33 @@
 </div>
 
 
-<!-- content -->
+<!-- Content. -->
 <div id="content">
   {% block content %}
   {% endblock %}
-</div> <!-- /content -->
+</div>
 
 
-<!-- footer -->
+<!-- Bottom navigation bar. -->
+<div id="bottomnav">
+  <ul>
+    <a class="bottomnav_button" id="bottomnav_crises" href="/crises.html"><li><span>Crises</span></li></a>
+    <a class="bottomnav_button" id="bottomnav_people" href="/people.html"><li><span>People</span></li></a>
+    <a class="bottomnav_button" id="bottomnav_organizations" href="/organizations.html"><li><span>Organizations</span></li></a>
+    <a class="bottomnav_button" id="bottomnav_about" href="/about.html"><li><span>About</span></li></a>
+    <a class="bottomnav_button" id="bottomnav_search" href="/search.html"><li><span>Search</span></li></a>
+    <a class="bottomnav_button" id="bottomnav_import_export" href="/import_export.html"><li><span>Import/Export</span></li></a>
+  </ul> 
+</div>
+
+
+<!-- Footer. -->
 <div id="footer">
-Presented by the <span class="blue"><a class="hover_lightup hover_underline" href="/about.html">Illustrious Gummy Pandas.</a></span>
+  Presented by the <span class="blue"><a class="hover_lightup hover_underline" href="/about.html">Illustrious Gummy Pandas.</a></span>
 </div>
 
-</div>
 
-</div> <!-- /wrapper -->
+</div>
+</div>
 </body>
 </html>

@@ -15,7 +15,7 @@ urlpatterns = patterns('',
 	url(r'^organizations', views.organizations, name='organizations'),
 	url(r'^about', views.about, name='about'),
 	url(r'^search', views.search, name='search'),
-	url(r'^import-export', views.import_export, name='import-export'),
+	url(r'^import_export', views.import_export, name='import_export'),
 
 	# Individual pages.
 	url(r'^crisis/([a-z0-9-]+)', views.crisis),

@@ -251,7 +251,7 @@ def search(request):
 
 
 def import_export(request):
-	template = loader.get_template("import-export.html")
+	template = loader.get_template("import_export.html")
 	context = RequestContext(request, {
 	})
 	return HttpResponse(template.render(context))

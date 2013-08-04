@@ -63,14 +63,13 @@ body {
 }
 
 
-#nav {
+#topnav {
 	background-image:url(../images/hokusai_06.jpg);
 	background-position:40% 39%;
 	background-size:cover;
 	height:100px;
 }
-
-#nav a {
+#topnav a {
 	position:relative;
 	height:100%;
 	width:20%;
@@ -79,79 +78,37 @@ body {
 	margin-right: -8px;
 	/*font-weight: bold;*/
 }
-
-#nav span {
+#topnav span {
 	position:absolute;
-	color:#0c0c0c;
 	font-size:165%;
 	bottom:1%;
 	right:3%;
 }
 
 
-#nav_box_1 {
-	background-color:rgba(220, 31, 38, 0.50);
-	color:inherit;
-}
-#nav_box_1:hover {
+#topnav_crises {
 	/*background-color:#dc1f26;*/
-	/*background-color:rgba(220, 31, 38, 0.75);*/
-	background-color: rgba(45, 45, 45, 0.70);
-	color:white;
+	background-color:rgba(220, 31, 38, 0.50);
 }
-
-#nav_box_2 {
+#topnav_people {
 	/*background-color:#00b0ec;*/
 	background-color:rgba(0, 176, 236, 0.50);
-
-
-	/*border: 1px solid black;
-	left:-1px;*/
 }
-#nav_box_2:hover {
-	/*background-color:#00b0ec;*/
-	/*background-color:rgba(0, 176, 236, 0.75);
-	text-decoration:underline;*/
-	background-color: rgba(45, 45, 45, 0.70);
-}
-
-#nav_box_3 {
+#topnav_organizations {
 	/*background-color:#d7719f;*/
 	background-color:rgba(215, 113, 159, 0.50);
-	/*border: 1px solid black;
-	left:-2px;*/
 }
-#nav_box_3:hover {
-	/*background-color:#d7719f;*/
-	/*background-color:rgba(215, 113, 159, 0.75);
-	text-decoration:underline;*/
-	background-color: rgba(45, 45, 45, 0.70);
-}
-
-#nav_box_4 {
+#topnav_about {
 	/*background-color:#42b549;*/
 	background-color:rgba(66, 181, 73, 0.50);
-	/*border: 1px solid black;
-	left:-3px;
-*/}
-#nav_box_4:hover {
-	/*background-color:#42b549;*/
-	/*background-color:rgba(66, 181, 73, 0.75);
-	text-decoration:underline;*/
-	background-color: rgba(45, 45, 45, 0.70);
 }
-
-#nav_box_5 {
+#topnav_search {
 	/*background-color:#1d439c;*/
 	background-color:rgba(29, 67, 156, 0.50);
-/*	border: 1px solid black;
-	left:-6px;*/
 }
-#nav_box_5:hover {
-	/*background-color:#1d439c;*/
-	/*background-color:rgba(29, 67, 156, 0.75);
-	text-decoration:underline;*/
-	background-color: rgba(45, 45, 45, 0.70);
+.topnav_button:hover {
+	background-color: rgba(45, 45, 45, 0.70) !important;
+	color:white;
 }
 
 
@@ -168,12 +125,64 @@ body {
 }
 
 
+#bottomnav {
+	background-color: rgba(245, 245, 245, 0.40);
+	display: block;
+	margin-top: 5%;
+	font-size:125%;
+	margin-bottom: -20px;
+}
+#bottomnav ul {
+	list-style-type: none;
+	position: relative;
+	left:10%;
+}
+#bottomnav ul a {
+	display: inline-block;
+	width: 10%;
+	padding: 0.25% 1.5% 0.25% 1.5%;
+	margin-left: -10px;
+}
+
+#bottomnav_crises {
+	/*background-color:#dc1f26;*/
+	background-color:rgba(220, 31, 38, 0.60);
+}
+#bottomnav_people {
+	/*background-color:#00b0ec;*/
+	background-color:rgba(0, 176, 236, 0.60);
+}
+#bottomnav_organizations {
+	/*background-color:#d7719f;*/
+	background-color:rgba(215, 113, 159, 0.60);
+}
+#bottomnav_about {
+	/*background-color:#42b549;*/
+	background-color:rgba(66, 181, 73, 0.60);
+}
+#bottomnav_search {
+	/*background-color:#1d439c;*/
+	background-color:rgba(29, 67, 156, 0.60);
+}
+#bottomnav_import_export {
+	/*background-color:#f9b339;*/
+	background-color:rgba(249, 179, 57, 0.60);
+}
+.bottomnav_button {
+	width: 100%;
+	text-indent: center;
+}
+.bottomnav_button:hover {
+	background-color: rgba(45, 45, 45, 0.70) !important;
+	color:white;
+}
+
+
 #footer {
 	color: white;
 	text-align: center;
 	background-color: rgba(45, 45, 45, 0.90);
 	width: 100%;
-	margin-top: 5%;
 	padding-top: 0.5%;
 	padding-bottom: 0.5%;
 	font-size: 1.05em;

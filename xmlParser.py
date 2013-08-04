@@ -32,6 +32,15 @@ import sys
 #cast a string of ID into list
 import ast
 
+#for querysets addition
+from itertools import chain
+
+#Read Images
+import urllib, cStringIO
+from PIL import Image
+import math
+import operator
+
 from django.template.defaultfilters import slugify
 
 
@@ -342,7 +351,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 				crisisMaps = d.get('Maps')
 				crisisFeeds = d.get('Feeds')
 				crisisSummary = d.get('Summary')
-			
+
 
 			#if isNotDuplicate(crisisID, "crisis", unitTestDB):
 			# Common
@@ -432,7 +441,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 			)
 
 		# Parse people. 
-		
+
 		while (nextElement.tag == "Person"):
 			personAttributes = getTextAndAttributes(nextElement)
 			personID = personAttributes['ID']
@@ -587,7 +596,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 			commonExists = False
 
 			nextElement = treeIter.next()
-			
+
 
 
 			if (nextElement.tag == "Crises"):
@@ -633,7 +642,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 				orgMaps = d.get('Maps')
 				orgFeeds = d.get('Feeds')
 				orgSummary = d.get('Summary')
-				
+
 			if (commonExists == False):
 					common=None
 			else:
@@ -736,82 +745,166 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 
 
 
-"""
 def merge(c, m):
-          #attributeList = Crisis._meta.get_all_field_names()
-          # compare c.date (old value) and m.Crisis.date (new value)
-        
-        #Location Merge
-        m.location = ast.literal_eval(m.location)
-        c.location = ast.literal_eval(c.location)
-        #print "str(m.location) = ", str(m.location)
-        #print "len(str(c.location)) = ", str(c.location)
-        #print "len(m.location) = ", len(m.location[0])
-        #print "len(c.location) = ", len(c.location[0])
-        if(len(m.location[0]) > len(c.location[0])):
-          #print "merge"
-          c.location.append(m.location[0])
-        
-        #Common Merge
-        print "m.common = ", m.common
-        print "c.common = ", c.common
-        #ExternalLinks
-        print "m.common.ExternalLinks.all()[0].href = ",  m.common.externalLinks.all()[0].href
-        #print "m.common.ExternalLinks.all()[1].href = ",  m.common.externalLinks.all()[1].href
-        print "c.common.externalLinks.all()[0].href = ",  c.common.externalLinks.all()[0].href 
-        oldHref = c.common.externalLinks.all()[0].href
-        newHref = m.common.externalLinks.all()[0].href
-        #if(oldHref != newHref) :
-        #  print "inside if"
-        #  c.common.externalLinks.add(m.common.externalLinks.all()[0])
-             
-          #commonAttributes = Common._meta.get_all_field_names();
-          #print "commonAttributes = ", commonAttributes
-"""
+	#attributeList = Crisis._meta.get_all_field_names()
+	#compare c.date (old value) and m.Crisis.date (new value)	
+	
+	#Location Merge
+	m.location = ast.literal_eval(m.location)
+	c.location = ast.literal_eval(c.location)
+	#print "str(m.location) = ", str(m.location)
+	#print "len(str(c.location)) = ", str(c.location)
+	#print "len(m.location) = ", len(m.location[0])
+	#print "len(c.location) = ", len(c.location[0])
+	if(len(m.location[0]) < len(c.location[0])):
+	  m.location[0] = c.location[0]
+	
+	#Common Merge
+	
+	#Merge Citations
+	
+	if(c.common.citations.exists()):
+		print "c.common.citations.all() = ", c.common.citations.all()
+		print "m.common.citations.all() = ", m.common.citations.all()
+		oldCitations = c.common.citations.all()
+		newCitations = m.common.citations.all()
+	
+		m.common.citations = list(chain(oldCitations, newCitations))
+	
+		print "after merge, m.common.citations.all() = ", m.common.citations.all()
+	
+	#Merge ExternalLinks
+	if(c.common.externalLinks.exists()):
+		print "c.common.externalLinks.all() = ", c.common.externalLinks.all()
+		print "m.common.externalLinks.all() = ", m.common.externalLinks.all()
+		
+		oldHref = c.common.externalLinks.all()
+		newHref = m.common.externalLinks.all()
+		
+		m.common.externalLinks = list(chain(oldHref,newHref))
+		
+		print "after merge, m.common.externalLinks.all() = ", m.common.externalLinks.all()
+	
+	#Merge images
 
+	oldImg = c.common.images.all()
+	newImg = m.common.images.all()
+	if(c.common.images.exists()):
+		for newImage in m.common.images.all():
+			for oldImage in c.common.images.all():
+				file1 = cStringIO.StringIO(urllib.urlopen(str(newImage.embed)).read()) 
+				file2 = cStringIO.StringIO(urllib.urlopen(str(oldImage.embed)).read())
+				h1 = Image.open(file1).histogram()
+				h2 = Image.open(file2).histogram()
+				
+				rms = math.sqrt(reduce(operator.add, map(lambda a,b: (a-b)**2, h1, h2))/len(h1))
+				if(rms != 0):
+					print "rms != 0"
+					print "c.common.images.all() = ", c.common.images.all()
+					print "oldImage = ", oldImage
+					#m.common.images = list(chain(newImg, oldImage)) does not compile
+					print "after merge, m.common.images.all() = ", m.common.images.all()
+		
+	"""
+	#Merge videos
+	if(c.common.videos.exists()):
+		print "c.common.videos.all() = ", c.common.videos.all()
+		print "m.common.videos.all() = ", m.common.videos.all()
+		
+		oldVideos = c.common.videos.all()
+		newVideos = m.common.videos.all()
+		
+		m.common.videos = list(chain(oldVideos,newVideos))
+		
+		print "after merge, m.common.videos.all() = ", m.common.videos.all()
+	
+	#Merge maps
+	if(c.common.maps.exists()):
+		print "c.common.maps.all() = ", c.common.maps.all()
+		print "m.common.maps.all() = ", m.common.maps.all()
+		
+		oldMaps = c.common.maps.all()
+		newMaps = m.common.maps.all()
+		
+		m.common.maps = list(chain(oldMaps,newMaps))
+		
+		print "after merge, m.common.maps.all() = ", m.common.maps.all()
+		
+		
+	#Merge feeds
+	if(c.common.feeds.exists()):
+		print "c.common.feeds.all() = ", c.common.feeds.all()
+		print "m.common.feeds.all() = ", m.common.feeds.all()
+		
+		oldFeeds = c.common.feeds.all()
+		newFeeds = m.common.feeds.all()
+		
+		m.common.feeds = list(chain(oldFeeds,newFeeds))
+		
+		print "after merge, m.common.maps.all() = ", m.common.feeds.all()
+		
+	#Merge summary	
+	if(c.common.summary.exists()):
+		print "c.common.summary.all() = ", c.common.summary.all()
+		print "m.common.summary.all() = ", m.common.summary.all()
+		
+		oldFeeds = c.common.summary.all()
+		newFeeds = m.common.summary.all()
+		
+		m.common.summary = list(chain(oldFeeds,newFeeds))
+		
+		print "after merge, m.common.maps.all() = ", m.common.summary.all()
+	#commonAttributes = Common._meta.get_all_field_names();
+	#print "commonAttributes = ", commonAttributes
+	"""    
 
 
 """
 	Takes a list of Django models and saves them to a database.
 """
 def modelsToDjango(models):
-        crises = models[0]
-        people = models[1]
-        orgs =   models[2]
-        count=1;
-        print "elements of model[0] ",crises
-        for m in crises:
-                checkExistence = Crisis.objects.filter(id=m.id).count()
-                if checkExistence == 1:
-                        #append images from m to c
-                        # ... ditto for rest of attributes
-                        print count
-                        count+=1
-                        c=Crisis.objects.get(id = m.id)
-                        #merge(c, m)
-                        #c.common.citations.clear()
-                        c.common.externalLinks.all().delete()
-                        #c.common.images.clear()
-                        #c.common.videos.all().clear()
-                        #c.common.maps.all().clear()
-                        #c.common.feeds.all().clear()
-                        #m.common.summary.clear()
-                        #c.common.on_delete
-                        c.common.delete()
-                        c.delete()
-                        m.save()
-                elif checkExistence == 0:
-                        print "save",m.id
-                        m.save()
-                else:
-                        print "something wrong"
-
-
-"""
-def modelsToDjango(models):
-        Crisis.objects.all().delete()
-        Common.objects.get(pk=98).delete()
-"""
+  
+	crises = models[0]
+	people = models[1]
+	orgs =   models[2]
+	count=0;
+	print "elements of model[0] ",crises
+	for m in crises:
+		checkExistence = Crisis.objects.filter(id=m.id).count()
+		if checkExistence == 1:
+			#append images from m to c
+			# ... ditto for rest of attributes
+			print count
+			count+=1
+			c=Crisis.objects.get(id = m.id)
+			#c.common.externalLinks.clear()
+			merge(c,m)
+			c.common.externalLinks.all().delete()
+			c.common.citations.all().delete()
+			c.common.images.all().delete()
+			c.common.videos.all().delete()
+			c.common.maps.all().delete()
+			c.common.feeds.all().delete()
+			#if count == crisesSize :
+			#Crisis.objects.all().delete()
+			#Crisis.common.filter(id = c.id).delete()
+			Common.objects.filter(crisis__id = c.id).delete()
+			
+			#b = List.objects.get(id = 1)
+			#b.common_set.clear()
+			
+			#Common.objects.delete()
+			
+			#c.common.objects.all().delete()
+			#Crisis.common.all().delete()
+			#Crisis.common.delete()
+			#Common.objects.all().delete()
+			m.save()	
+		elif checkExistence == 0:
+			print "save",m.id
+			m.save()
+		else:
+			print "something wrong"
 
 
 

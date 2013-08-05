@@ -11,7 +11,8 @@
 {% block content %}
 
 	<form id="search_bar" method="GET">
-	        <input type="text" class="tftextinput" name="q" size="21" maxlength="120" placeholder="Enter search terms..."><input type="submit" value="search" class="tfbutton">
+	    <input type="text" class="tftextinput" name="q" size="21" maxlength="120" value="{{query}}" placeholder="Enter search terms...">
+	    <input type="submit" value="search" class="tfbutton">
 	</form>
 	<div class="clearfix">
 

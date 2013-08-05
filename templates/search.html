@@ -20,68 +20,69 @@
 
 		{% if query == '' %}
 			<div class="results_header red">Please enter a valid search term.</div>
-		{% elif not numberOfResults %}
-			<div class="results_header">No search results were found for '{{query}}'.</div>
 		{% else %}
-
-			{% if numberOfResults == 1 %}
-				<div class="results_header">1 result for '{{query}}':</div>
+			{% if not numberOfResults %}
+				<div class="results_header">No search results were found for '{{query}}'.</div>
 			{% else %}
-				<div class="results_header">{{numberOfResults}} results for '{{query}}':</div>
-			{% endif %}
 
-			{% if foundCrises %}
-				<div class="results_category results_crises">
-					<h2>Matching crises:</h2>
-					<ol>
-						{% for crisis, matches in foundCrises.items %}
-							<li>
-								<a class="yellow" href="/crisis/{{crisis.slug}}"><h3>{{crisis.name}}</h3></a>
+				{% if numberOfResults == 1 %}
+					<div class="results_header">1 result for '{{query}}':</div>
+				{% else %}
+					<div class="results_header">{{numberOfResults}} results for '{{query}}':</div>
+				{% endif %}
+
+				{% if foundCrises %}
+					<div class="results_category results_crises">
+						<h2>Matching crises:</h2>
+						<ol>
+							{% for crisis, matches in foundCrises.items %}
+								<li>
+									<a class="yellow" href="/crisis/{{crisis.slug}}"><h3>{{crisis.name}}</h3></a>
+									<ul>
+										{% for match, context in matches %}
+											<li><span class="italic bold">{{match}}:</span> {{context}}</li>
+										{% endfor %}
+									</ul>
+								</li>
+							{% endfor %}
+						</ol>
+					</div>
+				{% endif %}
+
+				{% if foundPeople %}
+					<div class="results_category results_people">
+						<h2>Matching people:</h2>
+						<ol>
+							{% for person, matches in foundPeople.items %}
+								<li><a class="yellow" href="/person/{{person.slug}}"><h3>{{person.name}}</h3></a></li>
 								<ul>
 									{% for match, context in matches %}
 										<li><span class="italic bold">{{match}}:</span> {{context}}</li>
 									{% endfor %}
 								</ul>
-							</li>
-						{% endfor %}
-					</ol>
-				</div>
+							{% endfor %}
+						</ol>
+					</div>
+				{% endif %}
+
+				{% if foundOrgs %}
+					<div class="results_category results_organizations">
+						<h2>Matching organizations:</h2>
+						<ol>
+							{% for org, matches in foundOrgs.items %}
+								<li><a class="yellow" href="/org/{{org.slug}}"><h3>{{org.name}}</h3></a></li>
+								<ul>
+									{% for match, context in matches %}
+										<li><span class="italic bold">{{match}}:</span> {{context}}</li>
+									{% endfor %}
+								</ul>
+							{% endfor %}
+						</ol>
+					</div>
+				{% endif %}
 			{% endif %}
 
-			{% if foundPeople %}
-				<div class="results_category results_people">
-					<h2>Matching people:</h2>
-					<ol>
-						{% for person, matches in foundPeople.items %}
-							<li><a class="yellow" href="/person/{{person.slug}}"><h3>{{person.name}}</h3></a></li>
-							<ul>
-								{% for match, context in matches %}
-									<li><span class="italic bold">{{match}}:</span> {{context}}</li>
-								{% endfor %}
-							</ul>
-						{% endfor %}
-					</ol>
-				</div>
-			{% endif %}
-
-			{% if foundOrgs %}
-				<div class="results_category results_organizations">
-					<h2>Matching organizations:</h2>
-					<ol>
-						{% for org, matches in foundOrgs.items %}
-							<li><a class="yellow" href="/org/{{org.slug}}"><h3>{{org.name}}</h3></a></li>
-							<ul>
-								{% for match, context in matches %}
-									<li><span class="italic bold">{{match}}:</span> {{context}}</li>
-								{% endfor %}
-							</ul>
-						{% endfor %}
-					</ol>
-				</div>
-			{% endif %}
 		{% endif %}
-
 	{% endif %}
-
 
 {% endblock %}

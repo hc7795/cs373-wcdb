@@ -5,6 +5,7 @@ from wcdb.models import Crisis, Organization, Person
 
 #search
 import re
+import ast
 from django.db.models import Q
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -134,17 +135,17 @@ def crisis(request, urlSlug):
 	strToList = ppl.split(",", 10)
 	pplInfo = []
 	for person in strToList:		
-		found = Person.objects.get(id=(person.encode('ascii')).strip())
-		name = str(found.name)
-		foundID = str(found.slug)
+		found = Person.objects.get(id=(person.encode('utf-8')).strip())
+		name = unicode(found.name)
+		foundID = unicode(found.slug)
 		pplInfo.append((name,foundID))
 
 	strToList = org.split(",", 10)
 	orgInfo = []
 	for org in strToList:		
-		found = Organization.objects.get(id=(org.encode('ascii')).strip())
-		name = str(found.name)
-		foundID = str(found.slug)
+		found = Organization.objects.get(id=(org.encode('utf-8')).strip())
+		name = unicode(found.name)
+		foundID = unicode(found.slug)
 		orgInfo.append((name,foundID))
 
 	template = loader.get_template("crisis.html")
@@ -174,8 +175,8 @@ def person(request, urlSlug):
 	criInfo = []
 	for crisis in strToList:		
 		found = Crisis.objects.get(id=(crisis.encode('ascii')).strip())
-		name = str(found.name)
-		foundID = str(found.slug)
+		name = unicode(found.name)
+		foundID = unicode(found.slug)
 		criInfo.append((name,foundID))
 
 
@@ -185,8 +186,8 @@ def person(request, urlSlug):
 		strToList = org.split(",", 10)
 		for org in strToList:		
 			found = Organization.objects.get(id=(org.encode('ascii')).strip())
-			name = str(found.name)
-			foundID = str(found.slug)
+			name = unicode(found.name)
+			foundID = unicode(found.slug)
 			orgInfo.append((name,foundID))
 
 
@@ -217,8 +218,8 @@ def org(request, urlSlug):
 	criInfo = []
 	for crisis in strToList:		
 		found = Crisis.objects.get(id=(crisis.encode('ascii')).strip())
-		name = str(found.name)
-		foundID = str(found.slug)
+		name = unicode(found.name)
+		foundID = unicode(found.slug)
 		criInfo.append((name,foundID))
 
 	pplInfo = ""
@@ -228,8 +229,8 @@ def org(request, urlSlug):
 		pplInfo = []
 		for person in strToList:		
 			found = Person.objects.get(id=(person.encode('ascii')).strip())
-			name = str(found.name)
-			foundID = str(found.slug)
+			name = unicode(found.name)
+			foundID = unicode(found.slug)
 			pplInfo.append((name,foundID))
 
 
@@ -354,8 +355,10 @@ def search(request):
 			if queryString in crisis.kind.lower():
 				foundCrises[crisis] += [("kind", crisis.kind)]
 
-			if queryString in crisis.location.lower():
-				foundCrises[crisis] += [("location", crisis.location)]
+			crisisLocation = ast.literal_eval(crisis.location)
+			for eachLocation in crisisLocation:
+				if queryString in eachLocation.lower():
+					foundCrises[crisis] += [("location", crisis.location)]
 
 			if queryString in crisis.humanImpact.lower():
 				foundCrises[crisis] += [("human impact", crisis.humanImpact)]

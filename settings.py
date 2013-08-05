@@ -10,16 +10,16 @@ ADMINS = (
 MANAGERS = ADMINS
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-#         'NAME': 'cs373_lemus',                      # Or path to database file if using sqlite3.
-#         'USER': 'lemus',                      # Not used with sqlite3.
-#         'PASSWORD': '7leuEjJU2x',                  # Not used with sqlite3.
-#         'HOST': 'z',                      # Set to empty string for localhost. Not used with sqlite3.
-#         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'cs373_lemus',                      # Or path to database file if using sqlite3.
+        'USER': 'lemus',                      # Not used with sqlite3.
+        'PASSWORD': '7leuEjJU2x',                  # Not used with sqlite3.
+        'HOST': 'z',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    }
+}
 
 # DATABASES = {
 #     'default': {
@@ -32,16 +32,16 @@ MANAGERS = ADMINS
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'database',                      # Or path to database file if using sqlite3.
-        'USER': 'hc7795',                      # Not used with sqlite3.
-        'PASSWORD': 'e~wmbU1mGm',                  # Not used with sqlite3.
-        'HOST': 'z',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'database',                      # Or path to database file if using sqlite3.
+#         'USER': 'hc7795',                      # Not used with sqlite3.
+#         'PASSWORD': 'e~wmbU1mGm',                  # Not used with sqlite3.
+#         'HOST': 'z',                      # Set to empty string for localhost. Not used with sqlite3.
+#         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+#     }
+# }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#allowed-hosts
@@ -71,7 +71,7 @@ USE_I18N = True
 USE_L10N = True
 
 # Absolute path to website root
-SITE_ROOT = "/Users/russelljahn/Development/Coursework/CS373/project5/"
+SITE_ROOT = "/v/filer4b/v38q001/wrj322/CS373/project5/"
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"

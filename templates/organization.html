@@ -23,7 +23,7 @@
 
 <div class="common_container">
         <div class="common_galleria" id="galleria">
-            <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
+            <img src="{{list.embed}}" alt="{{modelObject.name}}">
         </div>
 
         <div class="associated_container associated_people">
@@ -31,7 +31,7 @@
             {% if associatedPeople %}
                 <ul>
                     {% for name, slug in associatedPeople %}
-                        <li><a href="/person/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a></li>
+                        <li><a href="/person/{{slug}}" class="yellow">{{name}}</a></li>
                     {% endfor %}
                 </ul>
             {% else %}
@@ -44,7 +44,7 @@
             {% if associatedCrises %}
                 <ul>
                     {% for name, slug in associatedCrises %}
-                        <li><a href="/crisis/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a></li>
+                        <li><a href="/crisis/{{slug}}" class="yellow">{{name}}</a></li>
                     {% endfor %}
                 </ul>
              {% else %}
@@ -81,7 +81,7 @@
             <h3>External Links:</h3>
             <ul class="light_grey">
                 <li>
-                    <a href={{externalLinks.href}} target="_blank" class="hover_lightup hover_underline yellow">{{externalLinks.href}}</a>   
+                    <a href={{externalLinks.href}} target="_blank" class="yellow">{{externalLinks.href}}</a>   
                 </li>
             </ul>  
         </div>

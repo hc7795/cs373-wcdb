@@ -53,13 +53,12 @@ body {
 	background-color:rgba(240, 240, 240, 0.15);
 }
 
-
 #wcdb_logo_bear {
 	width:3.25%;
 }
 
 #wcdb_text {
-	margin-left: -2.5%;
+	margin-left: -2.75%;
 }
 
 
@@ -76,13 +75,16 @@ body {
 	display:inline-block;
 	margin:0px;
 	margin-right: -8px;
-	/*font-weight: bold;*/
+}
+#topnav a:hover {
+	text-decoration: underline;
 }
 #topnav span {
 	position:absolute;
 	font-size:165%;
 	bottom:1%;
 	right:3%;
+	text-decoration: inherit;
 }
 
 

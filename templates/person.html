@@ -70,7 +70,7 @@
         <div class="common_container auto_height">
             <div class="general_info_container">
                 {% if person.kind != "" %}
-                    <h3>Occupation:</h3> <p>{{person.kind}}</p>
+                    <h3>Occupation:</h3><ul><li class="light_grey">{{person.kind}}</li></ul>
                 {% endif %}
 
                 {% if locations %}
@@ -81,7 +81,7 @@
                     {% endif %}
                     <ul>
                     {% for location in locations %}
-                        <li>{{location}}</li>
+                        <li class="light_grey">{{location}}</li>
                     {% endfor %}
                     </ul>
                 {% endif %}

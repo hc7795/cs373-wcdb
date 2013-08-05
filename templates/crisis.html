@@ -70,15 +70,18 @@
         {% if crisis.kind != "" or crisis.date != "" or crisis.time != "" or crisis.location != "" %}
             <div class="general_info_container">
                 {% if crisis.kind != "" %}
-                    <h3>Type:</h3> <p>{{crisis.kind}}</p>
+                    <h3>Type:</h3> 
+                    <ul><li class="light_grey">{{crisis.kind}}</li></ul>
                 {% endif %}
 
                 {% if crisis.date != "" %}
-                    <h3>Date:</h3> <p>{{crisis.date}}</p>
+                    <h3>Date:</h3> 
+                    <ul><li class="light_grey">{{crisis.date}}</li></ul>
                 {% endif %}
 
                 {% if crisis.time != "" %}
-                    <h3>Time:</h3> <p>{{crisis.time}}</p>
+                    <h3>Time:</h3>
+                    <ul><li class="light_grey">{{crisis.time}}</li></ul>
                 {% endif %}
 
                 {% if locations %}
@@ -89,7 +92,7 @@
                     {% endif %}
                     <ul>
                     {% for location in locations %}
-                        <li>{{location}}</li>
+                        <li class="light_grey">{{location}}</li>
                     {% endfor %}
                     </ul>
                 {% endif %}
@@ -98,7 +101,7 @@
                     <h3>Resources Needed:</h3>
                     <ul>
                     {% for resource in resourcesNeeded %}
-                        <li>{{resource}}</li>
+                        <li class="light_grey">{{resource}}</li>
                     {% endfor %}
                     </ul>
                 {% endif %}
@@ -107,7 +110,7 @@
                     <h3>Ways to Help:</h3>
                     <ul>
                     {% for way in waysToHelp %}
-                        <li>{{way}}</li>
+                        <li class="light_grey">{{way}}</li>
                     {% endfor %}
                     </ul>
                 {% endif %}
@@ -116,17 +119,25 @@
 
         {% if humanImpact != "" or economicImpact != "" %}
             <div class="impact_container">
-                {% if humanImpact != "" %}
+                {% if humanImpact %}
                     <div id="human_impact">
                         <h3>Human Impact:</h3>
-                        <p>{{humanImpact}}</p>
+                        <ul>
+                            {% for impact in humanImpact %}
+                                <li class="light_grey">{{impact}}</li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 {% endif %}
 
-                {% if economicImpact != "" %}
+                {% if economicImpact %}
                     <div id="economic_impact">  
                         <h3>Economic Impact:</h3>
-                        <p>{{economicImpact}}</p>  
+                        <ul>
+                            {% for impact in economicImpact %}
+                                <li class="light_grey">{{impact}}</li>
+                            {% endfor %}
+                        </ul>  
                     </div>
                 {% endif %}
             </div>

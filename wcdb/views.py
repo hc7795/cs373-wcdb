@@ -127,9 +127,10 @@ def crisis(request, urlSlug):
 	crisis = Crisis.objects.get(slug=urlSlug)
 	imagesList = crisis.common.images.all()
 	videosList = crisis.common.videos.all()
+	summary = crisis.common.summary
 	location = replaceBrackets(crisis.location)
-	humanImpact = replaceBrackets(crisis.humanImpact)
-	economicImpact = replaceBrackets(crisis.economicImpact)
+	humanImpact = crisis.humanImpact
+	economicImpact = crisis.economicImpact
 	ppl = replaceBrackets(crisis.people)
 	org = replaceBrackets(crisis.organizations)
 	externalLinks = crisis.common.externalLinks.all()
@@ -173,14 +174,16 @@ def crisis(request, urlSlug):
 		d["imagesList"] = imagesList
 	if videosList:
 		d["videosList"] = videosList
+	if summary:
+		d["summary"] = summary
 	if location:
 		locations = [l.strip() for l in location.split(",")]
 		d["locations"] = locations
 		d["numLocations"] = len(locations)
 	if humanImpact:
-		d["humanImpact"] = humanImpact
+		d["humanImpact"] = ast.literal_eval(humanImpact)
 	if economicImpact:
-		d["economicImpact"] = economicImpact
+		d["economicImpact"] = ast.literal_eval(economicImpact)
 	if externalLinks:
 		d["externalLinks"] = externalLinks
 
@@ -258,8 +261,8 @@ def org(request, urlSlug):
 	imagesList = org.common.images.all()
 	videosList = org.common.videos.all()
 	location = org.location
-	history = replaceBrackets(org.history)
-	contact = replaceBrackets(org.contact)
+	history = org.history
+	contact = org.contact
 	crises = replaceBrackets(org.crises)
 	ppl = replaceBrackets(org.people)
 	externalLinks = org.common.externalLinks.all()
@@ -306,9 +309,9 @@ def org(request, urlSlug):
 	if videosList:
 		d["videosList"] = videosList
 	if history:
-		d["history"] = history
+		d["history"] = ast.literal_eval(history)
 	if contact:
-		d["contact"] = contact
+		d["contacts"] = ast.literal_eval(contact)
 	if externalLinks:
 		d["externalLinks"] = externalLinks
 

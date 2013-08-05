@@ -70,7 +70,7 @@
         <div class="common_container auto_height">
             <div class="general_info_container">
                 {% if org.kind != "" %}
-                    <h3>Kind:</h3> <p>{{org.kind}}</p>
+                    <h3>Kind:</h3><ul><li class="light_grey">{{org.kind}}</li></ul>
                 {% endif %}
 
                 {% if locations %}
@@ -81,17 +81,27 @@
                     {% endif %}
                     <ul>
                     {% for location in locations %}
-                        <li>{{location}}</li>
+                        <li class="light_grey">{{location}}</li>
                     {% endfor %}
                     </ul>
                 {% endif %}
 
-                {% if org.history != "[]" %}
-                    <h3>History:</h3> <p>{{org.history}}</p>
+                {% if history %}
+                    <h3>History:</h3>
+                    <ul>
+                        {% for fact in history %}
+                            <li class="light_grey">{{fact}}</li>
+                        {% endfor %}
+                    </ul>
                 {% endif %}
 
-                {% if org.contact != "[]" %}
-                    <h3>Contact Info:</h3> <p>{{org.contact}}</p>
+                {% if contacts %}
+                    <h3>Contact Info:</h3>
+                    <ul>
+                        {% for contact in contacts %}
+                            <li class="light_grey">{{contact}}</li>
+                        {% endfor %}
+                    </ul>
                 {% endif %}
 
             </div>

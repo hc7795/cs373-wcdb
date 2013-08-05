@@ -23,7 +23,13 @@
 
 <div class="common_container">
         <div class="common_galleria" id="galleria">
-            <img src="{{list.embed}}" alt="{{modelObject.name}}">
+            {% for image in imagesList %}
+                {% if image.href %}
+                    <img src="{{image.href}}" alt="{{image.name}}">
+                {% else %}
+                    <img src="{{image.embed}}" alt="{{image.name}}">
+                {% endif %}
+            {% endfor %}
         </div>
 
         <div class="associated_container associated_people">

@@ -202,8 +202,8 @@ def person(request, urlSlug):
 
 
 	orgInfo = ""
+	associatedOrganizations = []
 	if org != "":
-		associatedOrganizations = []
 		strToList = org.split(",", 10)
 		for org in strToList:	
 			try:	
@@ -257,9 +257,9 @@ def org(request, urlSlug):
 			pass
 
 	associatedPeople = ""
+	associatedPeople = []
 	if ppl != "":
 		strToList = ppl.split(",", 10)
-		associatedPeople = []
 		for person in strToList:	
 			try:	
 				found = Person.objects.get(id=(person.encode('ascii')).strip())
@@ -279,7 +279,7 @@ def org(request, urlSlug):
 	if associatedPeople:
 		d["associatedPeople"] = associatedPeople
 	if imagesList:
-		d["list"] = imagesList
+		d["imagesList"] = imagesList
 	if history:
 		d["history"] = history
 	if contact:

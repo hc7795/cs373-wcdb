@@ -19,16 +19,15 @@
 
 {% block content %}
 {% if person %}
-    <p>
-        {{% for e in imagesList %}}
-        <p>e.name: {{e.name}}</p>
-        <p>e.embed: {{e.embed}}</p>
-    </p>
 
     <div class="common_container">
         <div class="common_galleria" id="galleria">
             {% for image in imagesList %}
-                <img src="{{image.embed}}" alt="{{image.name}}">
+                {% if image.href %}
+                    <img src="{{image.href}}" alt="{{image.name}}">
+                {% else %}
+                    <img src="{{image.embed}}" alt="{{image.name}}">
+                {% endif %}
             {% endfor %}
         </div>
 

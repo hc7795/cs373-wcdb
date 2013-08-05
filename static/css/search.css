@@ -55,4 +55,16 @@
 	background-color: rgba(245, 245, 245, 0.40);
 }
 
+.results_crises {
+	background-color: rgba(220, 31, 38, 0.50);
+}
+
+.results_people {
+	background-color: rgba(0, 176, 236, 0.50);
+}
+
+.results_organizations {
+	background-color: rgba(215, 113, 159, 0.50);
+}
+
 

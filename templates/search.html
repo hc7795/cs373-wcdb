@@ -19,7 +19,7 @@
 	{% if searched %}
 
 		{% if query == '' %}
-			<div class="results_header">Please enter a valid search term.</div>
+			<div class="results_header red">Please enter a valid search term.</div>
 		{% elif not numberOfResults %}
 			<div class="results_header">No search results were found for '{{query}}'.</div>
 		{% else %}
@@ -31,23 +31,25 @@
 			{% endif %}
 
 			{% if foundCrises %}
-				<div class="results_category">
+				<div class="results_category results_crises">
 					<h2>Matching crises:</h2>
 					<ol>
 						{% for crisis, matches in foundCrises.items %}
-							<li><a class="yellow" href="/crisis/{{crisis.slug}}"><h3>{{crisis.name}}</h3></a></li>
-							<ul>
-								{% for match, context in matches %}
-									<li><span class="italic bold">{{match}}:</span> {{context}}</li>
-								{% endfor %}
-							</ul>
+							<li>
+								<a class="yellow" href="/crisis/{{crisis.slug}}"><h3>{{crisis.name}}</h3></a>
+								<ul>
+									{% for match, context in matches %}
+										<li><span class="italic bold">{{match}}:</span> {{context}}</li>
+									{% endfor %}
+								</ul>
+							</li>
 						{% endfor %}
 					</ol>
 				</div>
 			{% endif %}
 
 			{% if foundPeople %}
-				<div class="results_category">
+				<div class="results_category results_people">
 					<h2>Matching people:</h2>
 					<ol>
 						{% for person, matches in foundPeople.items %}
@@ -63,7 +65,7 @@
 			{% endif %}
 
 			{% if foundOrgs %}
-				<div class="results_category">
+				<div class="results_category results_organizations">
 					<h2>Matching organizations:</h2>
 					<ol>
 						{% for org, matches in foundOrgs.items %}

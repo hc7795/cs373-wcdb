@@ -357,7 +357,7 @@ def search(request):
 				foundCrises[crisis] += [("location", crisis.location)]
 
 			if queryString in crisis.humanImpact.lower():
-				foundCrises[crisis] += [("humanImpact", crisis.humanImpact)]
+				foundCrises[crisis] += [("human impact", crisis.humanImpact)]
 
 			if queryString in crisis.economicImpact.lower():
 				foundCrises[crisis] += [("economic impact", crisis.economicImpact)]
@@ -369,10 +369,10 @@ def search(request):
 				foundCrises[crisis] += [("ways to help", crisis.waytoHelp)]
 
 			if queryString in crisis.people.lower():
-				foundCrises[crisis] += [("associated people", queryStringBackup)]
+				foundCrises[crisis] += [("associated people", crisis.people)]
 
 			if queryString in crisis.organizations.lower():
-				foundCrises[crisis] += [("associated organizations", queryStringBackup)]
+				foundCrises[crisis] += [("associated organizations", crisis.organizations)]
 
 
 		queryResults = get_query(queryString, peopleFields)
@@ -391,10 +391,10 @@ def search(request):
 				foundPeople[person] += [("location", person.location)]
 
 			if queryString in person.crises.lower():
-				foundPeople[person] += [("associated crises", queryStringBackup)]
+				foundPeople[person] += [("associated crises", person.crises)]
 
 			if queryString in person.organizations.lower():
-				foundPeople[person] += [("associated organizations", queryStringBackup)]
+				foundPeople[person] += [("associated organizations", person.organizations)]
 
 
 		queryResults = get_query(queryString, orgFields)
@@ -419,10 +419,10 @@ def search(request):
 				foundOrgs[org] += [("contact info", org.contact)]
 
 			if queryString in org.crises.lower():
-				foundOrgs[org] += [("associated crises", queryStringBackup)]
+				foundOrgs[org] += [("associated crises", org.crises)]
 
 			if queryString in org.people.lower():
-				foundOrgs[org] += [("associated people", queryStringBackup)]
+				foundOrgs[org] += [("associated people", org.people)]
 
 
 	return render_to_response('search.html',

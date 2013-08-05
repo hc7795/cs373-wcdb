@@ -10,77 +10,71 @@
 
 {% block content %}
 
-<!-- <form action="search" method="get">
-
-	<div id="search_bar">
-	  	<label for="id_q"></label>
-		<input id="id_q" name="q" type="text" input type="search" placeholder="Search" results="0" />
-
-	</div> -->
-
-
-<!-- 	<form class="search_field" method="GET">
-		<div id="search_bar">
-		<input name="q" placeholder="Search" />
-		<button type="submit"><img src="http://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg" alt="Search" /></button>
-		</div>
-	</form> -->
-
-
-		<form id="search_bar" method="GET">
-		        <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
-		</form>
-		<div class="tfclear">
-
-
-<!-- 	<form class="search_field" method="GET">
-    <input name="q" />
-    <button type="submit"><img src="http://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg" alt="Search" /></button>
-</form> -->
-
-
+	<form id="search_bar" method="GET">
+	        <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
+	</form>
+	<div class="clearfix">
 
 	{% if searched %}
 
 		{% if queryString == '' %}
-			<p>Please enter a search term.</p>
+			<div class="results_header">Please enter a search term.</div>
 		{% elif not foundCrises and not foundPeople and not foundOrgs %}
-			<p>No results were found for '{{queryString}}'.</p>
+			<div class="results_header">No search results were found for '{{queryString}}'.</div>
 		{% else %}
 
-			<p>Results for '{{ queryString }}':<p>
+			<div class="results_header">Search results for '{{ queryString }}':</div>
 
-			<div>
-				Matching crises:
-				{% for crisis, matches in foundCrises.items %}
-					<li><a class="yellow" href="/crisis/{{crisis.slug}}">{{crisis.name}} </a></li>
-					{% for match, context in matches %}
-						<p>match: {{match}}, context: {{context}}</p>
-					{% endfor %}
-				{% endfor %}
-			</div>
-			<div>
-				Matching people:
-				{% for person, matches in foundPeople.items %}
-					<li><a class="yellow" href="/person/{{person.slug}}">{{person.name}} </a></li>
-					{% for match, context in matches %}
-						<p>match: {{match}}, context: {{context}}</p>
-					{% endfor %}
-				{% endfor %}
-			</div>
-			<div>
-				Matching organizations:
-				{% for org, matches in foundOrgs.items %}
-					<li><a class="yellow" href="/org/{{org.slug}}">{{org.name}} </a></li>
-					{% for match, context in matches %}
-						<p>match: {{match}}, context: {{context}}</p>
-					{% endfor %}
-				{% endfor %}
-			</div>
+			{% if foundCrises %}
+				<div class="results_category">
+					<h2>Matching crises:</h2>
+					<ol>
+						{% for crisis, matches in foundCrises.items %}
+							<li><a class="yellow" href="/crisis/{{crisis.slug}}"><h3>{{crisis.name}}</h3></a></li>
+							<ul>
+								{% for match, context in matches %}
+									<li><span class="italic bold">{{match}}:</span> {{context}}</li>
+								{% endfor %}
+							</ul>
+						{% endfor %}
+					</ol>
+				</div>
+			{% endif %}
+
+			{% if foundPeople %}
+				<div class="results_category">
+					<h2>Matching people:</h2>
+					<ol>
+						{% for person, matches in foundPeople.items %}
+							<li><a class="yellow" href="/person/{{person.slug}}"><h3>{{person.name}}</h3></a></li>
+							<ul>
+								{% for match, context in matches %}
+									<li><span class="italic bold">{{match}}:</span> {{context}}</li>
+								{% endfor %}
+							</ul>
+						{% endfor %}
+					</ol>
+				</div>
+			{% endif %}
+
+			{% if foundCrises %}
+				<div class="results_category">
+					<h2>Matching organizations:</h2>
+					<ol>
+						{% for org, matches in foundOrgs.items %}
+							<li><a class="yellow" href="/org/{{org.slug}}"><h3>{{org.name}}</h3></a></li>
+							<ul>
+								{% for match, context in matches %}
+									<li><span class="italic bold">{{match}}:</span> {{context}}</li>
+								{% endfor %}
+							</ul>
+						{% endfor %}
+					</ol>
+				</div>
+			{% endif %}
 		{% endif %}
 
 	{% endif %}
 
-</form>
 
 {% endblock %}

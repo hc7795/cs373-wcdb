@@ -206,6 +206,19 @@ a {
 
 /* 
 ===============
+  Text Styles
+===============
+*/
+.italic {
+	font-style: italic;
+}
+
+.bold {
+	font-weight:bold;
+}
+
+/* 
+===============
 	Colors
 ===============
 */

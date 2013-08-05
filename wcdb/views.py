@@ -337,7 +337,7 @@ def search(request):
 		searched = True
 		if request.GET['q'].strip():
 			queryStringBackup = request.GET['q']
-			queryString = queryStringBackup.lower()
+			queryString = queryStringBackup.lower().strip()
 
 	# Find and bundle up all matches.
 	if queryString != '':

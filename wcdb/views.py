@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.template import RequestContext, loader
+from django.core.exceptions import ObjectDoesNotExist
 
 from wcdb.models import Crisis, Organization, Person
 
@@ -135,18 +136,24 @@ def crisis(request, urlSlug):
 	strToList = ppl.split(",", 10)
 	pplInfo = []
 	for person in strToList:		
-		found = Person.objects.get(id=(person.encode('utf-8')).strip())
-		name = unicode(found.name)
-		foundID = unicode(found.slug)
-		pplInfo.append((name,foundID))
+		try:
+			found = Person.objects.get(id=(person.encode('utf-8')).strip())
+			name = unicode(found.name)
+			foundID = unicode(found.slug)
+			pplInfo.append((name,foundID))
+		except ObjectDoesNotExist as e:
+			pass
 
 	strToList = org.split(",", 10)
 	orgInfo = []
 	for org in strToList:		
-		found = Organization.objects.get(id=(org.encode('utf-8')).strip())
-		name = unicode(found.name)
-		foundID = unicode(found.slug)
-		orgInfo.append((name,foundID))
+		try:
+			found = Organization.objects.get(id=(org.encode('utf-8')).strip())
+			name = unicode(found.name)
+			foundID = unicode(found.slug)
+			orgInfo.append((name,foundID))
+		except ObjectDoesNotExist as e:
+			pass
 
 	template = loader.get_template("crisis.html")
 	context = RequestContext(request, {
@@ -173,22 +180,28 @@ def person(request, urlSlug):
 
 	strToList = crises.split(",", 10)
 	criInfo = []
-	for crisis in strToList:		
-		found = Crisis.objects.get(id=(crisis.encode('ascii')).strip())
-		name = unicode(found.name)
-		foundID = unicode(found.slug)
-		criInfo.append((name,foundID))
+	for crisis in strToList:	
+		try:	
+			found = Crisis.objects.get(id=(crisis.encode('utf-8')).strip())
+			name = unicode(found.name)
+			foundID = unicode(found.slug)
+			criInfo.append((name,foundID))
+		except ObjectDoesNotExist as e:
+			pass
 
 
 	orgInfo = ""
 	if org != "":
 		orgInfo = []
 		strToList = org.split(",", 10)
-		for org in strToList:		
-			found = Organization.objects.get(id=(org.encode('ascii')).strip())
-			name = unicode(found.name)
-			foundID = unicode(found.slug)
-			orgInfo.append((name,foundID))
+		for org in strToList:	
+			try:	
+				found = Organization.objects.get(id=(org.encode('utf-8')).strip())
+				name = unicode(found.name)
+				foundID = unicode(found.slug)
+				orgInfo.append((name,foundID))
+			except ObjectDoesNotExist as e:
+				pass
 
 
 	template = loader.get_template("person.html")
@@ -217,21 +230,27 @@ def org(request, urlSlug):
 	strToList = crises.split(",", 10)
 	criInfo = []
 	for crisis in strToList:		
-		found = Crisis.objects.get(id=(crisis.encode('ascii')).strip())
-		name = unicode(found.name)
-		foundID = unicode(found.slug)
-		criInfo.append((name,foundID))
+		try:
+			found = Crisis.objects.get(id=(crisis.encode('ascii')).strip())
+			name = unicode(found.name)
+			foundID = unicode(found.slug)
+			criInfo.append((name,foundID))
+		except ObjectDoesNotExist as e:
+			pass
 
 	pplInfo = ""
 	if ppl != "":
 		pplInfo =[]
 		strToList = ppl.split(",", 10)
 		pplInfo = []
-		for person in strToList:		
-			found = Person.objects.get(id=(person.encode('ascii')).strip())
-			name = unicode(found.name)
-			foundID = unicode(found.slug)
-			pplInfo.append((name,foundID))
+		for person in strToList:	
+			try:	
+				found = Person.objects.get(id=(person.encode('ascii')).strip())
+				name = unicode(found.name)
+				foundID = unicode(found.slug)
+				pplInfo.append((name,foundID))
+			except ObjectDoesNotExist as e:
+				pass
 
 
 	template = loader.get_template("organization.html")
@@ -355,16 +374,35 @@ def search(request):
 			if queryString in crisis.kind.lower():
 				foundCrises[crisis] += [("kind", crisis.kind)]
 
+			locationList = ''
 			crisisLocation = ast.literal_eval(crisis.location)
 			for eachLocation in crisisLocation:
 				if queryString in eachLocation.lower():
-					foundCrises[crisis] += [("location", crisis.location)]
+					if locationList != '':
+						locationList += '; ' + eachLocation
+					else:
+						locationList += eachLocation
+			foundCrises[crisis] += [("location", locationList)]
 
-			if queryString in crisis.humanImpact.lower():
-				foundCrises[crisis] += [("human impact", crisis.humanImpact)]
+			humanImpactList = ''
+			crisisHumanImpact = ast.literal_eval(crisis.humanImpact)
+			for eachHumanImpact in crisisHumanImpact:
+				if queryString in eachHumanImpact.lower():
+					if humanImpactList != '':
+						humanImpactList += '; ' + eachHumanImpact
+					else:
+						humanImpactList += eachHumanImpact
+			foundCrises[crisis] += [("human impact", humanImpactList)]
 
-			if queryString in crisis.economicImpact.lower():
-				foundCrises[crisis] += [("economic impact", crisis.economicImpact)]
+			economicImpactList = ''
+			crisisEconomicImpact = ast.literal_eval(crisis.economicImpact)
+			for eachEconomicImpact in crisisEconomicImpact:
+				if queryString in eachEconomicImpact.lower():
+					if economicImpactList != '':
+						economicImpactList += '\n'  '' + eachEconomicImpact
+					else:
+						economicImpactList += eachEconomicImpact
+			foundCrises[crisis] += [("economic impact", economicImpactList)]
 
 			if queryString in crisis.resourcesNeeded.lower():
 				foundCrises[crisis] += [("resources needed", crisis.resourcesNeeded)]

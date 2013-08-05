@@ -131,7 +131,7 @@ def crisis(request, urlSlug):
 	economicImpact = replaceBrackets(crisis.economicImpact)
 	ppl = replaceBrackets(crisis.people)
 	org = replaceBrackets(crisis.organizations)
-	externalLinks = crisis.common.externalLinks.all()[0]
+	externalLinks = crisis.common.externalLinks.all()
 
 	strToList = ppl.split(",", 10)
 	pplInfo = []
@@ -155,17 +155,19 @@ def crisis(request, urlSlug):
 		except ObjectDoesNotExist as e:
 			pass
 
+	d = {}
+	d["crisis"] = crisis
+	d["associatedPeople"] = pplInfo
+	d["associatedOrganizations"] = orgInfo
+	d["list"] = l
+	d["location"] = location
+	d["humanImpact"] = humanImpact
+	d["economicImpact"] = economicImpact
+	if externalLinks != []:
+		d["externalLinks"] = externalLinks
+
 	template = loader.get_template("crisis.html")
-	context = RequestContext(request, {
-		"crisis" : crisis,
-		"associatedPeople": pplInfo,
-		"associatedOrganizations": orgInfo,
-		"list" : l,
-		"location": location,
-		"humanImpact": humanImpact,
-		"economicImpact": economicImpact,
-		"externalLinks" : externalLinks,
-	})
+	context = RequestContext(request, d)
 	return HttpResponse(template.render(context))
 
 
@@ -176,7 +178,7 @@ def person(request, urlSlug):
 	l = person.common.images.all()[0]
 	crises = replaceBrackets(person.crises)
 	org = replaceBrackets(person.organizations)
-	externalLinks = person.common.externalLinks.all()[0]
+	externalLinks = person.common.externalLinks.all()
 
 	strToList = crises.split(",", 10)
 	criInfo = []
@@ -203,15 +205,16 @@ def person(request, urlSlug):
 			except ObjectDoesNotExist as e:
 				pass
 
+	d = {}
+	d["associatedCrises"] = criInfo
+	d["associatedOrganizations"] = orgInfo
+	d["person"] = person
+	d["list"] = l
+	if externalLinks != []:
+		d["externalLinks"] = externalLinks
 
 	template = loader.get_template("person.html")
-	context = RequestContext(request, {
-		"associatedCrises" : criInfo,
-		"associatedOrganizations": orgInfo,
-		"person" : person,
-		"list" : l,
-		"externalLinks" : externalLinks
-	})
+	context = RequestContext(request, d)
 	return HttpResponse(template.render(context))
 
 
@@ -225,7 +228,7 @@ def org(request, urlSlug):
 	contact = replaceBrackets(org.contact)
 	crises = replaceBrackets(org.crises)
 	ppl = replaceBrackets(org.people)
-	externalLinks = org.common.externalLinks.all()[0]
+	externalLinks = org.common.externalLinks.all()
 
 	strToList = crises.split(",", 10)
 	criInfo = []
@@ -252,17 +255,19 @@ def org(request, urlSlug):
 			except ObjectDoesNotExist as e:
 				pass
 
+	d = {}
+	d["org"] = org
+	d["associatedCrises"] = criInfo
+	d["associatedPeople"] = pplInfo
+	d["list"] = l
+	d["history"] = history
+	d["contact"] = contact
+	if externalLinks != []:
+		d["externalLinks"] = externalLinks
+
 
 	template = loader.get_template("organization.html")
-	context = RequestContext(request, {
-		"org" : org,
-		"associatedCrises" : criInfo,
-		"associatedPeople": pplInfo,
-		"list" : l,
-		"history": history,
-		"contact": contact,
-		"externalLinks" : externalLinks,
-	})
+	context = RequestContext(request, d)
 	return HttpResponse(template.render(context))
 
 

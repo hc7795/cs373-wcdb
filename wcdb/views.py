@@ -165,12 +165,18 @@ def crisis(request, urlSlug):
 		d["associatedPeople"] = associatedPeople
 	if associatedOrganizations:
 		d["associatedOrganizations"] = associatedOrganizations
+	if crisis.waytoHelp:
+		d["resourcesNeeded"] = ast.literal_eval(crisis.resourcesNeeded)
+	if crisis.waytoHelp:
+		d["waysToHelp"] = ast.literal_eval(crisis.waytoHelp)
 	if imagesList:
 		d["imagesList"] = imagesList
 	if videosList:
 		d["videosList"] = videosList
 	if location:
-		d["location"] = location
+		locations = [l.strip() for l in location.split(",")]
+		d["locations"] = locations
+		d["numLocations"] = len(locations)
 	if humanImpact:
 		d["humanImpact"] = humanImpact
 	if economicImpact:
@@ -187,6 +193,7 @@ def crisis(request, urlSlug):
 def person(request, urlSlug):
 
 	person = Person.objects.get(slug=urlSlug)
+	location = person.location
 	imagesList = person.common.images.all()
 	videosList = person.common.videos.all()
 	crises = replaceBrackets(person.crises)
@@ -227,6 +234,10 @@ def person(request, urlSlug):
 		d["associatedCrises"] = associatedCrises
 	if associatedOrganizations:
 		d["associatedOrganizations"] = associatedOrganizations
+	if location:
+		locations = [l.strip() for l in location.split(",")]
+		d["locations"] = locations
+		d["numLocations"] = len(locations)
 	if imagesList:
 		d["imagesList"] = imagesList
 	if videosList:
@@ -246,6 +257,7 @@ def org(request, urlSlug):
 	org = Organization.objects.get(slug=urlSlug)
 	imagesList = org.common.images.all()
 	videosList = org.common.videos.all()
+	location = org.location
 	history = replaceBrackets(org.history)
 	contact = replaceBrackets(org.contact)
 	crises = replaceBrackets(org.crises)
@@ -285,6 +297,10 @@ def org(request, urlSlug):
 		d["associatedCrises"] = associatedCrises
 	if associatedPeople:
 		d["associatedPeople"] = associatedPeople
+	if location:
+		locations = [l.strip() for l in location.split(",")]
+		d["locations"] = locations
+		d["numLocations"] = len(locations)
 	if imagesList:
 		d["imagesList"] = imagesList
 	if videosList:

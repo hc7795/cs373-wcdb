@@ -81,16 +81,35 @@
                     <h3>Time:</h3> <p>{{crisis.time}}</p>
                 {% endif %}
 
-                {% if crisis.location != "" %}
-                    <h3>Location:</h3> <p>{{location}}</p>
+                {% if locations %}
+                    {% if numLocations == 1 %}
+                        <h3>Location:</h3>
+                    {% else %}
+                        <h3>Locations:</h3>
+                    {% endif %}
+                    <ul>
+                    {% for location in locations %}
+                        <li>{{location}}</li>
+                    {% endfor %}
+                    </ul>
                 {% endif %}
 
-                {% if crisis.resourcesNeeded != "[]" %}
-                    <h3>Resources Needed:</h3> <p>{{crisis.resourcesNeeded}}</p>
+                {% if resourcesNeeded %}
+                    <h3>Resources Needed:</h3>
+                    <ul>
+                    {% for resource in resourcesNeeded %}
+                        <li>{{resource}}</li>
+                    {% endfor %}
+                    </ul>
                 {% endif %}
 
-                {% if crisis.waytoHelp != "[]" %}
-                    <h3>Ways to Help:</h3> <p>{{crisis.waytoHelp}}</p>
+                {% if waysToHelp %}
+                    <h3>Ways to Help:</h3>
+                    <ul>
+                    {% for way in waysToHelp %}
+                        <li>{{way}}</li>
+                    {% endfor %}
+                    </ul>
                 {% endif %}
             </div>
         {% endif %}

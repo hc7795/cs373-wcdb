@@ -73,8 +73,17 @@
                     <h3>Kind:</h3> <p>{{org.kind}}</p>
                 {% endif %}
 
-                {% if org.location != "" %}
-                    <h3>Location:</h3> <p>{{org.location}}</p>
+                {% if locations %}
+                    {% if numLocations == 1 %}
+                        <h3>Location:</h3>
+                    {% else %}
+                        <h3>Locations:</h3>
+                    {% endif %}
+                    <ul>
+                    {% for location in locations %}
+                        <li>{{location}}</li>
+                    {% endfor %}
+                    </ul>
                 {% endif %}
 
                 {% if org.history != "[]" %}

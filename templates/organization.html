@@ -20,62 +20,65 @@
 {% block content %}
 {% if org %}
 
-    <div id="top_box">
-        <div class="common_box" id="galleria_box"> 
-            <div class="common_galleria">
-                <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
-            </div>
+
+<div class="common_container">
+        <div class="common_galleria" id="galleria">
+            <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
         </div>
 
-        <div class="common_box associated_box">
-            <h3>Associated Crises:</h3>
-            <ul class="light_grey">
-            {% for name, slug in crises %}
-                <li>
-                <a href="/crisis/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a>
-                </li>
-            {% endfor %}
-            </ul>
-        </div>
-
-        {% if people != "" %}
-            <div class="common_box associated_box">
-
-                <h3>Associated People:</h3>
-                <ul class="light_grey">
-                {% for name, slug in people %}
-                    <li>
-                    <a href="/person/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a>
-                    </li>
-                {% endfor %}
+        <div class="associated_container associated_people">
+            <h3>Associated People:</h3>
+            {% if associatedPeople %}
+                <ul>
+                    {% for name, slug in associatedPeople %}
+                        <li><a href="/person/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a></li>
+                    {% endfor %}
                 </ul>
-            </div>
-        {% endif %}
+            {% else %}
+                <p>No associated people yet!</p>
+            {% endif %}
+        </div>
+
+        <div class="associated_container associated_crises">
+            <h3>Associated Crises:</h3>
+            {% if associatedCrises %}
+                <ul>
+                    {% for name, slug in associatedCrises %}
+                        <li><a href="/crisis/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a></li>
+                    {% endfor %}
+                </ul>
+             {% else %}
+                <p>No associated crises yet!</p>
+            {% endif %}
+        </div>
     </div>
 
-    <div id="middle_box">
-        <div class="common_box" id="general_info_box">
-            <h3>Type:</h3> <p>{{org.kind}}</p>
-            <h3>Location:</h3> <p>{{org.location}}</p>
-        </div>
-
-        <div class="common_box" id="history_box">
-            <h3>History:</h3>
-            <p>{{history}}</p>
-        </div>
-
-        {% if contact != "" %}
-            <div class="common_box" id="contact_box">
-                {% if economicImpact != "" %}
-                    <h3>Contact:</h3>
-                    <p>{{contact}}</p>
+   
+    <div class="common_container auto_height">
+        {% if org.kind != "" or org.location != "" or org.history != "[]" or org.contact != "[]" %}
+            <div class="general_info_container">
+                {% if org.kind != "" %}
+                    <h3>Kind:</h3> <p>{{org.kind}}</p>
                 {% endif %}
+
+                {% if org.location != "" %}
+                    <h3>Location:</h3> <p>{{org.location}}</p>
+                {% endif %}
+
+                {% if org.history != "[]" %}
+                    <h3>History:</h3> <p>{{org.history}}</p>
+                {% endif %}
+
+                {% if org.contact != "[]" %}
+                    <h3>Contact Info:</h3> <p>{{org.contact}}</p>
+                {% endif %}
+
             </div>
         {% endif %}
     </div>
-    
-    <div>
-        <div class="common_box" id="external_links_box">
+
+    {% if externalLinks != "" %}
+        <div class="common_container clearfix" id="external_links_box">
             <h3>External Links:</h3>
             <ul class="light_grey">
                 <li>
@@ -83,8 +86,8 @@
                 </li>
             </ul>  
         </div>
-    </div>
-{% endif %}
-<!-- </div> -->
+    {% endif %}
 
+
+{% endif %}
 {% endblock %}

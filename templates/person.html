@@ -18,9 +18,9 @@
 
 
 {% block content %}
-<!-- <div class="common_wrapper"> -->
-
 {% if person %}
+
+
     <div class="common_container">
         <div class="common_galleria" id="galleria">
             <img class="hover_lightup hover_underline" src="{{list.embed}}" alt="{{modelObject.name}}">
@@ -44,7 +44,7 @@
             {% if associatedCrises %}
                 <ul>
                     {% for name, slug in associatedCrises %}
-                        <li><a href="/person/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a></li>
+                        <li><a href="/crisis/{{slug}}" class="hover_lightup hover_underline yellow">{{name}}</a></li>
                     {% endfor %}
                 </ul>
              {% else %}
@@ -79,8 +79,7 @@
             </ul>  
         </div>
     {% endif %}
-{% endif %}
-<!-- </div> -->
-    
 
+
+{% endif %}    
 {% endblock %}

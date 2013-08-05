@@ -125,15 +125,19 @@ def about(request):
 def crisis(request, urlSlug):
 
 	crisis = Crisis.objects.get(slug=urlSlug)
-	imagesList = crisis.common.images.all()
-	videosList = crisis.common.videos.all()
-	summary = crisis.common.summary
 	location = replaceBrackets(crisis.location)
 	humanImpact = crisis.humanImpact
 	economicImpact = crisis.economicImpact
 	ppl = replaceBrackets(crisis.people)
 	org = replaceBrackets(crisis.organizations)
+	
+	citations = crisis.common.citations.all()
 	externalLinks = crisis.common.externalLinks.all()
+	images = crisis.common.images.all()
+	videos = crisis.common.videos.all()
+	maps = crisis.common.maps.all()
+	feeds = crisis.common.feeds.all()
+	summary = crisis.common.summary
 
 	strToList = ppl.split(",", 10)
 	associatedPeople = []
@@ -170,12 +174,6 @@ def crisis(request, urlSlug):
 		d["resourcesNeeded"] = ast.literal_eval(crisis.resourcesNeeded)
 	if crisis.waytoHelp:
 		d["waysToHelp"] = ast.literal_eval(crisis.waytoHelp)
-	if imagesList:
-		d["imagesList"] = imagesList
-	if videosList:
-		d["videosList"] = videosList
-	if summary:
-		d["summary"] = summary
 	if location:
 		locations = [l.strip() for l in location.split(",")]
 		d["locations"] = locations
@@ -184,8 +182,21 @@ def crisis(request, urlSlug):
 		d["humanImpact"] = ast.literal_eval(humanImpact)
 	if economicImpact:
 		d["economicImpact"] = ast.literal_eval(economicImpact)
+
+	if citations:
+		d["citations"] = citations
+	if images:
+		d["images"] = images
+	if videos:
+		d["videos"] = videos
+	if maps:
+		d["maps"] = maps
+	if feeds:
+		d["feeds"] = feeds
 	if externalLinks:
 		d["externalLinks"] = externalLinks
+	if summary:
+		d["summary"] = summary
 
 	template = loader.get_template("crisis.html")
 	context = RequestContext(request, d)
@@ -197,11 +208,16 @@ def person(request, urlSlug):
 
 	person = Person.objects.get(slug=urlSlug)
 	location = person.location
-	imagesList = person.common.images.all()
-	videosList = person.common.videos.all()
 	crises = replaceBrackets(person.crises)
 	org = replaceBrackets(person.organizations)
+
+	citations = person.common.citations.all()
 	externalLinks = person.common.externalLinks.all()
+	images = person.common.images.all()
+	videos = person.common.videos.all()
+	maps = person.common.maps.all()
+	feeds = person.common.feeds.all()
+	summary = person.common.summary
 
 	strToList = crises.split(",", 10)
 	associatedCrises = []
@@ -241,12 +257,21 @@ def person(request, urlSlug):
 		locations = [l.strip() for l in location.split(",")]
 		d["locations"] = locations
 		d["numLocations"] = len(locations)
-	if imagesList:
-		d["imagesList"] = imagesList
-	if videosList:
-		d["videosList"] = videosList
+	
+	if citations:
+		d["citations"] = citations
+	if images:
+		d["images"] = images
+	if videos:
+		d["videos"] = videos
+	if maps:
+		d["maps"] = maps
+	if feeds:
+		d["feeds"] = feeds
 	if externalLinks:
 		d["externalLinks"] = externalLinks
+	if summary:
+		d["summary"] = summary
 
 	template = loader.get_template("person.html")
 	context = RequestContext(request, d)
@@ -258,14 +283,19 @@ def person(request, urlSlug):
 def org(request, urlSlug):
 
 	org = Organization.objects.get(slug=urlSlug)
-	imagesList = org.common.images.all()
-	videosList = org.common.videos.all()
 	location = org.location
 	history = org.history
 	contact = org.contact
 	crises = replaceBrackets(org.crises)
 	ppl = replaceBrackets(org.people)
+
+	citations = org.common.citations.all()
 	externalLinks = org.common.externalLinks.all()
+	images = org.common.images.all()
+	videos = org.common.videos.all()
+	maps = org.common.maps.all()
+	feeds = org.common.feeds.all()
+	summary = org.common.summary
 
 	strToList = crises.split(",", 10)
 	associatedCrises = []
@@ -304,16 +334,25 @@ def org(request, urlSlug):
 		locations = [l.strip() for l in location.split(",")]
 		d["locations"] = locations
 		d["numLocations"] = len(locations)
-	if imagesList:
-		d["imagesList"] = imagesList
-	if videosList:
-		d["videosList"] = videosList
 	if history:
 		d["history"] = ast.literal_eval(history)
 	if contact:
 		d["contacts"] = ast.literal_eval(contact)
+	
+	if citations:
+		d["citations"] = citations
+	if images:
+		d["images"] = images
+	if videos:
+		d["videos"] = videos
+	if maps:
+		d["maps"] = maps
+	if feeds:
+		d["feeds"] = feeds
 	if externalLinks:
 		d["externalLinks"] = externalLinks
+	if summary:
+		d["summary"] = summary
 
 
 	template = loader.get_template("organization.html")

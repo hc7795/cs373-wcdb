@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/crisis.css">
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/common_data.css">
 <script src="{{ STATIC_URL }}js/common_data.js"></script>
 {% endblock %}
@@ -20,17 +19,16 @@
 {% block content %}
 {% if crisis %}
 
-
     <div class="common_container">
         <div class="common_galleria" id="galleria">
-            {% for image in imagesList %}
+            {% for image in images %}
                 {% if image.href %}
                     <img src="{{image.href}}" alt="{{image.name}}">
                 {% else %}
                     <img src="{{image.embed}}" alt="{{image.name}}">
                 {% endif %}
             {% endfor %}
-            {% for video in videosList %}
+            {% for video in videos %}
                 {% if video.href %}
                     <a href="{{video.href}}"></a>
                 {% else %}

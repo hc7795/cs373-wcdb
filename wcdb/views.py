@@ -306,19 +306,23 @@ def get_query(query_string, search_fields):
 
 def search(request):
 	
+	crisisFields = [field.name for field in Crisis._meta.fields]
+	peopleFields = [field.name for field in Person._meta.fields]
+	orgFields =    [field.name for field in Organization._meta.fields]
 
-	query_string = ''
-	found_ppl = []
-	found_crisis = []
-	found_org = []
+	queryString = ''
+	foundPeople = []
+	foundCrises = []
+	foundOrgs = []
 	# ppl_model = ["name", "location", "kind", "crises", "organizations"]
 
 	if ('q' in request.GET) and request.GET['q'].strip():
-		query_string = request.GET['q']
+		queryString = request.GET['q']
 
-	if query_string != '':
-		entry_ppl = get_query(query_string, ['name', 'id', 'location', 'kind', 'crises', 'organizations'])
-		found_ppl = Person.objects.filter(entry_ppl)
+	if queryString != '':
+		entry = get_query(queryString, peopleFields)
+		#foundPeople = Person.objects.filter(entry)
+		foundPeople = orgFields
 
 		# for field in ppl_model:
 		# 	entry_ppl = get_query(query_string,[field])
@@ -333,12 +337,12 @@ def search(request):
 				# filter_ppl = Person.objects.get(entry_ppl)
 
 
-		entry_crisis = get_query(query_string, ['id', 'name', 'kind', 'location', 'organizations', 'date', 'time', 'humanImpact', 'economicImpact', 'resourcesNeeded', 'waytoHelp', 'people'])
-		found_crisis = Crisis.objects.filter(entry_crisis)
-		entry_org = get_query(query_string, ['name', 'id', 'location', 'kind', 'crises', 'history', 'contact', 'people'])
-		found_org = Organization.objects.filter(entry_org)
+		entry_crisis = get_query(queryString, crisisFields)
+		found_crisis = None #Crisis.objects.filter(entry_crisis)
+		entry_org = get_query(queryString, orgFields)
+		found_org = None #Organization.objects.filter(entry_org)
 
 
 	return render_to_response('search.html',
-						  { 'query_string': query_string, 'found_ppl': found_ppl, 'found_crisis': found_crisis, 'found_org': found_org },
+						  { 'queryString': queryString, 'foundPeople': foundPeople, 'foundCrises': foundCrises, 'foundOrgs': foundOrgs },
 						  context_instance=RequestContext(request))

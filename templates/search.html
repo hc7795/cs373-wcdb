@@ -19,15 +19,15 @@
 
 		<ul>Results for {{ query_string }}.
 
-			{% for ppl in found_ppl %}
-			 <li><a href="/person/{{ppl.slug}}">{{ppl.name}} </a></li>
+			{% for person in foundPeople %}
+			 <li><a href="/person/{{ppl.slug}}">{{person}} </a></li>
 			{% endfor %}
 
-			{% for crisis in found_crisis %}
+			{% for crisis in foundCrises %}
 			 <li><a href="/crisis/{{crisis.slug}}">{{crisis.name}} </a></li>
 			{% endfor %}
 
-			{% for org in found_org %}
+			{% for org in foundOrgs %}
 			 <li><a href="/org/{{org.slug}}">{{org.name}} </a></li>
 			{% endfor %}
 

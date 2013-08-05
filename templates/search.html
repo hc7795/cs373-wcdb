@@ -11,19 +11,23 @@
 {% block content %}
 
 	<form id="search_bar" method="GET">
-	        <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
+	        <input type="text" class="tftextinput" name="q" size="21" maxlength="120" placeholder="Enter search terms..."><input type="submit" value="search" class="tfbutton">
 	</form>
 	<div class="clearfix">
 
 	{% if searched %}
 
-		{% if queryString == '' %}
-			<div class="results_header">Please enter a search term.</div>
-		{% elif not foundCrises and not foundPeople and not foundOrgs %}
-			<div class="results_header">No search results were found for '{{queryString}}'.</div>
+		{% if query == '' %}
+			<div class="results_header">Please enter a valid search term.</div>
+		{% elif not numberOfResults %}
+			<div class="results_header">No search results were found for '{{query}}'.</div>
 		{% else %}
 
-			<div class="results_header">Search results for '{{ queryString }}':</div>
+			{% if numberOfResults == 1 %}
+				<div class="results_header">1 result for '{{query}}':</div>
+			{% else %}
+				<div class="results_header">{{numberOfResults}} results for '{{query}}':</div>
+			{% endif %}
 
 			{% if foundCrises %}
 				<div class="results_category">

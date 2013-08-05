@@ -333,13 +333,14 @@ def search(request):
 	searched = False
 
 	# Retrieve query string if given.
-	if ('q' in request.GET) and request.GET['q'].strip():
-		queryStringBackup = request.GET['q']
-		queryString = queryStringBackup.lower()
+	if ('q' in request.GET):
+		searched = True
+		if request.GET['q'].strip():
+			queryStringBackup = request.GET['q']
+			queryString = queryStringBackup.lower()
 
 	# Find and bundle up all matches.
 	if queryString != '':
-		searched = True
 
 		queryResults = get_query(queryString, crisisFields)
 		matchingCrises = Crisis.objects.filter(queryResults)
@@ -424,7 +425,9 @@ def search(request):
 			if queryString in org.people.lower():
 				foundOrgs[org] += [("associated people", org.people)]
 
+	
 
-	return render_to_response('search.html',
-						  {'searched': searched, 'queryString': queryStringBackup, 'foundPeople': foundPeople, 'foundCrises': foundCrises, 'foundOrgs': foundOrgs },
-						  context_instance=RequestContext(request))
+	valuesToPass = {'searched': searched, 'query': queryStringBackup, 'foundPeople': foundPeople, 'foundCrises': foundCrises, 'foundOrgs': foundOrgs }
+	valuesToPass["numberOfResults"] = len(foundCrises)+len(foundPeople)+len(foundOrgs)
+
+	return render_to_response('search.html', valuesToPass, context_instance=RequestContext(request))

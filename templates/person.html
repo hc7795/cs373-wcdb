@@ -29,6 +29,13 @@
                     <img src="{{image.embed}}" alt="{{image.name}}">
                 {% endif %}
             {% endfor %}
+            {% for video in videosList %}
+                {% if video.href %}
+                    <a href="{{video.href}}"></a>
+                {% else %}
+                    <a href="{{video.embed}}"></a>
+                {% endif %}
+            {% endfor %}
         </div>
 
         <div class="associated_container associated_organizations">
@@ -77,13 +84,17 @@
     {% if externalLinks %}
         <div class="common_container clearfix" id="external_links_box">
             <h3>External Links:</h3>
-            <ul class="light_grey">
+            <ol class="light_grey">
                 {% for e in externalLinks %}
                     <li>
-                        <a href={{externalLinks.href}} target="_blank" class="yellow">{{e.href}}</a>   
+                        {% if e.name %}
+                            <a href={{e.href}} name="{{e.name}}" target="_blank" class="yellow">{{e.name}}</a> 
+                        {% else %}
+                            <a href={{e.href}} target="_blank" class="yellow">{{e.href}}</a>
+                        {% endif %}
                     </li>
                 {% endfor %}
-            </ul>  
+            </ol>  
         </div>
     {% endif %}
 

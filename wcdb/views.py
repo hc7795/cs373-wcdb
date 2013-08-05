@@ -126,6 +126,7 @@ def crisis(request, urlSlug):
 
 	crisis = Crisis.objects.get(slug=urlSlug)
 	imagesList = crisis.common.images.all()
+	videosList = crisis.common.videos.all()
 	location = replaceBrackets(crisis.location)
 	humanImpact = replaceBrackets(crisis.humanImpact)
 	economicImpact = replaceBrackets(crisis.economicImpact)
@@ -166,6 +167,8 @@ def crisis(request, urlSlug):
 		d["associatedOrganizations"] = associatedOrganizations
 	if imagesList:
 		d["imagesList"] = imagesList
+	if videosList:
+		d["videosList"] = videosList
 	if location:
 		d["location"] = location
 	if humanImpact:
@@ -185,6 +188,7 @@ def person(request, urlSlug):
 
 	person = Person.objects.get(slug=urlSlug)
 	imagesList = person.common.images.all()
+	videosList = person.common.videos.all()
 	crises = replaceBrackets(person.crises)
 	org = replaceBrackets(person.organizations)
 	externalLinks = person.common.externalLinks.all()
@@ -225,6 +229,8 @@ def person(request, urlSlug):
 		d["associatedOrganizations"] = associatedOrganizations
 	if imagesList:
 		d["imagesList"] = imagesList
+	if videosList:
+		d["videosList"] = videosList
 	if externalLinks:
 		d["externalLinks"] = externalLinks
 
@@ -239,6 +245,7 @@ def org(request, urlSlug):
 
 	org = Organization.objects.get(slug=urlSlug)
 	imagesList = org.common.images.all()
+	videosList = org.common.videos.all()
 	history = replaceBrackets(org.history)
 	contact = replaceBrackets(org.contact)
 	crises = replaceBrackets(org.crises)
@@ -280,6 +287,8 @@ def org(request, urlSlug):
 		d["associatedPeople"] = associatedPeople
 	if imagesList:
 		d["imagesList"] = imagesList
+	if videosList:
+		d["videosList"] = videosList
 	if history:
 		d["history"] = history
 	if contact:

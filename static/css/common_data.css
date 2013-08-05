@@ -90,9 +90,14 @@
 }
 
 #external_links_box {
+	word-wrap:break-word;
 	width: 97%;
 	padding: 2% 1.5% 2% 1.5%;
 	color: white;
 	background-color: rgba(25, 25, 25, 0.90);
-	height: 100px;
+	height: 100%;
+}
+
+#external_links_box li {
+	margin-bottom: 10px;
 }

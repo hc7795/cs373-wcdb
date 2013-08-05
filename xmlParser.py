@@ -94,6 +94,55 @@ def xmlToDjango():
 	# Put the models in the Django database.
 	modelsToDjango(modelsList)
 
+def importXMLToDjango():
+
+	#password = raw_input("Password: ")
+	#if (password != "gummy"):
+	#	print "Bad password!"
+	#	exit(1)
+
+
+	#xmlFilename = raw_input("Filename of the XML file: ")
+	#schemaFilename = raw_input("Filename of the schema file: ")
+	xmlFilename = "static/WorldCrises.xml"
+	schemaFilename = "static/WorldCrises.xsd.xml"
+
+
+	# Validate the XML file.
+	try:
+
+		# call validator with non-default values
+		elementTreeWrapper = pyxsval.parseAndValidate (xmlFilename, 
+			xsdFile         = schemaFilename,
+			xmlIfClass      = pyxsval.XMLIF_ELEMENTTREE,
+			warningProc     = pyxsval.PRINT_WARNINGS,
+			errorLimit      = 200, 
+			verbose         = 1,
+			useCaching      = 0, 
+			processXInclude = 0)
+
+		# get elementtree object after validation
+		xmlTree = elementTreeWrapper.getTree()
+
+
+	except pyxsval.XsvalError as errstr:
+		print errstr
+		print "Validation aborted!"
+		raise pyxsval.XsvalError
+
+	except GenXmlIfError as errstr:
+		print errstr
+		print "Parsing aborted!"
+		raise GenXmlIfError
+	      
+	Common.objects.all().delete()
+	List.objects.all().delete()
+	# Get a list of model objects from xmlTree.
+	modelsList = elementTreeToModels(xmlTree)
+
+	# Put the models in the Django database.
+	importXML(modelsList)
+
 
 
 """
@@ -173,7 +222,7 @@ def getCommonData(element, elementIterator):
 
 	try:
 		nextElement = elementIterator.next()
-
+		
 		if (nextElement.tag == "Citations"):
 			nextElement = elementIterator.next()
 			while (nextElement.tag == "li"):
@@ -222,6 +271,9 @@ def getCommonData(element, elementIterator):
 
 	# It's possible the end of file might be reached. If so, still continue and return the data.
 	except StopIteration as e:
+		#print "getCommonData except StopIteration as e"
+		#nextElement = None
+		nextElement = element
 		pass
 
 	finally:
@@ -232,7 +284,9 @@ def getCommonData(element, elementIterator):
 		returnData["Maps"] = maps
 		returnData["Feeds"] = feeds
 		returnData["Summary"] = summary
-
+		
+	#print "nextElement = ", nextElement
+	#print "type(nextElement) = ", type(nextElement)
 	return (nextElement, elementIterator, returnData)
 
 
@@ -547,6 +601,8 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					text=c.get("text"),
 					content=c.get("content")
 					)
+					print "personID = ", personID
+					print "li.text = ", li.text
 					li.save()
 					common.maps.add(li)
 				for c in personFeeds:
@@ -634,6 +690,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 
 			if (nextElement.tag == "Common"):
 				commonExists = True
+				#print "******* nextElement = ", nextElement
 				nextElement, treeIter, d = getCommonData(nextElement, treeIter)
 				orgCitations = d.get('Citations')
 				orgExternalLinks = d.get('ExternalLinks')
@@ -763,8 +820,8 @@ def merge(c, m):
 	#Common Merge
 	#Merge Citations
 	if(c.common.citations.exists()):
-		print "c.common.citations.all() = ", c.common.citations.all()
-		print "m.common.citations.all() = ", m.common.citations.all()
+		#print "c.common.citations.all() = ", c.common.citations.all()
+		#print "m.common.citations.all() = ", m.common.citations.all()
 		oldCitations = c.common.citations.all()
 		newCitations = m.common.citations.all()
 		for li in oldCitations:
@@ -778,12 +835,12 @@ def merge(c, m):
 				copyLi.save()
 				m.common.citations.add(copyLi)
 	
-		print "after merge, m.common.citations.all() = ", m.common.citations.all()
+		#print "after merge, m.common.citations.all() = ", m.common.citations.all()
 	
 	#Merge ExternalLinks
 	if(c.common.externalLinks.exists()):
-		print "c.common.externalLinks.all() = ", c.common.externalLinks.all()
-		print "m.common.externalLinks.all() = ", m.common.externalLinks.all()
+		#print "c.common.externalLinks.all() = ", c.common.externalLinks.all()
+		#print "m.common.externalLinks.all() = ", m.common.externalLinks.all()
 		
 		oldHref = c.common.externalLinks.all()
 		newHref = m.common.externalLinks.all()
@@ -798,34 +855,60 @@ def merge(c, m):
 				)
 				copyLi.save()
 				m.common.externalLinks.add(copyLi)
-		print "after merge, m.common.externalLinks.all() = ", m.common.externalLinks.all()
-
+		#print "after merge, m.common.externalLinks.all() = ", m.common.externalLinks.all()
+		
 	#Merge images
-	"""
-	oldImg = c.common.images.all()
-	newImg = m.common.images.all()
 	if(c.common.images.exists()):
-		for newImage in m.common.images.all():
-			for oldImage in c.common.images.all():
+		#print "c.common.images.exists()"
+		#print "c.common.images.all() = ", c.common.images.all()# 1,3
+		#print "m.common.images.all() = ", m.common.images.all()#1,2
+		
+		oldImages = c.common.images.all()
+		newImages = m.common.images.all()
+		
+		for li in oldImages:
+			if not compare(li, oldImages) :
+				copyLi = List(
+				href=li.href,
+				embed=li.embed,
+				text=li.text,
+				content=li.content
+				)
+				copyLi.save()
+				m.common.images.add(copyLi)
+		
+		"""
+		for oldImage in c.common.images.all():
+			add = True
+			for newImage in m.common.images.all():
 				file1 = cStringIO.StringIO(urllib.urlopen(str(newImage.embed)).read()) 
 				file2 = cStringIO.StringIO(urllib.urlopen(str(oldImage.embed)).read())
+				print "m.id = ", m.id
 				h1 = Image.open(file1).histogram()
 				h2 = Image.open(file2).histogram()
 				
 				rms = math.sqrt(reduce(operator.add, map(lambda a,b: (a-b)**2, h1, h2))/len(h1))
-				if(rms != 0):
-					print "rms != 0"
-					print "c.common.images.all() = ", c.common.images.all()
-					print "oldImage = ", oldImage
-					#m.common.images = list(chain(newImg, oldImage)) does not compile
-					print "after merge, m.common.images.all() = ", m.common.images.all()
+				if(rms == 0) :
+					add = False
+			if add:
+				print "rms != 0"
+				print "c.common.images.all() = ", c.common.images.all()
+				print "oldImage = ", oldImage
+				copyLi=List(
+				href=oldImage.href,
+				embed=oldImage.embed,
+				text=oldImage.text,
+				content=oldImage.content
+				)
+				copyLi.save()
+				m.common.images.add(copyLi)		
+		print "after merge, m.common.images.all() = ", m.common.images.all()
+		"""
 		
-	"""	
-
 	#Merge videos
 	if(c.common.videos.exists()):
-		print "c.common.videos.all() = ", c.common.videos.all()
-		print "m.common.videos.all() = ", m.common.videos.all()
+		#print "c.common.videos.all() = ", c.common.videos.all()
+		#print "m.common.videos.all() = ", m.common.videos.all()
 		
 		oldVideos = c.common.videos.all()
 		newVideos = m.common.videos.all()
@@ -841,12 +924,12 @@ def merge(c, m):
 				copyLi.save()
 				m.common.videos.add(copyLi)
 		
-		print "after merge, m.common.videos.all() = ", m.common.videos.all()
+		#print "after merge, m.common.videos.all() = ", m.common.videos.all()
 
 	#Merge maps
 	if(c.common.maps.exists()):
-		print "c.common.maps.all() = ", c.common.maps.all()
-		print "m.common.maps.all() = ", m.common.maps.all()
+		#print "c.common.maps.all() = ", c.common.maps.all()
+		#print "m.common.maps.all() = ", m.common.maps.all()
 		
 		oldMaps = c.common.maps.all()
 		newMaps = m.common.maps.all()
@@ -862,13 +945,13 @@ def merge(c, m):
 				copyLi.save()
 				m.common.maps.add(copyLi)
 		
-		print "after merge, m.common.maps.all() = ", m.common.maps.all()
+		#print "after merge, m.common.maps.all() = ", m.common.maps.all()
 		
 
 	#Merge feeds
 	if(c.common.feeds.exists()):
-		print "c.common.feeds.all() = ", c.common.feeds.all()
-		print "m.common.feeds.all() = ", m.common.feeds.all()
+		#print "c.common.feeds.all() = ", c.common.feeds.all()
+		#print "m.common.feeds.all() = ", m.common.feeds.all()
 		
 		oldFeeds = c.common.feeds.all()
 		newFeeds = m.common.feeds.all()
@@ -884,20 +967,29 @@ def merge(c, m):
 				copyLi.save()
 				m.common.feeds.add(copyLi)
 		
-		print "after merge, m.common.maps.all() = ", m.common.feeds.all()
+		#print "after merge, m.common.maps.all() = ", m.common.feeds.all()
 
 	#Merge summary	
 	if(c.common.summary != None):
-		print "c.common.summary = ", c.common.summary
-		print "m.common.summary = ", m.common.summary
+		#print "c.common.summary = ", c.common.summary
+		#print "m.common.summary = ", m.common.summary
 		oldsummary = c.common.summary
 		newsummary = m.common.summary
-		if(len(oldsummary)>len(newsummary)):
+		if((newsummary != None) and (len(oldsummary)>len(newsummary))):
 			m.common.summary = oldsummary
 		
-		print "after merge, m.common.summary = ", m.common.summary
-
-
+		#print "after merge, m.common.summary = ", m.common.summary
+		
+		
+def importXML(models) :
+	print "clearing tables"
+	Crisis.objects.all().delete()
+	Person.objects.all().delete()
+	Organization.objects.all().delete()
+	
+	for subList in models:
+		for m in subList:
+			m.save()
 
 
 """
@@ -909,7 +1001,7 @@ def modelsToDjango(models):
 	people = models[1]
 	orgs =   models[2]
 	count=0;
-	print "elements of model[0] ",crises
+	#print "elements of model[0] ",crises
 	for m in crises:
 		checkExistence = Crisis.objects.filter(id=m.id).count()
 		if checkExistence == 1:
@@ -967,7 +1059,7 @@ def modelsToDjango(models):
 			Common.objects.filter(crisis__id = c.id).delete()
 			m.save()
 		elif checkExistence == 0:
-			print "save",m.id
+			#print "save",m.id
 			m.save()
 		else:
 			print "something wrong"
@@ -1011,7 +1103,7 @@ def modelsToDjango(models):
 			m.save()
 
 		elif checkExistence == 0:
-			print "save",m.id
+			#print "save",m.id
 			m.save()
 		else:
 			print "something wrong"
@@ -1407,11 +1499,17 @@ def indent(elem, level=0):
 if __name__ == "__main__":
 	try:
 		if len(sys.argv) == 2:
-			if sys.argv[1] == "import":
+			if sys.argv[1] == "merge":
+				print "merge"
 				xmlToDjango()
 				exit(0)
 			elif sys.argv[1] == "export":
+				print "export"
 				djangoToXml()
+				exit(0)
+			elif sys.argv[1] == "import":
+				print "command line import"
+				importXMLToDjango()
 				exit(0)
 
 		print "\nHow to use:\n\n\tReading from XML to database:\n\txmlParser.py import\n\n\tWriting database to XML:\n\txmlParser.py output\n"

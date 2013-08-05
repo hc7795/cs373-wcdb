@@ -322,6 +322,7 @@ def search(request):
 	orgFields.remove("slug")
 
 	queryString = ''
+	queryStringBackup = ''
 
 	# These contain dictionaries with {k, v} pairs of {object, list of matching attributes}.
 	# Each list of matching attributes is a 2 tuple of (nameOfMatchingAttributeAsString, matchingAttributeContents)
@@ -333,7 +334,8 @@ def search(request):
 
 	# Retrieve query string if given.
 	if ('q' in request.GET) and request.GET['q'].strip():
-		queryString = request.GET['q'].lower()
+		queryStringBackup = request.GET['q']
+		queryString = queryStringBackup.lower()
 
 	# Find and bundle up all matches.
 	if queryString != '':
@@ -367,10 +369,10 @@ def search(request):
 				foundCrises[crisis] += [("ways to help", crisis.waytoHelp)]
 
 			if queryString in crisis.people.lower():
-				foundCrises[crisis] += [("associated people", queryString)]
+				foundCrises[crisis] += [("associated people", queryStringBackup)]
 
 			if queryString in crisis.organizations.lower():
-				foundCrises[crisis] += [("associated organizations", queryString)]
+				foundCrises[crisis] += [("associated organizations", queryStringBackup)]
 
 
 		queryResults = get_query(queryString, peopleFields)
@@ -389,10 +391,10 @@ def search(request):
 				foundPeople[person] += [("location", person.location)]
 
 			if queryString in person.crises.lower():
-				foundPeople[person] += [("associated crises", queryString)]
+				foundPeople[person] += [("associated crises", queryStringBackup)]
 
 			if queryString in person.organizations.lower():
-				foundPeople[person] += [("associated organizations", queryString)]
+				foundPeople[person] += [("associated organizations", queryStringBackup)]
 
 
 		queryResults = get_query(queryString, orgFields)
@@ -417,12 +419,12 @@ def search(request):
 				foundOrgs[org] += [("contact info", org.contact)]
 
 			if queryString in org.crises.lower():
-				foundOrgs[org] += [("associated crises", queryString)]
+				foundOrgs[org] += [("associated crises", queryStringBackup)]
 
 			if queryString in org.people.lower():
-				foundOrgs[org] += [("associated people", queryString)]
+				foundOrgs[org] += [("associated people", queryStringBackup)]
 
 
 	return render_to_response('search.html',
-						  {'searched': searched, 'queryString': queryString, 'foundPeople': foundPeople, 'foundCrises': foundCrises, 'foundOrgs': foundOrgs },
+						  {'searched': searched, 'queryString': queryStringBackup, 'foundPeople': foundPeople, 'foundCrises': foundCrises, 'foundOrgs': foundOrgs },
 						  context_instance=RequestContext(request))

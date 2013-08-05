@@ -10,43 +10,74 @@
 
 {% block content %}
 
-<form action="search" method="get">
+<!-- <form action="search" method="get">
 
-  <label for="id_q">Search:</label>
-	<input id="id_q" name="q" type="text">
-	<input type="submit" value="Submit">
+	<div id="search_bar">
+	  	<label for="id_q"></label>
+		<input id="id_q" name="q" type="text" input type="search" placeholder="Search" results="0" />
+
+	</div> -->
+
+
+<!-- 	<form class="search_field" method="GET">
+		<div id="search_bar">
+		<input name="q" placeholder="Search" />
+		<button type="submit"><img src="http://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg" alt="Search" /></button>
+		</div>
+	</form> -->
+
+
+		<form id="search_bar" method="GET">
+		        <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
+		</form>
+		<div class="tfclear">
+
+
+<!-- 	<form class="search_field" method="GET">
+    <input name="q" />
+    <button type="submit"><img src="http://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg" alt="Search" /></button>
+</form> -->
+
+
 
 	{% if searched %}
 
-		<p>Results for '{{ queryString }}':<p>
+		{% if queryString == '' %}
+			<p>Please enter a search term.</p>
+		{% elif not foundCrises and not foundPeople and not foundOrgs %}
+			<p>No results were found for '{{queryString}}'.</p>
+		{% else %}
 
-		<div>
-			Matching crises:
-			{% for crisis, matches in foundCrises.items %}
-				<li><a href="/crisis/{{crisis.slug}}">{{crisis.name}} </a></li>
-				{% for match, context in matches %}
-					<p>match: {{match}}, context: {{context}}</p>
+			<p>Results for '{{ queryString }}':<p>
+
+			<div>
+				Matching crises:
+				{% for crisis, matches in foundCrises.items %}
+					<li><a class="yellow" href="/crisis/{{crisis.slug}}">{{crisis.name}} </a></li>
+					{% for match, context in matches %}
+						<p>match: {{match}}, context: {{context}}</p>
+					{% endfor %}
 				{% endfor %}
-			{% endfor %}
-		</div>
-		<div>
-			Matching people:
-			{% for person, matches in foundPeople.items %}
-				<li><a href="/person/{{person.slug}}">{{person.name}} </a></li>
-				{% for match, context in matches %}
-					<p>match: {{match}}, context: {{context}}</p>
+			</div>
+			<div>
+				Matching people:
+				{% for person, matches in foundPeople.items %}
+					<li><a class="yellow" href="/person/{{person.slug}}">{{person.name}} </a></li>
+					{% for match, context in matches %}
+						<p>match: {{match}}, context: {{context}}</p>
+					{% endfor %}
 				{% endfor %}
-			{% endfor %}
-		</div>
-		<div>
-			Matching organizations:
-			{% for org, matches in foundOrgs.items %}
-				<li><a href="/org/{{org.slug}}">{{org.name}} </a></li>
-				{% for match, context in matches %}
-					<p>match: {{match}}, context: {{context}}</p>
+			</div>
+			<div>
+				Matching organizations:
+				{% for org, matches in foundOrgs.items %}
+					<li><a class="yellow" href="/org/{{org.slug}}">{{org.name}} </a></li>
+					{% for match, context in matches %}
+						<p>match: {{match}}, context: {{context}}</p>
+					{% endfor %}
 				{% endfor %}
-			{% endfor %}
-		</div>
+			</div>
+		{% endif %}
 
 	{% endif %}
 

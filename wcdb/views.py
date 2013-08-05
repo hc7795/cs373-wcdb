@@ -125,7 +125,7 @@ def about(request):
 def crisis(request, urlSlug):
 
 	crisis = Crisis.objects.get(slug=urlSlug)
-	l = crisis.common.images.all()[0]
+	imagesList = crisis.common.images.all()
 	location = replaceBrackets(crisis.location)
 	humanImpact = replaceBrackets(crisis.humanImpact)
 	economicImpact = replaceBrackets(crisis.economicImpact)
@@ -134,36 +134,45 @@ def crisis(request, urlSlug):
 	externalLinks = crisis.common.externalLinks.all()
 
 	strToList = ppl.split(",", 10)
-	pplInfo = []
+	associatedPeople = []
 	for person in strToList:		
 		try:
 			found = Person.objects.get(id=(person.encode('utf-8')).strip())
 			name = unicode(found.name)
 			foundID = unicode(found.slug)
-			pplInfo.append((name,foundID))
+			associatedPeople.append((name,foundID))
 		except ObjectDoesNotExist as e:
 			pass
 
 	strToList = org.split(",", 10)
-	orgInfo = []
+	associatedOrganizations = []
 	for org in strToList:		
 		try:
 			found = Organization.objects.get(id=(org.encode('utf-8')).strip())
 			name = unicode(found.name)
 			foundID = unicode(found.slug)
-			orgInfo.append((name,foundID))
+			associatedOrganizations.append((name,foundID))
 		except ObjectDoesNotExist as e:
 			pass
 
+	# d is a dictionary of data to be passed to the view.
 	d = {}
 	d["crisis"] = crisis
-	d["associatedPeople"] = pplInfo
-	d["associatedOrganizations"] = orgInfo
-	d["list"] = l
-	d["location"] = location
-	d["humanImpact"] = humanImpact
-	d["economicImpact"] = economicImpact
-	if externalLinks != []:
+
+	# Add optional elements to d.
+	if associatedPeople:
+		d["associatedPeople"] = associatedPeople
+	if associatedOrganizations:
+		d["associatedOrganizations"] = associatedOrganizations
+	if imagesList:
+		d["imagesList"] = imagesList
+	if location:
+		d["location"] = location
+	if humanImpact:
+		d["humanImpact"] = humanImpact
+	if economicImpact:
+		d["economicImpact"] = economicImpact
+	if externalLinks:
 		d["externalLinks"] = externalLinks
 
 	template = loader.get_template("crisis.html")
@@ -175,42 +184,48 @@ def crisis(request, urlSlug):
 def person(request, urlSlug):
 
 	person = Person.objects.get(slug=urlSlug)
-	l = person.common.images.all()[0]
+	imagesList = person.common.images.all()
 	crises = replaceBrackets(person.crises)
 	org = replaceBrackets(person.organizations)
 	externalLinks = person.common.externalLinks.all()
 
 	strToList = crises.split(",", 10)
-	criInfo = []
+	associatedCrises = []
 	for crisis in strToList:	
 		try:	
 			found = Crisis.objects.get(id=(crisis.encode('utf-8')).strip())
 			name = unicode(found.name)
 			foundID = unicode(found.slug)
-			criInfo.append((name,foundID))
+			associatedCrises.append((name,foundID))
 		except ObjectDoesNotExist as e:
 			pass
 
 
 	orgInfo = ""
 	if org != "":
-		orgInfo = []
+		associatedOrganizations = []
 		strToList = org.split(",", 10)
 		for org in strToList:	
 			try:	
 				found = Organization.objects.get(id=(org.encode('utf-8')).strip())
 				name = unicode(found.name)
 				foundID = unicode(found.slug)
-				orgInfo.append((name,foundID))
+				associatedOrganizations.append((name,foundID))
 			except ObjectDoesNotExist as e:
 				pass
 
+	# d is a dictionary of data to be passed to the view.
 	d = {}
-	d["associatedCrises"] = criInfo
-	d["associatedOrganizations"] = orgInfo
 	d["person"] = person
-	d["list"] = l
-	if externalLinks != []:
+
+	# Add optional elements to d.
+	if associatedCrises:
+		d["associatedCrises"] = associatedCrises
+	if associatedOrganizations:
+		d["associatedOrganizations"] = associatedOrganizations
+	if imagesList:
+		d["imagesList"] = imagesList
+	if externalLinks:
 		d["externalLinks"] = externalLinks
 
 	template = loader.get_template("person.html")
@@ -223,7 +238,7 @@ def person(request, urlSlug):
 def org(request, urlSlug):
 
 	org = Organization.objects.get(slug=urlSlug)
-	l = org.common.images.all()[0]
+	imagesList = org.common.images.all()
 	history = replaceBrackets(org.history)
 	contact = replaceBrackets(org.contact)
 	crises = replaceBrackets(org.crises)
@@ -231,38 +246,45 @@ def org(request, urlSlug):
 	externalLinks = org.common.externalLinks.all()
 
 	strToList = crises.split(",", 10)
-	criInfo = []
+	associatedCrises = []
 	for crisis in strToList:		
 		try:
 			found = Crisis.objects.get(id=(crisis.encode('ascii')).strip())
 			name = unicode(found.name)
 			foundID = unicode(found.slug)
-			criInfo.append((name,foundID))
+			associatedCrises.append((name,foundID))
 		except ObjectDoesNotExist as e:
 			pass
 
-	pplInfo = ""
+	associatedPeople = ""
 	if ppl != "":
-		pplInfo =[]
 		strToList = ppl.split(",", 10)
-		pplInfo = []
+		associatedPeople = []
 		for person in strToList:	
 			try:	
 				found = Person.objects.get(id=(person.encode('ascii')).strip())
 				name = unicode(found.name)
 				foundID = unicode(found.slug)
-				pplInfo.append((name,foundID))
+				associatedPeople.append((name,foundID))
 			except ObjectDoesNotExist as e:
 				pass
 
+	# d is a dictionary of data to be passed to the view.
 	d = {}
 	d["org"] = org
-	d["associatedCrises"] = criInfo
-	d["associatedPeople"] = pplInfo
-	d["list"] = l
-	d["history"] = history
-	d["contact"] = contact
-	if externalLinks != []:
+
+	# Add optional elements to d.
+	if associatedCrises:
+		d["associatedCrises"] = associatedCrises
+	if associatedPeople:
+		d["associatedPeople"] = associatedPeople
+	if imagesList:
+		d["list"] = imagesList
+	if history:
+		d["history"] = history
+	if contact:
+		d["contact"] = contact
+	if externalLinks:
 		d["externalLinks"] = externalLinks
 
 

@@ -76,13 +76,15 @@
         </div>
     {% endif %}
 
-    {% if externalLinks != "" %}
+    {% if externalLinks %}
         <div class="common_container clearfix" id="external_links_box">
             <h3>External Links:</h3>
             <ul class="light_grey">
-                <li>
-                    <a href={{externalLinks.href}} target="_blank" class="yellow">{{externalLinks.href}}</a>   
-                </li>
+                {% for e in externalLinks %}
+                    <li>
+                        <a href={{externalLinks.href}} target="_blank" class="yellow">{{e.href}}</a>   
+                    </li>
+                {% endfor %}
             </ul>  
         </div>
     {% endif %}

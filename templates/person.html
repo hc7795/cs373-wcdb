@@ -19,11 +19,17 @@
 
 {% block content %}
 {% if person %}
-
+    <p>
+        {{% for e in imagesList %}}
+        <p>e.name: {{e.name}}</p>
+        <p>e.embed: {{e.embed}}</p>
+    </p>
 
     <div class="common_container">
         <div class="common_galleria" id="galleria">
-            <img src="{{list.embed}}" alt="{{modelObject.name}}">
+            {% for image in imagesList %}
+                <img src="{{image.embed}}" alt="{{image.name}}">
+            {% endfor %}
         </div>
 
         <div class="associated_container associated_organizations">
@@ -69,13 +75,15 @@
         </div>
     {% endif %}
 
-    {% if externalLinks != "" %}
+    {% if externalLinks %}
         <div class="common_container clearfix" id="external_links_box">
             <h3>External Links:</h3>
             <ul class="light_grey">
-                <li>
-                    <a href={{externalLinks.href}} target="_blank" class="yellow">{{externalLinks.href}}</a>   
-                </li>
+                {% for e in externalLinks %}
+                    <li>
+                        <a href={{externalLinks.href}} target="_blank" class="yellow">{{e.href}}</a>   
+                    </li>
+                {% endfor %}
             </ul>  
         </div>
     {% endif %}

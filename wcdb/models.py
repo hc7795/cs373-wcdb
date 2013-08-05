@@ -57,6 +57,13 @@ class List(models.Model):
 	text=models.TextField(null=True)
 	content=models.TextField(null=True)
 
+	def __unicode__(self):
+	   return \
+	   "href: " + unicode(self.href) + \
+	   ", embed: " + unicode(self.embed) + \
+	   ", text: " + unicode(self.text) + \
+	   ", content: " + unicode(self.content);
+
 class Common(models.Model) :
 	citations = models.ManyToManyField(List,  related_name ='Citations+', null=True)
 	externalLinks = models.ManyToManyField(List,  related_name ='ExternalLinks+', null=True)
@@ -65,4 +72,14 @@ class Common(models.Model) :
 	maps = models.ManyToManyField(List,  related_name ='Maps+', null=True)
 	feeds = models.ManyToManyField(List,  related_name ='Feeds+', null=True)
 	summary = models.TextField(null=True)
+
+	def __unicode__(self):
+	   return \
+	   "citations: " + unicode(self.citations.all()) + \
+	   ", externalLinks: " + unicode(self.externalLinks.all()) + \
+	   ", images: " + unicode(self.images.all()) + \
+	   ", videos: " + unicode(self.videos.all()) + \
+	   ", maps: " + unicode(self.maps.all()) + \
+	   ", feeds: " + unicode(self.feeds.all()) + \
+	   ", summary: " + unicode(self.summary)
 

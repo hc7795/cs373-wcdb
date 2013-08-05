@@ -15,7 +15,10 @@
 		{% if modelObjects %}
 		    {% for modelObject, list in modelObjects %}	
 		    	<li>
-		    		<a class="hover_lightup hover_underline" href="{{type}}/{{modelObject.slug}}">
+		    		<a href="{{type}}/{{modelObject.slug}}">
+		    			<span class="text">
+		    				{{modelObject.name}}
+		    			</span>
 			    		<img src="{{list.embed}}" alt="{{modelObject.name}}">
 			    	</a>
 		    	</li>				   

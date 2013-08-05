@@ -1,5 +1,5 @@
 <WorldCrises>
-  <Crisis ID="CRI_HURIKE" Name="Hurricane Ike">
+	<Crisis ID="CRI_HURIKE" Name="Hurricane Ike">
 		<People>
 			<Person ID="PER_RENPRE" />
 		</People>
@@ -9,7 +9,19 @@
 		<Kind>Natural Disaster</Kind>
 		<Date>2008-09-01</Date>
 		<Locations>
-			<li>Turks and Caicos, Bahamas, Haiti, Dominican Republic, Cuba, Florida Keys, Mississippi, Louisiana, Texas, Mississippi Valley, Ohio Valley, Great Lakes region, Eastern Canada</li>
+			<li>Turks and Caicos</li>
+			<li> Bahamas</li>
+			<li>Haiti</li>
+			<li>Dominican Republic</li>
+			<li>Cuba</li>
+			<li>Florida Keys</li>
+			<li>Mississippi</li>
+			<li>Louisiana</li>
+			<li>Texas</li>
+			<li>Mississippi Valley</li>
+			<li>Ohio Valley</li>
+			<li>Great Lakes region</li>
+			<li>Eastern Canada</li>
 		</Locations>
 		<HumanImpact>
 			<li>Fatalities: 103 direct, 92 indirect</li>
@@ -180,7 +192,8 @@
 		<Kind>Natural Disaster</Kind>
 		<Date>2010-01-12</Date>
 		<Locations>
-			<li>Haiti, Dominican Republic</li>
+			<li>Haiti</li> 
+			<li>Dominican Republic</li>
 		</Locations>
 		<HumanImpact>
 			<li>316,000 deaths</li>
@@ -229,7 +242,7 @@
 		</Common>
 	</Crisis>
 
-	<Crisis ID="CRI_EGYPTR" Name="Political unrest in Egypt">
+	<Crisis ID="CRI_UEGYPT" Name="Political unrest in Egypt">
 		<People>
 			<Person ID="PER_MUBRAK" />
 		</People>
@@ -267,7 +280,9 @@
 		<Kind>Terrorism</Kind>
 		<Date>2001-09-11</Date>
 		<Locations>
-			<li>New York City; Arlington County, Virginia; and near Shanksville, Pennsylvania</li>
+			<li>New York City</li> 
+			<li>Arlington County, Virginia</li>
+			<li>Shanksville, Pennsylvania</li>
 		</Locations>
 		<HumanImpact>
 			<li>Deaths: 2,996; Injured: more than 6,000</li>
@@ -411,7 +426,7 @@
 
 	<Person ID="PER_MUBRAK" Name="Hosni Mubarak">
 		<Crises>
-			<Crisis ID="CRI_EGYPTR" />
+			<Crisis ID="CRI_UEGYPT" />
 		</Crises>
 		<Kind>President of Egypt</Kind>
 		<Location>Egypt</Location>
@@ -685,7 +700,7 @@
 
 	<Organization ID="ORG_EGYHUM" Name="Egyptian Organization for Human Rights">
 		<Crises>
-			<Crisis ID="CRI_EGYPTR" />
+			<Crisis ID="CRI_UEGYPT" />
 		</Crises>
 		<Kind>Human Rights</Kind>
 		<Location>Egypt</Location>

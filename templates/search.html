@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block head %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/search.css">
 {% endblock %}
 
 {% block page_header %}
@@ -15,23 +16,37 @@
 	<input id="id_q" name="q" type="text">
 	<input type="submit" value="Submit">
 
-	{% if query_string != '' %}
+	{% if searched %}
 
-		<ul>Results for {{ query_string }}.
+		<p>Results for '{{ queryString }}':<p>
 
-			{% for person in foundPeople %}
-			 <li><a href="/person/{{ppl.slug}}">{{person}} </a></li>
+		<div>
+			Matching crises:
+			{% for crisis, matches in foundCrises.items %}
+				<li><a href="/crisis/{{crisis.slug}}">{{crisis.name}} </a></li>
+				{% for match, context in matches %}
+					<p>match: {{match}}, context: {{context}}</p>
+				{% endfor %}
 			{% endfor %}
-
-			{% for crisis in foundCrises %}
-			 <li><a href="/crisis/{{crisis.slug}}">{{crisis.name}} </a></li>
+		</div>
+		<div>
+			Matching people:
+			{% for person, matches in foundPeople.items %}
+				<li><a href="/person/{{person.slug}}">{{person.name}} </a></li>
+				{% for match, context in matches %}
+					<p>match: {{match}}, context: {{context}}</p>
+				{% endfor %}
 			{% endfor %}
-
-			{% for org in foundOrgs %}
-			 <li><a href="/org/{{org.slug}}">{{org.name}} </a></li>
+		</div>
+		<div>
+			Matching organizations:
+			{% for org, matches in foundOrgs.items %}
+				<li><a href="/org/{{org.slug}}">{{org.name}} </a></li>
+				{% for match, context in matches %}
+					<p>match: {{match}}, context: {{context}}</p>
+				{% endfor %}
 			{% endfor %}
-
-		</ul>
+		</div>
 
 	{% endif %}
 

@@ -310,39 +310,119 @@ def search(request):
 	peopleFields = [field.name for field in Person._meta.fields]
 	orgFields =    [field.name for field in Organization._meta.fields]
 
+	# Fields to remove from search.
+	crisisFields.remove("id")
+	crisisFields.remove("common")
+	crisisFields.remove("slug")
+	peopleFields.remove("id")
+	peopleFields.remove("common")
+	peopleFields.remove("slug")
+	orgFields.remove("id")
+	orgFields.remove("common")
+	orgFields.remove("slug")
+
 	queryString = ''
-	foundPeople = []
-	foundCrises = []
-	foundOrgs = []
-	# ppl_model = ["name", "location", "kind", "crises", "organizations"]
 
+	# These contain dictionaries with {k, v} pairs of {object, list of matching attributes}.
+	# Each list of matching attributes is a 2 tuple of (nameOfMatchingAttributeAsString, matchingAttributeContents)
+	foundPeople = {}
+	foundCrises = {}
+	foundOrgs = {}
+
+	searched = False
+
+	# Retrieve query string if given.
 	if ('q' in request.GET) and request.GET['q'].strip():
-		queryString = request.GET['q']
+		queryString = request.GET['q'].lower()
 
+	# Find and bundle up all matches.
 	if queryString != '':
-		entry = get_query(queryString, peopleFields)
-		#foundPeople = Person.objects.filter(entry)
-		foundPeople = orgFields
+		searched = True
 
-		# for field in ppl_model:
-		# 	entry_ppl = get_query(query_string,[field])
-		# 	filter_ppl = Person.objects.filter(entry_ppl)
-		# 	if filter_ppl.exists():
-		# 		context = filter_ppl.values(field)
-		# 	found_ppl += [filter_ppl,context]
+		queryResults = get_query(queryString, crisisFields)
+		matchingCrises = Crisis.objects.filter(queryResults)
 
-		# for ppl in Person.objects.all():
-		# 	for field in ppl_model:
-				# entry_ppl = get_query(query_string,[field])
-				# filter_ppl = Person.objects.get(entry_ppl)
+		for crisis in matchingCrises:
+			foundCrises[crisis] = [];
+
+			if queryString in crisis.name.lower():
+				foundCrises[crisis] += [("name", crisis.name)]
+
+			if queryString in crisis.kind.lower():
+				foundCrises[crisis] += [("kind", crisis.kind)]
+
+			if queryString in crisis.location.lower():
+				foundCrises[crisis] += [("location", crisis.location)]
+
+			if queryString in crisis.humanImpact.lower():
+				foundCrises[crisis] += [("humanImpact", crisis.humanImpact)]
+
+			if queryString in crisis.economicImpact.lower():
+				foundCrises[crisis] += [("economic impact", crisis.economicImpact)]
+
+			if queryString in crisis.resourcesNeeded.lower():
+				foundCrises[crisis] += [("resources needed", crisis.resourcesNeeded)]
+
+			if queryString in crisis.waytoHelp.lower():
+				foundCrises[crisis] += [("ways to help", crisis.waytoHelp)]
+
+			if queryString in crisis.people.lower():
+				foundCrises[crisis] += [("associated people", queryString)]
+
+			if queryString in crisis.organizations.lower():
+				foundCrises[crisis] += [("associated organizations", queryString)]
 
 
-		entry_crisis = get_query(queryString, crisisFields)
-		found_crisis = None #Crisis.objects.filter(entry_crisis)
-		entry_org = get_query(queryString, orgFields)
-		found_org = None #Organization.objects.filter(entry_org)
+		queryResults = get_query(queryString, peopleFields)
+		matchingPeople = Person.objects.filter(queryResults)
+		
+		for person in matchingPeople:
+			foundPeople[person] = [];
+
+			if queryString in person.name.lower():
+				foundPeople[person] += [("name", person.name)]
+
+			if queryString in person.kind.lower():
+				foundPeople[person] += [("occupation", person.kind)]
+
+			if queryString in person.location.lower():
+				foundPeople[person] += [("location", person.location)]
+
+			if queryString in person.crises.lower():
+				foundPeople[person] += [("associated crises", queryString)]
+
+			if queryString in person.organizations.lower():
+				foundPeople[person] += [("associated organizations", queryString)]
+
+
+		queryResults = get_query(queryString, orgFields)
+		matchingOrgs = Organization.objects.filter(queryResults)
+		
+		for org in matchingOrgs:
+			foundOrgs[org] = [];
+
+			if queryString in org.name.lower():
+				foundOrgs[org] += [("name", org.name)]
+
+			if queryString in org.kind.lower():
+				foundOrgs[org] += [("kind", org.kind)]
+
+			if queryString in org.location.lower():
+				foundOrgs[org] += [("location", org.location)]
+
+			if queryString in org.history.lower():
+				foundOrgs[org] += [("history", org.history)]
+
+			if queryString in org.contact.lower():
+				foundOrgs[org] += [("contact info", org.contact)]
+
+			if queryString in org.crises.lower():
+				foundOrgs[org] += [("associated crises", queryString)]
+
+			if queryString in org.people.lower():
+				foundOrgs[org] += [("associated people", queryString)]
 
 
 	return render_to_response('search.html',
-						  { 'queryString': queryString, 'foundPeople': foundPeople, 'foundCrises': foundCrises, 'foundOrgs': foundOrgs },
+						  {'searched': searched, 'queryString': queryString, 'foundPeople': foundPeople, 'foundCrises': foundCrises, 'foundOrgs': foundOrgs },
 						  context_instance=RequestContext(request))

@@ -54,8 +54,8 @@
     </div>
 
    
-    <div class="common_container auto_height">
-        {% if person.kind != "" or person.location != "" %}
+    {% if person.kind != "" or person.location != "" %}
+        <div class="common_container auto_height">
             <div class="general_info_container">
                 {% if person.kind != "" %}
                     <h3>Occupation:</h3> <p>{{person.kind}}</p>
@@ -66,8 +66,8 @@
                 {% endif %}
 
             </div>
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
 
     {% if externalLinks != "" %}
         <div class="common_container clearfix" id="external_links_box">

@@ -53,9 +53,8 @@
         </div>
     </div>
 
-   
-    <div class="common_container auto_height">
-        {% if org.kind != "" or org.location != "" or org.history != "[]" or org.contact != "[]" %}
+   {% if org.kind != "" or org.location != "" or org.history != "[]" or org.contact != "[]" %}
+        <div class="common_container auto_height">
             <div class="general_info_container">
                 {% if org.kind != "" %}
                     <h3>Kind:</h3> <p>{{org.kind}}</p>
@@ -74,8 +73,8 @@
                 {% endif %}
 
             </div>
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
 
     {% if externalLinks != "" %}
         <div class="common_container clearfix" id="external_links_box">

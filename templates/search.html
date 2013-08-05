@@ -8,4 +8,33 @@
 
 
 {% block content %}
+
+<form action="search" method="get">
+
+  <label for="id_q">Search:</label>
+	<input id="id_q" name="q" type="text">
+	<input type="submit" value="Submit">
+
+	{% if query_string != '' %}
+
+		<ul>Results for {{ query_string }}.
+
+			{% for ppl in found_ppl %}
+			 <li><a href="/person/{{ppl.slug}}">{{ppl.name}} </a></li>
+			{% endfor %}
+
+			{% for crisis in found_crisis %}
+			 <li><a href="/crisis/{{crisis.slug}}">{{crisis.name}} </a></li>
+			{% endfor %}
+
+			{% for org in found_org %}
+			 <li><a href="/org/{{org.slug}}">{{org.name}} </a></li>
+			{% endfor %}
+
+		</ul>
+
+	{% endif %}
+
+</form>
+
 {% endblock %}

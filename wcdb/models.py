@@ -83,3 +83,6 @@ class Common(models.Model) :
 	   ", feeds: " + unicode(self.feeds.all()) + \
 	   ", summary: " + unicode(self.summary)
 
+class Document(models.Model):
+    docfile = models.FileField(upload_to='documents/')
+

@@ -5,21 +5,30 @@ from django.core.exceptions import ObjectDoesNotExist
 from wcdb.models import Crisis, Organization, Person
 from random import choice
 
-#search
+# Search.
 import re
 import ast
 from django.db.models import Q
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+
+# File uploads.
+from wcdb.models import Document
+from wcdb.forms import DocumentForm
+from django.core.urlresolvers import reverse
+
 
 def getConciseSummary(summary):
 	summaryMaxLength = 750
 	if (len(summary) > summaryMaxLength):
-		summary = summary[:summaryMaxLength+1] + "..."
+		summary = summary[:summaryMaxLength] + "..."
 	return summary
 
+
 def index(request):
+	objectLimit = 20
+
 	crises = Crisis.objects.all().order_by('?')
 	organizations = Organization.objects.all().order_by('?')
 	peeps = Person.objects.all().order_by('?')
@@ -50,9 +59,9 @@ def index(request):
 			pass
 
 	d = {}
-	d["crises"] = crisesToPass
-	d["organizations"] = orgsToPass
-	d["people"] = peepsToPass
+	d["crises"] = crisesToPass[:objectLimit]
+	d["organizations"] = orgsToPass[:objectLimit]
+	d["people"] = peepsToPass[:objectLimit]
 
 	template = loader.get_template("index.html")
 	context = RequestContext(request, d)
@@ -571,3 +580,30 @@ def search(request):
 	valuesToPass["numberOfResults"] = len(foundCrises)+len(foundPeople)+len(foundOrgs)
 
 	return render_to_response('search.html', valuesToPass, context_instance=RequestContext(request))
+
+
+
+
+def fileUpload(request):
+    # Handle file upload
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            newdoc = Document(docfile = request.FILES['docfile'])
+            newdoc.save()
+
+            # Redirect to the document list after POST
+            return HttpResponseRedirect("import_export.html")
+            # return HttpResponseRedirect(reverse('wcdb.views.fileUpload', args=[]))
+    else:
+        form = DocumentForm() # A empty, unbound form
+
+    # Load documents for the list page
+    documents = Document.objects.all()
+
+    # Render list page with the documents and the form
+    return render_to_response(
+        'import_export.html',
+        {'documents': documents, 'form': form},
+        context_instance=RequestContext(request)
+    )

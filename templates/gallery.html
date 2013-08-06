@@ -16,10 +16,12 @@
 		    {% for modelObject, list in modelObjects %}	
 		    	<li>
 		    		<a href="{{type}}/{{modelObject.slug}}">
-		    			<span class="text">
-		    				{{modelObject.name}}
-		    			</span>
-			    		<img src="{{list.embed}}" alt="{{modelObject.name}}">
+		    			<div class="gallery_image">
+			    			<div class="text_overlay">
+			    				<span class="text {{name}}">{{modelObject.name}}</span>
+			    			</div>
+				    		<img src="{{list.embed}}" alt="{{modelObject.name}}">
+				    	</div>
 			    	</a>
 		    	</li>				   
 		    {% endfor %}

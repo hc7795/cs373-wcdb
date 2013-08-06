@@ -20,33 +20,64 @@
 	list-style-type: none;
 }
  
-#gallery_column img {
+.gallery_image {
+	position: relative;
 	display: inline-block;
 	margin-bottom: 3%;
 	width: 95%;
 }
 
-#gallery_column .text {
+.gallery_image img {
 	display: inline-block;
-	margin-bottom: 3%;
-	width: 95%;
-	
+	width: 100%;
+}
+
+.gallery_image .text_overlay {
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+
     position: absolute;
-    top: 0;
-    color:#f00;
-    background-color:rgba(255,255,255,0.8);
-/*    width: 100px;
-    height: 100px;*/
-    /*line-height:100px;*/
-    text-align: center;
+    top: -2px;
+	bottom: -2px;
+	left: -2px;
+	right: -2px;
+    color:white;
+    background-color:rgba(10, 10, 10, 0.825);
+
     z-index: 10;
     opacity: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    visibility: hidden;
+
+/* Transitions appear to be too slow to be practical. */
+/*  -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+*/
 }
 
-#gallery_column .text:hover {
+.gallery_image:hover .text_overlay {
     opacity:1;
+    visibility: visible;
+}
+
+.text {
+	position: relative;
+	display: inline-block;
+	padding-top: 5%;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.crises {
+	color: rgba(220, 31, 38, 1);
+}
+
+.people {
+	color: rgba(0, 176, 236, 1);
+}
+
+.organizations {
+	color: rgba(215, 113, 159, 1);
 }

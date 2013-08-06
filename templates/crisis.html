@@ -88,27 +88,27 @@
                     {% else %}
                         <h3>Locations:</h3>
                     {% endif %}
-                    <ul>
+                    <ul class="light_grey">
                     {% for location in locations %}
-                        <li class="light_grey">{{location}}</li>
+                        <li>{{location}}</li>
                     {% endfor %}
                     </ul>
                 {% endif %}
 
                 {% if resourcesNeeded %}
                     <h3>Resources Needed:</h3>
-                    <ul>
+                    <ul class="light_grey">
                     {% for resource in resourcesNeeded %}
-                        <li class="light_grey">{{resource}}</li>
+                        <li>{{resource}}</li>
                     {% endfor %}
                     </ul>
                 {% endif %}
 
                 {% if waysToHelp %}
                     <h3>Ways to Help:</h3>
-                    <ul>
+                    <ul class="light_grey">
                     {% for way in waysToHelp %}
-                        <li class="light_grey">{{way}}</li>
+                        <li>{{way}}</li>
                     {% endfor %}
                     </ul>
                 {% endif %}

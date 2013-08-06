@@ -137,16 +137,18 @@ body {
 #bottomnav ul {
 	list-style-type: none;
 	position: relative;
-	left: -5px;
+	left: -15px;
 }
 #bottomnav ul a {
 	display: inline-block;
-	width: 13.5%;
-	padding: 0.25% 1.5% 0.25% 1.5%;
+	width: 11.3%;
+	padding: 0.25% 1.85% 0.25% 1.25%;
 	margin-left: -10px;
 	text-align: right;
 }
-
+#bottomnav_home {
+	background-color:rgba(15, 11, 25, 0.60);
+}
 #bottomnav_crises {
 	/*background-color:#dc1f26;*/
 	background-color:rgba(220, 31, 38, 0.60);
@@ -171,6 +173,12 @@ body {
 	/*background-color:#f9b339;*/
 	background-color:rgba(249, 179, 57, 0.60);
 }
+
+#bottomnav_logo_bear {
+	width:11%;
+	margin-left: 5%;
+}
+
 .bottomnav_button {
 	width: 100%;
 	text-indent: center;
@@ -248,4 +256,26 @@ a:hover {
 	color:red !important;
 }
 
+.white {
+	color:white !important;
+}
+
+.crises_red {
+	color:rgba(220, 31, 38, 1) !important;
+}
+.people_blue {
+	color:rgba(0, 176, 236, 1) !important;
+}
+.organizations_pink {
+	color:rgba(215, 113, 159, 1) !important;
+}
+.about_green {
+	color:rgba(66, 181, 73, 1) !important;
+}
+.search_blue {
+	color:rgba(29, 67, 156, 1) !important;
+}
+.import_export_orange {
+	color:rgba(249, 179, 57, 1) !important;
+}
 

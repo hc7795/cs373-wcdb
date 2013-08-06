@@ -11,18 +11,32 @@
 
 {% block content %}
 
-<div style="background-color: rgba(245, 245, 245, 0.40);">
-<div id="about_me_box">
-	<div id="about_me_content">
-		
-		<img src="{{ STATIC_URL }}images/gummy_pandas_epic.png" />
-		<div id="about_me_text">
-			<p class="light_grey">
-				Infuriated at all of the great evils in the world, six brave gummy bears banded together to form the "Illustrious Gummy Pandas", with the ultimate goal to destroy all world crises. After one of the bears was devoured by a hamster-breathing Cocoa Puffs monster, the bears realized that this wasn't going too well, and built this site instead to inform others of the evils they could not defeat.
-			</p>
+<div id="about_me_wrapper">
+	<div id="about_me_box">
+		<div id="about_me_content">
+			
+			<img src="{{ STATIC_URL }}images/gummy_pandas_epic.png" />
+			<div id="about_me_text">
+				<p class="light_grey">
+					Infuriated at all of the great evils in the world, six brave gummy bears banded together to form the "Illustrious Gummy Pandas", with the ultimate goal to destroy all world crises. After one of the bears was devoured by a hamster-breathing Cocoa Puffs monster, the bears realized that this wasn't going too well, and built this site instead to inform others of the evils they could not defeat.
+				</p>
+			</div>
 		</div>
+
+		<!--
+		<div id="about_me_bio_header"><h3 class="white"> These are the Gummy Pandas: </h3></div>
+		<div id="about_me_bio" class="white">
+			<ul class="light_grey">
+				<li class="crises_red">Gummy Panda</li>
+				<li class="people_blue">Russell Jahn</li>
+				<li class="organizations_pink">Hoang Pham</li>
+				<li class="about_green">Gummy Panda</li>
+				<li class="search_blue">Gummy Panda</li>
+			</ul>
+		</div>
+		-->
+
 	</div>
-</div>
 </div>
 
 {% endblock %}

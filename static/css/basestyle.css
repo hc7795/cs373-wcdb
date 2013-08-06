@@ -137,11 +137,11 @@ body {
 #bottomnav ul {
 	list-style-type: none;
 	position: relative;
-	left: -15px;
+	left: 1%
 }
 #bottomnav ul a {
 	display: inline-block;
-	width: 11.3%;
+	width: 10.5%;
 	padding: 0.25% 1.85% 0.25% 1.25%;
 	margin-left: -10px;
 	text-align: right;
@@ -175,7 +175,7 @@ body {
 }
 
 #bottomnav_logo_bear {
-	width:11%;
+	width:9%;
 	margin-left: 5%;
 }
 

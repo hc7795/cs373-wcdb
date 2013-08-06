@@ -131,13 +131,14 @@ body {
 	background-color: rgba(245, 245, 245, 0.40);
 	display: block;
 	margin-top: 5%;
-	font-size:125%;
-	margin-bottom: -20px;
+	font-size:110%;
+	margin-bottom: 1%;
 }
 #bottomnav ul {
 	list-style-type: none;
 	position: relative;
-	left: 1%
+	left: 1%;
+	margin-bottom: -1%;
 }
 #bottomnav ul a {
 	display: inline-block;
@@ -175,7 +176,8 @@ body {
 }
 
 #bottomnav_logo_bear {
-	width:9%;
+	margin-top: 1%;
+	width:8%;
 	margin-left: 5%;
 }
 

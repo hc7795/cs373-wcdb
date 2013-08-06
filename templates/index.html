@@ -16,42 +16,78 @@
 	<div class="index_galleria_container">
 		
 		{% if crises %}
-		    {% for crisis, list in crises %}	
-			    <img src="{{list.embed}}" alt="{{crisis.name}}">				   
+		    {% for crisis, list, summary in crises %}	
+		    	{% if summary != "" %}
+			    	<img src="{{list.embed}}" name="{{crisis.name}}" slug="{{crisis.slug}}" text="{{summary}}" type="crisis" alt="{{crisis.name}}">				   
+		    	}
+		    	{% else %}
+		    		<img src="{{list.embed}}" name="{{crisis.name}}" slug="{{crisis.slug}}" type="crisis" alt="{{crisis.name}}">
+		    	{% endif %}
 		    {% endfor %}
 		{% else %}
 		    <p>No crises are available.</p>
 		{% endif %}
 	</div>
+	<a class="crisis_information galleria_image_information right_container">
+		<div>
+			<h3></h3>
+			<p></p>
+		</div>
+	</a>
 </div>
+<div class="clearfix"></div>
 
 
 <div class="index_content_container">
 	<div class="index_galleria_container right_container">
 		
 		{% if people %}
-		    {% for person, list in people %}
-			    <img src="{{list.embed}}" alt="{{person.name}}">  	   
+		    {% for person, list, summary in people %}
+			    {% if summary != "" %}
+			    	<img src="{{list.embed}}" name="{{person.name}}" slug="{{person.slug}}" text="{{summary}}" type="person" alt="{{person.name}}">				   
+		    	}
+		    	{% else %}
+		    		<img src="{{list.embed}}" name="{{person.name}}" slug="{{person.slug}}" type="person" alt="{{person.name}}">
+		    	{% endif %}  	   
 		    {% endfor %}
 		{% else %}
 		    <p>No people are available.</p>
 		{% endif %}
 	</div>
+	<a class="person_information galleria_image_information">
+		<div>
+			<h3></h3>
+			<p></p>
+		</div>
+	</a>
 </div>
+<div class="clearfix"></div>
 
 
 <div class="index_content_container">
 	<div class="index_galleria_container">
 		
 		{% if organizations %}
-		    {% for org, list in organizations %}	
-			    <img src="{{list.embed}}" alt="{{org.name}}">			   
+		    {% for org, list, summary in organizations %}	
+			   {% if summary != "" %}
+			    	<img src="{{list.embed}}" name="{{org.name}}" slug="{{org.slug}}" text="{{summary}}" type="org" alt="{{org.name}}">				   
+		    	}
+		    	{% else %}
+		    		<img src="{{list.embed}}" name="{{org.name}}" slug="{{org.slug}}" type="org" alt="{{org.name}}">
+		    	{% endif %}		   
 		    {% endfor %}
 		{% else %}
 		    <p>No organizations are available.</p>
 		{% endif %}
 	</div>
+	<a class="org_information galleria_image_information right_container">
+		<div>
+			<h3></h3>
+			<p></p>
+		</div>
+	</a>
 </div>
+<div class="clearfix"></div>
 
 
 	

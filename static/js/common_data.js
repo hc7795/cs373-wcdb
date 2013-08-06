@@ -7,6 +7,7 @@ $(document).ready(
     		dataSort : 'random',
     		autoplay : true,
     		transition : 'fade',
+    		debug : false,
     	});
     	Galleria.run('.common_galleria');
     }

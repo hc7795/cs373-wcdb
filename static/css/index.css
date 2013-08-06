@@ -7,6 +7,7 @@
 }
 
 .index_galleria_container {
+	display: inline-block;
 	width: 55%;
 	height: 100%;
 	background-color: black;
@@ -14,4 +15,38 @@
 
 .right_container {
 	float:right;
+}
+
+.galleria_image_information {
+	display: inline-block;
+	width: 40%;
+	height: 100%;
+	background-color: rgba(25, 25, 25, 090);
+}
+
+.galleria_image_information h3 {
+	padding-top: 2%;
+	padding-left:3%;
+	padding-right:3%;
+	text-align: center;
+}
+
+.galleria_image_information p {
+	padding-top: 2%;
+	padding-bottom: 4%;
+	padding-left:6%;
+	padding-right:6%;
+	text-indent: 10%;
+}
+
+.crisis_information {
+	color: rgba(200, 81, 88, 1);
+}
+
+.person_information {
+	color: rgba(0, 176, 236, 1);
+}
+
+.org_information {
+	color: rgba(215, 113, 159, 1);
 }

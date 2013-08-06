@@ -65,7 +65,7 @@
     </div>
 
     <div class="common_container auto_height">
-        {% if crisis.kind != "" or crisis.date != "" or crisis.time != "" or crisis.location != "" %}
+        {% if crisis.kind != "" or crisis.date != "" or crisis.time != "" or crisis.location != "" or locations or resourcesNeeded or waysToHelp %}
             <div class="general_info_container">
                 {% if crisis.kind != "" %}
                     <h3>Type:</h3> 

@@ -3,6 +3,7 @@ from django.template import RequestContext, loader
 from django.core.exceptions import ObjectDoesNotExist
 
 from wcdb.models import Crisis, Organization, Person
+from random import choice
 
 #search
 import re
@@ -12,10 +13,13 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponse
 
-#search
+def getConciseSummary(summary):
+	summaryMaxLength = 750
+	if (len(summary) > summaryMaxLength):
+		summary = summary[:summaryMaxLength+1] + "..."
+	return summary
 
 def index(request):
-	# Uncomment below when we want to move on from hardcoded pages.
 	crises = Crisis.objects.all().order_by('?')
 	organizations = Organization.objects.all().order_by('?')
 	peeps = Person.objects.all().order_by('?')
@@ -26,31 +30,32 @@ def index(request):
 
 	for crisis in crises:
 		try:
-			l = crisis.common.images.all()[0]
-			crisesToPass.append((crisis, l))
+			l = choice(crisis.common.images.all())
+			crisesToPass.append((crisis, l, getConciseSummary(crisis.common.summary)))
 		except:
 			pass
 
 	for org in organizations:
 		try:
-			l = org.common.images.all()[0]
-			orgsToPass.append((org, l))
+			l = choice(org.common.images.all())
+			orgsToPass.append((org, l, getConciseSummary(ast.literal_eval(org.history)[0])))
 		except:
 			pass
 
 	for peep in peeps:
 		try:
-			l = peep.common.images.all()[0]
-			peepsToPass.append((peep, l))
+			l = choice(peep.common.images.all())
+			peepsToPass.append((peep, l, getConciseSummary(peep.kind)))
 		except:
 			pass
 
+	d = {}
+	d["crises"] = crisesToPass
+	d["organizations"] = orgsToPass
+	d["people"] = peepsToPass
+
 	template = loader.get_template("index.html")
-	context = RequestContext(request, {
-		"crises" : crisesToPass,
-		"organizations" : orgsToPass,
-		"people" : peepsToPass
-	})
+	context = RequestContext(request, d)
 	return HttpResponse(template.render(context))
 
 
@@ -60,7 +65,7 @@ def crises(request):
 	crisesToPass = []
 	for crisis in crises:
 		try:
-			l = crisis.common.images.all()[0]
+			l = choice(crisis.common.images.all())
 			crisesToPass.append((crisis, l))
 		except:
 			pass
@@ -80,7 +85,7 @@ def people(request):
 	peepsToPass = []
 	for peep in peeps:
 		try:
-			l = peep.common.images.all()[0]
+			l = choice(peep.common.images.all())
 			peepsToPass.append((peep, l))
 		except:
 			pass
@@ -100,7 +105,7 @@ def organizations(request):
 	orgsToPass = []
 	for org in orgs:
 		try:
-			l = org.common.images.all()[0]
+			l = choice(org.common.images.all())
 			orgsToPass.append((org, l))
 		except:
 			pass

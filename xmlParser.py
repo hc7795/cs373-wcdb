@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 """
 xmlParser.py
 	============
@@ -41,8 +42,6 @@ from PIL import Image
 import math
 import operator
 
-import unicodedata
-
 from django.template.defaultfilters import slugify
 
 
@@ -59,7 +58,7 @@ def xmlToDjango():
 
 	#xmlFilename = raw_input("Filename of the XML file: ")
 	#schemaFilename = raw_input("Filename of the schema file: ")
-	xmlFilename = "static/alexk-WCDB2.xml"
+	xmlFilename = "static/WorldCrises.xml"
 	schemaFilename = "static/WorldCrises.xsd.xml"
 
 
@@ -290,11 +289,6 @@ def getCommonData(element, elementIterator):
 	#print "nextElement = ", nextElement
 	#print "type(nextElement) = ", type(nextElement)
 	return (nextElement, elementIterator, returnData)
-	
-
-"""
-unicode to string 
-"""
 
 
 
@@ -481,7 +475,14 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					li.save()
 					common.feeds.add(li)
 
-
+			duplicateSlugName=False
+			for crisis in Crisis.objects.all():
+				if(crisisName == crisis.name):
+					duplicateSlugName= True
+					break
+			slugCrisisName = crisisName
+			if (duplicateSlugName == True):
+				slugCrisisName = crisisName + crisisDate
 			models[0].append(
 					Crisis(
 					id = crisisID,
@@ -489,15 +490,15 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					kind = crisisKind,
 					date = crisisDate,
 					time = crisisTime,
-					people = unicode(crisisPersonIDs),
-					organizations = unicode(crisisOrgIDs),
-					location = unicode(crisisLocations),
-					humanImpact = unicode(crisisHumanImpact),
-					economicImpact = unicode(crisisEconomicImpact),
-					resourcesNeeded = unicode(crisisResourcesNeeded),
-					waytoHelp = unicode(crisisWaysToHelp),						
+					people = str(crisisPersonIDs),
+					organizations = str(crisisOrgIDs),
+					location = str(crisisLocations),
+					humanImpact = str(crisisHumanImpact),
+					economicImpact = str(crisisEconomicImpact),
+					resourcesNeeded = str(crisisResourcesNeeded),
+					waytoHelp = str(crisisWaysToHelp),						
 					common = common,
-					slug = slugify(crisisName),
+					slug = slugify(slugCrisisName),
 					)
 			)
 
@@ -586,14 +587,13 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					li=List(
 					href=c.get("href"),
 					embed=c.get("embed"),
-					text=c.get("text"),#.encode('utf-8'),
+					text=c.get("text"),
 					content=c.get("content")
 					)
 					li.save()
 					common.images.add(li)
 
 				for c in personVideos:
-					
 					li=List(
 					href=c.get("href"),
 					embed=c.get("embed"),
@@ -603,8 +603,6 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					li.save()
 					common.videos.add(li)
 				for c in personMaps:
-					#if c.get("text") != None :
-					#	c["text"] = unicodedata.normalize('NFKD', unicode(c.get("text"))).encode('ascii', 'ignore')
 					li=List(
 					href=c.get("href"),
 					embed=c.get("embed"),
@@ -625,16 +623,27 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					li.save()
 					common.feeds.add(li)
 
+			duplicateSlugName=False
+			for person in Person.objects.all():
+				if(personName == person.name):
+					duplicateSlugName= True
+					break
+			slugPersonName = personName
+			if (duplicateSlugName == True):
+				slugPersonName = personName + personID
+
+
+
 			models[1].append(
 				Person(
 					id = personID,
 					name = personName,
 					kind = personKind,
 					location = personLocation,
-					crises=unicode(personCrisisIDs),
-					organizations=unicode(personOrgIDs),
+					crises=str(personCrisisIDs),
+					organizations=str(personOrgIDs),
 					common = common,
-					slug = slugify(personName),
+					slug = slugify(slugPersonName),
 				)
 			)
 
@@ -775,7 +784,14 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 						common.feeds.add(li)
 
 
-			#if isNotDuplicate(orgID, "org", unitTestDB):
+			duplicateSlugName=False
+			for org in Organization.objects.all():
+				if(orgName == org.name):
+					duplicateSlugName= True
+					break
+			slugorgName = orgName
+			if (duplicateSlugName == True):
+				slugorgName = orgName + orgID
 			models[2].append(
 				Organization(
 					id = orgID,
@@ -784,10 +800,10 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					location = location,
 					history = history,
 					contact = contactInfo,
-					crises=unicode(orgCrisisIDs),
-					people=unicode(orgPeopleIDs),
+					crises=str(orgCrisisIDs),
+					people=str(orgPeopleIDs),
 					common = common,
-					slug = slugify(orgName),
+					slug = slugify(slugorgName),
 				)
 			)
 
@@ -891,8 +907,8 @@ def merge(c, m):
 		for oldImage in c.common.images.all():
 			add = True
 			for newImage in m.common.images.all():
-				file1 = cStringIO.StringIO(urllib.urlopen(unicode(newImage.embed)).read()) 
-				file2 = cStringIO.StringIO(urllib.urlopen(unicode(oldImage.embed)).read())
+				file1 = cStringIO.StringIO(urllib.urlopen(str(newImage.embed)).read()) 
+				file2 = cStringIO.StringIO(urllib.urlopen(str(oldImage.embed)).read())
 				print "m.id = ", m.id
 				h1 = Image.open(file1).histogram()
 				h2 = Image.open(file2).histogram()
@@ -992,7 +1008,7 @@ def merge(c, m):
 		
 		
 def importXML(models) :
-	print "clearing tables"
+	#print "clearing tables"
 	Crisis.objects.all().delete()
 	Person.objects.all().delete()
 	Organization.objects.all().delete()
@@ -1029,36 +1045,36 @@ def modelsToDjango(models):
 			oldcrisis_HumanImpact_list=ast.literal_eval(c.humanImpact)
 			newcrisis_HumanImpact_list=ast.literal_eval(m.humanImpact)
 			newcrisis_HumanImpact_list+=oldcrisis_HumanImpact_list
-			m.humanImpact=unicode(newcrisis_HumanImpact_list)
+			m.humanImpact=str(newcrisis_HumanImpact_list)
 			#merge economicImpact
 			oldcrisis_economicImpact_list=ast.literal_eval(c.economicImpact)
 			newcrisis_economicImpact_list=ast.literal_eval(m.economicImpact)
 			newcrisis_economicImpact_list+=oldcrisis_economicImpact_list
-			m.economicImpact=unicode(newcrisis_economicImpact_list)
+			m.economicImpact=str(newcrisis_economicImpact_list)
 			#merge resourcesNeeded
 			oldcrisis_resourcesNeeded_list=ast.literal_eval(c.resourcesNeeded)
 			newcrisis_resourcesNeeded_list=ast.literal_eval(m.resourcesNeeded)
 			newcrisis_resourcesNeeded_list+=oldcrisis_resourcesNeeded_list
-			m.resourcesNeeded=unicode(newcrisis_resourcesNeeded_list)
+			m.resourcesNeeded=str(newcrisis_resourcesNeeded_list)
 			#merge waytoHelp
 			oldcrisis_waytoHelp_list=ast.literal_eval(c.waytoHelp)
 			newcrisis_waytoHelp_list=ast.literal_eval(m.waytoHelp)
 			newcrisis_waytoHelp_list+=oldcrisis_waytoHelp_list
-			m.waytoHelp=unicode(newcrisis_waytoHelp_list)
+			m.waytoHelp=str(newcrisis_waytoHelp_list)
 			#merge people
 			oldcrisis_people_list=ast.literal_eval(c.people)
 			newcrisis_people_list=ast.literal_eval(m.people)
 			for p in oldcrisis_people_list:
 				if not (p in newcrisis_people_list):
 					newcrisis_people_list.append(p)
-			m.people=unicode(newcrisis_people_list)
+			m.people=str(newcrisis_people_list)
 			#merge organizations
 			oldcrisis_organizations_list=ast.literal_eval(c.organizations)
 			newcrisis_organizations_list=ast.literal_eval(m.organizations)
 			for o in oldcrisis_organizations_list:
 				if not (o in newcrisis_organizations_list):
 					newcrisis_organizations_list.append(p)
-			m.organizations=unicode(newcrisis_organizations_list)
+			m.organizations=str(newcrisis_organizations_list)
 
 			c.common.externalLinks.all().delete()
 			c.common.citations.all().delete()
@@ -1091,7 +1107,7 @@ def modelsToDjango(models):
 			for cid in oldcrisis_crises_list:
 				if not (cid in newcrisis_crises_list):
 					newcrisis_crises_list.append(cid)
-			m.crises=unicode(newcrisis_crises_list)
+			m.crises=str(newcrisis_crises_list)
 			#print "type(c)   ++++++++   ",type(c)
 			#merge organizations
 			if not m.organizations :
@@ -1102,7 +1118,7 @@ def modelsToDjango(models):
 				for o in oldcrisis_organizations_list:
 					if not (o in newcrisis_organizations_list):
 						newcrisis_organizations_list.append(p)
-				m.organizations=unicode(newcrisis_organizations_list)
+				m.organizations=str(newcrisis_organizations_list)
 			c.common.externalLinks.all().delete()
 			c.common.citations.all().delete()
 			c.common.images.all().delete()
@@ -1137,7 +1153,7 @@ def modelsToDjango(models):
 			for cid in oldcrisis_people_list:
 				if not (cid in newcrisis_people_list):
 					newcrisis_people_list.append(cid)
-			m.people=unicode(newcrisis_people_list)
+			m.people=str(newcrisis_people_list)
 
 
 			#merge crises
@@ -1146,7 +1162,7 @@ def modelsToDjango(models):
 			for cid in oldcrisis_crises_list:
 				if not (cid in newcrisis_crises_list):
 					newcrisis_crises_list.append(cid)
-			m.crises=unicode(newcrisis_crises_list)
+			m.crises=str(newcrisis_crises_list)
 
 			c.common.externalLinks.all().delete()
 			c.common.citations.all().delete()
@@ -1473,7 +1489,7 @@ def djangoToXml():
 						ImagesChild.text=li.content
 			if(org.common.summary != None):
 				commonChild=ET.SubElement(orgChild,"Summary")
-				orgChild.text = org.common.summary
+				commonChild.text = org.common.summary
 
 
 
@@ -1518,7 +1534,7 @@ if __name__ == "__main__":
 				djangoToXml()
 				exit(0)
 			elif sys.argv[1] == "import":
-				print "import"
+				print "command line import"
 				importXMLToDjango()
 				exit(0)
 

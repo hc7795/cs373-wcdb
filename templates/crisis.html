@@ -164,7 +164,7 @@
                     {% for map in maps %}
                         <div class="map">
                             <iframe scrolling="no" marginheight="0" marginwidth="0" src="{{map.embed}}"></iframe>
-                            <a href="{{map.embed}}?iframe=true&width=100%&height=100%" gallery="10" rel="prettyPhoto[pp_gal]"></a>
+                            <a href="{{map.embed}}?iframe=true&width=100%&height=100%" rel="prettyPhoto[pp_gal]"></a>
                         </div>
                     {% endfor %}
                 </div>
@@ -173,6 +173,17 @@
             {% endif %}
         </div>
         <div class="clearfix"></div>
+    {% endif %}
+
+    {% if crisis.common.summary %}
+        <div class="common_container"> 
+            {% if crisis.common.summary %}
+                <div class="common_box_medium ellipsis">
+                    <h3>Summary:</h3>
+                    <p>{{crisis.common.summary}}</p>
+                </div>
+            {% endif %}
+        </div>
     {% endif %}
          
     {% if resourcesNeeded or waysToHelp %}
@@ -263,16 +274,33 @@
         <div class="clearfix"></div>
     {% endif %}
 
+    {% if citations %}
+        <div id="external_links_box" class="ellipsis">
+            <h3>Citations:</h3>
+            <ol class="light_grey">
+                {% for citation in citations %}
+                    <li>
+                        {% if citation.name %}
+                            <a href={{citation.href}} name="{{citation.name}}" target="_blank" class="yellow">{{citation.name}}</a> 
+                        {% else %}
+                            <a href={{citation.href}} target="_blank" class="yellow">{{citation.href}}</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ol>  
+        </div>
+    {% endif %}
+
     {% if externalLinks %}
-        <div id="external_links_box">
+        <div id="external_links_box" class="ellipsis">
             <h3>External Links:</h3>
             <ol class="light_grey">
-                {% for e in externalLinks %}
+                {% for link in externalLinks %}
                     <li>
-                        {% if e.name %}
-                            <a href={{e.href}} name="{{e.name}}" target="_blank" class="yellow">{{e.name}}</a> 
+                        {% if link.name %}
+                            <a href={{link.href}} name="{{link.name}}" target="_blank" class="yellow">{{link.name}}</a> 
                         {% else %}
-                            <a href={{e.href}} target="_blank" class="yellow">{{e.href}}</a>
+                            <a href={{link.href}} target="_blank" class="yellow">{{link.href}}</a>
                         {% endif %}
                     </li>
                 {% endfor %}

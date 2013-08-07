@@ -12,3 +12,4 @@ $(document).ready(
     	Galleria.run('.common_galleria');
     }
 );
+

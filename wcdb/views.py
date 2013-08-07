@@ -20,7 +20,7 @@ from django.core.urlresolvers import reverse
 
 
 def getConciseSummary(summary):
-	summaryMaxLength = 750
+	summaryMaxLength = 600
 	if (len(summary) > summaryMaxLength):
 		summary = summary[:summaryMaxLength] + "..."
 	return summary
@@ -663,13 +663,13 @@ def search(request):
 			if queryString in org.location.lower():
 				foundOrgs[org] += [("location", org.location)]
 
-			history = queryListToString(queryString, ast.literal_eval(org.history))
-			if history:
-				foundOrgs[org] += [("history", history)]
+			# history = queryListToString(queryString, ast.literal_eval(org.history))
+			# if history:
+			# 	foundOrgs[org] += [("history", history)]
 
-			contactInfo = queryListToString(queryString, ast.literal_eval(org.contact))
-			if contactInfo:
-				foundOrgs[org] += [("contact info", contactInfo)]
+			# contactInfo = queryListToString(queryString, ast.literal_eval(org.contact))
+			# if contactInfo:
+			# 	foundOrgs[org] += [("contact info", contactInfo)]
 
 			# if queryString in org.contact.lower():
 			# 	foundOrgs[org] += [("contact info", org.contact)]
@@ -729,7 +729,7 @@ def search(request):
 				foundOrgs[org] += [("associated people", pplList)]
 			
 	
-
+	test = '' 
 	valuesToPass = {'searched': searched, 'query': queryStringBackup, 'foundPeople': foundPeople, 'foundCrises': foundCrises, 'foundOrgs': foundOrgs, 'test': test }
 	valuesToPass["numberOfResults"] = len(foundCrises)+len(foundPeople)+len(foundOrgs)
 
@@ -746,7 +746,7 @@ def queryListToString(queryString, listToQuery):
 			if returnString:
 				returnString += '; ' + element
 			else:
-				historyList += element
+				returnString += element
 	return returnString
 
 

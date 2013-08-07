@@ -36,5 +36,8 @@ $(document).ready(
 			}
 		);
 
+		/* Perform ellipsis if necessary on anything with the ellipsis class. */
+		$('.ellipsis').ellipsis();
+
 	}
 );

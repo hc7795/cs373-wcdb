@@ -2,6 +2,62 @@
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/common_data.css">
 <script src="{{ STATIC_URL }}js/common_data.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){           
+         $("a[rel^='prettyPhoto']").prettyPhoto({
+            theme: 'dark_rounded',
+            overlay_gallery: true,
+            markup: '<div class="pp_pic_holder"> \
+                        <div class="ppt">&nbsp;</div> \
+                        <div class="pp_top"> \
+                            <div class="pp_left"></div> \
+                            <div class="pp_middle"></div> \
+                            <div class="pp_right"></div> \
+                        </div> \
+                        <div class="pp_content_container"> \
+                            <div class="pp_left"> \
+                            <div class="pp_right"> \
+                                <div class="pp_content"> \
+                                    <div class="pp_loaderIcon"></div> \
+                                    <div class="pp_fade"> \
+                                        <a href="#" class="pp_expand" title="Expand the image">Expand</a> \
+                                        <div class="pp_hoverContainer"> \
+                                            <a class="pp_next" href="#">next</a> \
+                                            <a class="pp_previous" href="#">previous</a> \
+                                        </div> \
+                                        <div id="pp_full_res"></div> \
+                                        <div class="pp_details"> \
+                                            <div class="pp_nav"> \
+                                                <a href="#" class="pp_arrow_previous">Previous</a> \
+                                                <p class="currentTextHolder">0/0</p> \
+                                                <a href="#" class="pp_arrow_next">Next</a> \
+                                            </div> \
+                                            <p class="pp_description"></p> \
+                                            {pp_social} \
+                                            <a class="pp_close" href="#">Close</a> \
+                                        </div> \
+                                    </div> \
+                                </div> \
+                            </div> \
+                            </div> \
+                        </div> \
+                        <div class="pp_bottom"> \
+                            <div class="pp_left"></div> \
+                            <div class="pp_middle"></div> \
+                            <div class="pp_right"></div> \
+                        </div> \
+                    </div> \
+                    <div class="pp_overlay"></div>',
+            gallery_markup: '<div class="pp_gallery"> \
+                                <a href="#" class="pp_arrow_previous">Previous</a> \
+                                <ul> \
+                                    {gallery} \
+                                </ul> \
+                                <a href="#" class="pp_arrow_next">Next</a> \
+                            </div>',
+        });
+    });
+</script>
 {% endblock %}
 
 
@@ -27,6 +83,7 @@
                     <img src="{{image.embed}}" alt="{{image.text}}">
                 {% endif %}
             {% endfor %}
+            <!--
             {% for video in videos %}
                 {% if video.embed %}
                     <a href="{{video.embed}}"><span class="video"></span></a>
@@ -34,19 +91,7 @@
                     <a href="{{video.href}}" alt="{{video.text}}"><span class="video"></span></a>
                 {% endif %}
             {% endfor %}
-        </div>
-
-        <div class="associated_container associated_organizations">
-            <h3>Associated Organizations:</h3>
-            {% if associatedOrganizations %}
-                <ul>
-                    {% for name, slug in associatedOrganizations %}
-                        <li><a href="/org/{{slug}}" class="yellow">{{name}}</a></li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>No associated organizations yet!</p>
-            {% endif %}
+        -->
         </div>
 
         <div class="associated_container associated_people">
@@ -61,100 +106,165 @@
                 <p>No associated people yet!</p>
             {% endif %}
         </div>
+
+        <div class="associated_container associated_organizations">
+            <h3>Associated Organizations:</h3>
+            {% if associatedOrganizations %}
+                <ul>
+                    {% for name, slug in associatedOrganizations %}
+                        <li><a href="/org/{{slug}}" class="yellow">{{name}}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No associated organizations yet!</p>
+            {% endif %}
+        </div>
         <div class="clearfix"></div>
     </div>
 
-    <div class="common_container auto_height">
-        {% if crisis.kind != "" or crisis.date != "" or crisis.time != "" or crisis.location != "" or locations or resourcesNeeded or waysToHelp %}
-            <div class="general_info_container">
-                {% if crisis.kind != "" %}
-                    <h3>Type:</h3> 
-                    <ul><li class="light_grey">{{crisis.kind}}</li></ul>
-                {% endif %}
+    {% if crisis.kind != "" or crisis.date != "" or crisis.time != "" or locations or maps %}
+        <div class="common_container">
+            {% if crisis.kind != "" or crisis.date != "" or crisis.time != "" %}
+                <div class="common_box_small ellipsis">
+                    {% if crisis.kind != "" %}
+                        <h3>Type:</h3> 
+                        <ul><li class="light_grey">{{crisis.kind}}</li></ul>
+                    {% endif %}
 
-                {% if crisis.date != "" %}
-                    <h3>Date:</h3> 
-                    <ul><li class="light_grey">{{crisis.date}}</li></ul>
-                {% endif %}
+                    {% if crisis.date != "" %}
+                        <h3>Date:</h3> 
+                        <ul><li class="light_grey">{{crisis.date}}</li></ul>
+                    {% endif %}
 
-                {% if crisis.time != "" %}
-                    <h3>Time:</h3>
-                    <ul><li class="light_grey">{{crisis.time}}</li></ul>
-                {% endif %}
+                    {% if crisis.time != "" %}
+                        <h3>Time:</h3>
+                        <ul><li class="light_grey">{{crisis.time}}</li></ul>
+                    {% endif %}
+                </div>
+            {% endif %}
 
-                {% if locations %}
+            {% if locations %}
+                <div class="common_box_small ellipsis">
                     {% if numLocations == 1 %}
                         <h3>Location:</h3>
                     {% else %}
                         <h3>Locations:</h3>
                     {% endif %}
                     <ul class="light_grey">
-                    {% for location in locations %}
-                        <li>{{location}}</li>
-                    {% endfor %}
+                        {% for location in locations %}
+                            <li>{{location}}</li>
+                        {% endfor %}
                     </ul>
-                {% endif %}
+                </div>
+            {% endif %}
 
-                {% if resourcesNeeded %}
+            {% if maps %}
+                <div class="common_box_medium">
+                    <h3>Maps:</h3>
+                    {% for map in maps %}
+                        <div class="map">
+                            <iframe scrolling="no" marginheight="0" marginwidth="0" src="{{map.embed}}"></iframe>
+                            <a href="{{map.embed}}?iframe=true&width=100%&height=100%" gallery="10" rel="prettyPhoto[pp_gal]"></a>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="clearfix"></div>
+            {% endif %}
+        </div>
+        <div class="clearfix"></div>
+    {% endif %}
+         
+    {% if resourcesNeeded or waysToHelp %}
+        <div class="common_container"> 
+        {% if resourcesNeeded and waysToHelp %}
+            <div class="common_box_medium ellipsis">
+                <h3>Resources Needed:</h3>
+                <ul class="light_grey">
+                {% for resource in resourcesNeeded %}
+                    <li>{{resource}}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="common_box_medium ellipsis">   
+                <h3>Ways to Help:</h3>
+                <ul class="light_grey">
+                {% for way in waysToHelp %}
+                    <li>{{way}}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            {% if resourcesNeeded %}
+                <div class="common_box_xl ellipsis">
                     <h3>Resources Needed:</h3>
                     <ul class="light_grey">
-                    {% for resource in resourcesNeeded %}
-                        <li>{{resource}}</li>
-                    {% endfor %}
+                        {% for resource in resourcesNeeded %}
+                            <li>{{resource}}</li>
+                        {% endfor %}
                     </ul>
-                {% endif %}
-
-                {% if waysToHelp %}
+                </div>
+            {% else %}
+                <div class="common_box_xl ellipsis">   
                     <h3>Ways to Help:</h3>
                     <ul class="light_grey">
-                    {% for way in waysToHelp %}
-                        <li>{{way}}</li>
-                    {% endfor %}
+                        {% for way in waysToHelp %}
+                            <li>{{way}}</li>
+                        {% endfor %}
                     </ul>
-                {% endif %}
-            </div>
-            <div class="clearfix"></div>
+                </div>
+            {% endif %}
         {% endif %}
+        </div>
+        <div class="clearfix"></div>
+    {% endif %}
 
-        {% if humanImpact != "" or economicImpact != "" %}
-            <div class="impact_container">
-                {% if humanImpact %}
-                    <div id="human_impact">
-                        <h3>Human Impact:</h3>
-                        <ul>
-                            {% for impact in humanImpact %}
-                                <li class="light_grey">{{impact}}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                {% endif %}
-
-                {% if economicImpact %}
-                    <div id="economic_impact">  
-                        <h3>Economic Impact:</h3>
-                        <ul>
-                            {% for impact in economicImpact %}
-                                <li class="light_grey">{{impact}}</li>
-                            {% endfor %}
-                        </ul>  
-                    </div>
-                {% endif %}
+    {% if humanImpact or economicImpact %}
+        <div class="common_container"> 
+        {% if humanImpact and economicImpact %}
+            <div class="common_box_medium ellipsis">
+                <h3>Human Impact:</h3>
+                <ul>
+                    {% for impact in humanImpact %}
+                        <li class="light_grey">{{impact}}</li>
+                    {% endfor %}
+                </ul>
             </div>
-            <div class="clearfix"></div>
+            <div class="common_box_medium ellipsis">  
+                <h3>Economic Impact:</h3>
+                <ul>
+                    {% for impact in economicImpact %}
+                        <li class="light_grey">{{impact}}</li>
+                    {% endfor %}
+                </ul>  
+            </div>
+        {% else %}
+            {% if humanImpact %}
+                <div class="common_box_xl ellipsis">
+                <h3>Human Impact:</h3>
+                <ul>
+                    {% for impact in humanImpact %}
+                        <li class="light_grey">{{impact}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% else %}
+                <div class="common_box_xl ellipsis">  
+                <h3>Economic Impact:</h3>
+                <ul>
+                    {% for impact in economicImpact %}
+                        <li class="light_grey">{{impact}}</li>
+                    {% endfor %}
+                </ul>  
+            </div>
+            {% endif %}
         {% endif %}
-    </div>
-
-    {% if maps %}
-        <div class="common_container" id="maps_box">
-            {% for map in maps %}
-            <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="{{map.embed}}"></iframe>
-            {% endfor %}
         </div>
         <div class="clearfix"></div>
     {% endif %}
 
     {% if externalLinks %}
-        <div class="common_container clearfix external_links" id="external_links_box">
+        <div id="external_links_box">
             <h3>External Links:</h3>
             <ol class="light_grey">
                 {% for e in externalLinks %}
@@ -170,6 +280,7 @@
         </div>
     {% endif %}
 
+ 
 
 {% endif %}
 {% endblock %}

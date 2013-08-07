@@ -84,7 +84,7 @@
 		<Organizations>
 			<Org ID="ORG_REDCRS"/>
 			<Org ID="ORG_UNINAT"/>
-			<Org ID="ORG_WHLORG"/>
+			<Org ID="ORG_WHORGN"/>
 			<Org ID="ORG_SALARM"/>
 		</Organizations>
 		<Kind>Natural Disaster</Kind>
@@ -172,9 +172,9 @@ Immediately following the earthquake, Real Medicine Foundation began providing m
 			</Maps>
 		</Common>
 	</Crisis>
-	<Crisis ID="CRI_UEGYPT" Name="Political Unrest in Egypt">
+	<Crisis ID="CRI_EGYPTR" Name="Political Unrest in Egypt">
 		<People>
-			<Person ID="PER_MUBRAK"/>
+			<Person ID="PER_HOSMBK"/>
 		</People>
 		<Kind>Political Unrest</Kind>
 		<Date>2013-01-16</Date>
@@ -451,7 +451,7 @@ The Salvation Army served over 100,000 meals and provided over 100,000 ponchos, 
 		</Crises>
 		<Organizations>
 			<Org ID="ORG_REDCRS"/>
-			<Org ID="ORG_WHLORG"/>
+			<Org ID="ORG_WHORGN"/>
 		</Organizations>
 		<Kind>President</Kind>
 		<Location>Washington, D.C, United States of America</Location>
@@ -509,9 +509,9 @@ The Salvation Army served over 100,000 meals and provided over 100,000 ponchos, 
 		<Location>Austin, Texas</Location>
 		<Common/>
 	</Person>
-	<Person ID="PER_MUBRAK" Name="Hosni Mubarak">
+	<Person ID="PER_HOSMBK" Name="Hosni Mubarak">
 		<Crises>
-			<Crisis ID="CRI_UEGYPT"/>
+			<Crisis ID="CRI_EGYPTR"/>
 		</Crises>
 		<Kind>Former President of Egypt </Kind>
 		<Location>Egypt</Location>
@@ -729,7 +729,7 @@ Since its creation, there has been controversy and criticism of the United Natio
 			</Images>
 		</Common>
 	</Organization>
-	<Organization ID="ORG_WHLORG" Name="World Health Organization">
+	<Organization ID="ORG_WHORGN" Name="World Health Organization">
 		<Crises>
 			<Crisis ID="CRI_HAIEAR"/>
 		</Crises>
@@ -764,7 +764,7 @@ The constitution of the World Health Organization had been signed by all 61 coun
 			</Maps>
 		</Common>
 	</Organization>
-	<Organization ID="ORG_FEDEMA" Name="Federal Emergency Management Agency">
+	<Organization ID="ORG_FEMAAA" Name="Federal Emergency Management Agency">
 		<Kind>Disaster Relief</Kind>
 		<Location>Washington, DC</Location>
 		<History>

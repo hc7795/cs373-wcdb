@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <WorldCrises>
-	<Crisis ID="CRI_UEGYPT" Name="Political Unrest in Egypt">
+	<Crisis ID="CRI_EGYPTR" Name="Political Unrest in Egypt">
 		<People>
 			<Person ID="PER_MMORSI"/>
 		</People>
@@ -415,7 +415,7 @@ LRA or become sex slaves.</li>
 			<Crisis ID="CRI_AIDSHI"/>
 		</Crises>
 		<Organizations>
-			<Org ID="ORG_WHLORG"/>
+			<Org ID="ORG_WHORGN"/>
 		</Organizations>
 		<Kind>President</Kind>
 		<Location>Washington, D.C, United States of America</Location>
@@ -443,7 +443,7 @@ LRA or become sex slaves.</li>
 			</Maps>
 		</Common>
 	</Person>
-	<Person ID="PER_JMAXBE" Name="Jean-Max Bellerive">
+	<Person ID="PER_JEABEL" Name="Jean-Max Bellerive">
 		<Kind>2010 Haitian Prime Minister</Kind>
 		<Location>Haiti</Location>
 		<Common>
@@ -545,7 +545,7 @@ LRA or become sex slaves.</li>
 	</Person>
 	<Person ID="PER_MMORSI" Name="Mohamed Morsi">
 		<Crises>
-			<Crisis ID="CRI_UEGYPT"/>
+			<Crisis ID="CRI_EGYPTR"/>
 		</Crises>
 		<Kind>Politician</Kind>
 		<Location>Egypt</Location>
@@ -589,7 +589,8 @@ LRA or become sex slaves.</li>
 		<Kind>international organization</Kind>
 		<Location>New York City, USA</Location>
 		<History>
-			<li>After the League of Nations failed to prevent World War II (1939–1945), there was widespread recognition that humankind could not afford a third world war. Therefore, the United Nations was established to replace the flawed League of Nations in 1945 in order to maintain international peace and promote cooperation in solving international economic, social, and humanitarian problems. The earliest concrete plan for a new world organization was begun under the aegis of the U.S. State Department in 1939. Franklin D. Roosevelt first coined the term 'United Nations' as a term to describe the Allied countries. The term was first officially used on 1 January 1942, when 26 governments signed the Atlantic Charter, pledging to continue the war effort. On 25 April 1945, the UN Conference on International Organization began in San Francisco, attended by 50 governments and a number of non-governmental organizations involved in drafting the United Nations Charter. The UN officially came into existence on 24 October 1945 upon ratification of the Charter by the five then-permanent members of the Security Council—France, the Republic of China, the Soviet Union, the United Kingdom and the United States—and by a majority of the other 46 signatories. The first meetings of the General Assembly, with 51 nations represented, and the Security Council, took place in Methodist Central Hall Westminster in London beginning 6 January 1946.
+			<li>After the League of Nations failed to prevent World War II (1939–1945), there was widespread recognition that humankind could not afford a third world war. Therefore, the United Nations was established to replace the flawed League of Nations in 1945 in order to maintain international peace and promote cooperation in solving international economic, social, and humanitarian problems. The earliest concrete plan for a new world organization was begun under the aegis of the U.S. State Department in 1939. Franklin D. Roosevelt first coined the term 'United Nations' as a term to describe the Allied countries. The term was first officially used on 1 January 1942, when 26 governments signed the Atlantic Charter, pledging to continue the war effort. On 25 April 1945, the UN Conference on International Organization began in San Francisco, attended by 50 governments and a number of non-governmental organizations involved in drafting the United Nations Charter. The UN officially came into existence on 24 October 
+1945 upon ratification of the Charter by the five then-permanent members of the Security Council—France, the Republic of China, the Soviet Union, the United Kingdom and the United States—and by a majority of the other 46 signatories. The first meetings of the General Assembly, with 51 nations represented, and the Security Council, took place in Methodist Central Hall Westminster in London beginning 6 January 1946.
 The organization was based at the Sperry Gyroscope Corporation's facility in Lake Success, New York, from 1946–1952, before moving to the United Nations Headquarters building in Manhattan upon its completion.
 Since its creation, there has been controversy and criticism of the United Nations. In the United States, an early opponent of the UN was the John Birch Society, which began a &quot;get US out of the UN&quot; campaign in 1959, charging that the UN's aim was to establish a &quot;One World Government&quot;. After the Second World War, the French Committee of National Liberation was late to be recognized by the US as the government of France, and so the country was initially excluded from the conferences that aimed at creating the new organization. Charles de Gaulle criticized the UN, famously calling it a machin (&quot;contraption&quot;), and was not convinced that a global security alliance would help maintain world peace, preferring direct defence treaties between countries.</li>
 		</History>
@@ -607,7 +608,7 @@ Since its creation, there has been controversy and criticism of the United Natio
 			</Images>
 		</Common>
 	</Organization>
-	<Organization ID="ORG_WHLORG" Name="World Health Organization">
+	<Organization ID="ORG_WHORGN" Name="World Health Organization">
 		<People>
 			<Person ID="PER_BROBMA"/>
 		</People>
@@ -657,7 +658,8 @@ The constitution of the World Health Organization had been signed by all 61 coun
 		<Kind>Charity</Kind>
 		<Location>Alexandria, VA</Location>
 		<History>
-			<li>The Salvation Army was founded in London's East End in 1865 by one-time Methodist Reform Church minister William Booth and his wife Catherine. Originally, Booth named the organization the East London Christian Mission. The name The Salvation Army developed from an incident on 19–20 May. William Booth was dictating a letter to his secretary George Scott Railton and said, &quot;We are a volunteer army.&quot; Bramwell Booth heard his father and said, &quot;Volunteer! I'm no volunteer, I'm a regular!&quot; Railton was instructed to cross out the word &quot;volunteer&quot; and substitute the word &quot;salvation&quot;. The Salvation Army was modeled after the military, with its own flag (or colours) and its own hymns, often with words set to popular and folkloric tunes sung in the pubs. Booth and the other soldiers in &quot;God's Army&quot; would wear the Army's own uniform, for meetings and ministry work. He became the &quot;General&quot; and his other ministers were given appropriate ranks as &quot;officers&quot;. Other members became &quot;soldiers&quot;.
+			<li>The Salvation Army was founded in London's East End in 1865 by one-time Methodist Reform Church minister William Booth and his wife Catherine. Originally, Booth named the organization the East London Christian Mission. The name The Salvation Army developed from an incident on 19–20 May. William Booth was dictating a letter to his secretary George Scott Railton and said, &quot;We are a volunteer army.&quot; Bramwell Booth heard his father and said, &quot;Volunteer! I'm no volunteer, I'm a regular!&quot; Railton was instructed to cross out the word &quot;volunteer&quot; and substitute the word &quot;salvation&quot;. The Salvation Army was modeled after the military, with its own flag (or colours) and its own hymns, often with words set to popular and folkloric tunes sung in the pubs. Booth and the other soldiers in &quot;God's Army&quot; would wear the Army's own uniform, for meetings and ministry work. He became the &quot;General&quot; and his other ministers were given appropriate ranks as &quot;
+officers&quot;. Other members became &quot;soldiers&quot;.
 When William Booth became known as the General, Catherine was known as the &quot;Mother of The Salvation Army&quot;. William preached to the poor, and Catherine spoke to the wealthy, gaining financial support for their work. She also acted as a religious minister, which was unusual at the time; the Foundation Deed of the Christian Mission states that women had the same rights to preach as men. William Booth described the organisation's approach: &quot;The three ‘S's’ best expressed the way in which the Army administered to the 'down and outs': first, soup; second, soap; and finally, salvation.&quot;
 In 1880, the Salvation Army started its work in three other countries: Australia, Ireland, and the United States. It was not always an official Officer of The Salvation Army who started the Salvation Army in a new country; sometimes Salvationists emigrated to countries and started operating as &quot;the Salvation Army&quot; on their own authority. When the first official officers arrived in Australia and the United States, they found groups of Salvationists already waiting for them.
 The Salvation Army's main converts were at first alcoholics, morphine addicts, prostitutes and other &quot;undesirables&quot; unwelcome in polite Christian society, which helped prompt the Booths to start their own church. The Booths did not include the use of sacraments (mainly baptism and Holy Communion) in the Army's form of worship, believing that many Christians had come to rely on the outward signs of spiritual grace rather than on grace itself. Other beliefs are that its members should completely refrain from drinking alcohol (Holy Communion is not practiced), smoking, taking illegal drugs and gambling. Its soldiers wear a uniform tailored to the country in which they work; the uniform can be white, grey, navy, fawn and are even styled like a sari in some areas. Any member of the public is welcome to attend their meetings.

@@ -42,6 +42,12 @@ from PIL import Image
 import math
 import operator
 
+<<<<<<< HEAD
+#converts special characters into ascii characters
+import unicodedata
+
+=======
+>>>>>>> 5f3385faf581214876d21e4ad00e9376b9b65e95
 from django.template.defaultfilters import slugify
 
 
@@ -1075,7 +1081,11 @@ def modelsToDjango(models):
 			newcrisis_organizations_list=ast.literal_eval(m.organizations)
 			for o in oldcrisis_organizations_list:
 				if not (o in newcrisis_organizations_list):
+<<<<<<< HEAD
+					newcrisis_organizations_list.append(o)
+=======
 					newcrisis_organizations_list.append(p)
+>>>>>>> 5f3385faf581214876d21e4ad00e9376b9b65e95
 			m.organizations=str(newcrisis_organizations_list)
 
 			c.common.externalLinks.all().delete()
@@ -1194,25 +1204,27 @@ def djangoToXml():
 	for crisis in Crisis.objects.all():
 
 		rootChild = ET.SubElement(root, "Crisis")
-		rootChild.set("crisisID", crisis.id)
-		rootChild.set("crisisName", crisis.name)
+		rootChild.set("ID", crisis.id)
+		rootChild.set("Name", crisis.name)
 
 		#People ID
 		crisis_person_str=crisis.people
 		crisis_person_list=ast.literal_eval(crisis_person_str)
-		rootChild2 = ET.SubElement(rootChild, "People")
-		for cp in crisis_person_list:
-			rootChild3 = ET.SubElement(rootChild2, "Person")
-			rootChild3.set("ID", cp)
+		if(crisis_person_list):
+			rootChild2 = ET.SubElement(rootChild, "People")
+			for cp in crisis_person_list:
+				rootChild3 = ET.SubElement(rootChild2, "Person")
+				rootChild3.set("ID", cp)
 
 
 		#Organization ID
 		crisis_Organization_str=crisis.organizations
 		crisis_Organization_list=ast.literal_eval(crisis_Organization_str)
-		rootChild2 = ET.SubElement(rootChild, "Organizations")
-		for co in crisis_Organization_list:
-			rootChild3 = ET.SubElement(rootChild2, "Org")
-			rootChild3.set("ID", co)
+		if(crisis_Organization_list):
+			rootChild2 = ET.SubElement(rootChild, "Organizations")
+			for co in crisis_Organization_list:
+				rootChild3 = ET.SubElement(rootChild2, "Org")
+				rootChild3.set("ID", co)
 
 		#Kind
 		if(crisis.kind) :
@@ -1324,34 +1336,37 @@ def djangoToXml():
 
 	for person in Person.objects.all():
 		rootChild = ET.SubElement(root, "Person")
-		rootChild.set("personID", person.id)
-		rootChild.set("personName", person.name)
+		rootChild.set("ID", person.id)
+		rootChild.set("Name", person.name)
 
-		#Location
-		if(person.location):
-			personChild = ET.SubElement(rootChild, "Location")
-			personChild.text = person.location
 
 		#Crisis ID
 		person_crisis_str=person.crises
 		person_crisis_list=ast.literal_eval(person_crisis_str)
-		rootChild2 = ET.SubElement(rootChild, "Crises")
-		for pc in person_crisis_list:
-			rootChild3 = ET.SubElement(rootChild2, "Crisis")
-			rootChild3.set("ID", pc)	
+		if(person_crisis_list):
+			rootChild2 = ET.SubElement(rootChild, "Crises")
+			for pc in person_crisis_list:
+				rootChild3 = ET.SubElement(rootChild2, "Crisis")
+				rootChild3.set("ID", pc)	
 
 		#Organization ID
 		person_Organization_str = person.organizations
 		person_Organization_list = ast.literal_eval(person_Organization_str)
-		rootChild2 = ET.SubElement(rootChild, "Organizations")
-		for po in person_Organization_list:
-			rootChild3 = ET.SubElement(rootChild2, "Org")
-			rootChild3.set("ID", po)
+		if(person_Organization_list):
+			rootChild2 = ET.SubElement(rootChild, "Organizations")
+			for po in person_Organization_list:
+				rootChild3 = ET.SubElement(rootChild2, "Org")
+				rootChild3.set("ID", po)
 
 		#kind
 		if(person.kind):
 			personChild = ET.SubElement(rootChild, "Kind")
 			personChild.text = person.kind
+		#Location
+		if(person.location):
+			personChild = ET.SubElement(rootChild, "Location")
+			personChild.text = person.location
+
 
 		#Common
 		if(person.common!=None):
@@ -1401,24 +1416,26 @@ def djangoToXml():
 
 	for org in Organization.objects.all():
 		rootChild = ET.SubElement(root, "Organization")
-		rootChild.set("orgID", org.id)
-		rootChild.set("orgName", org.name)
+		rootChild.set("ID", org.id)
+		rootChild.set("Name", org.name)
 
 		#OrganizationCrisis
 		org_crisis_str=org.crises
 		org_crisis_list=ast.literal_eval(org_crisis_str)
-		rootChild2 = ET.SubElement(rootChild, "Crises")
-		for oc in org_crisis_list:
-			rootChild3 = ET.SubElement(rootChild2, "Crisis")
-			rootChild3.set("ID", oc)
+		if(org_crisis_list):
+			rootChild2 = ET.SubElement(rootChild, "Crises")
+			for oc in org_crisis_list:
+				rootChild3 = ET.SubElement(rootChild2, "Crisis")
+				rootChild3.set("ID", oc)
 
 		#OrganizationPerson
 		org_OrganizationPerson_str=org.people
 		org_OrganizationPerson_list=ast.literal_eval(org_OrganizationPerson_str)
-		rootChild2 = ET.SubElement(rootChild, "People")
-		for op in org_OrganizationPerson_list:
-			rootChild3 = ET.SubElement(rootChild2, "Person")
-			rootChild3.set("ID", op)
+		if(org_OrganizationPerson_list):
+			rootChild2 = ET.SubElement(rootChild, "People")
+			for op in org_OrganizationPerson_list:
+				rootChild3 = ET.SubElement(rootChild2, "Person")
+				rootChild3.set("ID", op)
 
 		#kind
 		if(org.kind) :

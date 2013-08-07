@@ -5,7 +5,7 @@ from django.db import models
 class Crisis(models.Model):
 	id = models.CharField(max_length=10, primary_key=True)
 	name = models.CharField(max_length=100)
-	kind = models.CharField(max_length=100, null = True)
+	kind = models.CharField(max_length=1000, null = True)
 	date = models.CharField(max_length=25, null = True)
 	time = models.CharField(max_length=25, null = True)
 	location = models.TextField(null = True)
@@ -24,7 +24,7 @@ class Crisis(models.Model):
 class Person(models.Model):
 	id = models.CharField(max_length=10, primary_key=True)
 	name = models.CharField(max_length=100)
-	kind = models.CharField(max_length=100, null = True)
+	kind = models.CharField(max_length=1000, null = True)
 	location = models.CharField(max_length=10000, null = True)
 	crises = models.TextField(null = True)
 	organizations = models.TextField(null = True)
@@ -38,10 +38,10 @@ class Person(models.Model):
 class Organization(models.Model):
 	id = models.CharField(max_length=10, primary_key=True)
 	name = models.CharField(max_length = 200)
-	kind = models.CharField(max_length=100, null = True)
+	kind = models.CharField(max_length=1000, null = True)
 	location = models.CharField(max_length=10000, null = True)
-	history = models.CharField(max_length=1000)
-	contact = models.CharField(max_length=50)
+	history = models.CharField(max_length=10000)
+	contact = models.CharField(max_length=1000)
 	crises = models.TextField(null = True)
 	people = models.TextField(null = True)
 	common = models.ForeignKey('Common', null=True)

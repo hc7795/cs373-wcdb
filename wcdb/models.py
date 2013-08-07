@@ -4,32 +4,32 @@ from django.db import models
 
 class Crisis(models.Model):
 	id = models.CharField(max_length=10, primary_key=True)
-	name = models.CharField(max_length=100)
-	kind = models.CharField(max_length=100, null = True)
-	date = models.CharField(max_length=25, null = True)
-	time = models.CharField(max_length=25, null = True)
-	location = models.TextField(null = True)
-	humanImpact = models.TextField(null = True)
-	economicImpact = models.TextField(null = True)
-	resourcesNeeded = models.TextField(null = True)
-	waytoHelp = models.TextField(null = True)
-	people = models.TextField(null = True)
-	organizations = models.TextField(null = True)
-	common = models.ForeignKey('Common',null=True)
-	slug = models.SlugField(max_length = 100, unique=True)
+	name = models.TextField(null=False)
+	kind = models.TextField(null=True)
+	date = models.TextField(null=True)
+	time = models.TextField(null=True)
+	location = models.TextField(null=True)
+	humanImpact = models.TextField(null=True)
+	economicImpact = models.TextField(null= True)
+	resourcesNeeded = models.TextField(null=True)
+	waytoHelp = models.TextField(null=True)
+	people = models.TextField(null=True)
+	organizations = models.TextField(null=True)
+	common = models.ForeignKey('Common', null=True)
+	slug = models.SlugField(max_length=500, unique=True)
 
 	def __unicode__(self):
 	   return self.name  
 
 class Person(models.Model):
 	id = models.CharField(max_length=10, primary_key=True)
-	name = models.CharField(max_length=100)
-	kind = models.CharField(max_length=100, null = True)
-	location = models.CharField(max_length=10000, null = True)
-	crises = models.TextField(null = True)
-	organizations = models.TextField(null = True)
+	name = models.TextField(null=False)
+	kind = models.TextField(null=True)
+	location = models.TextField(null=True)
+	crises = models.TextField(null=True)
+	organizations = models.TextField(null=True)
 	common = models.ForeignKey('Common', null=True)
-	slug = models.SlugField(max_length = 100, unique=True)
+	slug = models.SlugField(max_length=500, unique=True)
 
 
 	def __unicode__(self):
@@ -37,15 +37,15 @@ class Person(models.Model):
   
 class Organization(models.Model):
 	id = models.CharField(max_length=10, primary_key=True)
-	name = models.CharField(max_length = 200)
-	kind = models.CharField(max_length=100, null = True)
-	location = models.CharField(max_length=10000, null = True)
-	history = models.CharField(max_length=1000)
-	contact = models.CharField(max_length=50)
-	crises = models.TextField(null = True)
-	people = models.TextField(null = True)
+	name = models.TextField(null=False)
+	kind = models.TextField(null=True)
+	location = models.TextField(null=True)
+	history = models.TextField(null=True)
+	contact = models.TextField(null=True)
+	crises = models.TextField(null=True)
+	people = models.TextField(null=True)
 	common = models.ForeignKey('Common', null=True)
-	slug = models.SlugField(max_length = 100, unique=True)
+	slug = models.SlugField(max_length=500, unique=True)
 
 
 	def __unicode__(self):

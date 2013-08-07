@@ -15,7 +15,6 @@
 {% endblock %}
 
 
-
 {% block content %}
 {% if crisis %}
 
@@ -23,16 +22,16 @@
         <div class="common_galleria" id="galleria">
             {% for image in images %}
                 {% if image.href %}
-                    <img src="{{image.href}}" alt="{{image.name}}">
+                    <img src="{{image.href}}" alt="{{image.text}}">
                 {% else %}
-                    <img src="{{image.embed}}" alt="{{image.name}}">
+                    <img src="{{image.embed}}" alt="{{image.text}}">
                 {% endif %}
             {% endfor %}
             {% for video in videos %}
-                {% if video.href %}
-                    <a href="{{video.href}}"></a>
+                {% if video.embed %}
+                    <a href="{{video.embed}}"><span class="video"></span></a>
                 {% else %}
-                    <a href="{{video.embed}}"></a>
+                    <a href="{{video.href}}" alt="{{video.text}}"><span class="video"></span></a>
                 {% endif %}
             {% endfor %}
         </div>
@@ -62,6 +61,7 @@
                 <p>No associated people yet!</p>
             {% endif %}
         </div>
+        <div class="clearfix"></div>
     </div>
 
     <div class="common_container auto_height">
@@ -113,6 +113,7 @@
                     </ul>
                 {% endif %}
             </div>
+            <div class="clearfix"></div>
         {% endif %}
 
         {% if humanImpact != "" or economicImpact != "" %}
@@ -139,6 +140,7 @@
                     </div>
                 {% endif %}
             </div>
+            <div class="clearfix"></div>
         {% endif %}
     </div>
 

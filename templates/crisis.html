@@ -83,7 +83,7 @@
                     <img src="{{image.embed}}" alt="{{image.text}}">
                 {% endif %}
             {% endfor %}
-            <!--
+<!--             
             {% for video in videos %}
                 {% if video.embed %}
                     <a href="{{video.embed}}"><span class="video"></span></a>
@@ -91,10 +91,10 @@
                     <a href="{{video.href}}" alt="{{video.text}}"><span class="video"></span></a>
                 {% endif %}
             {% endfor %}
-        -->
+         -->
         </div>
 
-        <div class="associated_container associated_people">
+        <div class="associated_container associated_people ellipsis">
             <h3>Associated People:</h3>
             {% if associatedPeople %}
                 <ul>
@@ -107,7 +107,7 @@
             {% endif %}
         </div>
 
-        <div class="associated_container associated_organizations">
+        <div class="associated_container associated_organizations ellipsis">
             <h3>Associated Organizations:</h3>
             {% if associatedOrganizations %}
                 <ul>
@@ -122,7 +122,8 @@
         <div class="clearfix"></div>
     </div>
 
-    {% if crisis.kind != "" or crisis.date != "" or crisis.time != "" or locations or maps %}
+
+    {% if crisis.kind != "" or crisis.date != "" or crisis.time != "" or crisis.common.summary %}
         <div class="common_container">
             {% if crisis.kind != "" or crisis.date != "" or crisis.time != "" %}
                 <div class="common_box_small ellipsis">
@@ -143,8 +144,20 @@
                 </div>
             {% endif %}
 
+            {% if crisis.common.summary %}
+                <div class="common_box_large ellipsis"> 
+                    <h3>Summary:</h3>
+                    <p>{{crisis.common.summary}}</p>
+                </div>
+            {% endif %}
+        </div>
+        <div class="clearfix"></div>
+    {% endif %}
+
+    {% if maps or locations or humanImpact or economicImpact %}
+        <div class="common_container">
             {% if locations %}
-                <div class="common_box_small ellipsis">
+                <div class="common_box_medium ellipsis">
                     {% if numLocations == 1 %}
                         <h3>Location:</h3>
                     {% else %}
@@ -168,112 +181,79 @@
                         </div>
                     {% endfor %}
                 </div>
-
-                <div class="clearfix"></div>
             {% endif %}
-        </div>
-        <div class="clearfix"></div>
-    {% endif %}
-
-    {% if crisis.common.summary %}
-        <div class="common_container"> 
-            {% if crisis.common.summary %}
+ 
+            {% if humanImpact %}
                 <div class="common_box_medium ellipsis">
-                    <h3>Summary:</h3>
-                    <p>{{crisis.common.summary}}</p>
+                    <h3>Human Impact:</h3>
+                    <ul>
+                        {% for impact in humanImpact %}
+                            <li class="light_grey">{{impact}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+    
+            {% if economicImpact %}
+                <div class="common_box_medium ellipsis">  
+                    <h3>Economic Impact:</h3>
+                    <ul>
+                        {% for impact in economicImpact %}
+                            <li class="light_grey">{{impact}}</li>
+                        {% endfor %}
+                    </ul>  
                 </div>
             {% endif %}
         </div>
+        <div class="clearfix"></div>
     {% endif %}
          
+
     {% if resourcesNeeded or waysToHelp %}
         <div class="common_container"> 
-        {% if resourcesNeeded and waysToHelp %}
-            <div class="common_box_medium ellipsis">
-                <h3>Resources Needed:</h3>
-                <ul class="light_grey">
-                {% for resource in resourcesNeeded %}
-                    <li>{{resource}}</li>
-                {% endfor %}
-                </ul>
-            </div>
-            <div class="common_box_medium ellipsis">   
-                <h3>Ways to Help:</h3>
-                <ul class="light_grey">
-                {% for way in waysToHelp %}
-                    <li>{{way}}</li>
-                {% endfor %}
-                </ul>
-            </div>
-        {% else %}
-            {% if resourcesNeeded %}
-                <div class="common_box_xl ellipsis">
+            {% if resourcesNeeded and waysToHelp %}
+                <div class="common_box_medium ellipsis">
                     <h3>Resources Needed:</h3>
                     <ul class="light_grey">
-                        {% for resource in resourcesNeeded %}
-                            <li>{{resource}}</li>
-                        {% endfor %}
+                    {% for resource in resourcesNeeded %}
+                        <li>{{resource}}</li>
+                    {% endfor %}
                     </ul>
                 </div>
-            {% else %}
-                <div class="common_box_xl ellipsis">   
+                <div class="common_box_medium ellipsis">   
                     <h3>Ways to Help:</h3>
                     <ul class="light_grey">
-                        {% for way in waysToHelp %}
-                            <li>{{way}}</li>
-                        {% endfor %}
+                    {% for way in waysToHelp %}
+                        <li>{{way}}</li>
+                    {% endfor %}
                     </ul>
                 </div>
-            {% endif %}
-        {% endif %}
-        </div>
-        <div class="clearfix"></div>
-    {% endif %}
-
-    {% if humanImpact or economicImpact %}
-        <div class="common_container"> 
-        {% if humanImpact and economicImpact %}
-            <div class="common_box_medium ellipsis">
-                <h3>Human Impact:</h3>
-                <ul>
-                    {% for impact in humanImpact %}
-                        <li class="light_grey">{{impact}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="common_box_medium ellipsis">  
-                <h3>Economic Impact:</h3>
-                <ul>
-                    {% for impact in economicImpact %}
-                        <li class="light_grey">{{impact}}</li>
-                    {% endfor %}
-                </ul>  
-            </div>
-        {% else %}
-            {% if humanImpact %}
-                <div class="common_box_xl ellipsis">
-                <h3>Human Impact:</h3>
-                <ul>
-                    {% for impact in humanImpact %}
-                        <li class="light_grey">{{impact}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
             {% else %}
-                <div class="common_box_xl ellipsis">  
-                <h3>Economic Impact:</h3>
-                <ul>
-                    {% for impact in economicImpact %}
-                        <li class="light_grey">{{impact}}</li>
-                    {% endfor %}
-                </ul>  
-            </div>
+                {% if resourcesNeeded %}
+                    <div class="common_box_xl ellipsis">
+                        <h3>Resources Needed:</h3>
+                        <ul class="light_grey">
+                            {% for resource in resourcesNeeded %}
+                                <li>{{resource}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% else %}
+                    <div class="common_box_xl ellipsis">   
+                        <h3>Ways to Help:</h3>
+                        <ul class="light_grey">
+                            {% for way in waysToHelp %}
+                                <li>{{way}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
             {% endif %}
-        {% endif %}
         </div>
         <div class="clearfix"></div>
     {% endif %}
 
+    
     {% if externalLinks %}
         <div id="external_links_box" class="ellipsis">
             <h3>External Links:</h3>

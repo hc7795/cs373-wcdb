@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 """
 xmlParser.py
 	============
@@ -32,6 +33,18 @@ import sys
 #cast a string of ID into list
 import ast
 
+#for querysets addition
+from itertools import chain
+
+#Read Images
+import urllib, cStringIO
+from PIL import Image
+import math
+import operator
+
+#converts special characters into ascii characters
+import unicodedata
+
 from django.template.defaultfilters import slugify
 
 
@@ -48,7 +61,7 @@ def xmlToDjango():
 
 	#xmlFilename = raw_input("Filename of the XML file: ")
 	#schemaFilename = raw_input("Filename of the schema file: ")
-	xmlFilename = "static/WorldCrises.xml"
+	xmlFilename = "static/vkeshari-WCDB2.xml"
 	schemaFilename = "static/WorldCrises.xsd.xml"
 
 
@@ -84,6 +97,55 @@ def xmlToDjango():
 
 	# Put the models in the Django database.
 	modelsToDjango(modelsList)
+
+def importXMLToDjango():
+
+	#password = raw_input("Password: ")
+	#if (password != "gummy"):
+	#	print "Bad password!"
+	#	exit(1)
+
+
+	#xmlFilename = raw_input("Filename of the XML file: ")
+	#schemaFilename = raw_input("Filename of the schema file: ")
+	xmlFilename = "static/hc7795-WCDB2.xml"
+	schemaFilename = "static/WorldCrises.xsd.xml"
+
+
+	# Validate the XML file.
+	try:
+
+		# call validator with non-default values
+		elementTreeWrapper = pyxsval.parseAndValidate (xmlFilename, 
+			xsdFile         = schemaFilename,
+			xmlIfClass      = pyxsval.XMLIF_ELEMENTTREE,
+			warningProc     = pyxsval.PRINT_WARNINGS,
+			errorLimit      = 200, 
+			verbose         = 1,
+			useCaching      = 0, 
+			processXInclude = 0)
+
+		# get elementtree object after validation
+		xmlTree = elementTreeWrapper.getTree()
+
+
+	except pyxsval.XsvalError as errstr:
+		print errstr
+		print "Validation aborted!"
+		raise pyxsval.XsvalError
+
+	except GenXmlIfError as errstr:
+		print errstr
+		print "Parsing aborted!"
+		raise GenXmlIfError
+	      
+	Common.objects.all().delete()
+	List.objects.all().delete()
+	# Get a list of model objects from xmlTree.
+	modelsList = elementTreeToModels(xmlTree)
+
+	# Put the models in the Django database.
+	importXML(modelsList)
 
 
 
@@ -160,11 +222,11 @@ def getCommonData(element, elementIterator):
 	videos = []
 	maps = []
 	feeds = []
-	summary = []
+	summary = ""
 
 	try:
 		nextElement = elementIterator.next()
-
+		
 		if (nextElement.tag == "Citations"):
 			nextElement = elementIterator.next()
 			while (nextElement.tag == "li"):
@@ -213,6 +275,9 @@ def getCommonData(element, elementIterator):
 
 	# It's possible the end of file might be reached. If so, still continue and return the data.
 	except StopIteration as e:
+		#print "getCommonData except StopIteration as e"
+		#nextElement = None
+		nextElement = element
 		pass
 
 	finally:
@@ -223,7 +288,9 @@ def getCommonData(element, elementIterator):
 		returnData["Maps"] = maps
 		returnData["Feeds"] = feeds
 		returnData["Summary"] = summary
-
+		
+	#print "nextElement = ", nextElement
+	#print "type(nextElement) = ", type(nextElement)
 	return (nextElement, elementIterator, returnData)
 
 
@@ -274,7 +341,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 			crisisMaps = []
 			crisisFeeds = []
 			crisisSummary = ""
-			commonExist=False
+			commonExists=False
 
 
 			nextElement = treeIter.next() # People element
@@ -333,7 +400,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					nextElement = treeIter.next()
 
 			if (nextElement.tag == "Common"):
-				commonExist=True
+				commonExists=True
 				nextElement, treeIter, d = getCommonData(nextElement, treeIter)
 				crisisCitations = d.get('Citations')
 				crisisExternalLinks = d.get('ExternalLinks')
@@ -342,96 +409,104 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 				crisisMaps = d.get('Maps')
 				crisisFeeds = d.get('Feeds')
 				crisisSummary = d.get('Summary')
-			
-
-			if isNotDuplicate(crisisID, "crisis", unitTestDB):
-				# Common
-				if (commonExist==False):
-					common=None
-					#common.save()
-				else:
-					common=	Common()
-					common.save()
-					for c in crisisCitations:
-						li=List()
-						li.href=c.get("href")
-						li.embed=c.get("embed")
-						li.text=c.get("text")
-						li.content=c.get("content")
-						li.save()
-						common.citations.add(li)
-
-					for c in crisisExternalLinks:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.externalLinks.add(li)
-
-					for c in crisisImages:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.images.add(li)
-
-					for c in crisisVideos:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.videos.add(li)
-					for c in crisisMaps:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.maps.add(li)
-					for c in crisisFeeds:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.feeds.add(li)
-					common.commonSummary=crisisSummary
 
 
-				models[0].append(
-						Crisis(
-						id = crisisID,
-						name = crisisName,
-						kind = crisisKind,
-						date = crisisDate,
-						time = crisisTime,
-						people = str(crisisPersonIDs),
-						organizations = str(crisisOrgIDs),
-						location = str(crisisLocations),
-						humanImpact = str(crisisHumanImpact),
-						economicImpact = str(crisisEconomicImpact),
-						resourcesNeeded = str(crisisResourcesNeeded),
-						waytoHelp = str(crisisWaysToHelp),						
-						common = common,
-						slug = slugify(crisisName),
-						)
-				)
+			#if isNotDuplicate(crisisID, "crisis", unitTestDB):
+			# Common
+			if (commonExists==False):
+				common=None
+				#common.save()
+			else:
+				common=	Common()
+				if(crisisSummary != "") :
+				  common.summary= crisisSummary
+				common.save()
+				for c in crisisCitations:
+					li=List()
+					li.href=c.get("href")
+					li.embed=c.get("embed")
+					li.text=c.get("text")
+					li.content=c.get("content")
+					li.save()
+					common.citations.add(li)
+
+				for c in crisisExternalLinks:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
+					)
+					li.save()
+					common.externalLinks.add(li)
+
+				for c in crisisImages:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
+					)
+					li.save()
+					common.images.add(li)
+
+				for c in crisisVideos:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
+					)
+					li.save()
+					common.videos.add(li)
+				for c in crisisMaps:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
+					)
+					li.save()
+					common.maps.add(li)
+				for c in crisisFeeds:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
+					)
+					li.save()
+					common.feeds.add(li)
+
+			duplicateSlugName=False
+			for crisis in Crisis.objects.all():
+				if(crisisName == crisis.name):
+					duplicateSlugName= True
+					break
+			slugCrisisName = crisisName
+			if (duplicateSlugName == True):
+				slugCrisisName = crisisName + crisisDate
+			models[0].append(
+					Crisis(
+					id = crisisID,
+					name = crisisName,
+					kind = crisisKind,
+					date = crisisDate,
+					time = crisisTime,
+					people = str(crisisPersonIDs),
+					organizations = str(crisisOrgIDs),
+					location = str(crisisLocations),
+					humanImpact = str(crisisHumanImpact),
+					economicImpact = str(crisisEconomicImpact),
+					resourcesNeeded = str(crisisResourcesNeeded),
+					waytoHelp = str(crisisWaysToHelp),						
+					common = common,
+					slug = slugify(slugCrisisName),
+					)
+			)
 
 		# Parse people. 
-		
+
 		while (nextElement.tag == "Person"):
 			personAttributes = getTextAndAttributes(nextElement)
 			personID = personAttributes['ID']
@@ -484,81 +559,98 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 				personFeeds = d.get('Feeds')
 				personSummary = d.get('Summary')
 
-			if isNotDuplicate(personID, "person", unitTestDB):
-				if (commonExist == False):
-					common=None
-				else:
-					common=	Common()
-					common.save()
-					for c in personCitations:
-						li=List()
-						li.href=c.get("href")
-						li.embed=c.get("embed")
-						li.text=c.get("text")
-						li.content=c.get("content")
-						li.save()
-						common.citations.add(li)
+			#if isNotDuplicate(personID, "person", unitTestDB):
+			if (commonExists == False):
+				common=None
+			else:
+				common=	Common()
+				if(personSummary != "") :
+				  common.summary= personSummary
+				common.save()
+				for c in personCitations:
+					li=List()
+					li.href=c.get("href")
+					li.embed=c.get("embed")
+					li.text=c.get("text")
+					li.content=c.get("content")
+					li.save()
+					common.citations.add(li)
 
-					for c in personExternalLinks:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.externalLinks.add(li)
-
-					for c in personImages:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.images.add(li)
-
-					for c in personVideos:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.videos.add(li)
-					for c in personMaps:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.maps.add(li)
-					for c in personFeeds:
-						li=List(
-						href=c.get("href"),
-						embed=c.get("embed"),
-						text=c.get("text"),
-						content=c.get("content")
-						)
-						li.save()
-						common.feeds.add(li)
-					common.commonSummary=personSummary
-				models[1].append(
-					Person(
-						id = personID,
-						name = personName,
-						kind = personKind,
-						location = personLocation,
-						crises=str(personCrisisIDs),
-						organizations=str(personOrgIDs),
-						common = common,
-						slug = slugify(personName),
+				for c in personExternalLinks:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
 					)
+					li.save()
+					common.externalLinks.add(li)
+
+				for c in personImages:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
+					)
+					li.save()
+					common.images.add(li)
+
+				for c in personVideos:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
+					)
+					li.save()
+					common.videos.add(li)
+				for c in personMaps:
+					if c.get("text") != None :
+						c["text"] = unicodedata.normalize('NFKD', unicode(c.get("text"))).encode('ascii', 'ignore')
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
+					)
+					print "personID = ", personID
+					print "li.text = ", li.text
+					li.save()
+					common.maps.add(li)
+				for c in personFeeds:
+					li=List(
+					href=c.get("href"),
+					embed=c.get("embed"),
+					text=c.get("text"),
+					content=c.get("content")
+					)
+					li.save()
+					common.feeds.add(li)
+
+			duplicateSlugName=False
+			for person in Person.objects.all():
+				if(personName == person.name):
+					duplicateSlugName= True
+					break
+			slugPersonName = personName
+			if (duplicateSlugName == True):
+				slugPersonName = personName + personID
+
+
+
+			models[1].append(
+				Person(
+					id = personID,
+					name = personName,
+					kind = personKind,
+					location = personLocation,
+					crises=str(personCrisisIDs),
+					organizations=str(personOrgIDs),
+					common = common,
+					slug = slugify(slugPersonName),
 				)
+			)
 
 		# Parse organizations.
 		while (nextElement.tag == "Organization"):
@@ -584,7 +676,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 			commonExists = False
 
 			nextElement = treeIter.next()
-			
+
 
 
 			if (nextElement.tag == "Crises"):
@@ -622,6 +714,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 
 			if (nextElement.tag == "Common"):
 				commonExists = True
+				#print "******* nextElement = ", nextElement
 				nextElement, treeIter, d = getCommonData(nextElement, treeIter)
 				orgCitations = d.get('Citations')
 				orgExternalLinks = d.get('ExternalLinks')
@@ -630,11 +723,13 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 				orgMaps = d.get('Maps')
 				orgFeeds = d.get('Feeds')
 				orgSummary = d.get('Summary')
-				
-			if (commonExist == False):
+
+			if (commonExists == False):
 					common=None
 			else:
 					common=	Common()
+					if(orgSummary != "") :
+					  common.summary= orgSummary
 					common.save()
 					for c in orgCitations:
 						li=List()
@@ -692,23 +787,30 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 						)
 						li.save()
 						common.feeds.add(li)
-					common.commonSummary=orgSummary
 
-			if isNotDuplicate(orgID, "org", unitTestDB):
-				models[2].append(
-					Organization(
-						id = orgID,
-						name = orgName,
-						kind = kind,
-						location = location,
-						history = history,
-						contact = contactInfo,
-						crises=str(orgCrisisIDs),
-						people=str(orgPeopleIDs),
-						common = common,
-						slug = slugify(orgName),
-					)
+
+			duplicateSlugName=False
+			for org in Organization.objects.all():
+				if(orgName == org.name):
+					duplicateSlugName= True
+					break
+			slugorgName = orgName
+			if (duplicateSlugName == True):
+				slugorgName = orgName + orgID
+			models[2].append(
+				Organization(
+					id = orgID,
+					name = orgName,
+					kind = kind,
+					location = location,
+					history = history,
+					contact = contactInfo,
+					crises=str(orgCrisisIDs),
+					people=str(orgPeopleIDs),
+					common = common,
+					slug = slugify(slugorgName),
 				)
+			)
 
 		nextElement = treeIter.next()
 
@@ -728,22 +830,359 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 	raise IOError("Invalid file!")
 
 
+"""
+
+check if li is in the arrayOfLi, if li is in arrayOfLi, return true, otherwise return false
+"""
+def compare(li,arrayOfLi):
+	result = False
+	for oldli in arrayOfLi:
+		if ((li.href==oldli.href) and (li.embed==oldli.embed) and (li.text==oldli.text) and (li.content==oldli.content)):
+			result=True
+	return result
 
 
+def merge(c, m):
+	#attributeList = Crisis._meta.get_all_field_names()
+	#compare c.date (old value) and m.Crisis.date (new value)	
+	
+
+	
+	#Common Merge
+	#Merge Citations
+	if(c.common.citations.exists()):
+		#print "c.common.citations.all() = ", c.common.citations.all()
+		#print "m.common.citations.all() = ", m.common.citations.all()
+		oldCitations = c.common.citations.all()
+		newCitations = m.common.citations.all()
+		for li in oldCitations:
+			if not compare(li, oldCitations):
+				copyLi=List(
+				href=li.href,
+				embed=li.embed,
+				text=li.text,
+				content=li.content
+				)
+				copyLi.save()
+				m.common.citations.add(copyLi)
+	
+		#print "after merge, m.common.citations.all() = ", m.common.citations.all()
+	
+	#Merge ExternalLinks
+	if(c.common.externalLinks.exists()):
+		#print "c.common.externalLinks.all() = ", c.common.externalLinks.all()
+		#print "m.common.externalLinks.all() = ", m.common.externalLinks.all()
+		
+		oldHref = c.common.externalLinks.all()
+		newHref = m.common.externalLinks.all()
+		
+		for li in oldHref:
+			if not compare(li, newHref):
+				copyLi=List(
+				href=li.href,
+				embed=li.embed,
+				text=li.text,
+				content=li.content
+				)
+				copyLi.save()
+				m.common.externalLinks.add(copyLi)
+		#print "after merge, m.common.externalLinks.all() = ", m.common.externalLinks.all()
+		
+	#Merge images
+	if(c.common.images.exists()):
+		#print "c.common.images.exists()"
+		#print "c.common.images.all() = ", c.common.images.all()# 1,3
+		#print "m.common.images.all() = ", m.common.images.all()#1,2
+		
+		oldImages = c.common.images.all()
+		newImages = m.common.images.all()
+		
+		for li in oldImages:
+			if not compare(li, oldImages) :
+				copyLi = List(
+				href=li.href,
+				embed=li.embed,
+				text=li.text,
+				content=li.content
+				)
+				copyLi.save()
+				m.common.images.add(copyLi)
+		
+		"""
+		for oldImage in c.common.images.all():
+			add = True
+			for newImage in m.common.images.all():
+				file1 = cStringIO.StringIO(urllib.urlopen(str(newImage.embed)).read()) 
+				file2 = cStringIO.StringIO(urllib.urlopen(str(oldImage.embed)).read())
+				print "m.id = ", m.id
+				h1 = Image.open(file1).histogram()
+				h2 = Image.open(file2).histogram()
+				
+				rms = math.sqrt(reduce(operator.add, map(lambda a,b: (a-b)**2, h1, h2))/len(h1))
+				if(rms == 0) :
+					add = False
+			if add:
+				print "rms != 0"
+				print "c.common.images.all() = ", c.common.images.all()
+				print "oldImage = ", oldImage
+				copyLi=List(
+				href=oldImage.href,
+				embed=oldImage.embed,
+				text=oldImage.text,
+				content=oldImage.content
+				)
+				copyLi.save()
+				m.common.images.add(copyLi)		
+		print "after merge, m.common.images.all() = ", m.common.images.all()
+		"""
+		
+	#Merge videos
+	if(c.common.videos.exists()):
+		#print "c.common.videos.all() = ", c.common.videos.all()
+		#print "m.common.videos.all() = ", m.common.videos.all()
+		
+		oldVideos = c.common.videos.all()
+		newVideos = m.common.videos.all()
+		
+		for li in oldVideos:
+			if not compare(li, newVideos):
+				copyLi=List(
+				href=li.href,
+				embed=li.embed,
+				text=li.text,
+				content=li.content
+				)
+				copyLi.save()
+				m.common.videos.add(copyLi)
+		
+		#print "after merge, m.common.videos.all() = ", m.common.videos.all()
+
+	#Merge maps
+	if(c.common.maps.exists()):
+		#print "c.common.maps.all() = ", c.common.maps.all()
+		#print "m.common.maps.all() = ", m.common.maps.all()
+		
+		oldMaps = c.common.maps.all()
+		newMaps = m.common.maps.all()
+		
+		for li in oldMaps:
+			if not compare(li, newMaps):
+				copyLi=List(
+				href=li.href,
+				embed=li.embed,
+				text=li.text,
+				content=li.content
+				)
+				copyLi.save()
+				m.common.maps.add(copyLi)
+		
+		#print "after merge, m.common.maps.all() = ", m.common.maps.all()
+		
+
+	#Merge feeds
+	if(c.common.feeds.exists()):
+		#print "c.common.feeds.all() = ", c.common.feeds.all()
+		#print "m.common.feeds.all() = ", m.common.feeds.all()
+		
+		oldFeeds = c.common.feeds.all()
+		newFeeds = m.common.feeds.all()
+		
+		for li in oldFeeds:
+			if not compare(li, newFeeds):
+				copyLi=List(
+				href=li.href,
+				embed=li.embed,
+				text=li.text,
+				content=li.content
+				)
+				copyLi.save()
+				m.common.feeds.add(copyLi)
+		
+		#print "after merge, m.common.maps.all() = ", m.common.feeds.all()
+
+	#Merge summary	
+	if(c.common.summary != None):
+		#print "c.common.summary = ", c.common.summary
+		#print "m.common.summary = ", m.common.summary
+		oldsummary = c.common.summary
+		newsummary = m.common.summary
+		if((newsummary != None) and (len(oldsummary)>len(newsummary))):
+			m.common.summary = oldsummary
+		
+		#print "after merge, m.common.summary = ", m.common.summary
+		
+		
+def importXML(models) :
+	#print "clearing tables"
+	Crisis.objects.all().delete()
+	Person.objects.all().delete()
+	Organization.objects.all().delete()
+	
+	for subList in models:
+		for m in subList:
+			m.save()
 
 
 """
 	Takes a list of Django models and saves them to a database.
 """
 def modelsToDjango(models):
+  
+	crises = models[0]
+	people = models[1]
+	orgs =   models[2]
+	count=0;
+	#print "elements of model[0] ",crises
+	for m in crises:
+		checkExistence = Crisis.objects.filter(id=m.id).count()
+		if checkExistence == 1:
+			#append images from m to c
+			# ... ditto for rest of attributes
+			c=Crisis.objects.get(id = m.id)
+			#Location Merge
+			m.location = ast.literal_eval(m.location)
+			c.location = ast.literal_eval(c.location)
+			if(len(m.location[0]) < len(c.location[0])):
+			  m.location[0] = c.location[0]
+			#merge common
+			merge(c,m)
+			#merge humanImpact
+			oldcrisis_HumanImpact_list=ast.literal_eval(c.humanImpact)
+			newcrisis_HumanImpact_list=ast.literal_eval(m.humanImpact)
+			newcrisis_HumanImpact_list+=oldcrisis_HumanImpact_list
+			m.humanImpact=str(newcrisis_HumanImpact_list)
+			#merge economicImpact
+			oldcrisis_economicImpact_list=ast.literal_eval(c.economicImpact)
+			newcrisis_economicImpact_list=ast.literal_eval(m.economicImpact)
+			newcrisis_economicImpact_list+=oldcrisis_economicImpact_list
+			m.economicImpact=str(newcrisis_economicImpact_list)
+			#merge resourcesNeeded
+			oldcrisis_resourcesNeeded_list=ast.literal_eval(c.resourcesNeeded)
+			newcrisis_resourcesNeeded_list=ast.literal_eval(m.resourcesNeeded)
+			newcrisis_resourcesNeeded_list+=oldcrisis_resourcesNeeded_list
+			m.resourcesNeeded=str(newcrisis_resourcesNeeded_list)
+			#merge waytoHelp
+			oldcrisis_waytoHelp_list=ast.literal_eval(c.waytoHelp)
+			newcrisis_waytoHelp_list=ast.literal_eval(m.waytoHelp)
+			newcrisis_waytoHelp_list+=oldcrisis_waytoHelp_list
+			m.waytoHelp=str(newcrisis_waytoHelp_list)
+			#merge people
+			oldcrisis_people_list=ast.literal_eval(c.people)
+			newcrisis_people_list=ast.literal_eval(m.people)
+			for p in oldcrisis_people_list:
+				if not (p in newcrisis_people_list):
+					newcrisis_people_list.append(p)
+			m.people=str(newcrisis_people_list)
+			#merge organizations
+			oldcrisis_organizations_list=ast.literal_eval(c.organizations)
+			newcrisis_organizations_list=ast.literal_eval(m.organizations)
+			for o in oldcrisis_organizations_list:
+				if not (o in newcrisis_organizations_list):
+					newcrisis_organizations_list.append(o)
+			m.organizations=str(newcrisis_organizations_list)
 
-	for subList in models:
-		for m in subList:
+			c.common.externalLinks.all().delete()
+			c.common.citations.all().delete()
+			c.common.images.all().delete()
+			c.common.videos.all().delete()
+			c.common.maps.all().delete()
+			c.common.feeds.all().delete()
+			Common.objects.filter(crisis__id = c.id).delete()
+			m.save()
+		elif checkExistence == 0:
+			#print "save",m.id
+			m.save()
+		else:
+			print "something wrong"
+
+
+	for m in people:
+		checkExistence = Person.objects.filter(id=m.id).count()
+		if checkExistence == 1:
+			c=Person.objects.get(id = m.id)
+			#print "type(c)   ++++++++   ",type(c)
+			#Location Merge
+			if(len(m.location) < len(c.location)):
+			  m.location = c.location
+			#merge common
+			merge(c,m)
+			#merge crises
+			oldcrisis_crises_list=ast.literal_eval(c.crises)
+			newcrisis_crises_list=ast.literal_eval(m.crises)
+			for cid in oldcrisis_crises_list:
+				if not (cid in newcrisis_crises_list):
+					newcrisis_crises_list.append(cid)
+			m.crises=str(newcrisis_crises_list)
+			#print "type(c)   ++++++++   ",type(c)
+			#merge organizations
+			if not m.organizations :
+				m.organizations = c.organizations
+			if not c.organizations:
+				oldcrisis_organizations_list=ast.literal_eval(c.organizations)
+				newcrisis_organizations_list=ast.literal_eval(m.organizations)
+				for o in oldcrisis_organizations_list:
+					if not (o in newcrisis_organizations_list):
+						newcrisis_organizations_list.append(p)
+				m.organizations=str(newcrisis_organizations_list)
+			c.common.externalLinks.all().delete()
+			c.common.citations.all().delete()
+			c.common.images.all().delete()
+			c.common.videos.all().delete()
+			c.common.maps.all().delete()
+			c.common.feeds.all().delete()
+			Common.objects.filter(person__id = c.id).delete()
 			m.save()
 
+		elif checkExistence == 0:
+			#print "save",m.id
+			m.save()
+		else:
+			print "something wrong"
 
 
+	for m in orgs:
+		checkExistence = Organization.objects.filter(id=m.id).count()
+		if checkExistence == 1:
+			c=Organization.objects.get(id = m.id)
 
+			#Location Merge
+			if(len(m.location) < len(c.location)):
+			  m.location = c.location
+
+			#merge common
+			merge(c,m)
+
+			#merge people
+			oldcrisis_people_list=ast.literal_eval(c.people)
+			newcrisis_people_list=ast.literal_eval(m.people)
+			for cid in oldcrisis_people_list:
+				if not (cid in newcrisis_people_list):
+					newcrisis_people_list.append(cid)
+			m.people=str(newcrisis_people_list)
+
+
+			#merge crises
+			oldcrisis_crises_list=ast.literal_eval(c.crises)
+			newcrisis_crises_list=ast.literal_eval(m.crises)
+			for cid in oldcrisis_crises_list:
+				if not (cid in newcrisis_crises_list):
+					newcrisis_crises_list.append(cid)
+			m.crises=str(newcrisis_crises_list)
+
+			c.common.externalLinks.all().delete()
+			c.common.citations.all().delete()
+			c.common.images.all().delete()
+			c.common.videos.all().delete()
+			c.common.maps.all().delete()
+			c.common.feeds.all().delete()
+			Common.objects.filter(organization__id = c.id).delete()
+			m.save()
+
+		elif checkExistence == 0:
+			print "save",m.id
+			m.save()
+		else:
+			print "something wrong"
 
 
 """
@@ -758,25 +1197,27 @@ def djangoToXml():
 	for crisis in Crisis.objects.all():
 
 		rootChild = ET.SubElement(root, "Crisis")
-		rootChild.set("crisisID", crisis.id)
-		rootChild.set("crisisName", crisis.name)
+		rootChild.set("ID", crisis.id)
+		rootChild.set("Name", crisis.name)
 
 		#People ID
 		crisis_person_str=crisis.people
 		crisis_person_list=ast.literal_eval(crisis_person_str)
-		rootChild2 = ET.SubElement(rootChild, "People")
-		for cp in crisis_person_list:
-			rootChild3 = ET.SubElement(rootChild2, "Person")
-			rootChild3.set("ID", cp)
+		if(crisis_person_list):
+			rootChild2 = ET.SubElement(rootChild, "People")
+			for cp in crisis_person_list:
+				rootChild3 = ET.SubElement(rootChild2, "Person")
+				rootChild3.set("ID", cp)
 
 
 		#Organization ID
 		crisis_Organization_str=crisis.organizations
 		crisis_Organization_list=ast.literal_eval(crisis_Organization_str)
-		rootChild2 = ET.SubElement(rootChild, "Organizations")
-		for co in crisis_Organization_list:
-			rootChild3 = ET.SubElement(rootChild2, "Org")
-			rootChild3.set("ID", co)
+		if(crisis_Organization_list):
+			rootChild2 = ET.SubElement(rootChild, "Organizations")
+			for co in crisis_Organization_list:
+				rootChild3 = ET.SubElement(rootChild2, "Org")
+				rootChild3.set("ID", co)
 
 		#Kind
 		if(crisis.kind) :
@@ -824,7 +1265,6 @@ def djangoToXml():
 		crisis_ResourcesNeeded_str=crisis.resourcesNeeded
 		crisis_ResourcesNeeded_list=ast.literal_eval(crisis_ResourcesNeeded_str)
 		if(crisis_ResourcesNeeded_list) :
-			print "hello"
 			rootChild2 = ET.SubElement(rootChild, "ResourcesNeeded")
 			for cr in crisis_ResourcesNeeded_list:
 				rootChild3 = ET.SubElement(rootChild2, "li")
@@ -844,7 +1284,6 @@ def djangoToXml():
 		if(crisis.common!=None):
 			crisisChild = ET.SubElement(rootChild, "Common")
 			if(crisis.common.citations.exists()):
-				#print "citation :   ", (crisis.com.commonCitations)
 				commonChild=ET.SubElement(crisisChild,"Citations")
 				for li in crisis.common.commonCitations.all():
 					CitationsChild=ET.SubElement(commonChild,"li")
@@ -882,39 +1321,45 @@ def djangoToXml():
 						ImagesChild.set("text",li.text)
 					if(li.content!=None):
 						ImagesChild.text=li.content
+			if(crisis.common.summary != None):
+				commonChild=ET.SubElement(crisisChild,"Summary")
+				crisisChild.text = crisis.common.summary
 
 
 
 	for person in Person.objects.all():
 		rootChild = ET.SubElement(root, "Person")
-		rootChild.set("personID", person.id)
-		rootChild.set("personName", person.name)
+		rootChild.set("ID", person.id)
+		rootChild.set("Name", person.name)
 
-		#Location
-		if(person.location):
-			personChild = ET.SubElement(rootChild, "Location")
-			personChild.text = person.location
 
 		#Crisis ID
 		person_crisis_str=person.crises
 		person_crisis_list=ast.literal_eval(person_crisis_str)
-		rootChild2 = ET.SubElement(rootChild, "Crises")
-		for pc in person_crisis_list:
-			rootChild3 = ET.SubElement(rootChild2, "Crisis")
-			rootChild3.set("ID", pc)	
+		if(person_crisis_list):
+			rootChild2 = ET.SubElement(rootChild, "Crises")
+			for pc in person_crisis_list:
+				rootChild3 = ET.SubElement(rootChild2, "Crisis")
+				rootChild3.set("ID", pc)	
 
 		#Organization ID
 		person_Organization_str = person.organizations
 		person_Organization_list = ast.literal_eval(person_Organization_str)
-		rootChild2 = ET.SubElement(rootChild, "Organizations")
-		for po in person_Organization_list:
-			rootChild3 = ET.SubElement(rootChild2, "Org")
-			rootChild3.set("ID", po)
+		if(person_Organization_list):
+			rootChild2 = ET.SubElement(rootChild, "Organizations")
+			for po in person_Organization_list:
+				rootChild3 = ET.SubElement(rootChild2, "Org")
+				rootChild3.set("ID", po)
 
 		#kind
 		if(person.kind):
 			personChild = ET.SubElement(rootChild, "Kind")
 			personChild.text = person.kind
+		#Location
+		if(person.location):
+			personChild = ET.SubElement(rootChild, "Location")
+			personChild.text = person.location
+
 
 		#Common
 		if(person.common!=None):
@@ -957,28 +1402,33 @@ def djangoToXml():
 						ImagesChild.set("text",li.text)
 					if(li.content!=None):
 						ImagesChild.text=li.content
+			if(person.common.summary != None):
+				commonChild=ET.SubElement(personChild,"Summary")
+				personChild.text = person.common.summary
 
 
 	for org in Organization.objects.all():
 		rootChild = ET.SubElement(root, "Organization")
-		rootChild.set("orgID", org.id)
-		rootChild.set("orgName", org.name)
+		rootChild.set("ID", org.id)
+		rootChild.set("Name", org.name)
 
 		#OrganizationCrisis
 		org_crisis_str=org.crises
 		org_crisis_list=ast.literal_eval(org_crisis_str)
-		rootChild2 = ET.SubElement(rootChild, "Crises")
-		for oc in org_crisis_list:
-			rootChild3 = ET.SubElement(rootChild2, "Crisis")
-			rootChild3.set("ID", oc)
+		if(org_crisis_list):
+			rootChild2 = ET.SubElement(rootChild, "Crises")
+			for oc in org_crisis_list:
+				rootChild3 = ET.SubElement(rootChild2, "Crisis")
+				rootChild3.set("ID", oc)
 
 		#OrganizationPerson
 		org_OrganizationPerson_str=org.people
 		org_OrganizationPerson_list=ast.literal_eval(org_OrganizationPerson_str)
-		rootChild2 = ET.SubElement(rootChild, "People")
-		for op in org_OrganizationPerson_list:
-			rootChild3 = ET.SubElement(rootChild2, "Person")
-			rootChild3.set("ID", op)
+		if(org_OrganizationPerson_list):
+			rootChild2 = ET.SubElement(rootChild, "People")
+			for op in org_OrganizationPerson_list:
+				rootChild3 = ET.SubElement(rootChild2, "Person")
+				rootChild3.set("ID", op)
 
 		#kind
 		if(org.kind) :
@@ -1049,6 +1499,9 @@ def djangoToXml():
 						ImagesChild.set("text",li.text)
 					if(li.content!=None):
 						ImagesChild.text=li.content
+			if(org.common.summary != None):
+				commonChild=ET.SubElement(orgChild,"Summary")
+				commonChild.text = org.common.summary
 
 
 
@@ -1084,11 +1537,17 @@ def indent(elem, level=0):
 if __name__ == "__main__":
 	try:
 		if len(sys.argv) == 2:
-			if sys.argv[1] == "import":
+			if sys.argv[1] == "merge":
+				print "merge"
 				xmlToDjango()
 				exit(0)
 			elif sys.argv[1] == "export":
+				print "export"
 				djangoToXml()
+				exit(0)
+			elif sys.argv[1] == "import":
+				print "command line import"
+				importXMLToDjango()
 				exit(0)
 
 		print "\nHow to use:\n\n\tReading from XML to database:\n\txmlParser.py import\n\n\tWriting database to XML:\n\txmlParser.py output\n"
@@ -1098,4 +1557,3 @@ if __name__ == "__main__":
 
 	except Exception as e:
 		logging.exception("Fatal error, ending program. Error message:")
-

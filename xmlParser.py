@@ -584,6 +584,8 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					common.externalLinks.add(li)
 
 				for c in personImages:
+					if c.get("text") != None :
+						c["text"] = unicodedata.normalize('NFKD', unicode(c.get("text"))).encode('ascii', 'ignore')
 					li=List(
 					href=c.get("href"),
 					embed=c.get("embed"),

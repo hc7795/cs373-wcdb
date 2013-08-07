@@ -22,7 +22,7 @@ h3 {
 	position: relative;
 	padding:2.5%;
 	width: 20%;
-	height:300px;
+	height:175px;
 	background-color: rgba(25, 25, 25, 0.90);
 }
 
@@ -32,7 +32,7 @@ h3 {
 	position: relative;
 	padding:2.5%;
 	width: 45%;
-	height:300px;
+	height:175px;
 	background-color: rgba(25, 25, 25, 0.90);
 }
 
@@ -42,7 +42,7 @@ h3 {
 	position: relative;
 	padding:2.5%;
 	width: 70%;
-	height:300px;
+	height:175px;
 	background-color: rgba(25, 25, 25, 0.90);
 }
 
@@ -52,12 +52,12 @@ h3 {
 	position: relative;
 	padding:2.5%;
 	width: 95%;
-	height:300px;
+	height:175px;
 	background-color: rgba(25, 25, 25, 0.90);
 } 
 
 .common_box_height {
-	height:300px;
+	height:175px;
 }
 
 .no_padding {

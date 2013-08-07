@@ -139,9 +139,11 @@ def about(request):
 def crisis(request, urlSlug):
 
 	crisis = Crisis.objects.get(slug=urlSlug)
-	location = replaceBrackets(crisis.location)
-	humanImpact = crisis.humanImpact
-	economicImpact = crisis.economicImpact
+	locations = ast.literal_eval(crisis.location)
+	humanImpact = ast.literal_eval(crisis.humanImpact)
+	economicImpact = ast.literal_eval(crisis.economicImpact)
+	resourcesNeeded = ast.literal_eval(crisis.resourcesNeeded)
+	waysToHelp = ast.literal_eval(crisis.waytoHelp)
 	ppl = replaceBrackets(crisis.people)
 	org = replaceBrackets(crisis.organizations)
 	
@@ -184,30 +186,28 @@ def crisis(request, urlSlug):
 		d["associatedPeople"] = associatedPeople
 	if associatedOrganizations:
 		d["associatedOrganizations"] = associatedOrganizations
-	if crisis.waytoHelp:
-		d["resourcesNeeded"] = ast.literal_eval(crisis.resourcesNeeded)
-	if crisis.waytoHelp:
-		d["waysToHelp"] = ast.literal_eval(crisis.waytoHelp)
-	if location:
-		locations = [l.strip() for l in location.split(",")]
+	if resourcesNeeded and resourcesNeeded[0] != None and resourcesNeeded[0].lower() != "n/a":
+		d["resourcesNeeded"] = resourcesNeeded
+	if waysToHelp and waysToHelp[0] != None and waysToHelp[0].lower() != "n/a":
+		d["waysToHelp"] = waysToHelp 
+	if locations:
 		d["locations"] = locations
 		d["numLocations"] = len(locations)
-	if humanImpact:
-		d["humanImpact"] = ast.literal_eval(humanImpact)
-	if economicImpact:
-		d["economicImpact"] = ast.literal_eval(economicImpact)
-
-	if citations:
+	if humanImpact and humanImpact[0] != None and humanImpact[0].lower() != "n/a":
+		d["humanImpact"] = humanImpact
+	if economicImpact and economicImpact[0] != None and economicImpact[0].lower() != "n/a":
+		d["economicImpact"] = economicImpact
+	if citations and citations[0] != None:
 		d["citations"] = citations
-	if images:
+	if images and images[0] != None:
 		d["images"] = images
-	if videos:
+	if videos and videos[0] != None:
 		d["videos"] = videos
-	if maps:
+	if maps and maps[0] != None:
 		d["maps"] = maps
-	if feeds:
+	if feeds and feeds[0] != None:
 		d["feeds"] = feeds
-	if externalLinks:
+	if externalLinks and externalLinks[0] != None:
 		d["externalLinks"] = externalLinks
 	if summary:
 		d["summary"] = summary
@@ -267,22 +267,22 @@ def person(request, urlSlug):
 		d["associatedCrises"] = associatedCrises
 	if associatedOrganizations:
 		d["associatedOrganizations"] = associatedOrganizations
-	if location:
+	if location and location[0] != None:
 		locations = [l.strip() for l in location.split(",")]
 		d["locations"] = locations
 		d["numLocations"] = len(locations)
 	
-	if citations:
+	if citations and citations[0] != None:
 		d["citations"] = citations
-	if images:
+	if images and images[0] != None:
 		d["images"] = images
-	if videos:
+	if videos and videos[0] != None:
 		d["videos"] = videos
-	if maps:
+	if maps and maps[0] != None:
 		d["maps"] = maps
-	if feeds:
+	if feeds and feeds[0] != None:
 		d["feeds"] = feeds
-	if externalLinks:
+	if externalLinks and externalLinks[0] != None:
 		d["externalLinks"] = externalLinks
 	if summary:
 		d["summary"] = summary
@@ -299,7 +299,7 @@ def org(request, urlSlug):
 	org = Organization.objects.get(slug=urlSlug)
 	location = org.location
 	history = org.history
-	contact = org.contact
+	contact = ast.literal_eval(org.contact)
 	crises = replaceBrackets(org.crises)
 	ppl = replaceBrackets(org.people)
 
@@ -344,26 +344,26 @@ def org(request, urlSlug):
 		d["associatedCrises"] = associatedCrises
 	if associatedPeople:
 		d["associatedPeople"] = associatedPeople
-	if location:
+	if location and location[0] != None:
 		locations = [l.strip() for l in location.split(",")]
 		d["locations"] = locations
 		d["numLocations"] = len(locations)
-	if history:
+	if history and history[0] != None:
 		d["history"] = ast.literal_eval(history)
-	if contact:
-		d["contacts"] = ast.literal_eval(contact)
+	if contact and contact[0] != None:
+		d["contacts"] = contact
 	
-	if citations:
+	if citations and citations[0] != None:
 		d["citations"] = citations
-	if images:
+	if images and images[0] != None:
 		d["images"] = images
-	if videos:
+	if videos and videos[0] != None:
 		d["videos"] = videos
-	if maps:
+	if maps and maps[0] != None:
 		d["maps"] = maps
-	if feeds:
+	if feeds and feeds[0] != None:
 		d["feeds"] = feeds
-	if externalLinks:
+	if externalLinks and externalLinks[0] != None:
 		d["externalLinks"] = externalLinks
 	if summary:
 		d["summary"] = summary

@@ -215,6 +215,7 @@ a:hover {
 .clearfix {
     display: inline-block;
     width: 100%;
+    clear:both;
 }
 
 

@@ -475,7 +475,14 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					li.save()
 					common.feeds.add(li)
 
-
+			duplicateSlugName=False
+			for crisis in Crisis.objects.all():
+				if(crisisName == crisis.name):
+					duplicateSlugName= True
+					break
+			slugCrisisName = crisisName
+			if (duplicateSlugName == True):
+				slugCrisisName = crisisName + crisisDate
 			models[0].append(
 					Crisis(
 					id = crisisID,
@@ -491,7 +498,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					resourcesNeeded = str(crisisResourcesNeeded),
 					waytoHelp = str(crisisWaysToHelp),						
 					common = common,
-					slug = slugify(crisisName),
+					slug = slugify(slugCrisisName),
 					)
 			)
 
@@ -596,6 +603,8 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					li.save()
 					common.videos.add(li)
 				for c in personMaps:
+					if c.get("text") != None :
+						c["text"] = unicodedata.normalize('NFKD', unicode(c.get("text"))).encode('ascii', 'ignore')
 					li=List(
 					href=c.get("href"),
 					embed=c.get("embed"),
@@ -616,6 +625,17 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					li.save()
 					common.feeds.add(li)
 
+			duplicateSlugName=False
+			for person in Person.objects.all():
+				if(personName == person.name):
+					duplicateSlugName= True
+					break
+			slugPersonName = personName
+			if (duplicateSlugName == True):
+				slugPersonName = personName + personID
+
+
+
 			models[1].append(
 				Person(
 					id = personID,
@@ -625,7 +645,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					crises=str(personCrisisIDs),
 					organizations=str(personOrgIDs),
 					common = common,
-					slug = slugify(personName),
+					slug = slugify(slugPersonName),
 				)
 			)
 
@@ -766,7 +786,14 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 						common.feeds.add(li)
 
 
-			#if isNotDuplicate(orgID, "org", unitTestDB):
+			duplicateSlugName=False
+			for org in Organization.objects.all():
+				if(orgName == org.name):
+					duplicateSlugName= True
+					break
+			slugorgName = orgName
+			if (duplicateSlugName == True):
+				slugorgName = orgName + orgID
 			models[2].append(
 				Organization(
 					id = orgID,
@@ -778,7 +805,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					crises=str(orgCrisisIDs),
 					people=str(orgPeopleIDs),
 					common = common,
-					slug = slugify(orgName),
+					slug = slugify(slugorgName),
 				)
 			)
 
@@ -983,7 +1010,7 @@ def merge(c, m):
 		
 		
 def importXML(models) :
-	print "clearing tables"
+	#print "clearing tables"
 	Crisis.objects.all().delete()
 	Person.objects.all().delete()
 	Organization.objects.all().delete()
@@ -1464,7 +1491,7 @@ def djangoToXml():
 						ImagesChild.text=li.content
 			if(org.common.summary != None):
 				commonChild=ET.SubElement(orgChild,"Summary")
-				orgChild.text = org.common.summary
+				commonChild.text = org.common.summary
 
 
 

@@ -89,6 +89,16 @@
 	background-color: rgba(25, 25, 25, 0.90);
 }
 
+#maps_box {
+	height:400px;
+	overflow:hidden;
+}
+
+#maps_box iframe {
+	height:200px;
+	width:200px;
+}
+
 #external_links_box {
 	word-wrap:break-word;
 	width: 97%;

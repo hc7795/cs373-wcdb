@@ -144,8 +144,17 @@
         {% endif %}
     </div>
 
+    {% if maps %}
+        <div class="common_container" id="maps_box">
+            {% for map in maps %}
+            <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="{{map.embed}}"></iframe>
+            {% endfor %}
+        </div>
+        <div class="clearfix"></div>
+    {% endif %}
+
     {% if externalLinks %}
-        <div class="common_container clearfix" id="external_links_box">
+        <div class="common_container clearfix external_links" id="external_links_box">
             <h3>External Links:</h3>
             <ol class="light_grey">
                 {% for e in externalLinks %}

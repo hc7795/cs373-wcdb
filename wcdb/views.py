@@ -470,59 +470,134 @@ def search(request):
 	# Find and bundle up all matches.
 	if queryString != '':
 
+		queryResults = get_query(queryString, ["name"])
+
+		test = ''
+
+		queryTopplID = ''
+		querypplName = Person.objects.filter(queryResults)
+		for eachQuerypplName in querypplName:
+			if queryTopplID != '':
+				queryTopplID += ' ' + eachQuerypplName.id
+			else:
+				queryTopplID += eachQuerypplName.id
+
+		test = queryTopplID
+
+
+		# queryResults = get_query(queryTopplID, crisisFields)
+		# matchingCrises = Crisis.objects.filter(queryResults)
+
 		queryResults = get_query(queryString, crisisFields)
 		matchingCrises = Crisis.objects.filter(queryResults)
+		
+		# test = matchingCrises
 
-		for crisis in matchingCrises:
-			foundCrises[crisis] = [];
+		foundCrises = searchInCrisis(queryString, matchingCrises, queryTopplID)
 
-			if queryString in crisis.name.lower():
-				foundCrises[crisis] += [("name", crisis.name)]
+		queryResultsIDtoName = get_query(queryTopplID, crisisFields)
+		matchingCrisesIDtoName = Crisis.objects.filter(queryResultsIDtoName)
+		# foundCrises = searchInCrisis(queryTopplID, matchingCrisesIDtoName, queryTopplID)
 
-			if queryString in crisis.kind.lower():
-				foundCrises[crisis] += [("kind", crisis.kind)]
+		# for crisis in matchingCrises:
 
-			locationList = ''
-			crisisLocation = ast.literal_eval(crisis.location)
-			for eachLocation in crisisLocation:
-				if queryString in eachLocation.lower():
-					if locationList != '':
-						locationList += '; ' + eachLocation
-					else:
-						locationList += eachLocation
-			foundCrises[crisis] += [("location", locationList)]
+		# 	foundCrises[crisis] = [];
 
-			humanImpactList = ''
-			crisisHumanImpact = ast.literal_eval(crisis.humanImpact)
-			for eachHumanImpact in crisisHumanImpact:
-				if queryString in eachHumanImpact.lower():
-					if humanImpactList != '':
-						humanImpactList += '; ' + eachHumanImpact
-					else:
-						humanImpactList += eachHumanImpact
-			foundCrises[crisis] += [("human impact", humanImpactList)]
+		# 	if queryString in crisis.name.lower():
+		# 		foundCrises[crisis] += [("name", crisis.name)]
 
-			economicImpactList = ''
-			crisisEconomicImpact = ast.literal_eval(crisis.economicImpact)
-			for eachEconomicImpact in crisisEconomicImpact:
-				if queryString in eachEconomicImpact.lower():
-					if economicImpactList != '':
-						economicImpactList += '\n'  '' + eachEconomicImpact
-					else:
-						economicImpactList += eachEconomicImpact
-			foundCrises[crisis] += [("economic impact", economicImpactList)]
+		# 	if queryString in crisis.kind.lower():
+		# 		foundCrises[crisis] += [("kind", crisis.kind)]
 
-			if queryString in crisis.resourcesNeeded.lower():
-				foundCrises[crisis] += [("resources needed", crisis.resourcesNeeded)]
+		# 	locationList = ''
+		# 	crisisLocation = ast.literal_eval(crisis.location)
+		# 	for eachLocation in crisisLocation:
+		# 		if queryString in eachLocation.lower():
+		# 			if locationList != '':
+		# 				locationList += '; ' + eachLocation
+		# 			else:
+		# 				locationList += eachLocation
+		# 	if locationList != '':
+		# 		foundCrises[crisis] += [("location", locationList)]
 
-			if queryString in crisis.waytoHelp.lower():
-				foundCrises[crisis] += [("ways to help", crisis.waytoHelp)]
+		# 	humanImpactList = ''
+		# 	crisisHumanImpact = ast.literal_eval(crisis.humanImpact)
+		# 	for eachHumanImpact in crisisHumanImpact:
+		# 		if queryString in eachHumanImpact.lower():
+		# 			if humanImpactList != '':
+		# 				humanImpactList +=  '; '  + eachHumanImpact
+		# 			else:
+		# 				humanImpactList += eachHumanImpact
+		# 	if humanImpactList != '':
+		# 		foundCrises[crisis] += [("human impact", humanImpactList)]
 
-			if queryString in crisis.people.lower():
-				foundCrises[crisis] += [("associated people", crisis.people)]
+		# 	economicImpactList = ''
+		# 	crisisEconomicImpact = ast.literal_eval(crisis.economicImpact)
+		# 	for eachEconomicImpact in crisisEconomicImpact:
+		# 		if queryString in eachEconomicImpact.lower():
+		# 			if economicImpactList != '':
+		# 				economicImpactList += '; '  + eachEconomicImpact
+		# 			else:
+		# 				economicImpactList += eachEconomicImpact
+		# 	if economicImpactList != '':
+		# 		foundCrises[crisis] += [("economic impact", economicImpactList)]
 
-			if queryString in crisis.organizations.lower():
-				foundCrises[crisis] += [("associated organizations", crisis.organizations)]
+		# 	resourcesNeededList = ''
+		# 	crisisresourcesNeeded = ast.literal_eval(crisis.resourcesNeeded)
+		# 	for eachresourcesNeeded in crisisresourcesNeeded:
+		# 		if queryString in eachresourcesNeeded.lower():
+		# 			if resourcesNeededList != '':
+		# 				resourcesNeededList += '; ' + eachresourcesNeeded
+		# 			else:
+		# 				resourcesNeededList += eachresourcesNeeded
+		# 	if resourcesNeededList != '':
+		# 		foundCrises[crisis] += [("resources needed", resourcesNeededList)]
+
+		# 	waytoHelpList = ''
+		# 	crisiswaytoHelp = ast.literal_eval(crisis.waytoHelp)
+		# 	for eachwaytoHelp in crisiswaytoHelp:
+		# 		if queryString in eachwaytoHelp.lower():
+		# 			if waytoHelpList != '':
+		# 				waytoHelpList += '; ' + eachwaytoHelp
+		# 			else:
+		# 				waytoHelpList += eachwaytoHelp
+		# 	if waytoHelpList != '':
+		# 		foundCrises[crisis] += [("ways to help", waytoHelpList)]
+
+			
+		# 	pplList = ''
+		# 	crisispeople = ast.literal_eval(crisis.people)
+		# 	for eachpeople in crisispeople:
+		# 		try:
+		# 			pplObjects = Person.objects.get(id = eachpeople)
+		# 			if queryString in pplObjects.name:
+		# 				if pplList != '':
+		# 					pplList += '; ' + pplObjects.name
+		# 				else:
+		# 					pplList += pplObjects.name
+		# 		except ObjectDoesNotExist as e:
+		# 			pass
+		# 	if pplList != '':
+		# 		foundCrises[crisis] += [("associated people", pplList)]
+			
+
+			
+		# 	orgList = ''
+		# 	crisisOrg = ast.literal_eval(crisis.organizations)
+		# 	for eachOrg in crisisOrg:
+		# 		try:
+		# 			orgObjects = Organization.objects.get(id = eachOrg)
+		# 			if queryString in orgObjects.name:
+		# 				if orgList != '':
+		# 					orgList += '; ' + orgObjects.name
+		# 				else:
+		# 					orgList += orgObjects.name
+		# 		except ObjectDoesNotExist as e:
+		# 			pass
+		# 	if orgList != '':
+		# 		foundCrises[crisis] += [("associated organizations", orgList)]
+
+
 
 
 		queryResults = get_query(queryString, peopleFields)
@@ -540,11 +615,37 @@ def search(request):
 			if queryString in person.location.lower():
 				foundPeople[person] += [("location", person.location)]
 
-			if queryString in person.crises.lower():
-				foundPeople[person] += [("associated crises", person.crises)]
-
-			if queryString in person.organizations.lower():
-				foundPeople[person] += [("associated organizations", person.organizations)]
+			
+			crisisList = ''
+			pplCrisis = ast.literal_eval(person.crises)
+			for eachCrisis in pplCrisis:
+				try:
+					crisisObjects = Crisis.objects.get(id = eachCrisis)
+					if queryString in crisisObjects.name:
+						if crisisList != '':
+							crisisList += '; ' + crisisObjects.name
+						else:
+							crisisList += crisisObjects.name
+				except ObjectDoesNotExist as e:
+					pass
+			if crisisList != '':
+				foundPeople[person] += [("associated crises", crisisList)]
+			
+			
+			orgList = ''
+			pplOrg = ast.literal_eval(person.organizations)
+			for eachOrg in pplOrg:
+				try:
+					orgObjects = Organization.objects.get(id = eachOrg)
+					if queryString in orgObjects.name:
+						if orgList != '':
+							orgList += '; ' + orgObjects.name
+						else:
+							orgList += orgObjects.name
+				except ObjectDoesNotExist as e:
+					pass
+			if orgList != '':
+				foundPeople[person] += [("associated organizations", orgList)]
 
 
 		queryResults = get_query(queryString, orgFields)
@@ -562,25 +663,195 @@ def search(request):
 			if queryString in org.location.lower():
 				foundOrgs[org] += [("location", org.location)]
 
-			if queryString in org.history.lower():
-				foundOrgs[org] += [("history", org.history)]
+			history = queryListToString(queryString, ast.literal_eval(org.history))
+			if history:
+				foundOrgs[org] += [("history", history)]
 
-			if queryString in org.contact.lower():
-				foundOrgs[org] += [("contact info", org.contact)]
+			contactInfo = queryListToString(queryString, ast.literal_eval(org.contact))
+			if contactInfo:
+				foundOrgs[org] += [("contact info", contactInfo)]
 
-			if queryString in org.crises.lower():
-				foundOrgs[org] += [("associated crises", org.crises)]
+			# if queryString in org.contact.lower():
+			# 	foundOrgs[org] += [("contact info", org.contact)]
 
-			if queryString in org.people.lower():
-				foundOrgs[org] += [("associated people", org.people)]
+			# contactList = ''
+			# orgContact = ast.literal_eval(org.contact)
+			# if orgContact:
+			# 	for eachContact in orgContact:
+			# 		if queryString in eachContact.lower():
+			# 			if contactList != '':
+			# 				contactList += '; ' + eachContact
+			# 			else:
+			# 				contactList += eachContact
+			# 	if contactList != '':
+			# 		foundOrgs[org] += [("contact info", contactList)]
 
+
+
+			# if queryString in org.crises.lower():
+			# 	foundOrgs[org] += [("associated crises", org.crises)]
+
+			
+			crisisList = ''
+			orgCrisis = ast.literal_eval(org.crises)
+			for eachCrisis in orgCrisis:
+				try:
+					crisisObjects = Crisis.objects.get(id = eachCrisis)
+					if queryString in crisisObjects.name:
+						if crisisList != '':
+							crisisList += '; ' + crisisObjects.name
+						else:
+							crisisList += crisisObjects.name
+				except ObjectDoesNotExist as e:
+					pass
+			if crisisList != '':
+				foundOrgs[org] += [("associated crises", crisisList)]
+			
+
+
+			# if queryString in org.people.lower():
+			# 	foundOrgs[org] += [("associated people", org.people)]
+
+			
+			pplList = ''
+			orgPeople = ast.literal_eval(org.people)
+			for eachpeople in orgPeople:
+				try:
+					pplObjects = Person.objects.get(id = eachpeople)
+					if queryString in pplObjects.name:
+						if pplList != '':
+							pplList += '; ' + pplObjects.name
+						else:
+							pplList += pplObjects.name
+				except ObjectDoesNotExist as e:
+					pass
+			if pplList != '':
+				foundOrgs[org] += [("associated people", pplList)]
+			
 	
 
-	valuesToPass = {'searched': searched, 'query': queryStringBackup, 'foundPeople': foundPeople, 'foundCrises': foundCrises, 'foundOrgs': foundOrgs }
+	valuesToPass = {'searched': searched, 'query': queryStringBackup, 'foundPeople': foundPeople, 'foundCrises': foundCrises, 'foundOrgs': foundOrgs, 'test': test }
 	valuesToPass["numberOfResults"] = len(foundCrises)+len(foundPeople)+len(foundOrgs)
 
 	return render_to_response('search.html', valuesToPass, context_instance=RequestContext(request))
 
+
+# Takes a list of strings and a query string. Looks for query string 
+# in each string of the list, and returns a string of the found
+# queries.
+def queryListToString(queryString, listToQuery):
+	returnString = ''
+	for element in listToQuery:
+		if queryString in element.lower():
+			if returnString:
+				returnString += '; ' + element
+			else:
+				historyList += element
+	return returnString
+
+
+def searchInCrisis(queryString, matchingCrises, queryTopplID):
+	foundCrises = {}
+
+	for crisis in matchingCrises:
+
+		foundCrises[crisis] = [];
+
+		if queryString in crisis.name.lower():
+			foundCrises[crisis] += [("name", crisis.name)]
+
+		if queryString in crisis.kind.lower():
+			foundCrises[crisis] += [("kind", crisis.kind)]
+
+		locationList = ''
+		crisisLocation = ast.literal_eval(crisis.location)
+		for eachLocation in crisisLocation:
+			if queryString in eachLocation.lower():
+				if locationList != '':
+					locationList += '; ' + eachLocation
+				else:
+					locationList += eachLocation
+		if locationList != '':
+			foundCrises[crisis] += [("location", locationList)]
+
+		humanImpactList = ''
+		crisisHumanImpact = ast.literal_eval(crisis.humanImpact)
+		for eachHumanImpact in crisisHumanImpact:
+			if queryString in eachHumanImpact.lower():
+				if humanImpactList != '':
+					humanImpactList +=  '; '  + eachHumanImpact
+				else:
+					humanImpactList += eachHumanImpact
+		if humanImpactList != '':
+			foundCrises[crisis] += [("human impact", humanImpactList)]
+
+		economicImpactList = ''
+		crisisEconomicImpact = ast.literal_eval(crisis.economicImpact)
+		for eachEconomicImpact in crisisEconomicImpact:
+			if queryString in eachEconomicImpact.lower():
+				if economicImpactList != '':
+					economicImpactList += '; '  + eachEconomicImpact
+				else:
+					economicImpactList += eachEconomicImpact
+		if economicImpactList != '':
+			foundCrises[crisis] += [("economic impact", economicImpactList)]
+
+		resourcesNeededList = ''
+		crisisresourcesNeeded = ast.literal_eval(crisis.resourcesNeeded)
+		for eachresourcesNeeded in crisisresourcesNeeded:
+			if queryString in eachresourcesNeeded.lower():
+				if resourcesNeededList != '':
+					resourcesNeededList += '; ' + eachresourcesNeeded
+				else:
+					resourcesNeededList += eachresourcesNeeded
+		if resourcesNeededList != '':
+			foundCrises[crisis] += [("resources needed", resourcesNeededList)]
+
+		waytoHelpList = ''
+		crisiswaytoHelp = ast.literal_eval(crisis.waytoHelp)
+		for eachwaytoHelp in crisiswaytoHelp:
+			if queryString in eachwaytoHelp.lower():
+				if waytoHelpList != '':
+					waytoHelpList += '; ' + eachwaytoHelp
+				else:
+					waytoHelpList += eachwaytoHelp
+		if waytoHelpList != '':
+			foundCrises[crisis] += [("ways to help", waytoHelpList)]
+
+		
+		pplList = ''
+		crisispeople = ast.literal_eval(crisis.people)
+		for eachpeople in crisispeople:
+			try:
+				pplObjects = Person.objects.get(id = eachpeople)
+				if (queryString in pplObjects.name) or (queryTopplID in pplObjects.id):
+					if pplList != '':
+						pplList += '; ' + pplObjects.name
+					else:
+						pplList += pplObjects.name
+			except ObjectDoesNotExist as e:
+				pass
+		if pplList != '':
+			foundCrises[crisis] += [("associated people", pplList)]
+		
+
+		
+		orgList = ''
+		crisisOrg = ast.literal_eval(crisis.organizations)
+		for eachOrg in crisisOrg:
+			try:
+				orgObjects = Organization.objects.get(id = eachOrg)
+				if queryString in orgObjects.name:
+					if orgList != '':
+						orgList += '; ' + orgObjects.name
+					else:
+						orgList += orgObjects.name
+			except ObjectDoesNotExist as e:
+				pass
+		if orgList != '':
+			foundCrises[crisis] += [("associated organizations", orgList)]
+
+	return foundCrises
 
 
 

@@ -274,31 +274,14 @@
         <div class="clearfix"></div>
     {% endif %}
 
-    {% if citations %}
-        <div id="external_links_box" class="ellipsis">
-            <h3>Citations:</h3>
-            <ol class="light_grey">
-                {% for citation in citations %}
-                    <li>
-                        {% if citation.name %}
-                            <a href={{citation.href}} name="{{citation.name}}" target="_blank" class="yellow">{{citation.name}}</a> 
-                        {% else %}
-                            <a href={{citation.href}} target="_blank" class="yellow">{{citation.href}}</a>
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            </ol>  
-        </div>
-    {% endif %}
-
     {% if externalLinks %}
         <div id="external_links_box" class="ellipsis">
             <h3>External Links:</h3>
             <ol class="light_grey">
                 {% for link in externalLinks %}
                     <li>
-                        {% if link.name %}
-                            <a href={{link.href}} name="{{link.name}}" target="_blank" class="yellow">{{link.name}}</a> 
+                        {% if link.content %}
+                            <a href={{link.href}} name="{{link.name}}" target="_blank" class="yellow">{{link.content}}</a> 
                         {% else %}
                             <a href={{link.href}} target="_blank" class="yellow">{{link.href}}</a>
                         {% endif %}
@@ -308,6 +291,22 @@
         </div>
     {% endif %}
 
+    {% if citations %}
+        <div id="citations_box" class="ellipsis">
+            <h3>Citations:</h3>
+            <ol class="light_grey">
+                {% for citation in citations %}
+                    <li>
+                        {% if citation.content %}
+                            <a href={{citation.href}} name="{{citation.name}}" target="_blank" class="yellow">{{citation.content}}</a> 
+                        {% else %}
+                            <a href={{citation.href}} target="_blank" class="yellow">{{citation.href}}</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ol>  
+        </div>
+    {% endif %}
  
 
 {% endif %}

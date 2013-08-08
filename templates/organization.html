@@ -132,26 +132,43 @@
 
 
 
-        <div class="common_container">
+    <div class="common_container">
+        <div class="common_group">
             {% if org.kind != "" %}
-                <div class="common_box_small ellipsis">
-                    <h3>Type:</h3> 
-                    <ul><li class="light_grey">{{org.kind}}</li></ul>
+                <div class="common_box_small ellipsis_container">
+                    <div class="add_ellipsis">
+                        <h3>Type:</h3> 
+                        <ul><li>{{org.kind}}</li></ul>
+                    </div>
+                    <div class="no_ellipsis">
+                        <h3>Type:</h3> 
+                        <li>{{org.kind}}</li>
+                    </div>
                 </div>
             {% endif %}
 
             {% if summary %}
-                <div class="common_box_medium ellipsis">
-                    <h3>Summary:</h3>
-                    <p class="light_grey">{{summary}}</p>
+                <div class="common_box_medium ellipsis_container"> 
+                    <div class="add_ellipsis">
+                        <h3>Summary:</h3>
+                        <p>{{summary}}</p>
+                    </div>
+                    <div class="no_ellipsis">
+                        <h3>Summary:</h3>
+                        <p>{{summary}}</p>
+                    </div>
                 </div>
             {% endif %}
 
             {% if history and not summary %}
-                <div class="common_box_medium ellipsis"> 
+                <div class="common_box_medium ellipsis_container"> 
                     <h3>History:</h3>
-
-                    <ul class="light_grey">
+                    <ul class="add_ellipsis">
+                        {% for fact in history %}
+                            <li>{{fact}}</li>
+                        {% endfor %}
+                    </ul>
+                    <ul class="no_ellipsis">
                         {% for fact in history %}
                             <li>{{fact}}</li>
                         {% endfor %}
@@ -160,13 +177,18 @@
             {% endif %}
     
             {% if locations %}
-                <div class="common_box_small ellipsis">
+                <div class="common_box_small ellipsis_container">
                     {% if numLocations == 1 %}
                         <h3>Location:</h3>
                     {% else %}
                         <h3>Locations:</h3>
                     {% endif %}
-                    <ul class="light_grey">
+                    <ul class="add_ellipsis">
+                        {% for location in locations %}
+                            <li>{{location}}</li>
+                        {% endfor %}
+                    </ul>
+                    <ul class="no_ellipsis">
                         {% for location in locations %}
                             <li>{{location}}</li>
                         {% endfor %}
@@ -185,31 +207,50 @@
                     {% endfor %}
                 </div>
             {% endif %}
+   
  
             {% if history and summary %}
-                <div class="common_box_medium ellipsis"> 
-                    <h3>History:</h3>
-
-                    <ul class="light_grey">
-                        {% for fact in history %}
-                            <li>{{fact}}</li>
-                        {% endfor %}
-                    </ul>
+                <div class="common_box_medium ellipsis_container"> 
+                    <div class="add_ellipsis">
+                        <h3>History:</h3>
+                        <ul>
+                            {% for fact in history %}
+                                <li>{{fact}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="no_ellipsis">
+                        <ul>
+                            {% for fact in history %}
+                                <li>{{fact}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             {% endif %}
 
             {% if contacts %}
-                <div class="common_box_medium ellipsis">      
-                    <h3>Contact Info:</h3> 
-                    <ul class="light_grey">
-                        {% for contact in contacts %}
-                            <li>{{contact}}</li>
-                        {% endfor %}
-                    </ul>
+                <div class="common_box_medium ellipsis_container">      
+                    <div class="add_ellipsis">
+                        <h3>Contact Info:</h3>
+                        <ul>
+                            {% for contact in contacts %}
+                                <li>{{contact}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="no_ellipsis">
+                        <ul>
+                            {% for contact in contacts %}
+                                <li>{{contact}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             {% endif %}
 
         </div>
+    </div>
     
     
         <div class="clearfix"></div>

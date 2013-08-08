@@ -20,7 +20,7 @@ from django.core.urlresolvers import reverse
 
 
 def isValidDataList(stringList):
-	return stringList and stringList[0].lower() != "none" and stringList[0].lower() != "n/a"  and stringList[0].lower() != "not applicable"
+	return stringList and stringList[0] != None and stringList[0].lower() != "none" and stringList[0].lower() != "n/a" and stringList[0].lower() != "not applicable" and stringList[0].lower() != "not available"
 
 
 def getConciseSummary(summary):
@@ -256,7 +256,7 @@ def crisis(request, urlSlug):
 def person(request, urlSlug):
 
 	person = Person.objects.get(slug=urlSlug)
-	location = person.location
+	locations = person.location
 	crises = replaceBrackets(person.crises)
 	org = replaceBrackets(person.organizations)
 
@@ -302,22 +302,21 @@ def person(request, urlSlug):
 		d["associatedCrises"] = associatedCrises
 	if associatedOrganizations:
 		d["associatedOrganizations"] = associatedOrganizations
-	if location and location[0] != None:
-		locations = [l.strip() for l in location.split(",")]
-		d["locations"] = locations
-		d["numLocations"] = len(locations)
+	if locations:
+		d["locations"] = [locations]
+		d["numLocations"] = 1
 	
-	if citations and citations[0] != None:
+	if citations:
 		d["citations"] = citations
-	if images and images[0] != None:
+	if images:
 		d["images"] = images
-	if videos and videos[0] != None:
+	if videos:
 		d["videos"] = videos
-	if maps and maps[0] != None:
+	if maps:
 		d["maps"] = maps
-	if feeds and feeds[0] != None:
+	if feeds:
 		d["feeds"] = feeds
-	if externalLinks and externalLinks[0] != None:
+	if externalLinks:
 		d["externalLinks"] = externalLinks
 	if summary:
 		d["summary"] = summary
@@ -332,8 +331,8 @@ def person(request, urlSlug):
 def org(request, urlSlug):
 
 	org = Organization.objects.get(slug=urlSlug)
-	location = org.location
-	history = org.history
+	locations = org.location
+	history = ast.literal_eval(org.history)
 	contact = ast.literal_eval(org.contact)
 	crises = replaceBrackets(org.crises)
 	ppl = replaceBrackets(org.people)
@@ -379,26 +378,25 @@ def org(request, urlSlug):
 		d["associatedCrises"] = associatedCrises
 	if associatedPeople:
 		d["associatedPeople"] = associatedPeople
-	if location and location[0] != None:
-		locations = [l.strip() for l in location.split(",")]
-		d["locations"] = locations
-		d["numLocations"] = len(locations)
-	if history and history[0] != None:
-		d["history"] = ast.literal_eval(history)
-	if contact and contact[0] != None:
+	if locations:
+		d["locations"] = [locations]
+		d["numLocations"] = 1
+	if isValidDataList(history):
+		d["history"] = history
+	if isValidDataList(contact):
 		d["contacts"] = contact
 	
-	if citations and citations[0] != None:
+	if citations:
 		d["citations"] = citations
-	if images and images[0] != None:
+	if images:
 		d["images"] = images
-	if videos and videos[0] != None:
+	if videos:
 		d["videos"] = videos
-	if maps and maps[0] != None:
+	if maps:
 		d["maps"] = maps
-	if feeds and feeds[0] != None:
+	if feeds:
 		d["feeds"] = feeds
-	if externalLinks and externalLinks[0] != None:
+	if externalLinks:
 		d["externalLinks"] = externalLinks
 	if summary:
 		d["summary"] = summary

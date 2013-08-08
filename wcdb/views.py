@@ -1328,36 +1328,26 @@ def import_export(request):
 
 
 def replaceBrackets(stringToReplace):
-	stringAnswer = (stringToReplace).replace('[','')
-	stringAnswer = (stringAnswer).replace(']','')
-	stringAnswer = (stringAnswer).replace("'","")
-	stringAnswer = (stringAnswer).replace('"','')
+	stringAnswer = (stringToReplace).replace('[', '')
+	stringAnswer = (stringAnswer).replace(']', '')
+	stringAnswer = (stringAnswer).replace("'", "")
+	stringAnswer = (stringAnswer).replace('"', '')
 	return stringAnswer
 	
 	
-#search
-def normalize_query(query_string,
+# search
+def query_format(query_string,
 					findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
 					normspace=re.compile(r'\s{2,}').sub):
-	''' Splits the query string in invidual keywords, getting rid of unecessary spaces
-		and grouping quoted words together.
-		Example:
-		
-		>>> normalize_query('  some random  words "with   quotes  " and   spaces')
-		['some', 'random', 'words', 'with quotes', 'and', 'spaces']
-	
-	'''
+
 	return [normspace(' ', (t[0] or t[1]).strip()) for t in findterms(query_string)] 
 
-def get_query(query_string, search_fields):
-	''' Returns a query, that is a combination of Q objects. That combination
-		aims to search keywords within a model by testing the given search fields.
-	
-	'''
-	query = None # Query to search for every search term        
-	terms = normalize_query(query_string)
+def query_make(query_string, search_fields):
+
+	query = None       
+	terms = query_format(query_string)
 	for term in terms:
-		or_query = None # Query to search for a given term in each field
+		or_query = None
 		for field_name in search_fields:
 			q = Q(**{"%s__icontains" % field_name: term})
 			if or_query is None:
@@ -1411,7 +1401,7 @@ def search(request):
 	if queryString != '':
 
 		#check if queryString is a name of a person then get that person ID
-		queryPeopleName = get_query(queryString, ["name"])
+		queryPeopleName = query_make(queryString, ["name"])
 		peopleID = ''
 		peopleName = Person.objects.filter(queryPeopleName)
 		for eachpeopleName in peopleName:
@@ -1423,7 +1413,7 @@ def search(request):
 		test = peopleID
 
 		#check if queryString is a name of an organization then get that organization ID
-		queryOrgName = get_query(queryString, ["name"])
+		queryOrgName = query_make(queryString, ["name"])
 		orgID = ''
 		orgName = Organization.objects.filter(queryOrgName)
 		for eachorgName in orgName:
@@ -1433,7 +1423,7 @@ def search(request):
 				orgID += eachorgName.id
 
 		#check if queryString is a name of a crisis then get that crisis ID
-		queryCrisisName = get_query(queryString, ["name"])
+		queryCrisisName = query_make(queryString, ["name"])
 		crisisID = ''
 		crisisName = Crisis.objects.filter(queryOrgName)
 		for eachcrisisName in crisisName:
@@ -1445,20 +1435,20 @@ def search(request):
 
 		# Crisis
 		# search for queryString in CrisisObjects except people and org fields
-		queryResults = get_query(queryString, crisisFields)
+		queryResults = query_make(queryString, crisisFields)
 		matchingCrises = Crisis.objects.filter(queryResults)
 		foundCrises = searchInCrisis(queryString, matchingCrises)
 
 		# search for queryString in Crisis people field
 		if peopleID:
-			queryCrisisPeopleID = get_query(peopleID, crisisFields)
+			queryCrisisPeopleID = query_make(peopleID, crisisFields)
 			matchingCrisisPeopleID = Crisis.objects.filter(queryCrisisPeopleID)
 			foundCrisisPeopleName = seachPPLName(peopleID, matchingCrisisPeopleID)
 			foundCrises.update(foundCrisisPeopleName)
 
 		# search for queryString in Crisis org field
 		if orgID:
-			queryCrisisOrgID = get_query(orgID, crisisFields)
+			queryCrisisOrgID = query_make(orgID, crisisFields)
 			matchingCrisisOrgID = Crisis.objects.filter(queryCrisisOrgID)
 			foundCrisisOrgName = seachOrgName(orgID, matchingCrisisOrgID)
 			foundCrises.update(foundCrisisOrgName)
@@ -1466,177 +1456,44 @@ def search(request):
 
 		# People
 		# seach for queryString in PeopleObjects except organization and crisis fields
-		queryResults = get_query(queryString, peopleFields)
+		queryResults = query_make(queryString, peopleFields)
 		matchingPeople = Person.objects.filter(queryResults)
 		foundPeople = searchInPeople(queryString, matchingPeople)
 
 		# search for queryString in People org field
 		if orgID:
-			queryPeopleOrgID = get_query(orgID, peopleFields)
+			queryPeopleOrgID = query_make(orgID, peopleFields)
 			matchingPeopleOrgID = Person.objects.filter(queryPeopleOrgID)
 			foundPeopleOrgName = seachOrgName(orgID, matchingPeopleOrgID)
 			foundPeople.update(foundPeopleOrgName)
 
 		# search for queryString in People crisis field
 		if crisisID:
-			queryPeopleCrisisID = get_query(crisisID, peopleFields)
+			queryPeopleCrisisID = query_make(crisisID, peopleFields)
 			matchingPeopleCrisisID = Person.objects.filter(queryPeopleCrisisID)
 			foundPeopleCrisisName = seachCrisisName(crisisID, matchingPeopleCrisisID)
 			foundPeople.update(foundPeopleCrisisName)
 
-
-		# people ----------------------------------------------------------------------------------------------------------------------------------
-		# for person in matchingPeople:
-		# 	foundPeople[person] = [];
-
-		# 	if queryString in person.name.lower():
-		# 		foundPeople[person] += [("name", person.name)]
-
-		# 	if queryString in person.kind.lower():
-		# 		foundPeople[person] += [("occupation", person.kind)]
-
-		# 	if queryString in person.location.lower():
-		# 		foundPeople[person] += [("location", person.location)]
-
-			
-		# 	crisisList = ''
-		# 	pplCrisis = ast.literal_eval(person.crises)
-		# 	for eachCrisis in pplCrisis:
-		# 		try:
-		# 			crisisObjects = Crisis.objects.get(id = eachCrisis)
-		# 			if queryString in crisisObjects.name:
-		# 				if crisisList != '':
-		# 					crisisList += '; ' + crisisObjects.name
-		# 				else:
-		# 					crisisList += crisisObjects.name
-		# 		except ObjectDoesNotExist as e:
-		# 			pass
-		# 	if crisisList != '':
-		# 		foundPeople[person] += [("associated crises", crisisList)]
-			
-			
-		# 	orgList = ''
-		# 	pplOrg = ast.literal_eval(person.organizations)
-		# 	for eachOrg in pplOrg:
-		# 		try:
-		# 			orgObjects = Organization.objects.get(id = eachOrg)
-		# 			if queryString in orgObjects.name:
-		# 				if orgList != '':
-		# 					orgList += '; ' + orgObjects.name
-		# 				else:
-		# 					orgList += orgObjects.name
-		# 		except ObjectDoesNotExist as e:
-		# 			pass
-		# 	if orgList != '':
-		# 		foundPeople[person] += [("associated organizations", orgList)]
-		# people ----------------------------------------------------------------------------------------------------------------------------------
-
 		# Orgs
 		# search for queryString in OrgObjects except people and crisis fields
-		queryResults = get_query(queryString, orgFields)
+		queryResults = query_make(queryString, orgFields)
 		matchingOrgs = Organization.objects.filter(queryResults)
 		foundOrgs = searchInOrgs(queryString, matchingOrgs)
 
 		# search for queryString in Org people field
 		if peopleID:
-			queryOrgPeopleID = get_query(peopleID, orgFields)
+			queryOrgPeopleID = query_make(peopleID, orgFields)
 			matchingOrgPeopleID = Organization.objects.filter(queryOrgPeopleID)
 			foundOrgPeopleName = seachPPLName(peopleID, matchingOrgPeopleID)
 			foundOrgs.update(foundOrgPeopleName)
 
 		# search for queryString in Org crisis field
 		if crisisID:
-			queryOrgCrisisID = get_query(crisisID, orgFields)
+			queryOrgCrisisID = query_make(crisisID, orgFields)
 			matchingOrgCrisisID = Organization.objects.filter(queryOrgCrisisID)
 			foundOrgCrisisName = seachCrisisName(crisisID, matchingOrgCrisisID)
 			foundOrgs.update(foundOrgCrisisName)
-
-		
-		# for org in matchingOrgs:
-		# 	foundOrgs[org] = [];
-
-		# 	if queryString in org.name.lower():
-		# 		foundOrgs[org] += [("name", org.name)]
-
-		# 	if queryString in org.kind.lower():
-		# 		foundOrgs[org] += [("kind", org.kind)]
-
-		# 	if queryString in org.location.lower():
-		# 		foundOrgs[org] += [("location", org.location)]
-
-		# 	# if queryString in org.history.lower():
-		# 	# 	foundOrgs[org] += [("history", org.history)]
-
-		# 	historyList = ''
-		# 	orgHistory = ast.literal_eval(org.history)
-		# 	for eachHistory in orgHistory:
-		# 		if queryString in eachHistory.lower():
-		# 			if historyList != '':
-		# 				historyList += '; '  + eachHistory
-		# 			else:
-		# 				historyList += eachHistory
-		# 	if historyList != '':
-		# 		foundOrgs[org] += [("history", historyList)]
-
-		# 	# if queryString in org.contact.lower():
-		# 	# 	foundOrgs[org] += [("contact info", org.contact)]
-
-		# 	# contactList = ''
-		# 	# orgContact = ast.literal_eval(org.contact)
-		# 	# if orgContact:
-		# 	# 	for eachContact in orgContact:
-		# 	# 		if queryString in eachContact.lower():
-		# 	# 			if contactList != '':
-		# 	# 				contactList += '; ' + eachContact
-		# 	# 			else:
-		# 	# 				contactList += eachContact
-		# 	# 	if contactList != '':
-		# 	# 		foundOrgs[org] += [("contact info", contactList)]
-
-
-
-		# 	# if queryString in org.crises.lower():
-		# 	# 	foundOrgs[org] += [("associated crises", org.crises)]
-
 			
-		# 	crisisList = ''
-		# 	orgCrisis = ast.literal_eval(org.crises)
-		# 	for eachCrisis in orgCrisis:
-		# 		try:
-		# 			crisisObjects = Crisis.objects.get(id = eachCrisis)
-		# 			if queryString in crisisObjects.name:
-		# 				if crisisList != '':
-		# 					crisisList += '; ' + crisisObjects.name
-		# 				else:
-		# 					crisisList += crisisObjects.name
-		# 		except ObjectDoesNotExist as e:
-		# 			pass
-		# 	if crisisList != '':
-		# 		foundOrgs[org] += [("associated crises", crisisList)]
-			
-
-
-		# 	# if queryString in org.people.lower():
-		# 	# 	foundOrgs[org] += [("associated people", org.people)]
-
-			
-		# 	pplList = ''
-		# 	orgPeople = ast.literal_eval(org.people)
-		# 	for eachpeople in orgPeople:
-		# 		try:
-		# 			pplObjects = Person.objects.get(id = eachpeople)
-		# 			if queryString in pplObjects.name:
-		# 				if pplList != '':
-		# 					pplList += '; ' + pplObjects.name
-		# 				else:
-		# 					pplList += pplObjects.name
-		# 		except ObjectDoesNotExist as e:
-		# 			pass
-		# 	if pplList != '':
-		# 		foundOrgs[org] += [("associated people", pplList)]
-			
-	
-
 	valuesToPass = {'searched': searched, 'query': queryStringBackup, 'foundPeople': foundPeople, 'foundCrises': foundCrises, 'foundOrgs': foundOrgs, 'test': test }
 	valuesToPass["numberOfResults"] = len(foundCrises)+len(foundPeople)+len(foundOrgs)
 
@@ -1656,63 +1513,32 @@ def searchInCrisis(queryString, matchingCrises):
 		if queryString in crisis.kind.lower():
 			foundCrises[crisis] += [("kind", crisis.kind)]
 
-		locationList = ''
-		crisisLocation = ast.literal_eval(crisis.location)
-		for eachLocation in crisisLocation:
-			if queryString in eachLocation.lower():
-				if locationList != '':
-					locationList += '; ' + eachLocation
-				else:
-					locationList += eachLocation
-		if locationList != '':
+		locationList = searchContext(queryString, crisis.location)
+		if locationList:
 			foundCrises[crisis] += [("location", locationList)]
 
-		# humanImpactList = ''
-		# crisisHumanImpact = ast.literal_eval(crisis.humanImpact)
-		# for eachHumanImpact in crisisHumanImpact:
-		# 	if queryString in eachHumanImpact.lower():
-		# 		if humanImpactList != '':
-		# 			humanImpactList +=  '; '  + eachHumanImpact
-		# 		else:
-		# 			humanImpactList += eachHumanImpact
-		# if humanImpactList != '':
-		# 	foundCrises[crisis] += [("human impact", humanImpactList)]
-
 		humanImpactList = searchContext(queryString, crisis.humanImpact)
-		foundCrises[crisis] += [("human impact", humanImpactList)]
-		
-		economicImpactList = ''
-		crisisEconomicImpact = ast.literal_eval(crisis.economicImpact)
-		for eachEconomicImpact in crisisEconomicImpact:
-			if queryString in eachEconomicImpact.lower():
-				if economicImpactList != '':
-					economicImpactList += '; '  + eachEconomicImpact
-				else:
-					economicImpactList += eachEconomicImpact
-		if economicImpactList != '':
+		if humanImpactList:
+			foundCrises[crisis] += [("human impact", humanImpactList)]
+
+		economicImpactList = searchContext(queryString, crisis.economicImpact)
+		if economicImpactList:
 			foundCrises[crisis] += [("economic impact", economicImpactList)]
 
-		resourcesNeededList = ''
-		crisisresourcesNeeded = ast.literal_eval(crisis.resourcesNeeded)
-		for eachresourcesNeeded in crisisresourcesNeeded:
-			if queryString in eachresourcesNeeded.lower():
-				if resourcesNeededList != '':
-					resourcesNeededList += '; ' + eachresourcesNeeded
-				else:
-					resourcesNeededList += eachresourcesNeeded
-		if resourcesNeededList != '':
+		resourcesNeededList = searchContext(queryString, crisis.resourcesNeeded)
+		if resourcesNeededList:
 			foundCrises[crisis] += [("resources needed", resourcesNeededList)]
 
-		waytoHelpList = ''
-		crisiswaytoHelp = ast.literal_eval(crisis.waytoHelp)
-		for eachwaytoHelp in crisiswaytoHelp:
-			if queryString in eachwaytoHelp.lower():
-				if waytoHelpList != '':
-					waytoHelpList += '; ' + eachwaytoHelp
-				else:
-					waytoHelpList += eachwaytoHelp
-		if waytoHelpList != '':
+		waytoHelpList = searchContext(queryString, crisis.waytoHelp)
+		if waytoHelpList:
 			foundCrises[crisis] += [("ways to help", waytoHelpList)]
+
+		humanImpactList = searchContext(queryString, crisis.humanImpact)
+		if humanImpactList:
+			foundCrises[crisis] += [("human impact", humanImpactList)]
+
+		# summary = crisis.common.summary
+		# foundCrises[crisis] += [("summary", summary)]
 
 	return foundCrises
 
@@ -1745,37 +1571,17 @@ def searchInOrgs(queryString, matchingOrgs):
 		if queryString in org.kind.lower():
 			foundOrgs[org] += [("kind", org.kind)]
 
-		if queryString in org.location.lower():
-			foundOrgs[org] += [("location", org.location)]
+		locationList = searchContext(queryString, org.location)
+		if locationList:
+			foundOrgs[org] += [("location", locationList)]
 
-		# if queryString in org.history.lower():
-		# 	foundOrgs[org] += [("history", org.history)]
-
-		historyList = ''
-		orgHistory = ast.literal_eval(org.history)
-		for eachHistory in orgHistory:
-			if queryString in eachHistory.lower():
-				if historyList != '':
-					historyList += '; '  + eachHistory
-				else:
-					historyList += eachHistory
-		if historyList != '':
+		historyList = searchContext(queryString, org.history)
+		if historyList:
 			foundOrgs[org] += [("history", historyList)]
 
-		# if queryString in org.contact.lower():
-		# 	foundOrgs[org] += [("contact info", org.contact)]
-
-		# contactList = ''
-		# orgContact = ast.literal_eval(org.contact)
-		# if orgContact:
-		# 	for eachContact in orgContact:
-		# 		if queryString in eachContact.lower():
-		# 			if contactList != '':
-		# 				contactList += '; ' + eachContact
-		# 			else:
-		# 				contactList += eachContact
-		# 	if contactList != '':
-		# 		foundOrgs[org] += [("contact info", contactList)]
+		contactList = searchContext(queryString, org.contact)
+		if contactList:
+			foundOrgs[org] += [("contact info", contactList)]
 
 	return foundOrgs
 
@@ -1835,7 +1641,7 @@ def seachCrisisName(queryString, matchingElements):
 		foundCrisis[eachElement] = [];
 
 		crisisList = ''
-		crises = ast.literal_eval(eachElement.organizations)
+		crises = ast.literal_eval(eachElement.crises)
 		for eachCrisis in crises:
 			try:
 				crisisObjects = Crisis.objects.get(id = eachCrisis)
@@ -1847,7 +1653,7 @@ def seachCrisisName(queryString, matchingElements):
 			except ObjectDoesNotExist as e:
 				pass
 		if crisisList != '':
-			foundCrisis[eachElement] += [("associated organizations", crisisList)]
+			foundCrisis[eachElement] += [("associated crises", crisisList)]
 
 	return foundCrisis
 
@@ -1856,28 +1662,19 @@ def searchContext(queryString, paragraph):
 	context =''
 	splitSentences = re.split('(?<!\d)[.]', paragraph)
 	for eachSentence in splitSentences:
-		print eachSentence
 		if queryString in eachSentence.lower():
-			context += re.sub('(?i)(\s+)(%s)(\s+)'%queryString, '\\1<b>\\2</b>\\3', eachSentence) + ' ...'
+			# context += re.sub('(?i)(\s+)(%s)(\s+)'%queryString, '\\1<b>\\2</b>\\3', eachSentence) + ' ...'
+
+			context += eachSentence 
+
+	context = context.replace('\\n', '')
+	context = context.replace('\\u', '')
+	context = context.replace("u'", '')
+	context = context.replace("\\'", '')
+	context = replaceBrackets(context)
 
 	return context
 
-	# example of searchContext:
-	# import re
-
-	# queryString = "dean"
-	# paragraph = "2.5 3.5 4.5 . In Minneapolis, a man in town for a convention goes jogging at night. A somewhat overweight man jogs past him and then stops further down the path. When the conventioneer stops to congratulate the second jogger on being faster, the second jogger thrust his hand into the conventioneer's chest and rip his heart out. As Sam and Dean wander a farmer's market, Dean goes over the news and finds a report about the Minneapolis murder. There is also a news story on a similar murder in Minneapolis six months ago. Dean is eager to investigate but Sam points out that they've already got enough going on looking for Kevin and the tablet. As Sam shops at the stalls, buying fresh fruit, Dean reminds him yet again that Sam quit for a year and plays the guilt card on him. "
-
-
-	# context =''
-	# splitSentences = re.split('(?<!\d)[.]', paragraph)
-	# for eachSentence in splitSentences:
-	# 	print eachSentence
-	# 	if queryString in eachSentence.lower():
-	# 		context += re.sub('(?i)(\s+)(%s)(\s+)'%queryString, '\\1<b>\\2</b>\\3', eachSentence) + ' ...'
-
-	# print "\n-----------------------------"
-	# print context
 
 
 

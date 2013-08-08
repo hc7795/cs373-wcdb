@@ -42,11 +42,24 @@
 .crisis_information {
 	color: rgba(200, 81, 88, 1);
 }
+.crisis_information:hover {
+	color: rgba(240, 121, 128, 1);
+}
 
 .person_information {
 	color: rgba(0, 176, 236, 1);
 }
+.person_information:hover {
+	color: rgba(40, 216, 255, 1);
+}
 
 .org_information {
 	color: rgba(215, 113, 159, 1);
+}
+.org_information:hover {
+	color: rgba(255, 153, 199, 1);
+}
+
+a {
+	text-decoration: none !important;
 }

@@ -11,21 +11,10 @@ $(document).ready(
     	});
     	Galleria.run('.common_galleria');
 
+        $('.ellipsis_container').each(function() {
 
-        /* Add expand class to every overflowing object. */
-        // var items = document.all;
-        // for (var i = 0; i < items.length; i++) {
-        //     var $this = items[i];
+            if ($(this).text().indexOf('...') > -1) {
 
-        //     if ($this.offsetWidth < $this.scrollWidth) {
-        //         $($this).addClass("expand")
-        //     }
-
-        //     ++i;
-        // }
-        $(".ellipsis").each(function() {
-
-            if ($(this).children().last().text().indexOf('...') > -1) {
                 $(this).addClass('clickToExpand');
                 $(this).hover(function() {
                     $(this).toggleClass('ellipsis_hover');
@@ -34,10 +23,18 @@ $(document).ready(
         });
 
         $('.clickToExpand').click(function() {
-            $(this).toggleClass('clickToCollapse', "fast", "easeInQuad");           
+            $(this).toggleClass('clickToCollapse', "fast", "easeInQuad"); 
+
+
+            console.log($(this).children());
+            console.log($(this).children().children('.add_ellipsis').text());
+            console.log($(this).children().children('.no_ellipsis').text());
+
+            $(this).children().children('.add_ellipsis').toggle("slow");    
+            $(this).children().children('.no_ellipsis').toggle("fast"); 
         });
 
-        $( ".clickToExpand" ).tooltip({ content:"Click to expand/collapse.", items:"div", delay:3000, duration:1200 });
+        $( ".clickToExpand" ).tooltip({ content:"Click to expand/collapse.", items:"div"});
 
     }
 

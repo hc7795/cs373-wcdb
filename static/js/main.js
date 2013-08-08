@@ -65,7 +65,7 @@ $(document).ready(
 		);
 
 		/* Perform ellipsis if necessary on anything with the ellipsis class. */
-		$('.ellipsis').ellipsis();
+		$('.ellipsis_container').ellipsis(".add_ellipsis");
 
 	}
 );

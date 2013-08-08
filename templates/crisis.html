@@ -99,10 +99,15 @@
          -->
         </div>
 
-        <div class="associated_container associated_people ellipsis">
+        <div class="associated_container associated_people ellipsis_container">
             <h3>Associated People:</h3>
             {% if associatedPeople %}
-                <ul>
+                <ul class="add_ellipsis">
+                    {% for name, slug in associatedPeople %}
+                        <li><a href="/person/{{slug}}" class="yellow">{{name}}</a></li>
+                    {% endfor %}
+                </ul>
+                <ul class="no_ellipsis">
                     {% for name, slug in associatedPeople %}
                         <li><a href="/person/{{slug}}" class="yellow">{{name}}</a></li>
                     {% endfor %}
@@ -112,10 +117,15 @@
             {% endif %}
         </div>
 
-        <div class="associated_container associated_organizations ellipsis">
+        <div class="associated_container associated_organizations ellipsis_container">
             <h3>Associated Organizations:</h3>
             {% if associatedOrganizations %}
-                <ul>
+                <ul class="add_ellipsis">
+                    {% for name, slug in associatedOrganizations %}
+                        <li><a href="/org/{{slug}}" class="yellow">{{name}}</a></li>
+                    {% endfor %}
+                </ul>
+                <ul class="no_ellipsis">
                     {% for name, slug in associatedOrganizations %}
                         <li><a href="/org/{{slug}}" class="yellow">{{name}}</a></li>
                     {% endfor %}
@@ -128,43 +138,75 @@
     </div>
     
     <div class="common_container">
-        <span class="common_group">
+        <div class="common_group">
             {% if crisis.date != "" or crisis.time != "" %}
-                <div class="common_box_small ellipsis">
-                    {% if crisis.date != "" %}
-                        <h3>Date:</h3> 
-                        <ul><li class="light_grey">{{crisis.date}}</li></ul>   
-                    {% endif %}
+                <div class="common_box_small ellipsis_container">
+                    <div class="add_ellipsis">
+                        {% if crisis.date != "" %}
+                            <h3>Date:</h3> 
+                            <ul><li>{{crisis.date}}</li></ul>   
+                        {% endif %}
 
-                    {% if crisis.time != "" %}
-                        <h3>Time:</h3>
-                        <ul><li class="light_grey">{{crisis.time}}</li></ul>
-                    {% endif %}
+                        {% if crisis.time != "" %}
+                            <h3>Time:</h3>
+                            <ul><li>{{crisis.time}}</li></ul>
+                        {% endif %}
+                    </div>
+                    <div class="no_ellipsis">
+                        {% if crisis.date != "" %}
+                            <h3>Date:</h3> 
+                            <ul><li>{{crisis.date}}</li></ul>   
+                        {% endif %}
+
+                        {% if crisis.time != "" %}
+                            <h3>Time:</h3>
+                            <ul><li>{{crisis.time}}</li></ul>
+                        {% endif %}
+                    </div>
                 </div>
             {% endif %}
 
             {% if crisis.kind != "" %}
-                <div class="common_box_small ellipsis">
-                    <h3>Type:</h3> 
-                    <ul><li class="light_grey">{{crisis.kind}}</li></ul>
+                <div class="common_box_small ellipsis_container">
+                    <div class="add_ellipsis">
+                        {% if crisis.kind != "" %}
+                            <h3>Type:</h3> 
+                            <ul><li>{{crisis.kind}}</li></ul>
+                        {% endif %}
+                    </div>
+                    <div class="no_ellipsis">
+                        <h3>Type:</h3> 
+                        <li>{{crisis.kind}}</li>
+                    </div>
                 </div>
             {% endif %}
 
             {% if summary %}
-                <div class="common_box_medium ellipsis"> 
-                    <h3>Summary:</h3>
-                    <p>{{crisis.common.summary}}</p>
+                <div class="common_box_medium ellipsis_container"> 
+                    <div class="add_ellipsis">
+                        <h3>Summary:</h3>
+                        <p>{{crisis.common.summary}}</p>
+                    </div>
+                    <div class="no_ellipsis">
+                        <h3>Summary:</h3>
+                        <p>{{crisis.common.summary}}</p>
+                    </div>
                 </div>
             {% endif %}
 
             {% if locations %}
-                <div class="common_box_small ellipsis">
+                <div class="common_box_small ellipsis_container">
                     {% if numLocations == 1 %}
                         <h3>Location:</h3>
                     {% else %}
                         <h3>Locations:</h3>
                     {% endif %}
-                    <ul class="light_grey">
+                    <ul class="add_ellipsis">
+                        {% for location in locations %}
+                            <li>{{location}}</li>
+                        {% endfor %}
+                    </ul>
+                    <ul class="no_ellipsis">
                         {% for location in locations %}
                             <li>{{location}}</li>
                         {% endfor %}
@@ -195,26 +237,36 @@
                     </div>
                 {% endif %}
             {% endif %}
-        </span>
+        </div>
         <div class="clearfix"></div>
 
-        <span class="common_group">
+        <div class="common_group">
             {% if humanImpact %}
                 {% if middleGroupSize < 3 %}
-                    <div class="common_box_xl ellipsis">
+                    <div class="common_box_xl ellipsis_container">
                         <h3>Human Impact:</h3>
-                        <ul>
+                        <ul class="add_ellipsis">
                             {% for impact in humanImpact %}
-                                <li class="light_grey">{{impact}}</li>
+                                <li>{{impact}}</li>
+                            {% endfor %}
+                        </ul>
+                        <ul class="no_ellipsis">
+                            {% for impact in humanImpact %}
+                                <li>{{impact}}</li>
                             {% endfor %}
                         </ul>
                     </div>
                 {% else %}
-                    <div class="common_box_medium ellipsis">
+                    <div class="common_box_medium ellipsis_container">
                         <h3>Human Impact:</h3>
-                        <ul>
+                        <ul class="add_ellipsis">
                             {% for impact in humanImpact %}
-                                <li class="light_grey">{{impact}}</li>
+                                <li>{{impact}}</li>
+                            {% endfor %}
+                        </ul>
+                        <ul class="no_ellipsis">
+                            {% for impact in humanImpact %}
+                                <li>{{impact}}</li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -223,20 +275,30 @@
 
             {% if economicImpact %}
                 {% if middleGroupSize < 3 %}
-                    <div class="common_box_xl ellipsis">  
+                    <div class="common_box_xl ellipsis_container">  
                         <h3>Economic Impact:</h3>
-                        <ul>
+                        <ul class="add_ellipsis">
                             {% for impact in economicImpact %}
-                                <li class="light_grey">{{impact}}</li>
+                                <li>{{impact}}</li>
+                            {% endfor %}
+                        </ul>
+                        <ul class="no_ellipsis">
+                            {% for impact in economicImpact %}
+                                <li>{{impact}}</li>
                             {% endfor %}
                         </ul>  
                     </div>
                 {% else %}
-                    <div class="common_box_medium ellipsis">  
+                    <div class="common_box_medium ellipsis_container">  
                         <h3>Economic Impact:</h3>
-                        <ul>
+                        <ul class="add_ellipsis">
                             {% for impact in economicImpact %}
-                                <li class="light_grey">{{impact}}</li>
+                                <li>{{impact}}</li>
+                            {% endfor %}
+                        </ul>
+                        <ul class="no_ellipsis">
+                            {% for impact in economicImpact %}
+                                <li>{{impact}}</li>
                             {% endfor %}
                         </ul>  
                     </div>
@@ -245,18 +307,28 @@
 
             {% if resourcesNeeded %}
                 {% if middleGroupSize == 3 and not waysToHelp or middleGroupSize == 2 %}
-                    <div class="common_box_xl ellipsis">
+                    <div class="common_box_xl ellipsis_container">
                         <h3>Resources Needed:</h3>
-                        <ul class="light_grey">
+                        <ul class="add_ellipsis">
+                            {% for resource in resourcesNeeded %}
+                                <li>{{resource}}</li>
+                            {% endfor %}
+                        </ul>
+                        <ul class="no_ellipsis">
                             {% for resource in resourcesNeeded %}
                                 <li>{{resource}}</li>
                             {% endfor %}
                         </ul>
                     </div>
                 {% else %}
-                    <div class="common_box_medium ellipsis">
+                    <div class="common_box_medium ellipsis_container">
                         <h3>Resources Needed:</h3>
-                        <ul class="light_grey">
+                        <ul class="add_ellipsis">
+                            {% for resource in resourcesNeeded %}
+                                <li>{{resource}}</li>
+                            {% endfor %}
+                        </ul>
+                        <ul class="no_ellipsis">
                             {% for resource in resourcesNeeded %}
                                 <li>{{resource}}</li>
                             {% endfor %}
@@ -267,33 +339,54 @@
 
             {% if waysToHelp %}
                 {% if middleGroupSize == 2 or middleGroupSize == 3 %}
-                    <div class="common_box_xl ellipsis">   
+                    <div class="common_box_xl ellipsis_container">   
                         <h3>Ways to Help:</h3>
-                        <ul class="light_grey">
-                        {% for way in waysToHelp %}
-                            <li>{{way}}</li>
-                        {% endfor %}
+                        <ul class="add_ellipsis">
+                            {% for way in waysToHelp %}
+                                <li>{{way}}</li>
+                            {% endfor %}
+                        </ul>
+                        <ul class="no_ellipsis">
+                            {% for way in waysToHelp %}
+                                <li>{{way}}</li>
+                            {% endfor %}
                         </ul>
                     </div>
                 {% else %}
-                    <div class="common_box_medium ellipsis">   
+                    <div class="common_box_medium ellipsis_container">   
                         <h3>Ways to Help:</h3>
-                        <ul class="light_grey">
-                        {% for way in waysToHelp %}
-                            <li>{{way}}</li>
-                        {% endfor %}
+                        <ul class="add_ellipsis">
+                            {% for way in waysToHelp %}
+                                <li>{{way}}</li>
+                            {% endfor %}
+                        </ul>
+                        <ul class="no_ellipsis">
+                            {% for way in waysToHelp %}
+                                <li>{{way}}</li>
+                            {% endfor %}
                         </ul>
                     </div>
                 {% endif %}
             {% endif %}
-        </span>
+        </div>
     </div>
     <div class="clearfix"></div>
 
     {% if externalLinks %}
-        <div id="external_links_box" class="ellipsis">
+        <div id="external_links_box" class="ellipsis_container">
             <h3>External Links:</h3>
-            <ol class="light_grey">
+            <ol class="add_ellipsis">
+                {% for link in externalLinks %}
+                    <li>
+                        {% if link.content %}
+                            <a href={{link.href}} name="{{link.name}}" target="_blank" class="yellow">{{link.content}}</a> 
+                        {% else %}
+                            <a href={{link.href}} target="_blank" class="yellow">{{link.href}}</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ol>
+            <ol class="no_ellipsis">
                 {% for link in externalLinks %}
                     <li>
                         {% if link.content %}
@@ -308,9 +401,20 @@
     {% endif %}
 
     {% if citations %}
-        <div id="citations_box" class="ellipsis">
+        <div id="citations_box" class="ellipsis_container">
             <h3>Citations:</h3>
-            <ol class="light_grey">
+            <ol class="add_ellipsis">
+                {% for citation in citations %}
+                    <li>
+                        {% if citation.content %}
+                            <a href={{citation.href}} name="{{citation.name}}" target="_blank" class="yellow">{{citation.content}}</a> 
+                        {% else %}
+                            <a href={{citation.href}} target="_blank" class="yellow">{{citation.href}}</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ol>
+            <ol class="no_ellipsis">
                 {% for citation in citations %}
                     <li>
                         {% if citation.content %}

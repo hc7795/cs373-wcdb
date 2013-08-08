@@ -20,7 +20,7 @@ from django.core.urlresolvers import reverse
 
 
 def isValidDataList(stringList):
-	return stringList and stringList[0].lower() != "none" and stringList[0].lower() != "n/a"
+	return stringList and stringList[0].lower() != "none" and stringList[0].lower() != "n/a"  and stringList[0].lower() != "not applicable"
 
 
 def getConciseSummary(summary):

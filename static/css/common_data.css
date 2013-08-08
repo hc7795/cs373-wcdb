@@ -8,7 +8,8 @@ li {
 
 .common_group {
 	background-color: rgba(35, 35, 35, 1);
-	display:block;
+	display:inline-block;
+	width:100%;
 }
 
 .common_container {
@@ -18,6 +19,7 @@ li {
 	min-height: 400px;
 	background-color: rgba(245, 245, 245, 0.40);
 	position: relative;
+	color:#CCC;
 }
 
 .common_container p {
@@ -181,5 +183,13 @@ li {
 .clickToCollapse {
 	height:100%;
 	width:95%;	
+}
+
+.add_ellipsis {
+	display: visible;
+}
+
+.no_ellipsis {
+	display: none;
 }
 

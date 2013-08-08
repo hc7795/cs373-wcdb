@@ -50,7 +50,7 @@ from django.template.defaultfilters import slugify
 """
 	Parses a XML file into Django models and saves them to the database. 
 """
-def xmlToDjango():
+def xmlToDjango(xmlFilename):
 
 	#password = raw_input("Password: ")
 	#if (password != "gummy"):
@@ -60,7 +60,7 @@ def xmlToDjango():
 
 	#xmlFilename = raw_input("Filename of the XML file: ")
 	#schemaFilename = raw_input("Filename of the schema file: ")
-	xmlFilename = "static/vkeshari-WCDB2.xml"
+	# xmlFilename = "static/vkeshari-WCDB2.xml"
 	schemaFilename = "static/WorldCrises.xsd.xml"
 
 
@@ -97,7 +97,7 @@ def xmlToDjango():
 	# Put the models in the Django database.
 	modelsToDjango(modelsList)
 
-def importXMLToDjango():
+def importXMLToDjango(xmlFilename):
 
 	#password = raw_input("Password: ")
 	#if (password != "gummy"):
@@ -107,7 +107,7 @@ def importXMLToDjango():
 
 	#xmlFilename = raw_input("Filename of the XML file: ")
 	#schemaFilename = raw_input("Filename of the schema file: ")
-	xmlFilename = "static/hc7795-WCDB2.xml"
+	# xmlFilename = "static/hc7795-WCDB2.xml"
 	schemaFilename = "static/WorldCrises.xsd.xml"
 
 
@@ -1557,10 +1557,10 @@ def indent(elem, level=0):
 """
 if __name__ == "__main__":
 	try:
-		if len(sys.argv) == 2:
+		if len(sys.argv) == 3:
 			if sys.argv[1] == "merge":
 				print "merge"
-				xmlToDjango()
+				xmlToDjango(sys.argv[2])
 				exit(0)
 			elif sys.argv[1] == "export":
 				print "export"
@@ -1568,10 +1568,10 @@ if __name__ == "__main__":
 				exit(0)
 			elif sys.argv[1] == "import":
 				print "command line import"
-				importXMLToDjango()
+				importXMLToDjango(sys.argv[2])
 				exit(0)
 
-		print "\nHow to use:\n\n\tReading from XML to database:\n\txmlParser.py import\n\n\tWriting database to XML:\n\txmlParser.py output\n"
+		print "\nHow to use:\n\n\tClean import from XML to database:\n\txmlParser.py import filepath\n\n\tMerge import from XML to database:\n\txmlParser.py merge filepath\n\n\tWriting database to XML:\n\txmlParser.py output\n"
 
 	except IOError as ioe:
 		print "Error parsing files!"

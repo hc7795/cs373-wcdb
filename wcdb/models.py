@@ -1,5 +1,5 @@
 from django.db import models
-
+import os
 
 
 class Crisis(models.Model):
@@ -16,7 +16,7 @@ class Crisis(models.Model):
 	people = models.TextField(null=True)
 	organizations = models.TextField(null=True)
 	common = models.ForeignKey('Common', null=True)
-	slug = models.SlugField(max_length=500, unique=True)
+	slug = models.SlugField(max_length=255, unique=True)
 
 	def __unicode__(self):
 	   return self.name  
@@ -29,7 +29,7 @@ class Person(models.Model):
 	crises = models.TextField(null=True)
 	organizations = models.TextField(null=True)
 	common = models.ForeignKey('Common', null=True)
-	slug = models.SlugField(max_length=500, unique=True)
+	slug = models.SlugField(max_length=255, unique=True)
 
 
 	def __unicode__(self):
@@ -45,7 +45,7 @@ class Organization(models.Model):
 	crises = models.TextField(null=True)
 	people = models.TextField(null=True)
 	common = models.ForeignKey('Common', null=True)
-	slug = models.SlugField(max_length=500, unique=True)
+	slug = models.SlugField(max_length=255, unique=True)
 
 
 	def __unicode__(self):
@@ -85,4 +85,6 @@ class Common(models.Model) :
 
 class Document(models.Model):
     docfile = models.FileField(upload_to='documents/')
+    def filename(self):
+		return os.path.basename(self.docfile.name)
 

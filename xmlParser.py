@@ -146,7 +146,7 @@ def importXMLToDjango(xmlFilename):
 	# Put the models in the Django database.
 	importXML(modelsList)
 	
-def importXMLToDjangoFile(file):
+def importXMLToDjangoFile(xmlFilename):
 
 	#password = raw_input("Password: ")
 	#if (password != "gummy"):
@@ -156,7 +156,6 @@ def importXMLToDjangoFile(file):
 
 	#xmlFilename = raw_input("Filename of the XML file: ")
 	#schemaFilename = raw_input("Filename of the schema file: ")
-	xmlFilename = "documents/" + file
 	schemaFilename = "documents/WorldCrises.xsd.xml"
 
 
@@ -1210,9 +1209,9 @@ def modelsToDjango(models):
 """
 	Parses Django models into a new XML file. 
 """
-def djangoToXml():
+def djangoToXml(xmlFilename):
 
-	outfile = open("static/dbOutput.xml", "w")
+	outfile = open(xmlFilename, "w")
 	root = ET.Element("WorldCrises")
 
 
@@ -1306,7 +1305,7 @@ def djangoToXml():
 			crisisChild = ET.SubElement(rootChild, "Common")
 			if(crisis.common.citations.exists()):
 				commonChild=ET.SubElement(crisisChild,"Citations")
-				for li in crisis.common.commonCitations.all():
+				for li in crisis.common.citations.all():
 					CitationsChild=ET.SubElement(commonChild,"li")
 					if(li.href!=None):
 						CitationsChild.set("href",li.href)
@@ -1564,14 +1563,14 @@ if __name__ == "__main__":
 				exit(0)
 			elif sys.argv[1] == "export":
 				print "export"
-				djangoToXml()
+				djangoToXml(sys.argv[2])
 				exit(0)
 			elif sys.argv[1] == "import":
 				print "command line import"
 				importXMLToDjango(sys.argv[2])
 				exit(0)
 
-		print "\nHow to use:\n\n\tClean import from XML to database:\n\txmlParser.py import filepath\n\n\tMerge import from XML to database:\n\txmlParser.py merge filepath\n\n\tWriting database to XML:\n\txmlParser.py output\n"
+		print "\nHow to use:\n\n\tClean import from XML to database:\n\txmlParser.py import filepath\n\n\tMerge import from XML to database:\n\txmlParser.py merge filepath\n\n\tWriting database to XML:\n\txmlParser.py output filepath\n"
 
 	except IOError as ioe:
 		print "Error parsing files!"

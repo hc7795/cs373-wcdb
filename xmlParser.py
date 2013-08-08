@@ -42,6 +42,8 @@ from PIL import Image
 import math
 import operator
 
+import unicodedata
+
 from django.template.defaultfilters import slugify
 
 

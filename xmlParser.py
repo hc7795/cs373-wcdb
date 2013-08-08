@@ -143,6 +143,56 @@ def importXMLToDjango():
 
 	# Put the models in the Django database.
 	importXML(modelsList)
+	
+def importXMLToDjangoFile(file):
+
+	#password = raw_input("Password: ")
+	#if (password != "gummy"):
+	#	print "Bad password!"
+	#	exit(1)
+
+
+	#xmlFilename = raw_input("Filename of the XML file: ")
+	#schemaFilename = raw_input("Filename of the schema file: ")
+	xmlFilename = "documents/" + file
+	schemaFilename = "documents/WorldCrises.xsd.xml"
+
+
+	# Validate the XML file.
+	try:
+
+		# call validator with non-default values
+		elementTreeWrapper = pyxsval.parseAndValidate (xmlFilename, 
+			xsdFile         = schemaFilename,
+			xmlIfClass      = pyxsval.XMLIF_ELEMENTTREE,
+			warningProc     = pyxsval.PRINT_WARNINGS,
+			errorLimit      = 200, 
+			verbose         = 1,
+			useCaching      = 0, 
+			processXInclude = 0)
+
+		# get elementtree object after validation
+		xmlTree = elementTreeWrapper.getTree()
+
+
+	except pyxsval.XsvalError as errstr:
+		print errstr
+		print "Validation aborted!"
+		raise pyxsval.XsvalError
+
+	except GenXmlIfError as errstr:
+		print errstr
+		print "Parsing aborted!"
+		raise GenXmlIfError
+	      
+	Common.objects.all().delete()
+	List.objects.all().delete()
+	# Get a list of model objects from xmlTree.
+	modelsList = elementTreeToModels(xmlTree)
+
+	# Put the models in the Django database.
+	importXML(modelsList)
+
 
 
 

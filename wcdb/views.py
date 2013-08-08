@@ -572,14 +572,14 @@ def search(request):
 			queryPeopleOrgID = get_query(orgID, peopleFields)
 			matchingPeopleOrgID = Person.objects.filter(queryPeopleOrgID)
 			foundPeopleOrgName = seachOrgName(orgID, matchingPeopleOrgID)
-			foundCrises.update(foundPeopleOrgName)
+			foundPeople.update(foundPeopleOrgName)
 
 		# search for queryString in People crisis field
 		if crisisID:
 			queryPeopleCrisisID = get_query(crisisID, peopleFields)
 			matchingPeopleCrisisID = Person.objects.filter(queryPeopleCrisisID)
-			foundPeopleCrisisName = seachOrgName(crisisID, matchingPeopleCrisisID)
-			foundCrises.update(foundPeopleCrisisName)
+			foundPeopleCrisisName = seachCrisisName(crisisID, matchingPeopleCrisisID)
+			foundPeople.update(foundPeopleCrisisName)
 
 
 		# people ----------------------------------------------------------------------------------------------------------------------------------
@@ -639,14 +639,14 @@ def search(request):
 			queryOrgPeopleID = get_query(peopleID, orgFields)
 			matchingOrgPeopleID = Organization.objects.filter(queryOrgPeopleID)
 			foundOrgPeopleName = seachPPLName(peopleID, matchingOrgPeopleID)
-			foundCrises.update(foundOrgPeopleName)
+			foundOrgs.update(foundOrgPeopleName)
 
 		# search for queryString in Org crisis field
 		if crisisID:
 			queryOrgCrisisID = get_query(crisisID, orgFields)
 			matchingOrgCrisisID = Organization.objects.filter(queryOrgCrisisID)
-			foundOrgCrisisName = seachOrgName(peopleID, matchingOrgCrisisID)
-			foundCrises.update(foundOrgCrisisName)
+			foundOrgCrisisName = seachCrisisName(crisisID, matchingOrgCrisisID)
+			foundOrgs.update(foundOrgCrisisName)
 
 		
 		# for org in matchingOrgs:
@@ -775,8 +775,9 @@ def searchInCrisis(queryString, matchingCrises):
 		# if humanImpactList != '':
 		# 	foundCrises[crisis] += [("human impact", humanImpactList)]
 
-		# humanImpactList = searchContext(queryString, crisis.humanImpact)
-
+		humanImpactList = searchContext(queryString, crisis.humanImpact)
+		foundCrises[crisis] += [("human impact", humanImpactList)]
+		
 		economicImpactList = ''
 		crisisEconomicImpact = ast.literal_eval(crisis.economicImpact)
 		for eachEconomicImpact in crisisEconomicImpact:

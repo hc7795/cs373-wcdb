@@ -133,17 +133,21 @@
 
 
         <div class="common_container">
-                {% if org.kind != "" %}
-                    <div class="common_box_small ellipsis">
-                        <h3>Type:</h3> 
-                        <ul><li class="light_grey">{{org.kind}}</li></ul>
-                    </div>
-                {% endif %}
+            {% if org.kind != "" %}
+                <div class="common_box_small ellipsis">
+                    <h3>Type:</h3> 
+                    <ul><li class="light_grey">{{org.kind}}</li></ul>
+                </div>
+            {% endif %}
 
-                
-            
+            {% if summary %}
+                <div class="common_box_medium ellipsis">
+                    <h3>Summary:</h3>
+                    <p class="light_grey">{{summary}}</p>
+                </div>
+            {% endif %}
 
-            {% if history %}
+            {% if history and not summary %}
                 <div class="common_box_medium ellipsis"> 
                     <h3>History:</h3>
 
@@ -154,10 +158,6 @@
                     </ul>
                 </div>
             {% endif %}
-        
-      
-   
-
     
             {% if locations %}
                 <div class="common_box_small ellipsis">
@@ -186,10 +186,15 @@
                 </div>
             {% endif %}
  
-            {% if summary %}
-                <div class="common_box_medium ellipsis">
-                    <h3>Summary:</h3>
-                    <p class="light_grey">{{summary}}</p>
+            {% if history and summary %}
+                <div class="common_box_medium ellipsis"> 
+                    <h3>History:</h3>
+
+                    <ul class="light_grey">
+                        {% for fact in history %}
+                            <li>{{fact}}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
             {% endif %}
 

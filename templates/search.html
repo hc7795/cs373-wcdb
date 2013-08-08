@@ -38,7 +38,7 @@
 						<ol>
 							{% for crisis, matches in foundCrises.items %}
 								<li>
-									<a class="yellow" href="/crisis/{{crisis.slug}}"><h3>{{crisis.name}}</h3></a>
+									<a href="/crisis/{{crisis.slug}}"><h3>{{crisis.name}}</h3></a>
 									<ul>
 										{% for match, context in matches %}
 											<li><span class="italic bold">{{match}}:</span> {{context}}</li>
@@ -55,7 +55,7 @@
 						<h2>Matching people:</h2>
 						<ol>
 							{% for person, matches in foundPeople.items %}
-								<li><a class="yellow" href="/person/{{person.slug}}"><h3>{{person.name}}</h3></a></li>
+								<li><a href="/person/{{person.slug}}"><h3>{{person.name}}</h3></a></li>
 								<ul>
 									{% for match, context in matches %}
 										<li><span class="italic bold">{{match}}:</span> {{context}}</li>
@@ -71,7 +71,7 @@
 						<h2>Matching organizations:</h2>
 						<ol>
 							{% for org, matches in foundOrgs.items %}
-								<li><a class="yellow" href="/org/{{org.slug}}"><h3>{{org.name}}</h3></a></li>
+								<li><a href="/org/{{org.slug}}"><h3>{{org.name}}</h3></a></li>
 								<ul>
 									{% for match, context in matches %}
 										<li><span class="italic bold">{{match}}:</span> {{context}}</li>

@@ -52,19 +52,32 @@
 .results_category {
 	margin:2%;
 	padding:2% 3% 2% 3%;
-	background-color: rgba(245, 245, 245, 0.40);
+	background-color: rgba(15, 15, 15, 0.8);
+	color:#CCC;
 }
 
-.results_crises {
-	background-color: rgba(220, 31, 38, 0.50);
+.results_crises h2, .results_crises h3 {
+	color: rgba(200, 81, 88, 1);
+}
+.results_crises h3:hover {
+	color: rgba(240, 121, 128, 1);
+	text-decoration: underline;
 }
 
-.results_people {
-	background-color: rgba(0, 176, 236, 0.50);
+.results_people h2, .results_people h3 {
+	color: rgba(0, 176, 236, 1);
+}
+.results_people h3:hover {
+	color: rgba(40, 216, 255, 1);
+	text-decoration: underline;
 }
 
-.results_organizations {
-	background-color: rgba(215, 113, 159, 0.50);
+.results_organizations h2, .results_organizations h3 {
+	color: rgba(215, 113, 159, 1);
+}
+.results_organizations h3:hover {
+	color: rgba(255, 153, 199, 1);
+	text-decoration: underline;
 }
 
 

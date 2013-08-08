@@ -60,7 +60,7 @@ def xmlToDjango():
 
 	#xmlFilename = raw_input("Filename of the XML file: ")
 	#schemaFilename = raw_input("Filename of the schema file: ")
-	xmlFilename = "static/alexk-WCDB2.xml"
+	xmlFilename = "static/vkeshari-WCDB2.xml"
 	schemaFilename = "static/WorldCrises.xsd.xml"
 
 
@@ -107,7 +107,7 @@ def importXMLToDjango():
 
 	#xmlFilename = raw_input("Filename of the XML file: ")
 	#schemaFilename = raw_input("Filename of the schema file: ")
-	xmlFilename = "static/alexk-WCDB2.xml"
+	xmlFilename = "static/hc7795-WCDB2.xml"
 	schemaFilename = "static/WorldCrises.xsd.xml"
 
 
@@ -1264,7 +1264,6 @@ def djangoToXml():
 			for cl in crisis_Location_list:
 				rootChild3 = ET.SubElement(rootChild2, "li")
 				rootChild3.text = cl
-
 		#crisisHumanImpact
 		crisis_HumanImpact_str=crisis.humanImpact
 		crisis_HumanImpact_list=ast.literal_eval(crisis_HumanImpact_str)

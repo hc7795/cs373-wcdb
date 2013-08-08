@@ -60,7 +60,7 @@ def xmlToDjango():
 
 	#xmlFilename = raw_input("Filename of the XML file: ")
 	#schemaFilename = raw_input("Filename of the schema file: ")
-	xmlFilename = "static/WorldCrises.xml"
+	xmlFilename = "static/alexk-WCDB2.xml"
 	schemaFilename = "static/WorldCrises.xsd.xml"
 
 
@@ -107,7 +107,7 @@ def importXMLToDjango():
 
 	#xmlFilename = raw_input("Filename of the XML file: ")
 	#schemaFilename = raw_input("Filename of the schema file: ")
-	xmlFilename = "static/WorldCrises.xml"
+	xmlFilename = "static/alexk-WCDB2.xml"
 	schemaFilename = "static/WorldCrises.xsd.xml"
 
 
@@ -527,14 +527,6 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					li.save()
 					common.feeds.add(li)
 
-			duplicateSlugName=False
-			for crisis in Crisis.objects.all():
-				if(crisisName == crisis.name):
-					duplicateSlugName= True
-					break
-			slugCrisisName = crisisName
-			if (duplicateSlugName == True):
-				slugCrisisName = crisisName + crisisDate
 			models[0].append(
 					Crisis(
 					id = crisisID,
@@ -550,7 +542,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					resourcesNeeded = str(crisisResourcesNeeded),
 					waytoHelp = str(crisisWaysToHelp),						
 					common = common,
-					slug = slugify(slugCrisisName),
+					slug = slugify(crisisID),
 					)
 			)
 
@@ -677,17 +669,6 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					li.save()
 					common.feeds.add(li)
 
-			duplicateSlugName=False
-			for person in Person.objects.all():
-				if(personName == person.name):
-					duplicateSlugName= True
-					break
-			slugPersonName = personName
-			if (duplicateSlugName == True):
-				slugPersonName = personName + personID
-
-
-
 			models[1].append(
 				Person(
 					id = personID,
@@ -697,7 +678,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					crises=str(personCrisisIDs),
 					organizations=str(personOrgIDs),
 					common = common,
-					slug = slugify(slugPersonName),
+					slug = slugify(personID),
 				)
 			)
 
@@ -838,14 +819,6 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 						common.feeds.add(li)
 
 
-			duplicateSlugName=False
-			for org in Organization.objects.all():
-				if(orgName == org.name):
-					duplicateSlugName= True
-					break
-			slugorgName = orgName
-			if (duplicateSlugName == True):
-				slugorgName = orgName + orgID
 			models[2].append(
 				Organization(
 					id = orgID,
@@ -857,7 +830,7 @@ def elementTreeToModels(elementTree, unitTestDB = "No"):
 					crises=str(orgCrisisIDs),
 					people=str(orgPeopleIDs),
 					common = common,
-					slug = slugify(slugorgName),
+					slug = slugify(orgID),
 				)
 			)
 

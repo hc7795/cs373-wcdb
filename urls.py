@@ -27,7 +27,9 @@ urlpatterns = patterns('',
 
 	# File uploads.
 	url(r'^file_upload', views.fileUpload),
-
+	url(r'^export', views.export),
+	# Exported XML
+	#url(r'^export', views.export)
     #url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

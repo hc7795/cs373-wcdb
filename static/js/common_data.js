@@ -27,15 +27,18 @@ $(document).ready(
 
             if ($(this).children().last().text().indexOf('...') > -1) {
                 $(this).addClass('clickToExpand');
-                $(this).hover(function(){
+                $(this).hover(function() {
                     $(this).toggleClass('ellipsis_hover');
                 });
             }
         });
 
         $('.clickToExpand').click(function() {
-            $(this).toggleClass('clickToCollapse', "fast", "easeInQuad");            
+            $(this).toggleClass('clickToCollapse', "fast", "easeInQuad");           
         });
+
+        $( ".clickToExpand" ).tooltip({ content:"Click to expand/collapse.", items:"div", delay:3000, duration:1200 });
+
     }
 
 );

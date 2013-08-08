@@ -1103,7 +1103,7 @@ def modelsToDjango(models):
 			newcrisis_organizations_list=ast.literal_eval(m.organizations)
 			for o in oldcrisis_organizations_list:
 				if not (o in newcrisis_organizations_list):
-					newcrisis_organizations_list.append(p)
+					newcrisis_organizations_list.append(o)
 			m.organizations=str(newcrisis_organizations_list)
 
 			c.common.externalLinks.all().delete()

@@ -1068,25 +1068,29 @@ def modelsToDjango(models):
 			#merge common
 			merge(c,m)
 			#merge humanImpact
-			oldcrisis_HumanImpact_list=ast.literal_eval(c.humanImpact)
-			newcrisis_HumanImpact_list=ast.literal_eval(m.humanImpact)
-			newcrisis_HumanImpact_list+=oldcrisis_HumanImpact_list
-			m.humanImpact=str(newcrisis_HumanImpact_list)
+			if(c.humanImpact != m.humanImpact):
+				oldcrisis_HumanImpact_list=ast.literal_eval(c.humanImpact)
+				newcrisis_HumanImpact_list=ast.literal_eval(m.humanImpact)
+				newcrisis_HumanImpact_list+=oldcrisis_HumanImpact_list
+				m.humanImpact=str(newcrisis_HumanImpact_list)
 			#merge economicImpact
-			oldcrisis_economicImpact_list=ast.literal_eval(c.economicImpact)
-			newcrisis_economicImpact_list=ast.literal_eval(m.economicImpact)
-			newcrisis_economicImpact_list+=oldcrisis_economicImpact_list
-			m.economicImpact=str(newcrisis_economicImpact_list)
+			if(c.economicImpact != m.economicImpact):
+				oldcrisis_economicImpact_list=ast.literal_eval(c.economicImpact)
+				newcrisis_economicImpact_list=ast.literal_eval(m.economicImpact)
+				newcrisis_economicImpact_list+=oldcrisis_economicImpact_list
+				m.economicImpact=str(newcrisis_economicImpact_list)
 			#merge resourcesNeeded
-			oldcrisis_resourcesNeeded_list=ast.literal_eval(c.resourcesNeeded)
-			newcrisis_resourcesNeeded_list=ast.literal_eval(m.resourcesNeeded)
-			newcrisis_resourcesNeeded_list+=oldcrisis_resourcesNeeded_list
-			m.resourcesNeeded=str(newcrisis_resourcesNeeded_list)
+			if(c.resourcesNeeded != m.resourcesNeeded):
+				oldcrisis_resourcesNeeded_list=ast.literal_eval(c.resourcesNeeded)
+				newcrisis_resourcesNeeded_list=ast.literal_eval(m.resourcesNeeded)
+				newcrisis_resourcesNeeded_list+=oldcrisis_resourcesNeeded_list
+				m.resourcesNeeded=str(newcrisis_resourcesNeeded_list)
 			#merge waytoHelp
-			oldcrisis_waytoHelp_list=ast.literal_eval(c.waytoHelp)
-			newcrisis_waytoHelp_list=ast.literal_eval(m.waytoHelp)
-			newcrisis_waytoHelp_list+=oldcrisis_waytoHelp_list
-			m.waytoHelp=str(newcrisis_waytoHelp_list)
+			if(c.waytoHelp != m.waytoHelp):
+				oldcrisis_waytoHelp_list=ast.literal_eval(c.waytoHelp)
+				newcrisis_waytoHelp_list=ast.literal_eval(m.waytoHelp)
+				newcrisis_waytoHelp_list+=oldcrisis_waytoHelp_list
+				m.waytoHelp=str(newcrisis_waytoHelp_list)
 			#merge people
 			oldcrisis_people_list=ast.literal_eval(c.people)
 			newcrisis_people_list=ast.literal_eval(m.people)

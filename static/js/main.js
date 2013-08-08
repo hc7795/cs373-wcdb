@@ -1,4 +1,32 @@
 /* Main javascript script to be included on every page. */
+
+
+
+/* Returns true if the element overflows its parent. */
+$.fn.hasOverflow = function() {
+    var $this = $(this);
+    var $children = $this.find('*');
+    var len = $children.length;
+
+    if (len) {
+        var maxWidth = 0;
+        var maxHeight = 0
+        $children.map(function(){
+            maxWidth = Math.max(maxWidth, $(this).outerWidth(true));
+            maxHeight = Math.max(maxHeight, $(this).outerHeight(true));
+        });
+
+        return maxWidth > $this.width() || maxHeight > $this.height();
+    }
+
+    return false;
+};
+
+
+
+
+
+/* Runs when document is fully loaded. */
 $(document).ready(
 	function() {
 

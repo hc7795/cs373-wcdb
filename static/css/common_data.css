@@ -168,3 +168,13 @@ li {
 	height: 100%;
 	max-height: 500px;
 }
+
+
+.ellipsis_hover {
+	background-color: rgba(65, 65, 65, 1);
+}
+
+.clickToCollapse {
+	height:100%;
+	width:95%;	
+}

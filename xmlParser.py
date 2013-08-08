@@ -42,12 +42,6 @@ from PIL import Image
 import math
 import operator
 
-<<<<<<< HEAD
-#converts special characters into ascii characters
-import unicodedata
-
-=======
->>>>>>> 5f3385faf581214876d21e4ad00e9376b9b65e95
 from django.template.defaultfilters import slugify
 
 
@@ -1081,11 +1075,7 @@ def modelsToDjango(models):
 			newcrisis_organizations_list=ast.literal_eval(m.organizations)
 			for o in oldcrisis_organizations_list:
 				if not (o in newcrisis_organizations_list):
-<<<<<<< HEAD
-					newcrisis_organizations_list.append(o)
-=======
 					newcrisis_organizations_list.append(p)
->>>>>>> 5f3385faf581214876d21e4ad00e9376b9b65e95
 			m.organizations=str(newcrisis_organizations_list)
 
 			c.common.externalLinks.all().delete()
@@ -1129,7 +1119,7 @@ def modelsToDjango(models):
 				newcrisis_organizations_list=ast.literal_eval(m.organizations)
 				for o in oldcrisis_organizations_list:
 					if not (o in newcrisis_organizations_list):
-						newcrisis_organizations_list.append(p)
+						newcrisis_organizations_list.append(o)
 				m.organizations=str(newcrisis_organizations_list)
 			c.common.externalLinks.all().delete()
 			c.common.citations.all().delete()

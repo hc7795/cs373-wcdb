@@ -180,6 +180,7 @@ def crisis(request, urlSlug):
 	# d is a dictionary of data to be passed to the view.
 	d = {}
 	d["crisis"] = crisis
+	topGroupSize = 0
 
 	# Add optional elements to d.
 	if associatedPeople:
@@ -191,6 +192,7 @@ def crisis(request, urlSlug):
 	if waysToHelp and waysToHelp[0] != None and waysToHelp[0].lower() != "n/a":
 		d["waysToHelp"] = waysToHelp 
 	if locations:
+		topGroupSize += 1
 		d["locations"] = locations
 		d["numLocations"] = len(locations)
 	if humanImpact and humanImpact[0] != None and humanImpact[0].lower() != "n/a":
@@ -204,13 +206,23 @@ def crisis(request, urlSlug):
 	if videos and videos[0] != None:
 		d["videos"] = videos
 	if maps and maps[0] != None:
+		topGroupSize += 1
 		d["maps"] = maps
 	if feeds and feeds[0] != None:
 		d["feeds"] = feeds
 	if externalLinks and externalLinks[0] != None:
 		d["externalLinks"] = externalLinks
 	if summary:
+		topGroupSize += 1
 		d["summary"] = summary
+
+	if crisis.kind != "":
+		topGroupSize += 1
+
+	if crisis.date != "" or crisis.time != "":
+		topGroupSize += 1
+
+	d["topGroupSize"] = topGroupSize
 
 	template = loader.get_template("crisis.html")
 	context = RequestContext(request, d)
@@ -864,7 +876,7 @@ def fileUpload(request):
             newdoc.save()
 
             # Redirect to the document list after POST
-            return HttpResponseRedirect("import_export.html")
+            # return HttpResponseRedirect("import_export.html")
             # return HttpResponseRedirect(reverse('wcdb.views.fileUpload', args=[]))
     else:
         form = DocumentForm() # A empty, unbound form

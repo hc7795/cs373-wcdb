@@ -9,8 +9,6 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-
-<<<<<<< HEAD
 #DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -37,7 +35,7 @@ DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': 'database',                      # Or path to database file if using sqlite3.
-=======
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -53,7 +51,7 @@ DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
 #         'NAME': 'cs373_hc7795',                      # Or path to database file if using sqlite3.
->>>>>>> 5f3385faf581214876d21e4ad00e9376b9b65e95
+
 #         'USER': 'hc7795',                      # Not used with sqlite3.
 #         'PASSWORD': 'e~wmbU1mGm',                  # Not used with sqlite3.
 #         'HOST': 'z',                      # Set to empty string for localhost. Not used with sqlite3.

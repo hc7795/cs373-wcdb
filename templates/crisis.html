@@ -125,115 +125,124 @@
 
     
     <div class="common_container">
-        {% if crisis.kind != "" %}
-            <div class="common_box_small ellipsis">
-                <h3>Type:</h3> 
-                <ul><li class="light_grey">{{crisis.kind}}</li></ul>
-            </div>
-        {% endif %}
+        <span class="common_group">
+            {% if crisis.date != "" or crisis.time != "" %}
+                <div class="common_box_small ellipsis">
+                    {% if crisis.date != "" %}
+                        <h3>Date:</h3> 
+                        <ul><li class="light_grey">{{crisis.date}}</li></ul>   
+                    {% endif %}
 
-        {% if crisis.date != "" or crisis.time != "" %}
-            <div class="common_box_small ellipsis">
-                {% if crisis.date != "" %}
-                    <h3>Date:</h3> 
-                    <ul><li class="light_grey">{{crisis.date}}</li></ul>   
-                {% endif %}
-
-                {% if crisis.time != "" %}
-                    <h3>Time:</h3>
-                    <ul><li class="light_grey">{{crisis.time}}</li></ul>
-                {% endif %}
-            </div>
-        {% endif %}
-
-        {% if summary %}
-            <div class="common_box_large ellipsis"> 
-                <h3>Summary:</h3>
-                <p>{{crisis.common.summary}}</p>
-            </div>
-        {% endif %}
-    
-
-
-
-    {% if locations %}
-        <div class="common_box_medium ellipsis">
-            {% if numLocations == 1 %}
-                <h3>Location:</h3>
-            {% else %}
-                <h3>Locations:</h3>
-            {% endif %}
-            <ul class="light_grey">
-                {% for location in locations %}
-                    <li>{{location}}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
-
-    {% if maps %}
-        <div class="common_box_medium">
-            <h3>Maps:</h3>
-            {% for map in maps %}
-                <div class="map">
-                    <iframe scrolling="no" marginheight="0" marginwidth="0" src="{{map.embed}}"></iframe>
-                    <a href="{{map.embed}}?iframe=true&width=100%&height=100%" rel="prettyPhoto[pp_gal]"></a>
+                    {% if crisis.time != "" %}
+                        <h3>Time:</h3>
+                        <ul><li class="light_grey">{{crisis.time}}</li></ul>
+                    {% endif %}
                 </div>
-            {% endfor %}
-        </div>
-    {% endif %}
-    <div class="clearfix"></div>
+            {% endif %}
 
-    {% if humanImpact %}
-        <div class="common_box_medium ellipsis">
-            <h3>Human Impact:</h3>
-            <ul>
-                {% for impact in humanImpact %}
-                    <li class="light_grey">{{impact}}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
+            {% if crisis.kind != "" %}
+                <div class="common_box_small ellipsis">
+                    <h3>Type:</h3> 
+                    <ul><li class="light_grey">{{crisis.kind}}</li></ul>
+                </div>
+            {% endif %}
 
-    {% if economicImpact %}
-        <div class="common_box_medium ellipsis">  
-            <h3>Economic Impact:</h3>
-            <ul>
-                {% for impact in economicImpact %}
-                    <li class="light_grey">{{impact}}</li>
-                {% endfor %}
-            </ul>  
-        </div>
-    {% endif %}
+            {% if summary %}
+                <div class="common_box_medium ellipsis"> 
+                    <h3>Summary:</h3>
+                    <p>{{crisis.common.summary}}</p>
+                </div>
+            {% endif %}
 
-    {% if resourcesNeeded %}
-        <div class="common_box_medium ellipsis">
-            <h3>Resources Needed:</h3>
-            <ul class="light_grey">
-                {% for resource in resourcesNeeded %}
-                    <li>{{resource}}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
+            {% if locations %}
+                <div class="common_box_small ellipsis">
+                    {% if numLocations == 1 %}
+                        <h3>Location:</h3>
+                    {% else %}
+                        <h3>Locations:</h3>
+                    {% endif %}
+                    <ul class="light_grey">
+                        {% for location in locations %}
+                            <li>{{location}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
 
-    {% if waysToHelp %}
-        <div class="common_box_medium ellipsis">   
-            <h3>Ways to Help:</h3>
-            <ul class="light_grey">
-            {% for way in waysToHelp %}
-                <li>{{way}}</li>
-            {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
+            {% if maps %}
+                {% if topGroupSize == 5 %}
+                    <div class="common_box_large">
+                        <h3>Maps:</h3>
+                        {% for map in maps %}
+                            <div class="map">
+                                <iframe scrolling="no" marginheight="0" marginwidth="0" src="{{map.embed}}"></iframe>
+                                <a href="{{map.embed}}?iframe=true&width=100%&height=100%" rel="prettyPhoto[pp_gal]"></a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="common_box_xl">
+                        <h3>Maps:</h3>
+                        {% for map in maps %}
+                            <div class="map">
+                                <iframe scrolling="no" marginheight="0" marginwidth="0" src="{{map.embed}}"></iframe>
+                                <a href="{{map.embed}}?iframe=true&width=100%&height=100%" rel="prettyPhoto[pp_gal]"></a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endif %}
+        </span>
+        <div class="clearfix"></div>
+
+        <span class="common_group">
+            {% if humanImpact %}
+                <div class="common_box_medium ellipsis">
+                    <h3>Human Impact:</h3>
+                    <ul>
+                        {% for impact in humanImpact %}
+                            <li class="light_grey">{{impact}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if economicImpact %}
+                <div class="common_box_medium ellipsis">  
+                    <h3>Economic Impact:</h3>
+                    <ul>
+                        {% for impact in economicImpact %}
+                            <li class="light_grey">{{impact}}</li>
+                        {% endfor %}
+                    </ul>  
+                </div>
+            {% endif %}
+
+            {% if resourcesNeeded %}
+                <div class="common_box_medium ellipsis">
+                    <h3>Resources Needed:</h3>
+                    <ul class="light_grey">
+                        {% for resource in resourcesNeeded %}
+                            <li>{{resource}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if waysToHelp %}
+                <div class="common_box_medium ellipsis">   
+                    <h3>Ways to Help:</h3>
+                    <ul class="light_grey">
+                    {% for way in waysToHelp %}
+                        <li>{{way}}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </span>
     </div>
     <div class="clearfix"></div>
 
-    
-
-
-    
     {% if externalLinks %}
         <div id="external_links_box" class="ellipsis">
             <h3>External Links:</h3>

@@ -1,3 +1,16 @@
+h3 {
+	color:white;
+}
+
+li {
+	margin-bottom: 10px;
+}
+
+.common_group {
+	background-color: rgba(35, 35, 35, 1);
+	display:block;
+}
+
 .common_container {
 	float:left;
 	margin-top: 1%;
@@ -12,48 +25,48 @@
 	color:#CCC !important;
 }
 
-h3 {
-	color:white;
-}
-
 .common_box_small {
 	float:left;
 	display:inline-block;
 	position: relative;
+	overflow:hidden;
 	padding:2.5%;
 	width: 20%;
 	height:175px;
-	background-color: rgba(25, 25, 25, 0.90);
+	background-color: rgba(35, 35, 35, 1);
 }
 
 .common_box_medium {
 	float:left;
 	display:inline-block;
 	position: relative;
+	overflow:hidden;
 	padding:2.5%;
 	width: 45%;
 	height:175px;
-	background-color: rgba(25, 25, 25, 0.90);
+	background-color: rgba(35, 35, 35, 1);
 }
 
 .common_box_large {
 	float:left;
 	display:inline-block;
 	position: relative;
+	overflow:hidden;
 	padding:2.5%;
 	width: 70%;
 	height:175px;
-	background-color: rgba(25, 25, 25, 0.90);
+	background-color: rgba(35, 35, 35, 1);
 }
 
 .common_box_xl {
 	float:left;
 	display:inline-block;
 	position: relative;
+	overflow:hidden;
 	padding:2.5%;
 	width: 95%;
 	height:175px;
-	background-color: rgba(25, 25, 25, 0.90);
+	background-color: rgba(35, 35, 35, 1);
 } 
 
 .common_box_height {
@@ -112,56 +125,6 @@ h3 {
 	height:400px;
 }
 
-.general_info_container {
-	width: 35%;
-	height: 96%;
-	float: left;
-	margin-right: 3%;
-
-	padding: 2% 1.5% 2% 1.5%;
-
-	background-color: rgba(25, 25, 25, 0.90);
-	color: white;
-	float: left;
-}
-
-.impact_container {
-	background-color: rgba(245, 245, 245, 0.40);
-	width: 52%;
-	height: 100%;
-	float: left;
-	color: white;
-}
-
-#human_impact {
-	background-color: rgba(25, 25, 25, 0.90);
-	height: 40%;
-	margin: 0% 0% 3% 0%;
-	padding: 2% 3% 2% 3%;
-}
-
-#economic_impact {
-	background-color: rgba(25, 25, 25, 0.90);
-	height: 43%;
-	margin: 3% 0% 0% 0%;
-	padding: 2% 3% 2% 3%;
-}
-
-#history_box {
-	width: 60%;
-	background-color: rgba(25, 25, 25, 0.90);
-}
-
-#contact_box {
-	width: 60%;
-	background-color: rgba(25, 25, 25, 0.90);
-}
-
-#maps_box {
-	height:400px;
-	overflow:hidden;
-}
-
 .map {
 	position: relative;
 	display: inline-block;
@@ -191,7 +154,7 @@ h3 {
 	width: 97%;
 	padding: 2% 1.5% 1% 1.5%;
 	color: white;
-	background-color: rgba(25, 25, 25, 0.90);
+	background-color: rgba(35, 35, 35, 1);
 	height: 100%;
 	max-height: 500px;
 }
@@ -201,12 +164,7 @@ h3 {
 	width: 97%;
 	padding: 1% 1.5% 2% 1.5%;
 	color: white;
-	background-color: rgba(25, 25, 25, 0.90);
+	background-color: rgba(35, 35, 35, 1);
 	height: 100%;
 	max-height: 500px;
-	/*margin-bottom: -5%;*/
-}
-
-li {
-	margin-bottom: 10px;
 }

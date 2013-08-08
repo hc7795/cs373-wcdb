@@ -58,6 +58,11 @@
         });
     });
 </script>
+{% if org %}
+    <title>{{org.name}} - Gummy Pandas: WCDB</title>
+{% else %}
+    <title>Organization is not available - Gummy Pandas: WCDB</title>
+{% endif %}
 {% endblock %}
 
 

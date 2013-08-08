@@ -58,6 +58,11 @@
         });
     });
 </script>
+{% if person %}
+    <title>{{person.name}} - Gummy Pandas: WCDB</title>
+{% else %}
+    <title>Person is not available - Gummy Pandas: WCDB</title>
+{% endif %}
 {% endblock %}
 
 

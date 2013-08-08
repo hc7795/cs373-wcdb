@@ -58,6 +58,11 @@
         });
     });
 </script>
+{% if crisis %}
+    <title>{{crisis.name}} - Gummy Pandas: WCDB</title>
+{% else %}
+    <title>Crisis is not available - Gummy Pandas: WCDB</title>
+{% endif %}
 {% endblock %}
 
 
@@ -122,7 +127,7 @@
         <div class="clearfix"></div>
     </div>
 
-
+    <script>console.log("{{middleGroupSize}}");</script>
     
     <div class="common_container">
         <span class="common_group">
@@ -197,47 +202,91 @@
 
         <span class="common_group">
             {% if humanImpact %}
-                <div class="common_box_medium ellipsis">
-                    <h3>Human Impact:</h3>
-                    <ul>
-                        {% for impact in humanImpact %}
-                            <li class="light_grey">{{impact}}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
+                {% if middleGroupSize < 3 %}
+                    <div class="common_box_xl ellipsis">
+                        <h3>Human Impact:</h3>
+                        <ul>
+                            {% for impact in humanImpact %}
+                                <li class="light_grey">{{impact}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% else %}
+                    <div class="common_box_medium ellipsis">
+                        <h3>Human Impact:</h3>
+                        <ul>
+                            {% for impact in humanImpact %}
+                                <li class="light_grey">{{impact}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
             {% endif %}
 
             {% if economicImpact %}
-                <div class="common_box_medium ellipsis">  
-                    <h3>Economic Impact:</h3>
-                    <ul>
-                        {% for impact in economicImpact %}
-                            <li class="light_grey">{{impact}}</li>
-                        {% endfor %}
-                    </ul>  
-                </div>
+                {% if middleGroupSize < 3 %}
+                    <div class="common_box_xl ellipsis">  
+                        <h3>Economic Impact:</h3>
+                        <ul>
+                            {% for impact in economicImpact %}
+                                <li class="light_grey">{{impact}}</li>
+                            {% endfor %}
+                        </ul>  
+                    </div>
+                {% else %}
+                    <div class="common_box_medium ellipsis">  
+                        <h3>Economic Impact:</h3>
+                        <ul>
+                            {% for impact in economicImpact %}
+                                <li class="light_grey">{{impact}}</li>
+                            {% endfor %}
+                        </ul>  
+                    </div>
+                {% endif %}
             {% endif %}
 
             {% if resourcesNeeded %}
-                <div class="common_box_medium ellipsis">
-                    <h3>Resources Needed:</h3>
-                    <ul class="light_grey">
-                        {% for resource in resourcesNeeded %}
-                            <li>{{resource}}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
+                {% if middleGroupSize == 3 and not waysToHelp or middleGroupSize == 2 %}
+                    <div class="common_box_xl ellipsis">
+                        <h3>Resources Needed:</h3>
+                        <ul class="light_grey">
+                            {% for resource in resourcesNeeded %}
+                                <li>{{resource}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% else %}
+                    <div class="common_box_medium ellipsis">
+                        <h3>Resources Needed:</h3>
+                        <ul class="light_grey">
+                            {% for resource in resourcesNeeded %}
+                                <li>{{resource}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
             {% endif %}
 
             {% if waysToHelp %}
-                <div class="common_box_medium ellipsis">   
-                    <h3>Ways to Help:</h3>
-                    <ul class="light_grey">
-                    {% for way in waysToHelp %}
-                        <li>{{way}}</li>
-                    {% endfor %}
-                    </ul>
-                </div>
+                {% if middleGroupSize == 2 or middleGroupSize == 3 %}
+                    <div class="common_box_xl ellipsis">   
+                        <h3>Ways to Help:</h3>
+                        <ul class="light_grey">
+                        {% for way in waysToHelp %}
+                            <li>{{way}}</li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                {% else %}
+                    <div class="common_box_medium ellipsis">   
+                        <h3>Ways to Help:</h3>
+                        <ul class="light_grey">
+                        {% for way in waysToHelp %}
+                            <li>{{way}}</li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
             {% endif %}
         </span>
     </div>

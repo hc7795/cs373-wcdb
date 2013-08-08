@@ -19,6 +19,10 @@ from wcdb.forms import DocumentForm
 from django.core.urlresolvers import reverse
 
 
+def isValidDataList(stringList):
+	return stringList and stringList[0].lower() != "none" and stringList[0].lower() != "n/a"
+
+
 def getConciseSummary(summary):
 	summaryMaxLength = 600
 	if (len(summary) > summaryMaxLength):
@@ -181,37 +185,55 @@ def crisis(request, urlSlug):
 	d = {}
 	d["crisis"] = crisis
 	topGroupSize = 0
+	middleGroupSize = 0
 
 	# Add optional elements to d.
 	if associatedPeople:
 		d["associatedPeople"] = associatedPeople
+
 	if associatedOrganizations:
 		d["associatedOrganizations"] = associatedOrganizations
-	if resourcesNeeded and resourcesNeeded[0] != None and resourcesNeeded[0].lower() != "n/a":
+
+	if isValidDataList(resourcesNeeded):
+		middleGroupSize += 1
 		d["resourcesNeeded"] = resourcesNeeded
-	if waysToHelp and waysToHelp[0] != None and waysToHelp[0].lower() != "n/a":
+
+	if isValidDataList(waysToHelp):
+		middleGroupSize += 1
 		d["waysToHelp"] = waysToHelp 
+
 	if locations:
 		topGroupSize += 1
 		d["locations"] = locations
 		d["numLocations"] = len(locations)
-	if humanImpact and humanImpact[0] != None and humanImpact[0].lower() != "n/a":
+
+	if isValidDataList(humanImpact):
+		middleGroupSize += 1
 		d["humanImpact"] = humanImpact
-	if economicImpact and economicImpact[0] != None and economicImpact[0].lower() != "n/a":
+
+	if isValidDataList(economicImpact):
+		middleGroupSize += 1
 		d["economicImpact"] = economicImpact
-	if citations and citations[0] != None:
+
+	if citations:
 		d["citations"] = citations
-	if images and images[0] != None:
+
+	if images:
 		d["images"] = images
-	if videos and videos[0] != None:
+
+	if videos:
 		d["videos"] = videos
-	if maps and maps[0] != None:
+
+	if maps:
 		topGroupSize += 1
 		d["maps"] = maps
-	if feeds and feeds[0] != None:
+
+	if feeds:
 		d["feeds"] = feeds
-	if externalLinks and externalLinks[0] != None:
+
+	if externalLinks:
 		d["externalLinks"] = externalLinks
+
 	if summary:
 		topGroupSize += 1
 		d["summary"] = summary
@@ -222,6 +244,7 @@ def crisis(request, urlSlug):
 	if crisis.date != "" or crisis.time != "":
 		topGroupSize += 1
 
+	d["middleGroupSize"] = middleGroupSize
 	d["topGroupSize"] = topGroupSize
 
 	template = loader.get_template("crisis.html")

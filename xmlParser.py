@@ -38,7 +38,7 @@ from itertools import chain
 
 #Read Images
 import urllib, cStringIO
-from PIL import Image
+# from PIL import Image
 import math
 import operator
 

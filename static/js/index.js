@@ -55,5 +55,6 @@ $(document).ready(
 		});
 
     	Galleria.run('.index_galleria_container');
+
     }
 );

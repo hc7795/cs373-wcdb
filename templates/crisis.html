@@ -169,10 +169,8 @@
             {% if crisis.kind != "" %}
                 <div class="common_box_small ellipsis_container">
                     <div class="add_ellipsis">
-                        {% if crisis.kind != "" %}
-                            <h3>Type:</h3> 
-                            <ul><li>{{crisis.kind}}</li></ul>
-                        {% endif %}
+                        <h3>Type:</h3> 
+                        <ul><li>{{crisis.kind}}</li></ul>
                     </div>
                     <div class="no_ellipsis">
                         <h3>Type:</h3> 
@@ -185,11 +183,11 @@
                 <div class="common_box_medium ellipsis_container"> 
                     <div class="add_ellipsis">
                         <h3>Summary:</h3>
-                        <p>{{crisis.common.summary}}</p>
+                        <p>{{crisis.summary}}</p>
                     </div>
                     <div class="no_ellipsis">
                         <h3>Summary:</h3>
-                        <p>{{crisis.common.summary}}</p>
+                        <p>{{crisis.summary}}</p>
                     </div>
                 </div>
             {% endif %}

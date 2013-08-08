@@ -126,35 +126,48 @@
     </div>
 
 
+    <div class="common_container">
+        <div class="common_group">
 
-
-    
             {% if person.kind != "" %}
-                <div class="common_box_small ellipsis">
-                    {% if person.kind != "" %}
+                <div class="common_box_small ellipsis_container">
+                    <div class="add_ellipsis">
                         <h3>Type:</h3> 
-                        <ul><li class="light_grey">{{person.kind}}</li></ul>
-                    {% endif %}
+                        <ul><li>{{person.kind}}</li></ul>
+                    </div>
+                    <div class="no_ellipsis">
+                        <h3>Type:</h3> 
+                        <li>{{person.kind}}</li>
+                    </div>
                 </div>
             {% endif %}
 
             {% if summary %}
-                <div class="common_box_medium ellipsis"> 
-                    <h3>Summary:</h3>
-                    <p class="light_grey">{{summary}}</p>
+                <div class="common_box_medium ellipsis_container"> 
+                    <div class="add_ellipsis">
+                        <h3>Summary:</h3>
+                        <p>{{person.summary}}</p>
+                    </div>
+                    <div class="no_ellipsis">
+                        <h3>Summary:</h3>
+                        <p>{{person.summary}}</p>
+                    </div>
                 </div>
             {% endif %}
-        
 
-    
             {% if locations %}
-                <div class="common_box_small ellipsis">
+                <div class="common_box_small ellipsis_container">
                     {% if numLocations == 1 %}
                         <h3>Location:</h3>
                     {% else %}
                         <h3>Locations:</h3>
                     {% endif %}
-                    <ul class="light_grey">
+                    <ul class="add_ellipsis">
+                        {% for location in locations %}
+                            <li>{{location}}</li>
+                        {% endfor %}
+                    </ul>
+                    <ul class="no_ellipsis">
                         {% for location in locations %}
                             <li>{{location}}</li>
                         {% endfor %}
@@ -185,6 +198,8 @@
                     </div>
                 {% endif %}
             {% endif %}  
+        </div>
+    </div>
 
     <div class="clearfix"></div>
     {% if externalLinks %}

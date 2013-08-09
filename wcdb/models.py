@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 import os
 
 
@@ -84,7 +85,9 @@ class Common(models.Model) :
 	   ", summary: " + unicode(self.summary)
 
 class Document(models.Model):
-    docfile = models.FileField(upload_to='documents/')
-    def filename(self):
+	docfile = models.FileField(upload_to='static/')
+	def filename(self):
 		return os.path.basename(self.docfile.name)
 
+	def abspath(self):
+		return os.path.dirname(os.path.abspath(self.docfile.name))

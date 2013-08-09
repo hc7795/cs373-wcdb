@@ -21,13 +21,14 @@ urlpatterns = patterns('',
 	url(r'^import_export', views.import_export, name='import_export'),
 
 	# Individual pages.
-	url(r'^crisis/([a-z0-9-]+)', views.crisis),
-	url(r'^person/([a-z0-9-]+)', views.person),
-	url(r'^org/([a-z0-9-]+)', views.org),
+	url(r'^crisis/([a-z0-9-_]+)', views.crisis),
+	url(r'^person/([a-z0-9-_]+)', views.person),
+	url(r'^org/([a-z0-9-_]+)', views.org),
 
 	# File uploads.
-	url(r'^file_upload', views.fileUpload),
-	url(r'^export', views.export),
+	url(r'^file_import', views.fileImport),
+	url(r'^file_merge', views.fileMerge),
+	url(r'^file_export', views.fileExport),
 	# Exported XML
 	#url(r'^export', views.export)
     #url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

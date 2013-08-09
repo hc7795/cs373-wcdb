@@ -56,7 +56,7 @@
 	color:#CCC;
 }
 
-.results_crises h2, .results_crises h3 {
+.results_crises h1, .results_crises h3 {
 	color: rgba(200, 81, 88, 1);
 }
 .results_crises h3:hover {
@@ -64,7 +64,7 @@
 	text-decoration: underline;
 }
 
-.results_people h2, .results_people h3 {
+.results_people h1, .results_people h3 {
 	color: rgba(0, 176, 236, 1);
 }
 .results_people h3:hover {
@@ -72,7 +72,7 @@
 	text-decoration: underline;
 }
 
-.results_organizations h2, .results_organizations h3 {
+.results_organizations h1, .results_organizations h3 {
 	color: rgba(215, 113, 159, 1);
 }
 .results_organizations h3:hover {

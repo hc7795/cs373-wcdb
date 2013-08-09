@@ -34,7 +34,7 @@
 
 				{% if foundCrises %}
 					<div class="results_category results_crises">
-						<h2>Matching crises:</h2>
+						<h1>Matching crises:</h1>
 						<ol>
 							{% for crisis, matches in foundCrises.items %}
 								<li>
@@ -52,7 +52,7 @@
 
 				{% if foundPeople %}
 					<div class="results_category results_people">
-						<h2>Matching people:</h2>
+						<h1>Matching people:</h1>
 						<ol>
 							{% for person, matches in foundPeople.items %}
 								<li><a href="/person/{{person.slug}}"><h3>{{person.name}}</h3></a></li>
@@ -68,7 +68,7 @@
 
 				{% if foundOrgs %}
 					<div class="results_category results_organizations">
-						<h2>Matching organizations:</h2>
+						<h1>Matching organizations:</h1>
 						<ol>
 							{% for org, matches in foundOrgs.items %}
 								<li><a href="/org/{{org.slug}}"><h3>{{org.name}}</h3></a></li>

@@ -1,3 +1,5 @@
+
+
 #searchbar {
 	margin-top: 1%;
 	padding: 20px;
@@ -12,7 +14,7 @@
 	border:1px solid #0076a3; border-right:0px;
 	width:55%;
 }
-.searchbar_button {
+.button {
 	margin: 0;
 	padding: 5px 15px;
 	font-size:14px;
@@ -37,34 +39,4 @@
 .searchbar_button::-moz-focus-inner {
   border: 0;
 }
-
-
-.results_header {
-	margin-top: 1%;
-	font-size: 125%;
-	color: white;
-	text-align: center;
-	background-color: rgba(25, 25, 25, 0.70);
-	padding-top: 0.5%;
-	padding-bottom: 0.5%;
-}
-
-.results_category {
-	margin:2%;
-	padding:2% 3% 2% 3%;
-	background-color: rgba(245, 245, 245, 0.40);
-}
-
-.results_crises {
-	background-color: rgba(220, 31, 38, 0.50);
-}
-
-.results_people {
-	background-color: rgba(0, 176, 236, 0.50);
-}
-
-.results_organizations {
-	background-color: rgba(215, 113, 159, 0.50);
-}
-
 

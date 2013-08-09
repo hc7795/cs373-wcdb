@@ -22,6 +22,8 @@ from wcdb.models import Document
 from wcdb.forms import DocumentForm
 from django.core.urlresolvers import reverse
 
+from xmlParser import *
+
 
 def makeValidURL(listObject):
   if listObject.href:

@@ -819,6 +819,73 @@ def searchContext(queryString, paragraph):
 
   return context
 
+
+def fileUpload(request):
+      # Handle file upload
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            newdoc = Document(docfile = request.FILES['docfile'])
+            #newdoc.save()
+            #importXMLToDjangoFile(newdoc.filename())
+            #return HttpResponseRedirect('/file_upload/')
+            #-------------
+	    #importXMLToDjangoFile(newdoc.filename())
+            # Redirect to the document list after POST
+            #return HttpResponseRedirect("import_export.html")
+            # return HttpResponseRedirect(reverse('wcdb.views.fileUpload', args=[]))
+            
+            d = {}
+	    try:
+		    importXMLToDjangoFile(newdoc.filename())
+		    d["success"] = True
+	    except Exception as e:
+		    d["success"] = False
+	    
+
+	    template = loader.get_template("import_export.html")
+	    context = RequestContext(request, d)
+	    return HttpResponse(template.render(context))
+           
+            """
+    # Handle file upload
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+			newdoc = Document(docfile=request.FILES['docfile'])
+			
+			#newdoc.save()
+			
+			d = {}
+			try:
+			 	importXMLToDjangoFile(newdoc.filename())
+			 	d["success"] = True
+			except Exception as e:
+				d["success"] = False
+			
+
+			template = loader.get_template("import_export.html")
+			context = RequestContext(request, d)
+			return HttpResponse(template.render(context))
+
+            # Redirect to the document list after POST
+#             return HttpResponseRedirect('/file_upload/', d)
+            # return HttpResponseRedirect(reverse('wcdb.views.fileUpload', args=[]))
+            """
+            
+    else:
+        form = DocumentForm()  # A empty, unbound form
+
+    # Load documents for the list page
+    documents = Document.objects.all()
+
+    # Render list page with the documents and the form
+    return render_to_response(
+        'import_export.html',
+        {'documents': documents, 'form': form},
+        context_instance=RequestContext(request)
+    )
+
     
 def export(request):
 	djangoToXml("static/dbOutput.xml")

@@ -1513,32 +1513,32 @@ def searchInCrisis(queryString, matchingCrises):
 		if queryString in crisis.kind.lower():
 			foundCrises[crisis] += [("kind", crisis.kind)]
 
-		locationList = searchContext(queryString, crisis.location)
+		locationList = searchContext(queryString, unicode(crisis.location))
 		if locationList:
 			foundCrises[crisis] += [("location", locationList)]
+		# foundCrises[crisis] += [("location", unicode(crisis.location))]
+		
 
-		humanImpactList = searchContext(queryString, crisis.humanImpact)
+		humanImpactList = searchContext(queryString, unicode(crisis.humanImpact))
 		if humanImpactList:
 			foundCrises[crisis] += [("human impact", humanImpactList)]
 
-		economicImpactList = searchContext(queryString, crisis.economicImpact)
+		economicImpactList = searchContext(queryString, unicode(crisis.economicImpact))
 		if economicImpactList:
 			foundCrises[crisis] += [("economic impact", economicImpactList)]
 
-		resourcesNeededList = searchContext(queryString, crisis.resourcesNeeded)
+		resourcesNeededList = searchContext(queryString, unicode(crisis.resourcesNeeded))
 		if resourcesNeededList:
 			foundCrises[crisis] += [("resources needed", resourcesNeededList)]
 
-		waytoHelpList = searchContext(queryString, crisis.waytoHelp)
+		waytoHelpList = searchContext(queryString, unicode(crisis.waytoHelp))
 		if waytoHelpList:
 			foundCrises[crisis] += [("ways to help", waytoHelpList)]
 
-		humanImpactList = searchContext(queryString, crisis.humanImpact)
-		if humanImpactList:
-			foundCrises[crisis] += [("human impact", humanImpactList)]
-
-		# summary = crisis.common.summary
-		# foundCrises[crisis] += [("summary", summary)]
+		if crisis.common.summary:
+			summaryList = searchContext(queryString, unicode(crisis.common.summary))
+			if summaryList:
+				foundCrises[crisis] += [("summary", summaryList)]
 
 	return foundCrises
 
@@ -1557,6 +1557,10 @@ def searchInPeople(queryString, matchingPeople):
 		if queryString in person.location.lower():
 			foundPeople[person] += [("location", person.location)]
 
+		summaryList = searchContext(queryString, unicode(person.common.summary))
+		if summaryList:
+			foundPeople[person] += [("summary", summaryList)]
+
 	return foundPeople
 
 def searchInOrgs(queryString, matchingOrgs):
@@ -1571,17 +1575,21 @@ def searchInOrgs(queryString, matchingOrgs):
 		if queryString in org.kind.lower():
 			foundOrgs[org] += [("kind", org.kind)]
 
-		locationList = searchContext(queryString, org.location)
+		locationList = searchContext(queryString, unicode(org.location))
 		if locationList:
 			foundOrgs[org] += [("location", locationList)]
 
-		historyList = searchContext(queryString, org.history)
+		historyList = searchContext(queryString, unicode(org.history))
 		if historyList:
 			foundOrgs[org] += [("history", historyList)]
 
-		contactList = searchContext(queryString, org.contact)
+		contactList = searchContext(queryString, unicode(org.contact))
 		if contactList:
 			foundOrgs[org] += [("contact info", contactList)]
+
+		summaryList = searchContext(queryString, unicode(org.common.summary))
+		if summaryList:
+			foundOrgs[org] += [("summary", summaryList)]
 
 	return foundOrgs
 
@@ -1662,9 +1670,9 @@ def searchContext(queryString, paragraph):
 	context =''
 	splitSentences = re.split('(?<!\d)[.]', paragraph)
 	for eachSentence in splitSentences:
-		if queryString in eachSentence.lower():
+		if queryString.lower() in eachSentence.lower():
 			# context += re.sub('(?i)(\s+)(%s)(\s+)'%queryString, '\\1<b>\\2</b>\\3', eachSentence) + ' ...'
-
+		# if re.search(queryString,eachSentence, re.IGNORECASE)
 			context += eachSentence 
 
 	context = context.replace('\\n', '')

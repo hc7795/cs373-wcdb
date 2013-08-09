@@ -5,7 +5,7 @@ Expected 50 hours.
 Actually spent 70 hours on the project.
 
 * Prezi: 
-* http://prezi.com/s5qmdqouznn5/present/?auth_key=0hhcqit&follow=4daujbtuqppl
+ * http://prezi.com/s5qmdqouznn5/gummy-pandas-wcdb-presentation/
  * log in with russelljahn@gmail.com
  * password is gummypandas
 

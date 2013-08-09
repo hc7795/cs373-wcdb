@@ -1,0 +1,67 @@
+Show all crises with the same type. ex) natural disaster
+
+name                                       | kind                                 |
++--------------------------------------------+--------------------------------------+
+| Northern Mali Conflict                     | Armed Conflict                       |
+| Boston Marathon Bombings                   | Bombing                              |
+| Savar Building Collapse                    | Building collapse                    |
+| NSA Wiretapping                            | Civil Liberties                      |
+| War in Darfur                              | Civil War                            |
+| Libyan Civil War                           | Civil War                            |
+| Syrian Civil War                           | Civil War Crisis                     |
+| LGBT Issues in Russia                      | Civil/Human Rights                   |
+| US Drone Attacks in Pakistan               | Civilian Casualties of War           |
+| Human trafficking                          | Crimes against humanity              |
+| South China Maritime Conflicts             | Crimes among nations                 |
+| 2008 Sichuan earthquake                    | Earthquake                           |
+| Naples trash crisis                        | Environmental                        |
+| Bee Colony Collapse Disorder               | Environmental                        |
+| Fresh Water Scarcity                       | Environmental                        |
+| Deforestation                              | Environmental                        |
+| Deepwater Horizon Oil Spill                | Environmental Disaster               |
+| AIDS                                       | Epidemic                             |
+| Malaria                                    | Epidemic                             |
+| Space Shuttle Challenger Disaster          | Equipment malfunction, disaster      |
+| Columbia Space Shuttle Disaster            | Equipment malfunction, disaster      |
+| Global financial crisis                    | Financial crisis                     |
+| Exxon Valdez Oil Spill                     | Human-caused environmental disasters |
+| North Korean Conflict                      | International tension                |
+| 2012 Aurora Shooting                       | Mass Shooting                        |
+| 2013 Alabama bunker hostage crisis         | Mass Shooting                        |
+| 2011 Tohoku Earthquake and Tsunami         | Megathrust Earthquake                |
+| LRA Conflict                               | Military/Human Rights                |
+| Democracy in China                         | National movement                    |
+| Hurricane Ike                              | Natural Disaster                     |
+| Water Scarcity in Africa                   | Natural Disaster                     |
+| Katrina                                    | Natural Disaster                     |
+| Hurricane Sandy                            | natural disaster                     |
+| 2010 Copiago mining accident               | Natural Disaster                     |
+| Arizona Wildfires                          | Natural disaster                     |
+| Texas Wild Fires                           | Natural disaster                     |
+| Moore, Oklahoma Tornado                    | Natural Disaster                     |
+| 2010 Haiti Earthquake                      | Natural Disaster                     |
+| 2013 Northern India Floods                 | Natural Disaster                     |
+| Cyclone Nargis                             | Natural Disaster                     |
+| Indian Ocean Tsunami and Earthquake (2004) | Natural Disaster                     |
+| Fukushima Daiichi Nuclear Disaster         | Nuclear Power Plant Failure          |
+| Influenza A virus subtype H1N1             | Pandemic                             |
+| Piracy in Somalia                          | Piracy                               |
+| West Fertilizer Plant Explosion            | Plant explosion                      |
+| Political Unrest in Egypt                  | Political Revolution                 |
+| KKK in Memphis                             | Political Unrest                     |
+| 2013 protests in Turkey                    | Protests                             |
+| Nuclear Disasters                          | Radioactive                          |
+| 2008 Raid on Religious Compound            | Raid                                 |
+| Debt in Europe                             | Recession                            |
+| Brazilian Protests                         | Socioeconomic Crisis                 |
+| Sandy Hook Elementary School Shooting      | Spree Shooting                       |
+| Zimbabwe Conflict Diamonds                 | Systemic Exploitation                |
+| Oslo Shootings                             | Terrorism                            |
+| September 11th                             | Terrorism                            |
+| 2008 Mumbai attacks                        | Terrorist attack                     |
+| 2011 Norway attacks                        | Terrorist Attack                     |
+| Oklahoma City Bombings                     | Terrorist attack, national tragedy   |
+| Mexican Drug Violence                      | Violent Conflict                     |
+| Baghdad Airstrike                          | War                                  |
+| Iraq War                                   | War                             
+

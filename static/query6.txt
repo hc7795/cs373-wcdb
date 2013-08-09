@@ -1,0 +1,21 @@
+how all organizations related to crises that are natural disasters (using kind).
+
++--------------------------------------------+------------------+
+| name                                       | kind             |
++--------------------------------------------+------------------+
+| Hurricane Ike                              | Natural Disaster |
+| Water Scarcity in Africa                   | Natural Disaster |
+| Katrina                                    | Natural Disaster |
+| 2011 Tohoku Earthquake and Tsunami         | Natural Disaster |
+| Hurricane Sandy                            | natural disaster |
+| 2010 Copiago mining accident               | Natural Disaster |
+| Arizona Wildfires                          | Natural disaster |
+| Texas Wild Fires                           | Natural disaster |
+| 2010 Haiti Earthquake                      | Natural Disaster |
+| Moore, Oklahoma Tornado                    | Natural Disaster |
+| 2013 Northern India Floods                 | Natural Disaster |
+| Cyclone Nargis                             | Natural Disaster |
+| Indian Ocean Tsunami and Earthquake (2004) | Natural Disaster |
++--------------------------------------------+------------------+
+13 rows in set (0.00 sec)
+

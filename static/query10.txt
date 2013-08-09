@@ -1,0 +1,83 @@
+Name, type, and location of all organizations (no duplicates).
+
+
++--------------------------------------------------------------------+--------------------------------------------------------+---------------------------------------------------+
+| name                                                               | kind                                                   | location                                          |
++--------------------------------------------------------------------+--------------------------------------------------------+---------------------------------------------------+
+| Care                                                               | Humanitarian                                           | Atlanta, USA                                      |
+| UNICEF                                                             | Humanitarian                                           | New York, USA                                     |
+| Wikileaks                                                          | Nonprofit document archive and disclosure              | Online                                            |
+| al-Qaeda                                                           | Terrorist                                              | World Wide                                        |
+| World Health Organization                                          | Public Health                                          | Geneva, Switzerland                               |
+| Centers for Disease Control and Prevention                         | Public Health                                          | Georgia, USA                                      |
+| Oil Spill Recovery Institute                                       | Enviromental                                           | Alaska                                            |
+| Egyptian Organization for Human Rights                             | Human Rights                                           | Egypt                                             |
+| Iraq and Afghanistan Veterans of America                           | Advocacy group dedicated to US veterans                | New York, USA                                     |
+| Ku Klux Klan                                                       | Far-right organization                                 | United States                                     |
+| Sicilian Mafia                                                     | Crime Organization                                     | Mainly Italy but also spread throughout the world |
+| British Petroleum                                                  | Bio-Refinery                                           | UK                                                |
+| Department of Homeland Security                                    | Government                                             | USA                                               |
+| Magic Johnson Foundation                                           | Charity                                                | Beverly Hills, CA                                 |
+| Red Cross                                                          | relief organization                                    | Washington, D.C, United States of America         |
+| International Monetary Fund                                        | economic                                               | Washington, D.C.                                  |
+| Federal Emergency Management Agency                                | Disaster Relief                                        | 500 C Street SW, Washington, DC 20472             |
+| Environmental Protection Agency                                    | Government organization                                | 1200 Pennsylvania Ave. NW Washington, DC 20460    |
+| United Nations                                                     | international organization                             | New York City, USA                                |
+| National Oceanic and Atmospheric Administration                    | scientific agency                                      | Silver Spring, Maryland, USA                      |
+| International Maritime Organization                                | Maritime Regulation                                    | London, United Kingdom                            |
+| Tokyo Electric Power Comapny                                       | Power Provider                                         | Chiyoda, Tokyo, Japan                             |
+| General Electric                                                   | American Multinational Conglomerate corporation        | Fairfield, Connecticut                            |
+| Catholic Church                                                    | religious establishment                                | Vatican City, Italy                               |
+| Morton-Thiokol                                                     | Chemical Corporation                                   | Huntsville, Alabama                               |
+| National Aeronautics and Space Administration (NASA)               | Government Organization                                | Washington, DC                                    |
+| Joint United Nations Programme on HIV/AIDS                         | Humanitarian Health                                    | Geneva, Switzerland                               |
+| The Community First Foundation                                     | Fund-Raising Group                                     | Colorado                                          |
+| San Estaban Mining Company                                         | Mining Company                                         | Santiago, Chile                                   |
+| Lashkar-e-Taiba                                                    | Terrorist Organization                                 | Pakistan                                          |
+| Child Protective Services                                          | Child Protection                                       | Austin, Texas                                     |
+| Fundamentalist Church of Jesus Christ of Latter Day Saints         | Church                                                 | Hildale, Utah                                     |
+| Federal Bureau of Investigation                                    | Government agency                                      | Washington, D.C                                   |
+| Central Intelligence Agency                                        | Government agency                                      | Washington, D.C                                   |
+| Valve                                                              | Privately owned Software company                       | Bellevue, WA                                      |
+| Salvation Army                                                     | Charity                                                | Alexandria, VA                                    |
+| Polaris Project                                                    | NGO, humanitarian                                      | Headquarters in Washington, D.C.                  |
+| ASEAN                                                              | Geo-political and economic organization                | Jakarta, indonesia                                |
+| BNP Paribas                                                        | Global banking group                                   | Boulevard des Italiens, Paris, France             |
+| Prescott Fire Department                                           | Municipal fire department                              | Prescott, Arizona                                 |
+| Somaly Mam Foundation                                              | Nonprofit humanitarian organization                    | New York                                          |
+| Pink Ribbon Red Ribbon                                             | Humanitarian                                           | Africa and Latin America                          |
+| Invisible Children                                                 | Humanitarian                                           | Central Africa                                    |
+| The Union of Concerned Scientists                                  | Activist organization                                  | USA                                               |
+| National Security Agency                                           | Government organization                                | Fort Meade, Maryland                              |
+| The Muslim Brotherhood                                             | Activist organization                                  | Egypt                                             |
+| Egyptian Government                                                | Government organization                                | Egypt                                             |
+| International Union for Conservation of Nature                     | Activist organization                                  | Global                                            |
+| Sinaloa Cartel                                                     | Criminal organization                                  | Mexico                                            |
+| Los Zetas Cartel                                                   | Criminal organization                                  | Mexico                                            |
+| Government of Mexico                                               | Government organization                                | Mexico                                            |
+| LGBT Human Rights Project GayRussia.Ru                             | Activist organization                                  | Russia                                            |
+| Brazilian Government                                               | Government organization                                | Brasilia, Brazil                                  |
+| Water.org                                                          | Activist organization                                  | United States                                     |
+| Texas Commission on Environmental Quality                          | Environmental Agency                                   | Austin, Texas                                     |
+| Oklahoma National Guard                                            | Government Organization                                | Oklahoma City, OK                                 |
+| Oklahoma City National Memorial Foundation                         | Private Organization                                   | Oklahoma CIty, OK                                 |
+| IndustriALL Global Union                                           | Union                                                  | Geneva, Switzerland                               |
+| The Global Fund                                                    | International Financing Organization                   | India                                             |
+| Prime Minister's Relief Fund                                       | Governement Fund                                       | India                                             |
+| United Nations Office for the Coordination of Humanitarian Affairs | Inter Agency Body                                      | United States of America                          |
+| United Nations                                                     | Interational Cooperative                               | Worldwide                                         |
+| Bill and Melinda Gates Foundation                                  | Interational Cooperative                               | Worldwide                                         |
+| Nothing But Nets                                                   | Charity                                                | Worldwide                                         |
+| Central Intelligence Agency                                        | Governmental Intelligence                              | Langley, VA                                       |
+| Supreme Council of the Armed Forces                                | Governing body of Egyptian military                    | Cairo, Egypt                                      |
+| Labour Party (Norway)                                              | Party                                                  | Norway                                            |
+| Disasters Emergency Committee                                      | Umbrella Organization for 14 Humanitarian Aid Agencies | London, England                                   |
++--------------------------------------------------------------------+--------------------------------------------------------+---------------------------------------------------+
+68 rows in set (0.00 sec)
+
+
+
+
+
+
+

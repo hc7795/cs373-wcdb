@@ -1,0 +1,11 @@
+Show the name and economic impact of natural disasters occuring after 2001.
+
+--------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+| name                                       | economicImpact                                                                                                                |
++--------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+| Hurricane Ike                              | ['37.5 billion (2008 USD)']                                                                                                   |
+| Katrina                                    | ['Over $100 billion worth of damage']                                                                                         |
+| Cyclone Nargis                             | ['Damage was estimated at over US$10 billion, which made it the most damaging cyclone ever recorded in this basin.']          |
+| Indian Ocean Tsunami and Earthquake (2004) | ['Damages worth 5.59 Billion USD', 'Loss of property worth 4.33 Billion USD', 'Total economic impact worth 9.93 billion USD'] |
++--------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+

@@ -1,0 +1,14 @@
+Crises that took place in Texas (Location data should contain "Texas" or "TX")
+
+
+
++---------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| name                            | location                                                                                                                                                                         |
++---------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Hurricane Ike                   | ['Turks and Caicos, Bahamas, Haiti, Dominican Republic, Cuba, Florida Keys, Mississippi, Louisiana, Texas, Mississippi Valley, Ohio Valley, Great Lakes region, Eastern Canada'] |
+| 2008 Raid on Religious Compound | ['Eldorado, Texas United States']                                                                                                                                                |
+| Texas Wild Fires                | ['Texas']                                                                                                                                                                        |
+| West Fertilizer Plant Explosion | ['West, Texas']                                                                                                                                                                  |
+| Columbia Space Shuttle Disaster | ['Dallas, Texas']                                                                                                                                                                |
++---------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+5 rows in set (0.00 sec)

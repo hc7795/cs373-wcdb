@@ -1,0 +1,11 @@
+Crises whose kind value contains the word "shooting
+
+
+
++------------------------------------+---------------+
+| name                               | kind          |
++------------------------------------+---------------+
+| 2012 Aurora Shooting               | Mass Shooting |
+| 2013 Alabama bunker hostage crisis | Mass Shooting |
++------------------------------------+---------------+
+2 rows in set (0.00 sec)

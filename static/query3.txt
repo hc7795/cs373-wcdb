@@ -1,0 +1,44 @@
+
+Show all organizations founded within the last half century (since 1963).
+
+
+name                                                       |
++------------------------------------------------------------+
+| African Union                                              |
+| BNP Paribas                                                |
+| Child Protective Services                                  |
+| Department of Homeland Security                            |
+| Egyptian Government                                        |
+| Federal Emergency Management Agency                        |
+| Fundamentalist Church of Jesus Christ of Latter Day Saints |
+| General Electric                                           |
+| Government of Mexico                                       |
+| IndustriALL Global Union                                   |
+| International Union for Conservation of Nature             |
+| Invisible Children                                         |
+| Iraq and Afghanistan Veterans of America                   |
+| Ku Klux Klan                                               |
+| Lashkar-e-Taiba                                            |
+| LGBT Human Rights Project GayRussia.Ru                     |
+| Morton-Thiokol                                             |
+| National Oceanic and Atmospheric Administration            |
+| National Security Agency                                   |
+| National Transitional Council                              |
+| Nothing But Nets                                           |
+| Oklahoma City National Memorial Foundation                 |
+| Pink Ribbon Red Ribbon                                     |
+| Polaris Project                                            |
+| Salvation Army                                             |
+| San Estaban Mining Company                                 |
+| Sichuan Quake Relief                                       |
+| Supreme Council of the Armed Forces                        |
+| Texas Commission on Environmental Quality                  |
+| The Community First Foundation                             |
+| The Global Fund                                            |
+| Twitter                                                    |
+| United Nations                                             |
+| United Way                                                 |
+| Valve                                                      |
+| Water.org                                                  |
+| Wikileaks                                                  |
++------------------------------------------------------------

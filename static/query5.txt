@@ -1,0 +1,10 @@
+Show all people with videos associated with Red Cross
+
+
++------------------+
+| name             |
++------------------+
+| Barack Obama     |
+| Gail J. McGovern |
++------------------+
+2 rows in set (0.00 sec)

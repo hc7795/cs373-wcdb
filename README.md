@@ -35,3 +35,5 @@ Actually spent 70 hours on the project.
    mysql -h z -u hc7795 -pe~wmbU1mGm
    
    Tech Report Google Doc - https://docs.google.com/a/utexas.edu/document/d/18nBuewW8oPjtc6yqdIHjKJONMgZby3ZwGcdMCdTkVAg/edit
+
+   Presentation Ideas - https://docs.google.com/document/d/19aIlzwSf9547_h_UXyXvzRjr9JrQvaci6ajyI8J5pEo/edit?usp=sharing

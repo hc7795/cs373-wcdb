@@ -4,6 +4,9 @@ cs373-wcdb
 Expected 50 hours.
 Actually spent 70 hours on the project.
 
+* Prezi: 
+ log in with russelljahn@gmail.com
+ password is gummypandas
 
 
 * Link to contact info Google Doc: https://docs.google.com/document/d/17aQGjf3V3MqLfxaajcE33ir3tT16l-LHZWrXc9HL-fU/edit?usp=sharing

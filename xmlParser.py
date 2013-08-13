@@ -50,7 +50,7 @@ from django.template.defaultfilters import slugify
 """
 	Parses a XML file into Django models and saves them to the database. 
 """
-def xmlToDjango(xmlFilename):
+def xmlToDjango(xmlFilename, schema):
 
 	#password = raw_input("Password: ")
 	#if (password != "gummy"):
@@ -61,7 +61,7 @@ def xmlToDjango(xmlFilename):
 	#xmlFilename = raw_input("Filename of the XML file: ")
 	#schemaFilename = raw_input("Filename of the schema file: ")
 	# xmlFilename = "static/vkeshari-WCDB2.xml"
-	schemaFilename = "static/WorldCrises.xsd.xml"
+	schemaFilename = schema
 
 
 	# Validate the XML file.
@@ -146,7 +146,7 @@ def importXMLToDjango(xmlFilename):
 	# Put the models in the Django database.
 	importXML(modelsList)
 	
-def importXMLToDjangoFile(xmlFilename):
+def importXMLToDjangoFile(xmlFilename, schemaFile):
 
 	#password = raw_input("Password: ")
 	#if (password != "gummy"):
@@ -156,7 +156,7 @@ def importXMLToDjangoFile(xmlFilename):
 
 	#xmlFilename = raw_input("Filename of the XML file: ")
 	#schemaFilename = raw_input("Filename of the schema file: ")
-	schemaFilename = "documents/WorldCrises.xsd.xml"
+	schemaFilename = schemaFile
 
 
 	# Validate the XML file.

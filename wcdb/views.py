@@ -24,6 +24,7 @@ from django.core.urlresolvers import reverse
 
 from xmlParser import *
 
+import sys, traceback
 
 def makeValidURL(listObject):
   if listObject.href:

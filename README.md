@@ -1,6 +1,8 @@
 cs373-wcdb
 ==========
 
+Link: http://gummypandas.herokuapp.com/index.html
+
 Expected 50 hours.
 Actually spent 70 hours on the project.
 
